@@ -110,8 +110,8 @@ Notes
   file rather than risk corrupting it.
 * Reading works from .psu, an extracted save folder, or a .ps2 card image.
   Writing produces .psu.
-* This is a preview build of the command-line tools. The graphical editor
-  does not expose PS2 saves yet.
+* This is the command-line half. 2K5 Mod Studio also exposes the same
+  capability under File -> PS2 Save Editor.
 * The file-side checks all pass, but an edited save has not yet been
   confirmed loading in-game -- that test is the next step. Keep a backup of
   any card you work from.
