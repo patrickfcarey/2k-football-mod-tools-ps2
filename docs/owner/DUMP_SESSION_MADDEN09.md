@@ -115,3 +115,21 @@ release notes with the date.
 - Do not delete the `dumps` folder afterwards; I may need to re-match later.
 - Do not launch a second emulator while one is running; if the window hangs, `pkill -x pcsx2-qt`,
   wait ten seconds, check with `pgrep -x pcsx2-qt`, and start again.
+
+## The GS-dump route (what actually happened on 2026-09-05)
+
+You took single-frame GS dumps instead of texture dumps, and that works just as well: a GS dump replays
+headless with texture dumping on. So the alternative to sections 1 to 4 is:
+
+1. Boot the game as in section 2 with no special settings.
+2. On each screen you want covered, take a GS dump (the GS-dump hotkey; the emulator writes
+   `~/.config/PenguinScreen2/snaps/<Title>_<SERIAL>_<stamp>.gs.zst` and a `.png` beside it). The
+   thumbnail is what the fixtures manifest describes, so aim the frame at what you want named.
+3. Quit, and tell me. I file the dumps in the private fixtures repo, then run
+   `tools/owner/harvest_textures.sh` on the rig (`ssh rig 'bash -s' < tools/owner/harvest_textures.sh`,
+   after the live-session check as its own command). It replays every dump of the day twice, classic
+   and modern names, and leaves `~/texdumps-<day>.tgz`. It parks the texture keys of any per-game ini
+   for the run and restores the files byte-identical.
+
+2026-09-05: 18 dumps, 8 games, 8,718 texture files in 60 seconds; the Madden 09 frame (Giants and
+Patriots captains) gave 348 classic-named textures, 77 of them the 128x128 uniform-part size.
