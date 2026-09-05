@@ -173,7 +173,7 @@ def tdb_schema(data) -> Dict[str, Any]:
         offset = struct.unpack_from("<I", body, directory + index * 8 + 4)[0]
         header = directory_end + offset
         if header + 40 > len(body):
-            tables.append({"name": name_raw.decode("latin-1"), "error": "table header outside the database"})
+            tables.append({"name": _tag_text(name_raw), "error": "table header outside the database"})
             continue
         len_bytes = struct.unpack_from("<I", body, header + 8)[0]
         len_bits = struct.unpack_from("<I", body, header + 12)[0]
@@ -188,13 +188,24 @@ def tdb_schema(data) -> Dict[str, Any]:
             if fo + 16 > len(body):
                 break
             ftype, fbit, fname, fwidth = struct.unpack_from("<II4sI", body, fo)
-            fields.append({"name": fname.decode("latin-1"), "type": TDB_FIELD_TYPES.get(ftype, str(ftype)),
+            fields.append({"name": _tag_text(fname), "type": TDB_FIELD_TYPES.get(ftype, str(ftype)),
                            "bit_offset": fbit, "bits": fwidth})
-        tables.append({"name": name_raw.decode("latin-1"), "records": cur_records, "max_records": max_records,
+        tables.append({"name": _tag_text(name_raw), "records": cur_records, "max_records": max_records,
                        "record_bytes": len_bytes, "record_bits": len_bits, "indexes": index_count,
                        "fields": fields})
     return {"endian": "little", "version": version, "version_bytes": bytes(body[2:4]).hex(), "preamble": preamble, "table_count": table_count,
             "db_size": struct.unpack_from("<I", body, 8)[0], "tables": tables}
+
+
+def _tag_text(raw: bytes) -> str:
+    """A 4CC or field tag as page-safe text: latin-1, with every byte outside 0x20..0x7E escaped as \\xNN.
+
+    EA table names are not always printable -- Madden 09's playbooks carry a table
+    literally named ``SGF\\x00`` -- and a raw NUL in a markdown page turns the whole
+    file into "binary" for grep and git diff.  The escape keeps the name exact and
+    the page text.
+    """
+    return "".join(ch if 0x20 <= ord(ch) <= 0x7E else "\\x%02x" % ord(ch) for ch in bytes(raw).decode("latin-1"))
 
 
 def schema_signature(schema: Dict[str, Any]) -> str:
@@ -1556,6 +1567,8 @@ def selftest() -> int:
     schema = tdb_schema(db)
     check(schema["table_count"] == 2 and [t["name"] for t in schema["tables"]] == ["TEAM", "PLAY"] and schema["version"] == 8 and schema["version_bytes"] == "0008", "tdb tables")
     check(identify_head(db[:16]) == "TDB" and identify_head(b"\x03\x12\x3c\x07" + bytes(12)) == "EVT", "TDB / EVT file kinds")
+    odd = tdb_schema(_synthetic_tdb([("SGF\x00", [("SGF_", 3, 12), ("name", 0, 32)], 2)]))
+    check(odd["tables"][0]["name"] == "SGF\\x00" and all(0x20 <= ord(c) <= 0x7E for c in odd["tables"][0]["name"]), "NUL in a table name is escaped, never emitted")
     check(identify_head(b"\xef\xbb\xbfVK_SPACE=Espace") == "TEXT" and identify_head("caf\u00e9 latin".encode("latin-1")) == "TEXT", "BOM / Latin-1 text files")
     try:
         tdb_schema(b"DB\x01\x03" + bytes(12) + struct.pack("<I", 26) + bytes(4)); check(False, "v3 TDB accepted")
