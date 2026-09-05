@@ -1,0 +1,19 @@
+# Fleet summary — 13 disc map(s)
+
+| disc | serial | files | containers | refused | members | archives | archive entries | schemas | MMAP | SCHl | TEXT | TDB members | nested TERF | unclassified | seconds | image sha256 |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| Madden NFL 2001 (USA) | SLUS-20093 | 41 | 26 | 0 | 8,962 | 0 | 0 | 0 | 1,639 | 4,105 | 0 | 319 | 19 | 2,277 | 55.6 | `8c1e967db605f1fb9ce03f5289ecc862cd4fe30fa067ede1d8327da027ed84d0` |
+| NCAA Football 2004 (USA) | SLUS-20719 | 110 | 41 | 0 | 25,533 | 0 | 0 | 13 | 6,999 | 7,921 | 1 | 524 | 27 | 7,012 | 61.1 | `aa66d1d95927341f837cc88930d21c7c05a3f247289a024edd71ff04f3d2b157` |
+| Madden NFL 2004 (USA) | SLUS-20752 | 124 | 55 | 0 | 23,331 | 0 | 0 | 16 | 8,255 | 7,797 | 3 | 308 | 32 | 4,663 | 84.7 | `b6488caf903920cddd25a9c74e1d2963b505ae302bc2faed9dfa1a0bffadccc5` |
+| ESPN NFL 2K5 (USA) | SLUS-20919 | 71 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 68.5 | `f1300699ab445ad04b1e27f6e2df87f7a4d1d080d06c7d73499e1be9618a4ebe` |
+| MVP Baseball 2005 (USA) | SLUS-21135 | 434 | 0 | 0 | 0 | 211 | 43,773 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 3.1 | `90ed5e7974fc6f4374b43f6de19a984609c75dde94bc632a2f0940f8267b6484` |
+| Madden NFL 06 (USA) | SLUS-21213 | 357 | 101 | 0 | 49,612 | 3 | 110 | 22 | 10,405 | 15,523 | 14,017 | 318 | 310 | 6,359 | 117.4 | `b5480cc101aa4e81dcf00cd3547b93823a809d42d45394159127b497ee85690d` |
+| NCAA Football 06 (USA) | SLUS-21214 | 364 | 75 | 0 | 31,829 | 65 | 5,424 | 13 | 6,435 | 9,723 | 8 | 575 | 264 | 9,017 | 9.8 | `fe2e30e7ea345f1adc489293453dba6a3b53613a66f0b9fab84acaa41fd98cb0` |
+| Madden NFL 08 (USA) | SLUS-21638 | 186 | 106 | 0 | 51,492 | 3 | 117 | 21 | 10,821 | 15,659 | 14,743 | 354 | 507 | 6,662 | 78.7 | `39d9e41832b9aff947d7f1d1421d71d6056fa9d4fb44a839519dd42a655666c7` |
+| NCAA Football 09 (USA) | SLUS-21752 | 166 | 85 | 0 | 30,391 | 3 | 117 | 13 | 6,978 | 8,021 | 1,247 | 581 | 411 | 7,051 | 99.0 | `e15ba4d0a3a7139f4e60023c6e045c306d95aca62eb5d483cb8414b4b9fb7de8` |
+| Madden NFL 09 (USA) | SLUS-21770 | 187 | 107 | 0 | 47,769 | 3 | 117 | 21 | 11,338 | 11,389 | 14,748 | 354 | 507 | 6,664 | 68.0 | `b34e8a6acb4be6c92c238173e9c269bf42dfd3bb4231685052538f3aa82f6427` |
+| Madden NFL 09 Deluxe (USA) | SLUS-21770 | 185 | 107 | 0 | 49,019 | 3 | 117 | 21 | 11,476 | 11,399 | 14,748 | 354 | 507 | 6,664 | 89.0 | `d331c5e40104317768a0ff100476082b2dd499d1758b9a04ba0e0efe4bc1be20` |
+| Madden NFL 12 (USA) | SLUS-21946 | 97 | 80 | 0 | 44,326 | 0 | 0 | 21 | 10,200 | 11,429 | 14,743 | 173 | 42 | 4,784 | 54.7 | `b9c3e7b95527a1e81faf629b515e8036f71bbd5e05806959944cd602fc3fcdaf` |
+| Madden NFL 12 Deluxe 2026 (USA) | SLUS-21946 | 97 | 80 | 0 | 44,360 | 0 | 0 | 21 | 10,336 | 11,464 | 14,743 | 173 | 42 | 4,784 | 60.8 | `6141e21cff21a57886b74bf3fde7ffc78e870b1816be185d8f1888f67e794d67` |
+
+Totals over the fleet: 863 containers, 406,624 members, 94,882 MMAP, 114,430 SCHl, 89,001 TEXT, 65,937 unclassified, 291 archives.
