@@ -1,0 +1,439 @@
+{
+ "schema": "savestate-diffs/v1",
+ "generated": "2026-09-06",
+ "method": "two PCSX2 savestates of the same screen, one on-screen value apart; tools/owner/sstate_diff.py",
+ "retail_free": "offsets, lengths, counts, four-character field names, bit offsets and widths, and the handful of integer values the owner's own screenshots display. No bytes, no strings, no pixels.",
+ "capture": {
+  "source": "the rig, ~/.config/PenguinScreen2/sstates, read-only over SSH; copies deleted after use",
+  "states": 15,
+  "member_read": "eeMemory.bin (33,554,432 bytes) and Screenshot.png",
+  "zip_codec": "zip method 93 (Zstandard); unzip(1) cannot read it and silently yields nothing"
+ },
+ "inventory": [
+  {
+   "serial": "SLUS-20051",
+   "crc": "3A32FD60",
+   "title": "NFL Blitz 2002 (USA)",
+   "slot": "01",
+   "captured": "2026-09-06T12:49",
+   "shows": "pre-game TODAY'S MATCHUP versus card, two team crests, three play-call rings below"
+  },
+  {
+   "serial": "SLUS-20474",
+   "crc": "49A00204",
+   "title": "NFL Blitz 20-03 (USA)",
+   "slot": "01",
+   "captured": "2026-09-06T12:54",
+   "shows": "pre-game TONIGHT'S MATCHUP versus card, two team crests, three play-call rings below"
+  },
+  {
+   "serial": "SLUS-20919",
+   "crc": "42F9D5AF",
+   "title": "ESPN NFL 2K5 (USA)",
+   "slot": "01",
+   "captured": "2026-09-06T12:57",
+   "shows": "pre-game LOADING screen: two helmets on a studio shelf and a seated presenter rendered with an unresolved texture (flat diagonal stripes)"
+  },
+  {
+   "serial": "SLUS-21135",
+   "crc": "0544E001",
+   "title": "MVP Baseball 2005 (USA)",
+   "slot": "01",
+   "captured": "2026-09-06T12:38",
+   "shows": "Baserunning controller-tutorial loading card with a Loading... bar"
+  },
+  {
+   "serial": "SLUS-21135",
+   "crc": "0544E001",
+   "title": "MVP Baseball 2005 (USA)",
+   "slot": "02",
+   "captured": "2026-09-06T12:38",
+   "shows": "main menu, Play Now highlighted, player portrait backdrop"
+  },
+  {
+   "serial": "SLUS-21135",
+   "crc": "0544E001",
+   "title": "MVP Baseball 2005 (USA)",
+   "slot": "03",
+   "captured": "2026-09-06T12:39",
+   "shows": "in-game at-bat behind the plate, batter lower-third with AVG/HR/RBI/H/OBP and a headshot inset"
+  },
+  {
+   "serial": "SLUS-21135",
+   "crc": "0544E001",
+   "title": "MVP Baseball 2005 (USA)",
+   "slot": "04",
+   "captured": "2026-09-06T12:40",
+   "shows": "replay free camera: infield view with the GAME CAMERA / FREE CAMERA transport bar"
+  },
+  {
+   "serial": "SLUS-21752",
+   "crc": "B0157E6C",
+   "title": "NCAA Football 09 (USA)",
+   "slot": "01",
+   "captured": "2026-09-06T12:28",
+   "shows": "pre-game rivalry loading card, two crests, series record and recent-history table, Loading..."
+  },
+  {
+   "serial": "SLUS-21752",
+   "crc": "B0157E6C",
+   "title": "NCAA Football 09 (USA)",
+   "slot": "02",
+   "captured": "2026-09-06T12:29",
+   "shows": "main menu (corkboard), PLAY NOW highlighted"
+  },
+  {
+   "serial": "SLUS-21752",
+   "crc": "B0157E6C",
+   "title": "NCAA Football 09 (USA)",
+   "slot": "03",
+   "captured": "2026-09-06T12:30",
+   "shows": "SELECT CONTROLLER / team card with the pre-game uniform selector; Uniform: Home; 3D preview of player 7 in the dark kit",
+   "pair": "ncaa09-kit"
+  },
+  {
+   "serial": "SLUS-21752",
+   "crc": "B0157E6C",
+   "title": "NCAA Football 09 (USA)",
+   "slot": "04",
+   "captured": "2026-09-06T12:30",
+   "shows": "the same screen with Uniform: Away; the same preview in the light kit. Nothing else on screen differs.",
+   "pair": "ncaa09-kit"
+  },
+  {
+   "serial": "SLUS-21770",
+   "crc": "38014255",
+   "title": "Madden NFL 09 (USA)",
+   "slot": "01",
+   "captured": "2026-09-06T12:36",
+   "shows": "SUPER SIM feature loading card, LOADING..."
+  },
+  {
+   "serial": "SLUS-21770",
+   "crc": "38014255",
+   "title": "Madden NFL 09 (USA)",
+   "slot": "02",
+   "captured": "2026-09-06T12:24",
+   "shows": "main menu, PLAY NOW highlighted"
+  },
+  {
+   "serial": "SLUS-21770",
+   "crc": "38014255",
+   "title": "Madden NFL 09 (USA)",
+   "slot": "03",
+   "captured": "2026-09-06T12:25",
+   "shows": "VIEW ROSTERS, one team's list sorted by OVR, top row selected; the detail panel reads jersey 54, MLB, Ht 6'4\", Wt 254, Yrs Pro 8, OVR 98; the six listed OVRs are 98/96/95/94/93/92",
+   "pair": "madden09-jersey"
+  },
+  {
+   "serial": "SLUS-21770",
+   "crc": "38014255",
+   "title": "Madden NFL 09 (USA)",
+   "slot": "04",
+   "captured": "2026-09-06T12:25",
+   "shows": "the same screen with jersey 56. Every other pixel of the panel and the list is identical.",
+   "pair": "madden09-jersey"
+  }
+ ],
+ "noise": {
+  "note": "this capture set holds no second same-screen pair, so no differential noise baseline was available; the filter used is structural, and the Madden pair (known ground truth) is the control that proves it. A future capture should include one no-op pair per title.",
+  "madden09": {
+   "differing_bytes": 1097719,
+   "image_bytes": 33554432,
+   "percent": 3.271,
+   "runs_gap16": 2915,
+   "runs_gap1": 26552,
+   "runs_gap64": 1305,
+   "largest_run_span": 196608,
+   "elf_sections": {
+    ".text": 0,
+    ".rodata": 0,
+    ".data": 32,
+    ".sdata": 18,
+    ".sbss": 11,
+    ".bss": 1520,
+    ".stack": 889,
+    "outside_executable": 1095249
+   }
+  },
+  "ncaa09": {
+   "differing_bytes": 516983,
+   "image_bytes": 33554432,
+   "percent": 1.541,
+   "runs_gap16": 1101,
+   "runs_gap1": 14409,
+   "runs_gap64": 622,
+   "largest_run_span": 131552,
+   "elf_sections": {
+    ".text": 0,
+    ".rodata": 0,
+    ".data": 41,
+    ".sdata": 25,
+    ".sbss": 16,
+    ".bss": 9852,
+    ".stack": 538,
+    "outside_executable": 506511
+   }
+  }
+ },
+ "madden09_ps2": {
+  "question": "does EE RAM hold the PLAY record in the bit-packed layout the disc uses",
+  "verdict": "yes",
+  "disc": {
+   "iso_label": "Madden NFL 09 (USA)",
+   "serial": "SLUS-21770",
+   "pcsx2_crc": "38014255",
+   "boot_elf": "/SLUS_217.70",
+   "play_row_source": {
+    "file": "/DATA/TEMPLATE.DAT",
+    "member": 1,
+    "stride_bytes": 104,
+    "record_bits": 831,
+    "fields": 110,
+    "current_records": 1986,
+    "max_records": 2048
+   },
+   "play_runtime_schema": {
+    "file": "/DATA/TEMPLATE.DAT",
+    "member": 2,
+    "stride_bytes": 132,
+    "record_bits": 1055,
+    "fields": 127,
+    "current_records": 56,
+    "max_records": 2222
+   }
+  },
+  "resident_database": {
+   "ee_offset": "0x01BEBF30",
+   "disc_member": "/DATA/TEMPLATE.DAT member 2",
+   "declared_bytes": 369524,
+   "exact_prefix_bytes": 49404,
+   "tables": 21,
+   "note": "the header, table directory and every table header and field directory are byte-identical to the disc; the divergence begins 22,436 bytes into PLAY's record array, i.e. after about 170 records"
+  },
+  "runtime_play_table": {
+   "field_directory_ee_offset": "0x01DF70EC",
+   "field_count": 127,
+   "record_array_ee_offset": "0x01DF95D0",
+   "stride_bytes": 132,
+   "records": 1986,
+   "extent_bytes": 262152,
+   "pgid_first": 57,
+   "pgid_last": 28566,
+   "in_executable_image": false,
+   "note": "the record array does not follow its field directory the way a file does; 7,412 bytes separate them"
+  },
+  "schema_equality": {
+   "compared": "disc TEMPLATE.DAT member 2 PLAY vs both RAM field directories",
+   "fields": 127,
+   "name_order_equal": true,
+   "type_bitoffset_bitwidth_equal": true
+  },
+  "answer_site": {
+   "changed_bytes": 2,
+   "ee_offsets": [
+    "0x01DF99C7",
+    "0x01DF99C8"
+   ],
+   "record_index": 7,
+   "record_ee_offset": "0x01DF996C",
+   "field": "PJEN",
+   "type": "uint",
+   "bit_offset": 734,
+   "bit_width": 7,
+   "byte_in_record": 91,
+   "bit_in_byte": 6,
+   "differing_bytes_in_whole_record_array": 2,
+   "fields_changed_in_that_record": [
+    "PJEN"
+   ]
+  },
+  "decoded_against_the_screen": {
+   "PJEN": [
+    54,
+    56
+   ],
+   "POVR": 98,
+   "PPOS": 14,
+   "PPOS_meaning": "MLB",
+   "PHGT": 76,
+   "PHGT_meaning": "6 ft 4 in",
+   "PWGT": 94,
+   "PWGT_meaning": "254 lb (the field stores lb - 160)",
+   "PYRP": 8,
+   "PAGE": 30,
+   "TGID": 1,
+   "PGID": 224,
+   "same_team_top_six_POVR": [
+    98,
+    96,
+    95,
+    94,
+    93,
+    92
+   ],
+   "same_team_top_six_PPOS": [
+    14,
+    12,
+    15,
+    7,
+    19,
+    16
+   ],
+   "same_team_top_six_PPOS_meaning": [
+    "MLB",
+    "DT",
+    "ROLB",
+    "C",
+    "K",
+    "CB"
+   ],
+   "records_with_that_TGID": 53
+  },
+  "transition_search": {
+   "width": 7,
+   "from": 54,
+   "to": 56,
+   "sites": 10,
+   "sites_at_a_declared_field_offset": 1,
+   "byte_aligned_decoys": 5,
+   "inside_churning_buffers": 2,
+   "other_bit_aligned_decoys": 2
+  }
+ },
+ "ncaa09_ps2": {
+  "question": "where does the pre-game Home/Away uniform choice live, and is any of it on the disc",
+  "verdict": "a 32-bit index in a two-element per-side game-setup record in the boot ELF's .data; its default is on the disc in the ELF, and it is in no database on the disc",
+  "disc": {
+   "iso_label": "NCAA Football 09 (USA)",
+   "serial": "SLUS-21752",
+   "pcsx2_crc": "B0157E6C",
+   "boot_elf": "/SLUS_217.52",
+   "boot_elf_lba": 765319,
+   "boot_elf_bytes": 7294796,
+   "elf_data_section": {
+    "vaddr": "0x0071D900",
+    "file_offset": "0x0061E900",
+    "size": 392864
+   }
+  },
+  "answer_site": {
+   "ee_offset": "0x00737F60",
+   "shape": "32-bit little-endian index",
+   "values": {
+    "home": 0,
+    "away": 1
+   },
+   "section": ".data",
+   "elf_file_offset": "0x00638F60",
+   "image_byte_offset": 1573898080,
+   "record_array": {
+    "records": 2,
+    "record_ee_offsets": [
+     "0x00737F48",
+     "0x00737F94"
+    ],
+    "stride_bytes": 76,
+    "field_offset_in_record": 24,
+    "disc_initial_values": [
+     0,
+     1
+    ],
+    "found_by": "the record head appears exactly twice in the ELF's .data initialiser, 76 bytes apart"
+   }
+  },
+  "second_data_flag": {
+   "ee_offset": "0x007374BE",
+   "shape": "one byte in a zero-initialised 0/1 array",
+   "section": ".data",
+   "elf_file_offset": "0x006384BE",
+   "transition": [
+    0,
+    1
+   ],
+   "status": "meaning not established; the array's members are scattered rather than paired per side, which is why it is not read as the choice"
+  },
+  "nearby_identifiable": {
+   "matchup_block": {
+    "ee_offsets": [
+     "0x00737C04",
+     "0x00737C06"
+    ],
+    "shape": "two 16-bit team ids",
+    "distance_below_the_answer_bytes": 858,
+    "checked_against": "two different matchups in this capture set; the ids read 67/35 in the state loading one fixture and 61/60 in the uniform-selector pair, matching the NCAA-06 school catalogue ids for those four schools",
+    "unchanged_across_the_pair": true
+   },
+   "renderer_consequence": {
+    "ee_offsets": [
+     "0x0085A3A4",
+     "0x0085A3A8"
+    ],
+    "section": ".bss",
+    "shape": "a pair of heap pointers that exchange places",
+    "pointed_object_stride_bytes": 72
+   },
+   "texture_address": null
+  },
+  "disc_correspondence": {
+   "resident_database": {
+    "ee_offset": "0x01D52AE0",
+    "disc_member": "/DATA/TEMPLATE.DAT member 0",
+    "tables": 49,
+    "declared_bytes": 153504,
+    "exact_prefix_bytes": 61292,
+    "resident_extent_bytes": 87392,
+    "differing_bytes_across_the_resident_extent": 0
+   },
+   "kit_shaped_tables_resident": [
+    {
+     "table": "CTCD",
+     "fields": 45,
+     "record_bytes": 108,
+     "rows": 0,
+     "differing_bytes": 0
+    },
+    {
+     "table": "CTUN",
+     "fields": 28,
+     "record_bytes": 76,
+     "rows": 0,
+     "differing_bytes": 0
+    },
+    {
+     "table": "USTG",
+     "fields": 19,
+     "record_bytes": 40,
+     "rows": 0,
+     "differing_bytes": 0
+    },
+    {
+     "table": "USLG",
+     "fields": 11,
+     "record_bytes": 24,
+     "rows": 0,
+     "differing_bytes": 0
+    }
+   ],
+   "conclusion": "the choice is written to no database row. What is on the disc is the default, as two initialised words in the boot ELF's .data at file offsets 0x00638F60 and 0x00638FAC."
+  },
+  "assumption_that_would_make_this_wrong": "that the choice is not also persisted to a memory-card save. This capture set holds no memory-card image, so persistence was not tested; a save written before and after the change would settle it."
+ },
+ "unlocks": {
+  "madden09": "a two-state RAM diff on any EA TDB title now maps straight onto disc field offsets, so a field question is answered by pressing a button twice rather than by guessing at a schema",
+  "ea_tdb_fleet": "the same holds for the eight other EA TDB discs on the fleet: Madden NFL 2001, 2004, 06, 08, 09, 12 and NCAA Football 2004, 06, 09 all carry the same self-describing table format that RAM keeps verbatim",
+  "ncaa09": "the Uniforms page can state, with evidence, that the Home/Away selection is not a data row and owes no database lane; the editable surface stays the kit art"
+ },
+ "recommendations": [
+  {
+   "file": "docs/product/NCAA09_PS2_SCHEMA.md",
+   "section": "4a. Kits - the table that is not there",
+   "change": "add the RAM measurement: TEMPLATE.DAT member 0 is resident at EE 0x01D52AE0 with a 61,292-byte exact prefix, all four kit-shaped tables present with 0 rows, and 0 bytes differing across the whole resident extent when the on-screen uniform flips. The 'no equivalent' is now measured in the running game, not only on the disc."
+  },
+  {
+   "file": "docs/product/NCAA09_PS2_ART_PAGES.md",
+   "section": "the uniforms page",
+   "change": "note that the pre-game Home/Away selection is a 32-bit index at ELF .data +0x18 of a 76-byte per-side record (EE 0x00737F60 / 0x00737FAC, disc defaults 0 and 1 at ELF file offsets 0x00638F60 / 0x00638FAC), not a record in any table. It is an executable-data patch if anyone ever wants it, and it does not change the rung of either uniforms row."
+  }
+ ]
+}
