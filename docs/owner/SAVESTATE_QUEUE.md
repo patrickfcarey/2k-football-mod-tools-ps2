@@ -40,6 +40,15 @@ The harness restores the same state twice, once with the original image and once
 advances both the same number of frames with no input, and diffs the two frames. Emulation from an
 identical state with identical input is deterministic, so the reference generates itself.
 
+**On a team-select row, press X first and save on the first frame the loading screen appears — not
+before the press.** A state taken before the button needs the harness to supply that button, which means
+scripted pad input; a state taken just after it needs no input at all, so the harness is "restore, run N
+frames, screenshot". Pressing X only *starts* the load: the stadium, field art, uniforms, faces and
+presentation stream off the disc over the frames that follow, which is after the state and therefore from
+whichever image is mounted. If a game turns out to pre-cache something at highlight time (team logos are
+the usual case), that asset's diff comes back empty while the others change — which names the one asset
+that needs an earlier state, and only that one is re-taken.
+
 Take the state at the screen in the **stand here** column. The **advance to** column is what the harness
 will drive to afterwards; you do not need to go there yourself.
 
