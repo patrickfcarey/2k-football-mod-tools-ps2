@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Read-only map of an EA / Visual Concepts PlayStation 2 disc.
+"""Read-only map of an EA / Visual Concepts / Midway / AND 1 PlayStation 2 disc.
 
 One command per disc, run wherever the image lives (the rig), writing only counts,
 names, sizes, offsets and digests -- never member payloads, strings or pixels --
@@ -31,7 +31,14 @@ What it maps:
   endianness, RefPack-packed members classified by their *decompressed* head,
   nested archives one level down, SHPS image-bank headers, SCHl headers, TERF and
   TDB members;
-* every bare TDB file, every ``QL01`` preload file, every ELF / IRX.
+* every bare TDB file, every ``QL01`` preload file, every ELF / IRX;
+* the non-EA families the census used to leave as ``other:<hex>``: a ZIP archive and the
+  Midway ``.ZIH`` index that points into it (the index's offsets and CRC-32s are *checked*
+  against the ZIP), the Midway ``MWo3`` overlay, ``PAK `` pack and its ``0x11111111``
+  resource metadata, the Midway sound bank and ``.OBF`` option tree, AND 1 Streetball's
+  ``EFS `` archive with its ``.HDR`` member directories, and Sony ``VAGp`` streams.
+  Each of those readers reports the identities it verified and says plainly what it could
+  not establish; a header word with no checked meaning is printed as a numbered word.
 
 Nothing here writes to the image.  Containers are read through a memory map on a
 2048-byte image and through sector-gathered reads on a raw-CD (2352-byte) image.
@@ -45,6 +52,7 @@ import argparse
 import gc
 import hashlib
 import json
+import io
 import mmap
 import os
 import re
@@ -52,6 +60,8 @@ import statistics
 import struct
 import sys
 import time
+import zipfile
+import zlib
 from collections import Counter
 from pathlib import Path
 from typing import Any, Callable, Dict, Iterable, List, Optional, Sequence, Tuple
@@ -70,7 +80,7 @@ import ps2_iso9660 as iso  # noqa: E402
 from mod_editor.games._formats import ea_terf  # noqa: E402
 from mod_editor.games._formats import ps2_elf  # noqa: E402
 
-SCHEMA = "ea_disc_map/v2"
+SCHEMA = "ea_disc_map/v3"
 TDB_FIELD_TYPES = {0: "string", 1: "binary", 2: "sint", 3: "uint", 4: "float"}
 
 #: File-level kinds by magic, first match wins.  Every entry is either an EA
@@ -88,6 +98,14 @@ MAGIC_KINDS: Dict[bytes, str] = {
     b"\x00\x00\x01\xb3": "MPEG-video", b"\x00\x00\x01\xba": "MPEG-PS",
     b"IECS": "SCEI-HD",
     b"\x03\x12\x3c\x07": "EVT", b"\x03\x11\x3c\x07": "EVT",   # the head of every loose .EVT audio event table (MVP 2005, NCAA 06)
+    # --- non-EA families the census found opaque: Midway (NFL Blitz, Blitz: The League) and AND 1 Streetball ---
+    b"PK\x03\x04": "ZIP",          # NFL Blitz 2002 / 2003 keep every asset in one stored-only ZIP
+    b"MWo3": "MWo3",                # Midway relocatable overlay (OVERLAY*.BIN, *.OVL)
+    b" KAP": "MidwayPAK",           # 'PAK ' written as a little-endian u32 -- Blitz Pro / The League RESIMG1.DAT
+    b"\x01\xf0\x0f": "MidwayOBF",  # BLITZOPT.OBF, the tuning-option tree
+    b"EFS ": "EFS",                 # AND 1 Streetball's archive
+    b"VAGp": "VAGp",                # Sony's documented ADPCM container
+    b".HDR": "HDR-dir",             # AND 1 member directory (8-char names + offsets)
 }
 #: Member-level magics the mapper adds on top of ``ea_terf.identify_member`` --
 #: applied only to members that module leaves unclassified, so its counts and
@@ -115,6 +133,12 @@ EXT_HINTS: Dict[str, str] = {
     "dbc": "EA database text", "act": "EA action script", "mgd": "EA camera data", "ubr": "XML lighting rig",
     "gdb": "text", "pl": "text", "scn": "EA scene", "fx": "EA audio effect", "sbk": "EA script bank",
     "ico;1": "PS2 save icon",
+    "zih": "Midway ZIP index (count + per-entry records, no magic)",
+    "zip": "ZIP archive", "obf": "Midway option/tuning tree", "ovl": "Midway overlay",
+    "ms2": "Midway sound bank (no magic; validated by its header)", "ms4": "Midway sound bank (no magic)",
+    "lf": "Midway resource metadata list", "efs": "AND 1 Streetball archive",
+    "vag": "Sony VAG ADPCM stream", "of": "Midway pack object",
+    "dff": "RenderWare clump / model", "rtd": "RenderWare texture dictionary",
 }
 #: ``/VC_<serial digits>/<n>.`` -- Visual Concepts' outer pack archive.  Not EA,
 #: not walked here; the fork's 2K5 module already inventories it.
@@ -796,6 +820,506 @@ def map_bigf(extent: _Extent, schemas: Optional[Dict[str, Dict[str, Any]]] = Non
 
 
 # --------------------------------------------------------------------------
+# non-EA families: Midway (NFL Blitz 2002/2003, Blitz Pro, Blitz: The League)
+# and AND 1 Streetball.  Every field below is either predicted-and-checked (an
+# offset that lands on a boundary, a count that reproduces the file's length)
+# or reported as a raw word with no name.  Nothing here guesses a layout.
+# --------------------------------------------------------------------------
+MWO3_HEADER_BYTES = 64           # measured: 64 + segment1 + segment2 == the file, on all four overlays seen
+MIDWAY_META_MAGIC = 0x11111111   # the head of RESMETA.LF and of a Midway PAK's metadata region
+MIDWAY_META_SLOT = 2048          # measured: file bytes == 8 + count * 2048
+MIDWAY_META_RECORD_MASK = 0xFFFFFF00
+MIDWAY_META_RECORD_MAGIC = 0x22222200
+HDR_DIR_HEADER_BYTES = 32        # measured: 32 + count * 16 == the first entry's offset
+HDR_DIR_ENTRY_BYTES = 16
+EFS_HEADER_BYTES = 16
+EFS_ENTRY_BYTES = 20
+VAGP_HEADER_BYTES = 48           # Sony's documented VAG header
+OBF_VALUE_TYPES = {1: "int", 2: "float"}
+ZIP_METHODS = {0: "stored", 8: "deflate", 9: "deflate64", 12: "bzip2", 14: "lzma"}
+
+
+def _printable(raw: bytes) -> str:
+    """A name as it will be printed: Latin-1, control bytes escaped, never a raw byte in a document."""
+    return "".join(c if 32 <= ord(c) < 127 else "\\x%02x" % ord(c) for c in raw.decode("latin-1"))
+
+
+class _ExtentIO(io.RawIOBase):
+    """A seekable read-only file over one ``_Extent``, so stdlib readers (``zipfile``) can walk a disc file."""
+
+    def __init__(self, extent: "_Extent", base: int = 0, size: Optional[int] = None) -> None:
+        self._extent = extent; self._base = base
+        self._size = extent.size - base if size is None else size
+        self._pos = 0
+
+    def readable(self) -> bool:
+        return True
+
+    def seekable(self) -> bool:
+        return True
+
+    def tell(self) -> int:
+        return self._pos
+
+    def seek(self, offset: int, whence: int = os.SEEK_SET) -> int:
+        target = offset if whence == os.SEEK_SET else self._pos + offset if whence == os.SEEK_CUR else self._size + offset
+        self._pos = max(0, min(self._size, target))
+        return self._pos
+
+    def readinto(self, buffer) -> int:  # type: ignore[override]
+        take = min(len(buffer), self._size - self._pos)
+        if take <= 0:
+            return 0
+        data = self._extent.read(self._base + self._pos, take, limit=self._base + self._size)
+        buffer[:len(data)] = data
+        self._pos += len(data)
+        return len(data)
+
+
+def mwo3_header(head: bytes, size: Optional[int] = None) -> Dict[str, Any]:
+    """A Midway ``MWo3`` overlay header (64 bytes), with the one identity that proves the field split.
+
+    Measured on NFL Blitz Pro (``OVERLAY1/2.BIN``) and Blitz: The League (``GAMEDVD/NETDVD.OVL``):
+    ``64 + segment1 + segment2`` is exactly the file length in all four.  ``load`` is a PlayStation 2
+    main-memory address; ``address1`` / ``address2`` are addresses inside the same range (three of the
+    four have ``address1 == address2 == load + file bytes``) and are reported unnamed.
+    """
+    if len(head) < MWO3_HEADER_BYTES or head[:4] != b"MWo3":
+        raise MapError("not an MWo3 overlay")
+    index, load, seg1, seg2, third, addr1, addr2 = struct.unpack_from("<7I", head, 4)
+    out: Dict[str, Any] = {"index": index, "load_address": load, "segment1_bytes": seg1, "segment2_bytes": seg2,
+                           "third_size_word": third, "address1": addr1, "address2": addr2,
+                           "name": _printable(head[32:MWO3_HEADER_BYTES].split(b"\x00")[0]), "header_bytes": MWO3_HEADER_BYTES}
+    if size is not None:
+        out["size"] = size
+        out["segments_account_for_file"] = (MWO3_HEADER_BYTES + seg1 + seg2 == size)
+        out["address1_is_load_plus_size"] = (addr1 == load + size)
+        out["address2_equals_address1"] = (addr1 == addr2)
+    return out
+
+
+def zih_index(data) -> Dict[str, Any]:
+    """A Midway ``.ZIH``: the pre-built index of the sibling ``.ZIP`` (NFL Blitz 2002 / 2003).
+
+    Header is ``u32 entries`` then ``u32 body bytes`` (body + 8 == the file, checked).  Two record
+    shapes exist and are told apart by where the first name lives:
+
+    * *inline* (Blitz 2002): nine little-endian u32 then a NUL-terminated name.  Words 5/6/7/8 are the
+      CRC-32 of the stored bytes, the compressed size, the uncompressed size and the offset of the
+      member's **data** inside the ZIP; words 3/4 are an MS-DOS time and date.
+    * *table* (Blitz 2003): three u32 -- name offset (from the end of the 8-byte header), size, data
+      offset -- followed by one string table.
+
+    Every claim above is checked against the ZIP by :func:`zih_versus_zip`; this function only parses.
+    """
+    data = bytes(data)
+    if len(data) < 20:
+        raise MapError("a %d-byte file is too short for a ZIP index" % len(data))
+    count, payload = struct.unpack_from("<II", data, 0)
+    if count == 0 or count > 1_000_000 or payload + 8 != len(data):
+        raise MapError("not a Midway ZIP index: %d entries declaring %d body bytes in %d" % (count, payload, len(data)))
+    entries: List[Tuple[str, int, int, Optional[int]]] = []
+    variant = "table" if count * 12 + 8 <= len(data) and struct.unpack_from("<I", data, 8)[0] == count * 12 else "inline"
+    if variant == "table":
+        for i in range(count):
+            base = 8 + i * 12
+            if base + 12 > len(data):
+                break
+            name_off, size, offset = struct.unpack_from("<3I", data, base)
+            end = data.find(b"\x00", 8 + name_off)
+            if end < 0:
+                break
+            entries.append((_printable(data[8 + name_off:end]), size, offset, None))
+        directory_bytes = 8 + count * 12
+    else:
+        pos = 8
+        while pos + 36 <= len(data) and len(entries) < count:
+            words = struct.unpack_from("<9I", data, pos); pos += 36
+            end = data.find(b"\x00", pos)
+            if end < 0:
+                break
+            entries.append((_printable(data[pos:end]), words[7], words[8], words[5])); pos = end + 1
+        directory_bytes = pos - 8
+    exts: Counter = Counter()
+    for name, _, _, _ in entries:
+        exts[name.rsplit(".", 1)[-1].lower() if "." in name else "-"] += 1
+    offsets = [e[2] for e in entries]
+    return {"variant": variant, "entries": count, "entries_read": len(entries), "declared_body_bytes": payload,
+            "directory_bytes": directory_bytes, "name_table_bytes": max(0, len(data) - 8 - directory_bytes) if variant == "table" else 0,
+            "consumed_whole_file": (pos == len(data)) if variant == "inline" else (8 + count * 12 <= len(data)),
+            "extensions": dict(exts.most_common(16)), "member_sizes": _size_stats([e[1] for e in entries]),
+            "offsets_ascending": all(offsets[i] <= offsets[i + 1] for i in range(len(offsets) - 1)),
+            "has_crc_field": variant == "inline", "names_sample": [e[0] for e in entries[:8]],
+            "_entries": entries}
+
+
+def zih_versus_zip(index: Dict[str, Any], zip_extent: "_Extent", sample: int = 64) -> Dict[str, Any]:
+    """Does the index's offset column land where it says?  The check that makes the layout *measured*.
+
+    For each sampled entry the byte at ``offset - 30 - len(name)`` must be a ZIP local file header
+    (``PK\\x03\\x04``) whose stored name equals the index's name -- i.e. the index points at the member's
+    data, one local header past the signature.  Where the index carries a CRC-32 it is recomputed over
+    the stored bytes of the smallest entries and compared.
+    """
+    entries = index.get("_entries") or []
+    step = max(1, len(entries) // sample) if entries else 1
+    picked = entries[::step][:sample]
+    landed = named = missed = 0
+    for name, size, offset, _crc in picked:
+        start = offset - 30 - len(name)
+        if start < 0 or start + 30 > zip_extent.size:
+            missed += 1; continue
+        header = zip_extent.read(start, 30)
+        if header[:4] != b"PK\x03\x04":
+            missed += 1; continue
+        landed += 1
+        name_len, extra_len = struct.unpack_from("<HH", header, 26)
+        if start + 30 + name_len <= zip_extent.size and _printable(zip_extent.read(start + 30, name_len)) == name:
+            named += 1
+    crc_checked = crc_matched = 0
+    if index.get("has_crc_field"):
+        for name, size, offset, crc in sorted((e for e in entries if e[3] is not None), key=lambda e: e[1])[:8]:
+            if size and offset + size <= zip_extent.size and size <= (1 << 20):
+                crc_checked += 1
+                crc_matched += 1 if (zlib.crc32(zip_extent.read(offset, size)) & 0xFFFFFFFF) == crc else 0
+    return {"sampled": len(picked), "landed_on_a_local_file_header": landed, "names_match": named, "missed": missed,
+            "crc_entries_checked": crc_checked, "crc_matches": crc_matched}
+
+
+def map_zip(extent: "_Extent", *, base: int = 0, size: Optional[int] = None, depth: int = 0) -> Dict[str, Any]:
+    """A ZIP archive read with the standard library: entries, methods, and a magic census of the members.
+
+    Only the first 16 bytes of each member are decompressed, so a 361 MB archive costs one pass over its
+    central directory plus one small read per entry.  A member that is itself a container this mapper
+    knows is walked one level down (never further).
+    """
+    size = extent.size - base if size is None else size
+    stream = _ExtentIO(extent, base, size)
+    kinds: Counter = Counter(); methods: Counter = Counter(); exts: Counter = Counter(); nested_kinds: Counter = Counter()
+    compressed = uncompressed = 0; largest = ("", 0); names: List[str] = []; unreadable = 0; nested = 0
+    with zipfile.ZipFile(stream) as archive:
+        infos = archive.infolist()
+        for info in infos:
+            methods[ZIP_METHODS.get(info.compress_type, "method %d" % info.compress_type)] += 1
+            exts[info.filename.rsplit(".", 1)[-1].lower() if "." in info.filename else "-"] += 1
+            compressed += info.compress_size; uncompressed += info.file_size
+            if info.file_size > largest[1]:
+                largest = (info.filename, info.file_size)
+            if len(names) < 12:
+                names.append(_printable(info.filename.encode("latin-1", "replace")))
+            if info.is_dir():
+                kinds["directory"] += 1; continue
+            try:
+                with archive.open(info) as member:
+                    head = member.read(HEAD_BYTES)
+            except (zipfile.BadZipFile, OSError, ValueError, EOFError, NotImplementedError):
+                unreadable += 1; kinds["unreadable"] += 1; continue
+            kind = identify_head(head) if head else "empty"
+            kinds[kind] += 1
+            if kind in ("ZIP", "EFS", "HDR-dir") and depth < 1:
+                nested += 1
+                nested_kinds[kind] += 1
+        entries = len(infos)
+    return {"entries": entries, "methods": dict(methods.most_common(8)), "extensions": dict(exts.most_common(20)),
+            "member_kinds": dict(kinds.most_common(20)), "compressed_bytes": compressed, "uncompressed_bytes": uncompressed,
+            "stored_only": set(methods) == {"stored"}, "largest_entry": {"name": _printable(largest[0].encode("latin-1", "replace")), "bytes": largest[1]},
+            "unreadable_members": unreadable, "nested_containers": nested, "nested_kinds": dict(nested_kinds),
+            "names_sample": names}
+
+
+def midway_meta(read: Callable[[int, int], bytes], size: int, *, base: int = 0) -> Dict[str, Any]:
+    """The ``0x11111111`` resource-metadata list: Blitz Pro / The League's ``RESMETA.LF`` and the same
+    block inside ``RESIMG1.DAT``.
+
+    Header: ``u32 0x11111111`` then ``u32 records``; the region is ``8 + records * 2048`` bytes, which is
+    exactly the ``.LF`` file's length (checked).  Each 2048-byte slot begins ``0x222222xx``, carries a
+    32-bit name hash at +4 and the constant 2048 at +8, and ends with three u32 string lengths followed
+    by that many NUL-terminated strings: a category word and a ``dir\\<hex>.ext`` path.  The hash is
+    *checked* against the path's hexadecimal stem.  The words between +12 and the length triple differ
+    per title and are reported unnamed.
+    """
+    head = read(base, 16)
+    if len(head) < 8 or struct.unpack_from("<I", head, 0)[0] != MIDWAY_META_MAGIC:
+        raise MapError("not a Midway resource-metadata list")
+    count = struct.unpack_from("<I", head, 4)[0]
+    if count == 0 or count > 100_000:
+        raise MapError("Midway metadata declares %d records; refusing" % count)
+    region = 8 + count * MIDWAY_META_SLOT
+    if base + region > size:
+        raise MapError("Midway metadata declares %d records (%d bytes) past a %d-byte file" % (count, region, size - base))
+    magics: Counter = Counter(); categories: Counter = Counter(); hash_ok = hash_bad = 0
+    paths: List[str] = []; parsed = 0; word2_constant = 0
+    for i in range(count):
+        slot = read(base + 8 + i * MIDWAY_META_SLOT, min(256, MIDWAY_META_SLOT))
+        word0, name_hash, word2 = struct.unpack_from("<3I", slot, 0)
+        magics["0x%08x" % word0] += 1
+        if word0 & MIDWAY_META_RECORD_MASK != MIDWAY_META_RECORD_MAGIC:
+            continue
+        word2_constant += 1 if word2 == MIDWAY_META_SLOT else 0
+        for off in range(24, 96, 4):
+            if off + 12 > len(slot):
+                break
+            l1, l2, l3 = struct.unpack_from("<3I", slot, off)
+            if not (0 < l1 < 64 and 0 < l2 < 240 and l3 == 0 and off + 12 + l1 + l2 <= len(slot)):
+                continue
+            block = slot[off + 12:off + 12 + l1 + l2]
+            if block[l1 - 1] or block[l1 + l2 - 1]:
+                continue
+            category = _printable(block[:l1 - 1]); path = _printable(block[l1:l1 + l2 - 1])
+            if not category or any(c == "\\" for c in category):
+                continue
+            categories[category] += 1; parsed += 1
+            if len(paths) < 8:
+                paths.append(path)
+            stem = path.rsplit("\\", 1)[-1].rsplit(".", 1)[0]
+            try:
+                hash_ok += 1 if int(stem, 16) == name_hash else 0
+                hash_bad += 0 if int(stem, 16) == name_hash else 1
+            except ValueError:
+                hash_bad += 1
+            break
+    return {"records": count, "region_bytes": region, "slot_bytes": MIDWAY_META_SLOT,
+            "region_ends_at_file_end": (base + region == size), "record_magics": dict(magics.most_common(4)),
+            "records_with_strings": parsed, "word2_is_slot_size": word2_constant,
+            "name_hash_matches_path_stem": hash_ok, "name_hash_mismatches": hash_bad,
+            "categories": dict(categories.most_common(64)), "paths_sample": paths}
+
+
+def map_midway_pak(extent: "_Extent") -> Dict[str, Any]:
+    """A Midway ``PAK `` archive (``RESIMG1.DAT``); the tag is ``'PAK '`` written as a little-endian u32.
+
+    Header words: a constant 512, the body byte count, two counts, and the offset of the resource
+    metadata.  ``body + metadata offset == the file`` on both discs seen (checked); the metadata is
+    read by :func:`midway_meta`.  Where a named object's bytes live inside the body is **not**
+    established: no header word of either disc is an offset into it.
+    """
+    head = extent.read(0, min(24, extent.size))
+    if head[:4] != b" KAP":
+        raise MapError("not a Midway PAK: %r" % head[:4])
+    word1, payload, word3, word4, meta_offset = struct.unpack_from("<5I", head, 4)
+    result: Dict[str, Any] = {"header_word1": word1, "body_bytes": payload, "header_word3": word3,
+                              "header_word4": word4, "metadata_offset": meta_offset, "size": extent.size,
+                              "body_plus_metadata_offset_is_file": (payload + meta_offset == extent.size)}
+    try:
+        result["metadata"] = midway_meta(lambda o, n: extent.read(o, n), extent.size, base=meta_offset)
+    except (MapError, struct.error) as error:
+        result["metadata"] = {"error": str(error)[:120]}
+    return result
+
+
+def map_midway_sound(extent: "_Extent") -> Dict[str, Any]:
+    """A Midway sound bank (``BLITZ04.MS2`` / ``.MS4``): 24-byte header, then 12-byte records.
+
+    Header: version, declared records, directory bytes, zero, **total file bytes**, zero -- the fifth
+    word equalling the file length is what identifies the format (checked).  A record is
+    ``(id, offset, size)``; an all-zero pair is an empty slot.  The walk stops at the first record that
+    is neither empty nor inside the file, so the declared count and the count actually read are both
+    reported.  What follows the records inside the declared directory bytes is a name table.
+    """
+    head = extent.read(0, min(24, extent.size))
+    if len(head) < 24:
+        raise MapError("a %d-byte file is too short for a Midway sound bank" % extent.size)
+    version, count, directory_bytes, zero1, total, zero2 = struct.unpack_from("<6I", head, 0)
+    if total != extent.size or count == 0 or count > 5_000_000 or not (24 <= directory_bytes <= extent.size):
+        raise MapError("not a Midway sound bank: header declares %d bytes for a %d-byte file" % (total, extent.size))
+    read_bytes = min(directory_bytes, 24 + count * 12) - 24
+    table = extent.read(24, max(0, read_bytes))
+    ids: Counter = Counter(); sizes: List[int] = []; read = empty = 0; previous = 0; ascending = True; last_end = 0
+    for i in range(count):
+        if (i + 1) * 12 > len(table):
+            break
+        record_id, offset, member = struct.unpack_from("<3I", table, i * 12)
+        if offset == 0 and member == 0:
+            empty += 1; read += 1; ids[record_id >> 24] += 1; continue
+        if offset < directory_bytes or offset + member > extent.size:
+            break
+        ascending = ascending and offset >= previous
+        previous = offset; last_end = offset + member
+        ids[record_id >> 24] += 1; sizes.append(member); read += 1
+    names_start = 24 + read * 12
+    name_bytes = max(0, directory_bytes - names_start)
+    name_exts: Counter = Counter()
+    if 0 < name_bytes <= (8 << 20):
+        for chunk in extent.read(names_start, name_bytes).split(b"\x00"):
+            if chunk:
+                name_exts[_printable(chunk).rsplit(".", 1)[-1].lower() if b"." in chunk else "-"] += 1
+    tail = extent.read(max(0, extent.size - 16), min(16, extent.size))
+    return {"version": version, "declared_records": count, "records_read": read, "empty_slots": empty,
+            "directory_bytes": directory_bytes, "total_field_is_file_size": (total == extent.size),
+            "offsets_ascending": ascending, "last_member_ends_at_eof": (last_end == extent.size),
+            "member_sizes": _size_stats(sizes), "id_high_bytes": {"0x%02x" % k: v for k, v in ids.most_common(6)},
+            "name_table_bytes": name_bytes, "name_table_extensions": dict(name_exts.most_common(8)),
+            "ends_with_ps_adpcm_terminator": tail[:2] == b"\x00\x07" and set(tail[2:]) <= {0x77}}
+
+
+def obf_tree(data) -> Dict[str, Any]:
+    """``BLITZOPT.OBF``, Midway's tuning-option tree: a 2-byte header then tagged records.
+
+    Tag ``0x0f`` opens a section (two length-prefixed strings: parent path, name); tag ``0x0e`` is one
+    setting (section path, name) followed by a u32 type and four 4-byte values -- value, minimum,
+    maximum, step.  Type 1 reads as an integer and type 2 as a float.  The walk reports how much of the
+    file it consumed; a tag it does not know stops it, and the remainder is reported, never guessed.
+    """
+    data = bytes(data)
+    if len(data) < 4 or data[:2] != b"\x01\xf0":
+        raise MapError("not a Midway option tree")
+    pos = 2; sections = 0; settings = 0; types: Counter = Counter(); names: List[str] = []; roots: Counter = Counter()
+
+    def take_string(at: int) -> Tuple[str, int]:
+        length = data[at]
+        return _printable(data[at + 1:at + 1 + length]), at + 1 + length
+    while pos < len(data):
+        tag = data[pos]; cursor = pos + 1
+        if tag == 0x0F and cursor < len(data):
+            parent, cursor = take_string(cursor)
+            if cursor > len(data):
+                break
+            name, cursor = take_string(cursor)
+            if cursor > len(data):
+                break
+            sections += 1; roots[(parent or name).split(".")[0]] += 1
+        elif tag == 0x0E and cursor < len(data):
+            section, cursor = take_string(cursor)
+            if cursor > len(data):
+                break
+            name, cursor = take_string(cursor)
+            if cursor + 20 > len(data):
+                break
+            value_type = struct.unpack_from("<I", data, cursor)[0]; cursor += 20
+            types[OBF_VALUE_TYPES.get(value_type, "type %d" % value_type)] += 1
+            settings += 1; roots[section.split(".")[0]] += 1
+            if len(names) < 8:
+                names.append(section + "." + name)
+        else:
+            break
+        pos = cursor
+    return {"sections": sections, "settings": settings, "value_types": dict(types.most_common(6)),
+            "consumed_bytes": pos, "size": len(data), "consumed_whole_file": pos == len(data),
+            "top_level_names": dict(roots.most_common(12)), "settings_sample": names}
+
+
+def hdr_dir(head: bytes) -> Dict[str, Any]:
+    """AND 1 Streetball's ``.HDR`` member directory: 8-character space-padded names and offsets.
+
+    Header: ``".HDR"``, ``u32 entries``, ``u32 32`` (where the entries start), ``u32 0x80000000``, then
+    16 zero bytes.  Entries are ``char[8] name`` + ``u32 offset`` + ``u32``.  ``32 + entries * 16`` equals
+    the first entry's offset (checked) -- which is what makes this a directory rather than a guess.
+    """
+    if len(head) < HDR_DIR_HEADER_BYTES or head[:4] != b".HDR":
+        raise MapError("not a .HDR directory")
+    count, first, flags = struct.unpack_from("<3I", head, 4)
+    result: Dict[str, Any] = {"entries": count, "entry_table_offset": first, "flag_word": flags,
+                              "table_bytes": HDR_DIR_HEADER_BYTES + count * HDR_DIR_ENTRY_BYTES}
+    if count and len(head) >= HDR_DIR_HEADER_BYTES + HDR_DIR_ENTRY_BYTES:
+        first_offset = struct.unpack_from("<I", head, HDR_DIR_HEADER_BYTES + 8)[0]
+        result["first_member_offset"] = first_offset
+        result["table_ends_at_first_member"] = (result["table_bytes"] == first_offset)
+        result["names_sample"] = [_printable(head[HDR_DIR_HEADER_BYTES + i * HDR_DIR_ENTRY_BYTES:
+                                                  HDR_DIR_HEADER_BYTES + i * HDR_DIR_ENTRY_BYTES + 8]).rstrip()
+                                  for i in range(min(count, 6)) if HDR_DIR_HEADER_BYTES + (i + 1) * HDR_DIR_ENTRY_BYTES <= len(head)]
+    return result
+
+
+def map_efs(extent: "_Extent", *, base: int = 0, size: Optional[int] = None, depth: int = 0,
+            magic_index: Optional[Dict[str, Counter]] = None, origin: str = "") -> Dict[str, Any]:
+    """An AND 1 Streetball ``EFS `` archive.
+
+    Header: ``"EFS "``, ``u32`` first data offset, ``u32`` entries, ``u32`` (``0xFFFFFFFF`` on every file
+    seen).  Entries are ``u32 name offset``, ``u32 data offset``, ``u32 size``, ``u32 size again``,
+    ``u32 flags``; names are NUL-terminated in the gap before the first member.  Two identities make the
+    layout measured rather than assumed: ``16 + entries * 20`` fits inside the first data offset, and the
+    last member's end is exactly the file's length.  Members that are themselves ``EFS`` or ``.HDR``
+    directories are walked one level down.
+    """
+    size = extent.size - base if size is None else size
+    head = extent.read(base, min(EFS_HEADER_BYTES, size), limit=base + size)
+    if len(head) < EFS_HEADER_BYTES or head[:4] != b"EFS ":
+        raise MapError("not an EFS archive: %r" % head[:4])
+    first_data, count, word3 = struct.unpack_from("<3I", head, 4)
+    if count == 0 or count > 100_000 or EFS_HEADER_BYTES + count * EFS_ENTRY_BYTES > size:
+        raise MapError("EFS declares %d entries in a %d-byte file; refusing" % (count, size))
+    table = extent.read(base + EFS_HEADER_BYTES, count * EFS_ENTRY_BYTES, limit=base + size)
+    names = extent.read(base, min(first_data, size), limit=base + size)
+    kinds: Counter = Counter(); exts: Counter = Counter(); flags: Counter = Counter()
+    inside = 0; equal_sizes = 0; total = 0; last_end = 0; nested_efs = 0; hdr_members = 0; hdr_checked = 0
+    nested_entries = 0; nested_kinds: Counter = Counter(); largest = ("", 0)
+    for i in range(count):
+        name_off, data_off, member, member2, flag = struct.unpack_from("<5I", table, i * EFS_ENTRY_BYTES)
+        flags[flag] += 1
+        equal_sizes += 1 if member == member2 else 0
+        end = data_off + member
+        inside += 1 if 0 <= data_off and end <= size else 0
+        last_end = max(last_end, end)
+        total += member
+        stop = names.find(b"\x00", name_off) if 0 <= name_off < len(names) else -1
+        name = _printable(names[name_off:stop]) if stop >= 0 else "?"
+        exts[name.rsplit(".", 1)[-1].upper() if "." in name else "-"] += 1
+        if member > largest[1]:
+            largest = (name, member)
+        if end > size or member == 0:
+            kinds["empty" if member == 0 else "outside-archive"] += 1
+            continue
+        member_head = extent.read(base + data_off, min(HEAD_BYTES, member), limit=base + size)
+        kind = identify_head(member_head)
+        kinds[kind] += 1
+        if kind.startswith("other:") and magic_index is not None:
+            magic_index.setdefault(kind[6:], Counter())[origin or "EFS"] += 1
+        if kind == "EFS" and depth < 1:
+            nested_efs += 1
+            try:
+                inner = map_efs(extent, base=base + data_off, size=member, depth=depth + 1, magic_index=magic_index, origin=origin)
+                nested_entries += inner["entries"]; nested_kinds.update(inner["member_kinds"])
+            except (MapError, struct.error) as error:
+                nested_kinds["refused: " + str(error)[:60]] += 1
+        elif kind == "HDR-dir":
+            hdr_members += 1
+            try:
+                directory = hdr_dir(extent.read(base + data_off, min(member, HDR_DIR_HEADER_BYTES + HDR_DIR_ENTRY_BYTES * 8), limit=base + size))
+                hdr_checked += 1 if directory.get("table_ends_at_first_member") else 0
+            except (MapError, struct.error):
+                pass
+    return {"entries": count, "first_data_offset": first_data, "header_word3": word3,
+            "directory_fits_before_data": (EFS_HEADER_BYTES + count * EFS_ENTRY_BYTES <= first_data),
+            "members_inside_file": inside, "sizes_agree": equal_sizes, "member_bytes": total,
+            "last_member_ends_at_eof": (last_end == size), "member_kinds": dict(kinds.most_common(20)),
+            "extensions": dict(exts.most_common(20)), "entry_flags": {str(k): v for k, v in flags.most_common(4)},
+            "nested_efs": nested_efs, "nested_entries": nested_entries, "nested_member_kinds": dict(nested_kinds.most_common(12)),
+            "hdr_directories": hdr_members, "hdr_directories_checked": hdr_checked,
+            "largest_entry": {"name": largest[0], "bytes": largest[1]}}
+
+
+def vagp_header(head: bytes, size: Optional[int] = None) -> Dict[str, Any]:
+    """A Sony ``VAGp`` ADPCM stream header: big-endian version, data bytes, sample rate, and a name.
+
+    Sony's header is 48 bytes; ``data bytes + 48 == the file`` is checked.  The byte at 0x1E is the
+    channel count in the variants that carry one; every AND 1 file reads 0 there, the single-channel
+    default vgmstream assumes.
+    """
+    if len(head) < 32 or head[:4] != b"VAGp":
+        raise MapError("not a VAGp stream")
+    version, reserved, data_bytes, rate = struct.unpack_from(">4I", head, 4)
+    out: Dict[str, Any] = {"version": version, "reserved": reserved, "data_bytes": data_bytes, "sample_rate": rate,
+                           "channel_byte": head[0x1E] if len(head) > 0x1E else None,
+                           "name": _printable(head[0x20:0x30].split(b"\x00")[0]) if len(head) >= 0x30 else "",
+                           "header_bytes": VAGP_HEADER_BYTES}
+    if size is not None:
+        out["data_plus_header_is_file"] = (data_bytes + VAGP_HEADER_BYTES == size)
+    return out
+
+
+def _vag_stats(records: Iterable[Dict[str, Any]]) -> Dict[str, Any]:
+    rates: Counter = Counter(); channels: Counter = Counter(); versions: Counter = Counter()
+    files = exact = 0; data = 0
+    for record in records:
+        files += 1; rates[record["sample_rate"]] += 1; channels[str(record["channel_byte"])] += 1
+        versions["0x%08x" % record["version"]] += 1; data += record["data_bytes"]
+        exact += 1 if record.get("data_plus_header_is_file") else 0
+    return {"files": files, "sample_rates": {str(k): v for k, v in rates.most_common(6)},
+            "channel_bytes": dict(channels.most_common(4)), "versions": dict(versions.most_common(4)),
+            "data_bytes": data, "headers_account_for_file": exact}
+
+
+# --------------------------------------------------------------------------
 # the disc
 # --------------------------------------------------------------------------
 def _sha256_extent(extent: _Extent) -> str:
@@ -851,6 +1375,55 @@ def totals_of(containers: Dict[str, Any], archives: Dict[str, Any], magic_index:
     }
 
 
+def foreign_totals(zips: Dict[str, Any], asset_indexes: Dict[str, Any], efs_archives: Dict[str, Any],
+                   packs: Dict[str, Any], overlays: Dict[str, Any], sound_banks: Dict[str, Any],
+                   option_trees: Dict[str, Any], metadata_lists: Dict[str, Any], vag: Dict[str, Any]) -> Dict[str, Any]:
+    """One roll-up over the non-EA families, so a page never adds a column of its own."""
+    zip_entries = sum(z.get("entries", 0) for z in zips.values() if "error" not in z)
+    zip_kinds: Counter = Counter(); zip_exts: Counter = Counter(); zip_methods: Counter = Counter()
+    for z in zips.values():
+        if "error" in z:
+            continue
+        zip_kinds.update(z.get("member_kinds", {})); zip_exts.update(z.get("extensions", {})); zip_methods.update(z.get("methods", {}))
+    efs_ok = [e for e in efs_archives.values() if "error" not in e]
+    efs_kinds: Counter = Counter(); efs_exts: Counter = Counter()
+    for e in efs_ok:
+        efs_kinds.update(e.get("member_kinds", {})); efs_exts.update(e.get("extensions", {}))
+        efs_kinds.update(e.get("nested_member_kinds", {}))
+    index_checks = [i.get("zip_check", {}) for i in asset_indexes.values() if "error" not in i]
+    categories: Counter = Counter()
+    for source in list(packs.values()) + list(metadata_lists.values()):
+        meta = source.get("metadata", source)
+        if isinstance(meta, dict):
+            categories.update(meta.get("categories", {}))
+    return {
+        "zips": len(zips), "zip_entries": zip_entries, "zip_methods": dict(zip_methods.most_common(6)),
+        "zip_member_kinds": dict(zip_kinds.most_common(16)), "zip_extensions": dict(zip_exts.most_common(16)),
+        "asset_indexes": len(asset_indexes),
+        "asset_index_entries": sum(i.get("entries", 0) for i in asset_indexes.values() if "error" not in i),
+        "asset_index_offsets_landed": sum(c.get("landed_on_a_local_file_header", 0) for c in index_checks),
+        "asset_index_offsets_sampled": sum(c.get("sampled", 0) for c in index_checks),
+        "asset_index_names_matched": sum(c.get("names_match", 0) for c in index_checks),
+        "asset_index_crc_matches": sum(c.get("crc_matches", 0) for c in index_checks),
+        "asset_index_crc_checked": sum(c.get("crc_entries_checked", 0) for c in index_checks),
+        "efs_archives": len(efs_archives), "efs_refused": sum(1 for e in efs_archives.values() if "error" in e),
+        "efs_members": sum(e.get("entries", 0) for e in efs_ok),
+        "efs_last_member_at_eof": sum(1 for e in efs_ok if e.get("last_member_ends_at_eof")),
+        "efs_nested": sum(e.get("nested_efs", 0) for e in efs_ok),
+        "efs_hdr_directories": sum(e.get("hdr_directories", 0) for e in efs_ok),
+        "efs_hdr_directories_checked": sum(e.get("hdr_directories_checked", 0) for e in efs_ok),
+        "efs_member_kinds": dict(efs_kinds.most_common(20)), "efs_extensions": dict(efs_exts.most_common(20)),
+        "packs": len(packs), "overlays": len(overlays), "sound_banks": len(sound_banks),
+        "sound_bank_records": sum(b.get("records_read", 0) for b in sound_banks.values() if "error" not in b),
+        "option_trees": len(option_trees),
+        "option_settings": sum(o.get("settings", 0) for o in option_trees.values() if "error" not in o),
+        "metadata_lists": len(metadata_lists),
+        "metadata_records": sum(m.get("records", 0) for m in metadata_lists.values() if "error" not in m),
+        "pack_categories": dict(categories.most_common(64)),
+        "vag": vag,
+    }
+
+
 def map_disc(iso_path: Path, *, label: str = "", hash_image: bool = False,
              progress: Callable[[str], None] = lambda line: None) -> Dict[str, Any]:
     started = time.time()
@@ -875,6 +1448,17 @@ def map_disc(iso_path: Path, *, label: str = "", hash_image: bool = False,
     schemas: Dict[str, Dict[str, Any]] = {}
     kinds: Counter = Counter()
     magic_index: Dict[str, Counter] = {}
+    zips: Dict[str, Any] = {}
+    asset_indexes: Dict[str, Any] = {}
+    efs_archives: Dict[str, Any] = {}
+    packs: Dict[str, Any] = {}
+    overlays: Dict[str, Any] = {}
+    sound_banks: Dict[str, Any] = {}
+    option_trees: Dict[str, Any] = {}
+    metadata_lists: Dict[str, Any] = {}
+    vag_records: List[Dict[str, Any]] = []
+    zip_entries: Dict[str, Any] = {}
+    pending_indexes: List[Tuple[str, Dict[str, Any], List[Any]]] = []
     with open(iso_path, "rb") as handle:
         for entry in iso.iter_entries(image):
             if entry.is_dir:
@@ -887,6 +1471,25 @@ def map_disc(iso_path: Path, *, label: str = "", hash_image: bool = False,
                 kinds["unreadable"] += 1
                 continue
             kind = identify_head(head, entry.path)
+            name_upper = entry.path.rsplit("/", 1)[-1].upper()
+            structural: Optional[Dict[str, Any]] = None
+            if kind.startswith("other:") or kind == "zero-head":
+                # three Midway formats carry no magic; each is claimed only when its own reader validates it
+                if name_upper.endswith(".ZIH"):
+                    try:
+                        structural = zih_index(extent.read(0, entry.length)); kind = "ZIH"
+                    except (MapError, struct.error, OSError):
+                        structural = None
+                elif head[:4] == b"\x11\x11\x11\x11":
+                    try:
+                        structural = midway_meta(lambda o, n: extent.read(o, n), entry.length); kind = "MidwayResMeta"
+                    except (MapError, struct.error, OSError):
+                        structural = None
+                elif name_upper.endswith((".MS2", ".MS4")):
+                    try:
+                        structural = map_midway_sound(extent); kind = "MidwaySound"
+                    except (MapError, struct.error, OSError):
+                        structural = None
             kinds[kind] += 1
             record: Dict[str, Any] = {"path": entry.path, "size": entry.length, "lba": entry.lba, "kind": kind}
             if kind.startswith("other:") or kind in ("zero-head", "TEXT"):
@@ -938,13 +1541,72 @@ def map_disc(iso_path: Path, *, label: str = "", hash_image: bool = False,
                     executables[entry.path] = info
                 except (MapError, struct.error) as error:
                     executables[entry.path] = {"error": str(error)[:160]}
+            elif kind == "ZIP":
+                progress(f"zip {entry.path} ({entry.length:,} bytes)")
+                zip_entries[entry.path] = entry
+                try:
+                    zips[entry.path] = map_zip(extent)
+                except (zipfile.BadZipFile, MapError, struct.error, OSError, ValueError) as error:
+                    zips[entry.path] = {"error": str(error)[:160]}
+            elif kind == "ZIH" and structural is not None:
+                entries_list = structural.pop("_entries", [])
+                asset_indexes[entry.path] = structural
+                pending_indexes.append((entry.path, structural, entries_list))
+            elif kind == "MidwayResMeta" and structural is not None:
+                metadata_lists[entry.path] = structural
+            elif kind == "MidwaySound" and structural is not None:
+                sound_banks[entry.path] = structural
+            elif kind == "EFS":
+                try:
+                    efs_archives[entry.path] = map_efs(extent, magic_index=magic_index, origin=entry.path.rsplit("/", 1)[-1])
+                except (MapError, struct.error, OSError) as error:
+                    efs_archives[entry.path] = {"error": str(error)[:160]}
+            elif kind == "MidwayPAK":
+                progress(f"pack {entry.path} ({entry.length:,} bytes)")
+                try:
+                    packs[entry.path] = map_midway_pak(extent)
+                except (MapError, struct.error, OSError) as error:
+                    packs[entry.path] = {"error": str(error)[:160]}
+            elif kind == "MWo3":
+                try:
+                    overlays[entry.path] = mwo3_header(extent.read(0, min(MWO3_HEADER_BYTES, entry.length)), entry.length)
+                except (MapError, struct.error) as error:
+                    overlays[entry.path] = {"error": str(error)[:160]}
+            elif kind == "MidwayOBF":
+                try:
+                    option_trees[entry.path] = obf_tree(extent.read(0, entry.length))
+                except (MapError, struct.error, OSError) as error:
+                    option_trees[entry.path] = {"error": str(error)[:160]}
+            elif kind == "VAGp":
+                try:
+                    vag_records.append(vagp_header(extent.read(0, min(VAGP_HEADER_BYTES, entry.length)), entry.length))
+                except (MapError, struct.error) as error:
+                    pass
+        for index_path, index, index_entries in pending_indexes:
+            stem = index_path.rsplit(".", 1)[0]
+            target = next((p for p in zip_entries if p.rsplit(".", 1)[0] == stem), None)
+            if target is None:
+                index["zip_check"] = {"error": "no sibling ZIP named %s.ZIP" % stem}
+                continue
+            index["_entries"] = index_entries
+            try:
+                index["zip_check"] = zih_versus_zip(index, _Extent(handle, image, zip_entries[target]))
+                index["zip_check"]["zip"] = target
+            except (MapError, struct.error, OSError) as error:
+                index["zip_check"] = {"error": str(error)[:120]}
+            index.pop("_entries", None)
     totals = totals_of(containers, archives, magic_index)
+    totals["foreign"] = foreign_totals(zips, asset_indexes, efs_archives, packs, overlays, sound_banks, option_trees,
+                                       metadata_lists, _vag_stats(vag_records) if vag_records else {})
     return {
         "schema": SCHEMA, "label": label, "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "image": {"name": iso_path.name, "size": iso_path.stat().st_size, **{k: summary[k] for k in ("sector_size", "layout", "volume_id", "volume_blocks", "files", "directories", "declared_file_bytes") if k in summary}},
         "identity": {k: identity.get(k) for k in ("serial", "boot_file", "boot_sha256", "boot_size", "pcsx2_crc", "image_sha256")},
         "kinds": dict(kinds.most_common()), "files": files, "containers": containers, "archives": archives, "databases": databases,
         "preloads": preloads, "executables": executables, "schemas": schemas, "totals": totals,
+        "zips": zips, "asset_indexes": asset_indexes, "efs_archives": efs_archives, "packs": packs,
+        "overlays": overlays, "sound_banks": sound_banks, "option_trees": option_trees, "metadata_lists": metadata_lists,
+        "vag_audio": _vag_stats(vag_records) if vag_records else {},
         "seconds": round(time.time() - started, 1),
     }
 
@@ -960,6 +1622,115 @@ def _top(d: Optional[Dict[str, Any]], limit: Optional[int] = None) -> List[Tuple
 
 def _fmt_counts(d: Optional[Dict[str, Any]], limit: Optional[int] = None) -> str:
     return ", ".join(f"{k} {v}" for k, v in _top(d, limit))
+
+
+def render_foreign(m: Dict[str, Any]) -> List[str]:
+    """The non-EA families (Midway, AND 1) as Markdown: one table per family, every cell from the map."""
+    sizes = _sizes_of(m)
+    out: List[str] = []
+    zips = m.get("zips") or {}; indexes = m.get("asset_indexes") or {}
+    if zips or indexes:
+        out += ["", "## ZIP archives and their Midway index (`.ZIH`)", "",
+                "| path | bytes | entries | methods | member kinds (first 16 bytes) | extensions | stored / uncompressed bytes |", "|---|---:|---:|---|---|---|---|"]
+        for path, z in sorted(zips.items()):
+            if "error" in z:
+                out.append(f"| `{path}` | {sizes.get(path, 0):,} | — | refused: {z['error']} | | | |"); continue
+            out.append(f"| `{path}` | {sizes.get(path, 0):,} | {z.get('entries'):,} | {_fmt_counts(z.get('methods'))} | "
+                       f"{_fmt_counts(z.get('member_kinds'), 8)} | {_fmt_counts(z.get('extensions'), 8)} | "
+                       f"{z.get('compressed_bytes', 0):,} / {z.get('uncompressed_bytes', 0):,} |")
+        if indexes:
+            out += ["", "| index | bytes | shape | entries | directory / name-table bytes | offsets checked against the ZIP | CRC-32 rechecked |",
+                    "|---|---:|---|---:|---|---|---|"]
+            for path, index in sorted(indexes.items()):
+                if "error" in index:
+                    out.append(f"| `{path}` | {sizes.get(path, 0):,} | refused: {index['error']} | | | | |"); continue
+                check = index.get("zip_check", {})
+                landed = ("—" if "error" in check else
+                          f"{check.get('landed_on_a_local_file_header', 0)} of {check.get('sampled', 0)} land on a `PK\\x03\\x04` local header, "
+                          f"{check.get('names_match', 0)} with the same name")
+                crc = ("no CRC field in this shape" if not index.get("has_crc_field") else
+                       f"{check.get('crc_matches', 0)} of {check.get('crc_entries_checked', 0)} recomputed CRC-32 agree")
+                out.append(f"| `{path}` | {sizes.get(path, 0):,} | {index.get('variant')} | {index.get('entries'):,} | "
+                           f"{index.get('directory_bytes', 0):,} / {index.get('name_table_bytes', 0):,} | {landed} | {crc} |")
+    efs = m.get("efs_archives") or {}
+    if efs:
+        ok = {p: e for p, e in efs.items() if "error" not in e}
+        totals = (m.get("totals") or {}).get("foreign", {})
+        out += ["", "## AND 1 `EFS ` archives", "",
+                f"{len(efs)} archives ({len(efs) - len(ok)} refused) holding {totals.get('efs_members', 0):,} members. "
+                f"The last member's end equals the file's length in {totals.get('efs_last_member_at_eof', 0)} of {len(ok)}. "
+                f"Nested `EFS ` members: {totals.get('efs_nested', 0)}. `.HDR` member directories: {totals.get('efs_hdr_directories', 0)}, "
+                f"of which {totals.get('efs_hdr_directories_checked', 0)} have `32 + entries × 16` equal to their first member's offset.", "",
+                f"Member kinds across every archive: {_fmt_counts(totals.get('efs_member_kinds'), 14) or '—'}.", "",
+                f"Member extensions: {_fmt_counts(totals.get('efs_extensions'), 20) or '—'}.", "",
+                "| archive | bytes | entries | members inside the file | sizes agree | member kinds | extensions |", "|---|---:|---:|---:|---:|---|---|"]
+        for path in sorted(ok, key=lambda p: -sizes.get(p, 0))[:16]:
+            e = ok[path]
+            out.append(f"| `{path}` | {sizes.get(path, 0):,} | {e.get('entries')} | {e.get('members_inside_file')} | {e.get('sizes_agree')} | "
+                       f"{_fmt_counts(e.get('member_kinds'), 6)} | {_fmt_counts(e.get('extensions'), 6)} |")
+        refused = [p for p in efs if "error" in efs[p]]
+        if refused:
+            out += ["", f"Refused ({len(refused)}): " + ", ".join(f"`{p}` ({efs[p]['error'][:70]})" for p in refused[:8])]
+    packs = m.get("packs") or {}; metas = m.get("metadata_lists") or {}
+    if packs or metas:
+        out += ["", "## Midway `PAK ` pack and its `0x11111111` resource metadata", "",
+                "| path | bytes | body bytes | metadata offset | body + metadata offset == file | header words 1/3/4 |", "|---|---:|---:|---:|---|---|"]
+        for path, pack in sorted(packs.items()):
+            if "error" in pack:
+                out.append(f"| `{path}` | {sizes.get(path, 0):,} | refused: {pack['error']} | | | |"); continue
+            out.append(f"| `{path}` | {sizes.get(path, 0):,} | {pack.get('body_bytes', 0):,} | {pack.get('metadata_offset')} | "
+                       f"{pack.get('body_plus_metadata_offset_is_file')} | {pack.get('header_word1')} / {pack.get('header_word3')} / {pack.get('header_word4')} |")
+        out += ["", "| metadata | records | region bytes | region ends at the file's end | record magics | slot word +8 is 2048 | name hash matches the path stem |",
+                "|---|---:|---:|---|---|---:|---|"]
+        for path, source in sorted(list(packs.items()) + list(metas.items())):
+            meta = source.get("metadata", source)
+            if not isinstance(meta, dict) or "records" not in meta:
+                continue
+            out.append(f"| `{path}` | {meta.get('records')} | {meta.get('region_bytes'):,} | {meta.get('region_ends_at_file_end')} | "
+                       f"{_fmt_counts(meta.get('record_magics'), 3)} | {meta.get('word2_is_slot_size')} | "
+                       f"{meta.get('name_hash_matches_path_stem')} of {meta.get('records_with_strings')} ({meta.get('name_hash_mismatches')} not) |")
+        categories = (m.get("totals") or {}).get("foreign", {}).get("pack_categories") or {}
+        if categories:
+            out += ["", f"Category words in the metadata ({len(categories)}): " + ", ".join(f"`{k}`" for k in sorted(categories)) + "."]
+    overlays = m.get("overlays") or {}
+    if overlays:
+        out += ["", "## Midway `MWo3` overlays", "",
+                "| path | bytes | index | load address | segment 1 | segment 2 | third word | 64 + s1 + s2 == file | address1 == load + file | name |",
+                "|---|---:|---:|---|---:|---:|---:|---|---|---|"]
+        for path, o in sorted(overlays.items()):
+            if "error" in o:
+                out.append(f"| `{path}` | {sizes.get(path, 0):,} | refused: {o['error']} | | | | | | | |"); continue
+            out.append(f"| `{path}` | {sizes.get(path, 0):,} | {o.get('index')} | 0x{o.get('load_address', 0):08x} | {o.get('segment1_bytes'):,} | "
+                       f"{o.get('segment2_bytes'):,} | {o.get('third_size_word'):,} | {o.get('segments_account_for_file')} | "
+                       f"{o.get('address1_is_load_plus_size')} | `{o.get('name')}` |")
+    banks = m.get("sound_banks") or {}
+    if banks:
+        out += ["", "## Midway sound banks", "",
+                "| path | bytes | version | declared records | records read | empty slots | offsets ascending | last member ends at EOF | name table | ends with the PS-ADPCM terminator |",
+                "|---|---:|---:|---:|---:|---:|---|---|---|---|"]
+        for path, b in sorted(banks.items()):
+            if "error" in b:
+                out.append(f"| `{path}` | {sizes.get(path, 0):,} | refused: {b['error']} | | | | | | | |"); continue
+            out.append(f"| `{path}` | {sizes.get(path, 0):,} | {b.get('version')} | {b.get('declared_records'):,} | {b.get('records_read'):,} | "
+                       f"{b.get('empty_slots'):,} | {b.get('offsets_ascending')} | {b.get('last_member_ends_at_eof')} | "
+                       f"{b.get('name_table_bytes'):,} B {_fmt_counts(b.get('name_table_extensions'), 3)} | {b.get('ends_with_ps_adpcm_terminator')} |")
+    trees = m.get("option_trees") or {}
+    if trees:
+        out += ["", "## Midway option trees (`.OBF`)", "",
+                "| path | bytes | sections | settings | value types | consumed the whole file | top-level names |", "|---|---:|---:|---:|---|---|---|"]
+        for path, t in sorted(trees.items()):
+            if "error" in t:
+                out.append(f"| `{path}` | {sizes.get(path, 0):,} | refused: {t['error']} | | | | |"); continue
+            out.append(f"| `{path}` | {sizes.get(path, 0):,} | {t.get('sections')} | {t.get('settings')} | {_fmt_counts(t.get('value_types'))} | "
+                       f"{t.get('consumed_whole_file')} ({t.get('consumed_bytes'):,} of {t.get('size'):,}) | {_fmt_counts(t.get('top_level_names'), 6)} |")
+    vag = m.get("vag_audio") or {}
+    if vag:
+        out += ["", "## Sony `VAGp` streams", "",
+                f"{vag.get('files')} files, {vag.get('data_bytes', 0):,} declared data bytes; "
+                f"`data bytes + 48 == file` holds for {vag.get('headers_account_for_file')} of them. "
+                f"Sample rates: {_fmt_counts(vag.get('sample_rates'))}. Header version: {_fmt_counts(vag.get('versions'))}. "
+                f"Byte 0x1E (channel count in the variants that carry one): {_fmt_counts(vag.get('channel_bytes'))} [S: Sony VAG header, as vgmstream reads it]."]
+    return out
 
 
 def render_markdown(m: Dict[str, Any]) -> str:
@@ -1062,6 +1833,7 @@ def render_markdown(m: Dict[str, Any]) -> str:
             if "error" in e:
                 out.append(f"| `{path}` | {sizes.get(path, 0):,} | refused: {e['error']} | | |"); continue
             out.append(f"| `{path}` | {e.get('size', 0):,} | {e.get('type')} | {('0x%08x' % e['entry']) if e.get('entry') is not None else '—'} | `{e.get('sha256') or '—'}` |")
+    out += render_foreign(m)
     out += ["", "## Database schemas (each distinct table/field shape once)", ""]
     for sig, s in sorted(m.get("schemas", {}).items()):
         out.append(f"### schema `{sig}` — {s['endian']}-endian v{s['version']}, {len(s['tables'])} table(s)")
@@ -1267,6 +2039,78 @@ FORMAT_RUNGS: Dict[str, Tuple[str, str]] = {
 }
 
 
+#: The rung the non-EA families earn today, and what lifts each.  Same five rung words as the EA rows.
+FOREIGN_RUNGS: Dict[str, Tuple[str, str]] = {
+    "ZIP": ("read-only-mapped", "decoders for the members' own formats (RenderWare clumps and texture dictionaries, Midway `WIFF`)"),
+    "EFS": ("read-only-mapped", "decoders for the members' own formats (`.HDR` sub-directories, `BALL` / `NIS0` / `SCR` blobs)"),
+    "MidwaySound": ("read-only-mapped", "a PS-ADPCM decoder"),
+    "VAGp": ("read-only-mapped", "a VAG decoder; never a writer"),
+    "MidwayOBF": ("read-only-mapped (schema + rows)", "an OBF writer with an independent verifier"),
+    "MidwayPAK": ("unknown", "a locator for a named object's bytes: no header word of either disc is an offset into the pack body"),
+}
+#: What the mapper says in the kinds table about each non-EA kind; mechanical, from the map's own numbers.
+FOREIGN_KIND_NOTES = ("ZIP", "ZIH", "EFS", "MidwayPAK", "MWo3", "MidwaySound", "MidwayOBF", "MidwayResMeta", "VAGp", "HDR-dir")
+
+
+def _foreign_kind_note(kind: str, m: Dict[str, Any]) -> str:
+    f = (m.get("totals") or {}).get("foreign", {})
+    if kind == "ZIP":
+        return (f"{f.get('zip_entries', 0):,} entries, methods {_fmt_counts(f.get('zip_methods')) or '—'}; "
+                f"extensions {_fmt_counts(f.get('zip_extensions'), 8) or '—'}")
+    if kind == "ZIH":
+        return (f"{f.get('asset_index_entries', 0):,} index entries; {f.get('asset_index_offsets_landed', 0)} of "
+                f"{f.get('asset_index_offsets_sampled', 0)} sampled offsets land on a ZIP local file header "
+                f"({f.get('asset_index_names_matched', 0)} with the same name); "
+                f"{f.get('asset_index_crc_matches', 0)} of {f.get('asset_index_crc_checked', 0)} CRC-32 fields recomputed and agreed")
+    if kind == "EFS":
+        return (f"{f.get('efs_members', 0):,} members; last member ends at EOF in {f.get('efs_last_member_at_eof', 0)} of "
+                f"{f.get('efs_archives', 0) - f.get('efs_refused', 0)}; {f.get('efs_nested', 0)} nested `EFS `; "
+                f"{f.get('efs_hdr_directories', 0)} `.HDR` directories")
+    if kind == "MidwayPAK":
+        return f"{f.get('metadata_records', 0)} metadata records naming {len(f.get('pack_categories') or {})} category words"
+    if kind == "MWo3":
+        return f"{f.get('overlays', 0)} relocatable overlays (see the overlay table in the map)"
+    if kind == "MidwaySound":
+        return f"{f.get('sound_bank_records', 0):,} directory records"
+    if kind == "MidwayOBF":
+        return f"{f.get('option_settings', 0)} settings"
+    if kind == "MidwayResMeta":
+        return f"{f.get('metadata_records', 0)} records of 2,048 bytes"
+    if kind == "VAGp":
+        vag = f.get("vag") or {}
+        return f"{vag.get('files', 0)} streams, sample rates {_fmt_counts(vag.get('sample_rates')) or '—'}"
+    return ""
+
+
+def foreign_feeders(m: Dict[str, Any]) -> List[Tuple[str, str, Dict[str, Any]]]:
+    """(studio page, path, a formats dict) for every non-EA container, decided only from measured member kinds."""
+    rows: List[Tuple[str, str, Dict[str, Any]]] = []
+    for path, z in sorted((m.get("zips") or {}).items()):
+        if "error" in z:
+            continue
+        exts = z.get("extensions", {}); kinds = z.get("member_kinds", {})
+        if exts.get("rtd"):
+            rows.append(("All Textures", path, {"ZIP": exts["rtd"]}))
+        if kinds.get("TEXT"):
+            rows.append(("Text & Team Identity", path, {"ZIP": kinds["TEXT"]}))
+        if exts.get("rst"):
+            rows.append(("Names, Numbers & Faces", path, {"ZIP": exts["rst"]}))
+    for path, e in sorted((m.get("efs_archives") or {}).items()):
+        if "error" in e:
+            continue
+        kinds = e.get("member_kinds", {}); exts = e.get("extensions", {})
+        if kinds.get("TEXT"):
+            rows.append(("Text & Team Identity", path, {"EFS": kinds["TEXT"]}))
+        if exts.get("HD") or exts.get("BNK"):
+            rows.append(("Audio", path, {"EFS": exts.get("HD", 0) + exts.get("BNK", 0)}))
+    for path, b in sorted((m.get("sound_banks") or {}).items()):
+        if "error" not in b:
+            rows.append(("Audio", path, {"MidwaySound": b.get("records_read", 0)}))
+    if (m.get("vag_audio") or {}).get("files"):
+        rows.append(("Audio", "loose `.VAG` streams", {"VAGp": m["vag_audio"]["files"]}))
+    return rows
+
+
 def _glossary(name: str) -> Tuple[Tuple[str, ...], str, str]:
     for pattern, pages, phrase, grade in GLOSSARY:
         if re.match(pattern, name):
@@ -1307,6 +2151,8 @@ def render_page(m: Dict[str, Any], today: Optional[str] = None) -> str:
             note = "preload copies of container directories and members (see the map's QL01 table)"
         elif k == "VC-pack":
             note = VC_PACK_NOTE
+        elif k in FOREIGN_KIND_NOTES:
+            note = _foreign_kind_note(k, m)
         out.append(f"| {k} | {v} | {note} |")
     if other_kinds:
         out.append(f"| other (unrecognised magic) | {sum(other_kinds.values())} | {len(other_kinds)} distinct heads: {', '.join(k[6:] for k in list(other_kinds)[:12])}{' …' if len(other_kinds) > 12 else ''} (hints by extension in the map, [A]) |")
@@ -1351,6 +2197,41 @@ def render_page(m: Dict[str, Any], today: Optional[str] = None) -> str:
         out += ["", f"Distinct schema shapes: {len(m.get('schemas', {}))}. Table names shared with the Madden 08/09 TDB stack (`PLAY`, `TEAM`, `DCHT`, `INJY`, `COCH`, `SEAI`, `SLRI`, `PBPL`, `PLYS`): {', '.join('`' + t + '`' for t in shared) or 'none'}."]
     else:
         out += ["No EA TDB database was found by the mapper (no bare `.DB`, no TDB member)."]
+    foreign = totals.get("foreign") or {}
+    if any(m.get(key) for key in ("zips", "asset_indexes", "efs_archives", "packs", "overlays", "sound_banks", "option_trees", "metadata_lists")) or m.get("vag_audio"):
+        out += ["", "### Non-EA containers (Midway / AND 1) [M]", "",
+                "| family | files | what the reader established | what it did not |", "|---|---:|---|---|"]
+        if m.get("zips"):
+            out.append(f"| ZIP + `.ZIH` index | {foreign.get('zips', 0)} + {foreign.get('asset_indexes', 0)} | "
+                       f"{foreign.get('zip_entries', 0):,} entries, methods {_fmt_counts(foreign.get('zip_methods')) or '—'}; "
+                       f"{foreign.get('asset_index_offsets_landed', 0)}/{foreign.get('asset_index_offsets_sampled', 0)} sampled index offsets land on a "
+                       f"`PK\\x03\\x04` local file header, {foreign.get('asset_index_names_matched', 0)} with the same name; "
+                       f"{foreign.get('asset_index_crc_matches', 0)}/{foreign.get('asset_index_crc_checked', 0)} CRC-32 fields recomputed and agreed | "
+                       f"the members' own formats (`.dff` / `.rtd` are RenderWare section ids 0x10 / 0x16 [S], the rest unread) |")
+        if m.get("efs_archives"):
+            out.append(f"| `EFS ` | {foreign.get('efs_archives', 0)} | {foreign.get('efs_members', 0):,} members; the last member's end equals the "
+                       f"file length in {foreign.get('efs_last_member_at_eof', 0)} of {foreign.get('efs_archives', 0) - foreign.get('efs_refused', 0)}; "
+                       f"{foreign.get('efs_hdr_directories_checked', 0)} of {foreign.get('efs_hdr_directories', 0)} `.HDR` members have "
+                       f"`32 + entries × 16` equal to their first member's offset | what a `.DIM` / `.PPD` / `BALL` / `NIS0` member *is* |")
+        if m.get("packs"):
+            out.append(f"| `PAK ` + `0x11111111` metadata | {foreign.get('packs', 0)} + {foreign.get('metadata_lists', 0)} | "
+                       f"`body bytes + metadata offset == file`; {foreign.get('metadata_records', 0)} records of 2,048 bytes, each naming a category "
+                       f"and an `objects\\<hex>.of` path whose stem equals the record's 32-bit hash | where a named object's bytes live in the pack body: "
+                       f"no header word of this disc is an offset into it |")
+        if m.get("overlays"):
+            out.append(f"| `MWo3` overlays | {foreign.get('overlays', 0)} | `64 + segment1 + segment2` is exactly the file length on every overlay | "
+                       f"what the two trailing addresses name |")
+        if m.get("sound_banks"):
+            out.append(f"| Midway sound banks | {foreign.get('sound_banks', 0)} | the header's fifth word is the file length; "
+                       f"{foreign.get('sound_bank_records', 0):,} `(id, offset, size)` records read, the last ending at EOF | the members' codec beyond the "
+                       f"PS-ADPCM terminator frame the file ends on |")
+        if m.get("option_trees"):
+            out.append(f"| `.OBF` option trees | {foreign.get('option_trees', 0)} | {foreign.get('option_settings', 0)} settings, each a section, a name, a "
+                       f"u32 type and four 4-byte values | nothing outstanding: the walk consumed the whole file |")
+        if m.get("vag_audio"):
+            vag = foreign.get("vag") or {}
+            out.append(f"| Sony `VAGp` | {vag.get('files', 0)} | `data bytes + 48 == file` for {vag.get('headers_account_for_file', 0)} of them; "
+                       f"sample rates {_fmt_counts(vag.get('sample_rates')) or '—'} [S: Sony VAG header] | nothing outstanding |")
     out += ["", "### Textures [M]", "",
             f"MMAP members: {totals['mmap_members']:,} across {totals['mmap_containers']} containers; dimensions (disc-wide top 6, format 0x400 excluded): "
             + (", ".join(f"{k} ×{v}" for k, v in _top(totals['mmap_dimensions'], 6)) or "none") + f". MMAP version / format ids: {_fmt_counts(totals.get('mmap_formats', {}))}. "
@@ -1383,6 +2264,8 @@ def render_page(m: Dict[str, Any], today: Optional[str] = None) -> str:
             feeding["Audio"].append((path, c))
     for path, d in databases.items():
         feeding["Names, Numbers & Faces"].append((path, {"formats": {"TDB": 1}}))
+    for page, path, formats in foreign_feeders(m):
+        feeding.setdefault(page, []).append((path, {"formats": formats}))
     for page in PAGE_ROWS:
         if page == "The Crib":
             out.append("| The Crib | — | — | honest empty page | not a concept on this disc |"); continue
@@ -1395,14 +2278,15 @@ def render_page(m: Dict[str, Any], today: Optional[str] = None) -> str:
             if page == "Playbooks & Plays" and not containers and archives:
                 out.append(f"| {page} | not located in the map | — | unknown | a format survey of the archives |"); continue
             out.append(f"| {page} | none found in the map | — | honest empty page | — |"); continue
+        rungs = dict(FORMAT_RUNGS); rungs.update(FOREIGN_RUNGS)
         fmt_counter: Counter = Counter()
         for _, c in rows:
             for k in c.get("formats", {}):
-                if k in FORMAT_RUNGS:
+                if k in rungs:
                     fmt_counter[k] += c["formats"][k]
-        relevant = [k for k, _ in fmt_counter.most_common() if k in FORMAT_RUNGS][:3]
-        rung = "; ".join(sorted({FORMAT_RUNGS[k][0] for k in relevant})) if relevant else "read-only-mapped"
-        lifts = "; ".join(FORMAT_RUNGS[k][1] for k in relevant) if relevant else "a format survey"
+        relevant = [k for k, _ in fmt_counter.most_common() if k in rungs][:3]
+        rung = "; ".join(sorted({rungs[k][0] for k in relevant})) if relevant else "read-only-mapped"
+        lifts = "; ".join(rungs[k][1] for k in relevant) if relevant else "a format survey"
         lzh1 = any(c.get("codecs", {}).get("LZH1") for _, c in rows)
         if lzh1:
             lifts += "; LZH1 encoder before any rewrite of the LZH1-packed members"
@@ -1421,6 +2305,17 @@ def render_page(m: Dict[str, Any], today: Optional[str] = None) -> str:
             "- TDB rows: reader exists; writer needs the four CRCs and a verifier. [A] until built."]
     if archives:
         out.append("- EA BIG archives: no writer in the fork (BIG is not TERF; `ea_terf.rewrite_member` does not apply). [M]")
+    if m.get("zips"):
+        out.append("- ZIP archives: every member of these discs is **stored**, so a member can be replaced in place at its own byte range as long as its length, "
+                   "CRC-32 and both size fields are rewritten in the ZIP's central directory *and* in the sibling `.ZIH` index, which carries the same numbers. "
+                   "No writer exists in the fork. [M]")
+    if m.get("efs_archives"):
+        out.append("- `EFS ` archives: the directory is a plain (name offset, data offset, size, size, flags) table and the last member ends at EOF, so a "
+                   "same-length member could be replaced without moving anything; a different length rewrites every later offset. No writer exists. [M]")
+    if m.get("packs"):
+        out.append("- Midway `PAK `: not rewritable today — the reader cannot say where a named object's bytes are. [M]")
+    if m.get("overlays"):
+        out.append("- `MWo3` overlays: raw R5900 code at a fixed load address; a patch is a code patch, not a data edit. [M]")
     if m.get("preloads"):
         out.append(f"- `QL01` preload files ({', '.join('`' + p + '`' for p in sorted(m['preloads']))}) copy container directories and members: any edit to a container they name must be applied there too. [S: census §3]")
     out += ["", "## Open questions (one line each, no speculation)", ""]
@@ -1524,6 +2419,115 @@ def _synthetic_qkl(names: Sequence[str], entries: Sequence[Tuple[int, int, int, 
     return head + bytes(fils) + bytes(dtls) + data + bytes(64)
 
 
+def _synthetic_zip(entries: Sequence[Tuple[str, bytes]]) -> bytes:
+    """A stored-only ZIP, as NFL Blitz 2002 / 2003 write theirs."""
+    buffer = io.BytesIO()
+    with zipfile.ZipFile(buffer, "w", zipfile.ZIP_STORED) as archive:
+        for name, payload in entries:
+            info = zipfile.ZipInfo(name, date_time=(2002, 1, 12, 22, 14, 36))
+            archive.writestr(info, payload)
+    return buffer.getvalue()
+
+
+def _zip_data_offsets(blob: bytes, entries: Sequence[Tuple[str, bytes]]) -> List[Tuple[str, int, int, int]]:
+    """(name, size, offset of the member's data, CRC-32) read back out of a built ZIP."""
+    out = []
+    with zipfile.ZipFile(io.BytesIO(blob)) as archive:
+        for info in archive.infolist():
+            head = blob[info.header_offset:info.header_offset + 30]
+            name_len, extra_len = struct.unpack_from("<HH", head, 26)
+            out.append((info.filename, info.file_size, info.header_offset + 30 + name_len + extra_len, info.CRC))
+    return out
+
+
+def _synthetic_zih(rows: Sequence[Tuple[str, int, int, int]], *, variant: str = "inline") -> bytes:
+    """The Midway index of a ZIP, in either of the two shapes the discs use."""
+    if variant == "inline":
+        body = bytearray()
+        for name, size, offset, crc in rows:
+            body += struct.pack("<9I", 10, 0, 0, 45522, 11308, crc, size, size, offset)
+            body += name.encode("latin-1") + b"\x00"
+    else:
+        body = bytearray(); names = bytearray()
+        for name, size, offset, _crc in rows:
+            body += struct.pack("<3I", len(rows) * 12 + len(names), size, offset)
+            names += name.encode("latin-1") + b"\x00"
+        body += names
+    return struct.pack("<II", len(rows), len(body)) + bytes(body)
+
+
+def _synthetic_mwo3(*, index: int = 1, load: int = 0x00493C00, segment1: int = 256, segment2: int = 64,
+                    name: bytes = b"overlay1.bin") -> bytes:
+    size = MWO3_HEADER_BYTES + segment1 + segment2
+    head = b"MWo3" + struct.pack("<7I", index, load, segment1, segment2, 1024, load + size, load + size)
+    return head + name.ljust(32, b"\x00") + bytes(segment1 + segment2)
+
+
+def _synthetic_midway_meta(records: Sequence[Tuple[int, str, str]]) -> bytes:
+    """``0x11111111`` + count, then one 2,048-byte slot per (hash, category, path)."""
+    out = bytearray(struct.pack("<II", MIDWAY_META_MAGIC, len(records)))
+    for name_hash, category, path in records:
+        slot = bytearray(MIDWAY_META_SLOT)
+        struct.pack_into("<3I", slot, 0, MIDWAY_META_RECORD_MAGIC | 0x33, name_hash, MIDWAY_META_SLOT)
+        strings = category.encode("latin-1") + b"\x00" + path.encode("latin-1") + b"\x00"
+        struct.pack_into("<3I", slot, 40, len(category) + 1, len(path) + 1, 0)
+        slot[52:52 + len(strings)] = strings
+        out += slot
+    return bytes(out)
+
+
+def _synthetic_pak(meta: bytes, payload: bytes) -> bytes:
+    """A ``PAK `` whose body word plus its metadata offset is exactly the file, as both discs' are."""
+    offset = 2048
+    head = b" KAP" + struct.pack("<5I", 512, len(meta) + len(payload), 3, 2, offset)
+    return head + bytes(offset - len(head)) + meta + payload
+
+
+def _synthetic_ms2(records: Sequence[Tuple[int, bytes]], *, names: Sequence[str] = ()) -> bytes:
+    name_blob = b"".join(n.encode("latin-1") + b"\x00" for n in names)
+    directory_bytes = 24 + len(records) * 12 + len(name_blob)
+    payload = bytearray(); table = bytearray(); cursor = directory_bytes
+    for record_id, blob in records:
+        table += struct.pack("<3I", record_id, cursor, len(blob)); payload += blob; cursor += len(blob)
+    total = directory_bytes + len(payload)
+    return struct.pack("<6I", 1, len(records), directory_bytes, 0, total, 0) + bytes(table) + name_blob + bytes(payload)
+
+
+def _synthetic_obf(settings: Sequence[Tuple[str, str, int, int]]) -> bytes:
+    out = bytearray(b"\x01\xf0")
+    for section, name, value_type, value in settings:
+        out += bytes([0x0F, len(section)]) + section.encode("latin-1") + bytes([len(name)]) + name.encode("latin-1")
+        out += bytes([0x0E, len(section)]) + section.encode("latin-1") + bytes([len(name)]) + name.encode("latin-1")
+        out += struct.pack("<5I", value_type, value, 0, value, 1)
+    return bytes(out)
+
+
+def _synthetic_hdr(names: Sequence[str]) -> bytes:
+    first = HDR_DIR_HEADER_BYTES + len(names) * HDR_DIR_ENTRY_BYTES
+    out = bytearray(b".HDR" + struct.pack("<3I", len(names), HDR_DIR_HEADER_BYTES, 0x80000000) + bytes(16))
+    cursor = first
+    for name in names:
+        out += name.encode("latin-1")[:8].ljust(8, b" ") + struct.pack("<2I", cursor, 0); cursor += 64
+    return bytes(out) + bytes(cursor - first)
+
+
+def _synthetic_efs(members: Sequence[Tuple[str, bytes]]) -> bytes:
+    names = bytearray(); offsets = []
+    for name, _ in members:
+        offsets.append(EFS_HEADER_BYTES + len(members) * EFS_ENTRY_BYTES + len(names))
+        names += name.encode("latin-1") + b"\x00"
+    first_data = EFS_HEADER_BYTES + len(members) * EFS_ENTRY_BYTES + len(names)
+    table = bytearray(); payload = bytearray(); cursor = first_data
+    for (name, blob), name_off in zip(members, offsets):
+        table += struct.pack("<5I", name_off, cursor, len(blob), len(blob), 0); payload += blob; cursor += len(blob)
+    return b"EFS " + struct.pack("<3I", first_data, len(members), 0xFFFFFFFF) + bytes(table) + bytes(names) + bytes(payload)
+
+
+def _synthetic_vagp(*, rate: int = 44100, data_bytes: int = 96, name: bytes = b"Idle1") -> bytes:
+    head = b"VAGp" + struct.pack(">4I", 0x20, 0, data_bytes, rate) + bytes(12) + name.ljust(16, b"\x00")
+    return head[:VAGP_HEADER_BYTES].ljust(VAGP_HEADER_BYTES, b"\x00") + bytes(data_bytes)
+
+
 TEXT_MEMBER = b"<Headline>A plain ASCII member of sixty-four bytes for the tests.</>"
 
 
@@ -1543,14 +2547,30 @@ def build_synthetic_disc(*, sector_size: int = 2048, data_offset: int = 0) -> Tu
     viv = _synthetic_big([(b"stat.act", b"STAT" + bytes(12))], size_be=True)
     qkl = _synthetic_qkl(["X.DAT", "Y.DAT"], [(0, 0, 0, 0), (1, 0, 3, 64), (1, 1, 0, 128)])
     elf = ps2_elf.build_synthetic_elf([0x3C020000, 0x03E00008, 0])
+    zip_members = [("art/one.rtd", b"\x16\x00\x00\x00" + bytes(60)), ("model/two.dff", b"\x10\x00\x00\x00" + bytes(28)),
+                   ("data/roster.rst", b"\x12\x00\x00\x00" + bytes(20)), ("text/three.ini", b"key = value\r\n" * 3)]
+    zip_blob = _synthetic_zip(zip_members)
+    zih = _synthetic_zih(_zip_data_offsets(zip_blob, zip_members))
+    overlay = _synthetic_mwo3()
+    meta = _synthetic_midway_meta([(0xC36737C2, "anim", "objects\\c36737c2.of"), (0x0FD26C79, "playbooks", "objects\\fd26c79.of")])
+    pak = _synthetic_pak(meta, bytes(4096))
+    ms2 = _synthetic_ms2([(1, bytes(64)), (0x20000002, bytes(96))], names=["943.mst", "945.mst"])
+    obf = _synthetic_obf([("Blitz.Video.Ball", "In Hand Scale", 2, 0x3F99999A), ("Blitz.GameOptions", "Force Plays", 1, 0)])
+    efs = _synthetic_efs([("ATLANTA.BIN", bytes(32)), ("COMMON.DIM", _synthetic_hdr(["pause_bg", "ball", "allscore"])),
+                          ("ANIM_INNER.EFS", _synthetic_efs([("LEAF.PPD", b".HDR" + bytes(28))]))])
+    vag = _synthetic_vagp()
     system_cnf = b"BOOT2 = cdrom0:\\SLUS_000.00;1\r\nVER = 1.00\r\nVMODE = NTSC\r\n"
-    payloads = {"container": container, "comp": comp, "big": big, "viv": viv, "qkl": qkl, "db": db, "elf": elf, "system_cnf": system_cnf}
+    payloads = {"container": container, "comp": comp, "big": big, "viv": viv, "qkl": qkl, "db": db, "elf": elf, "system_cnf": system_cnf,
+                "zip": zip_blob, "zih": zih, "overlay": overlay, "pak": pak, "meta": meta, "ms2": ms2, "obf": obf, "efs": efs, "vag": vag}
     image = iso.build_synthetic_iso(sector_size=sector_size, data_offset=data_offset,
                                     files=[(b"SYSTEM.CNF;1", system_cnf), (b"SLUS_000.00;1", elf), (b"TINY.BIN;1", b"\x01\x02"), (b"EMPTY.BIN;1", b"")],
                                     sub_files=[(b"X.DAT;1", container), (b"Y.DAT;1", comp), (b"Z.BIG;1", big), (b"W.VIV;1", viv),
                                                (b"GAME.QKL;1", qkl), (b"STRM.DB;1", db), (b"NOTE.TXT;1", b"plain ascii text file\r\n" * 4),
                                                (b"ICON.SYS;1", b"PS2D" + bytes(28)), (b"IOPRP.IMG;1", b"RESET\x00\x00\x00" + bytes(24)),
-                                               (b"CLIP.M2V;1", b"\x00\x00\x01\xb3" + bytes(28)), (b"BLANK.RGB;1", bytes(64))])
+                                               (b"CLIP.M2V;1", b"\x00\x00\x01\xb3" + bytes(28)), (b"BLANK.RGB;1", bytes(64)),
+                                               (b"ASSETS.ZIP;1", zip_blob), (b"ASSETS.ZIH;1", zih), (b"OVL.BIN;1", overlay),
+                                               (b"RESIMG.DAT;1", pak), (b"RESMETA.LF;1", meta), (b"SOUND.MS2;1", ms2),
+                                               (b"OPTIONS.OBF;1", obf), (b"PACK.EFS;1", efs), (b"VOICE.VAG;1", vag)])
     return image, payloads
 
 
@@ -1587,6 +2607,49 @@ def selftest() -> int:
     check(refpack_head(packed, 32)[1][:4] == b"SHPS" and refpack_head(packed, 32)[0] == 64, "RefPack head")
     check(identify_head(b"RESET\x00\x00\x00" + bytes(8)) == "IOPRP" and identify_head(b"\x00\x00\x01\x00\x01\x00\x00\x00\x07" + bytes(7)) == "PS2-ICO", "system kinds")
     check(identify_head(b"BOOT2 = cdrom0:\\") == "TEXT" and identify_head(bytes(16)) == "zero-head" and identify_head(b"", "/VC_20919/0.") == "VC-pack", "text / zero / VC kinds")
+    # --- non-EA families: Midway (NFL Blitz, Blitz: The League) and AND 1 Streetball ---
+    check(identify_head(b"MWo3" + bytes(12)) == "MWo3" and identify_head(b" KAP" + bytes(12)) == "MidwayPAK"
+          and identify_head(b"EFS " + bytes(12)) == "EFS" and identify_head(b"VAGp" + bytes(12)) == "VAGp"
+          and identify_head(b"PK\x03\x04" + bytes(12)) == "ZIP" and identify_head(b"\x01\xf0\x0f\x05" + bytes(12)) == "MidwayOBF"
+          and identify_head(b".HDR" + bytes(12)) == "HDR-dir", "non-EA file kinds")
+    overlay = _synthetic_mwo3(segment1=256, segment2=64)
+    head = mwo3_header(overlay[:MWO3_HEADER_BYTES], len(overlay))
+    check(head["segments_account_for_file"] and head["address1_is_load_plus_size"] and head["address2_equals_address1"]
+          and head["name"] == "overlay1.bin" and head["segment1_bytes"] == 256, "MWo3 header identities %s" % head)
+    try:
+        mwo3_header(b"MWo4" + bytes(60)); check(False, "a non-MWo3 head was accepted")
+    except MapError:
+        checks += 1
+    zip_members = [("a/one.rtd", b"\x16\x00\x00\x00" + bytes(40)), ("b/two.ini", b"key = value\r\n")]
+    zip_blob = _synthetic_zip(zip_members); rows = _zip_data_offsets(zip_blob, zip_members)
+    for variant in ("inline", "table"):
+        index = zih_index(_synthetic_zih(rows, variant=variant))
+        check(index["variant"] == variant and index["entries"] == 2 and index["entries_read"] == 2
+              and index["extensions"] == {"rtd": 1, "ini": 1}, "ZIH %s shape %s" % (variant, index))
+    try:
+        zih_index(b"\x02\x00\x00\x00" + bytes(28)); check(False, "a ZIH whose body word lies was accepted")
+    except MapError as error:
+        check("body" in str(error) or "entries" in str(error), "ZIH refusal names the mismatch"); checks += 1
+    meta = _synthetic_midway_meta([(0xC36737C2, "anim", "objects\\c36737c2.of"), (0x0FD26C79, "playbooks", "objects\\fd26c79.of")])
+    parsed = midway_meta(lambda o, n: meta[o:o + n], len(meta))
+    check(parsed["records"] == 2 and parsed["region_ends_at_file_end"] and parsed["name_hash_matches_path_stem"] == 2
+          and parsed["name_hash_mismatches"] == 0 and parsed["word2_is_slot_size"] == 2
+          and set(parsed["categories"]) == {"anim", "playbooks"}, "Midway metadata %s" % parsed)
+    ms2 = _synthetic_ms2([(1, bytes(64)), (0x20000002, bytes(96))], names=["943.mst", "945.mst"])
+    class _Blob:
+        size = len(ms2)
+        def read(self, start, length, limit=None): return ms2[start:start + length]
+    bank = map_midway_sound(_Blob())
+    check(bank["total_field_is_file_size"] and bank["records_read"] == 2 and bank["last_member_ends_at_eof"]
+          and bank["offsets_ascending"] and bank["name_table_extensions"] == {"mst": 2}, "Midway sound bank %s" % bank)
+    tree = obf_tree(_synthetic_obf([("Blitz.Video.Ball", "In Hand Scale", 2, 0x3F99999A), ("Blitz.GameOptions", "Force Plays", 1, 0)]))
+    check(tree["consumed_whole_file"] and tree["sections"] == 2 and tree["settings"] == 2
+          and tree["value_types"] == {"float": 1, "int": 1}, "OBF tree %s" % tree)
+    directory = hdr_dir(_synthetic_hdr(["pause_bg", "ball", "allscore"]))
+    check(directory["entries"] == 3 and directory["table_ends_at_first_member"] and directory["names_sample"][:2] == ["pause_bg", "ball"], "HDR directory %s" % directory)
+    stream = _synthetic_vagp(rate=44100, data_bytes=96)
+    vag = vagp_header(stream[:VAGP_HEADER_BYTES], len(stream))
+    check(vag["sample_rate"] == 44100 and vag["data_plus_header_is_file"] and vag["name"] == "Idle1" and vag["version"] == 0x20, "VAGp header %s" % vag)
     with tempfile.TemporaryDirectory() as tmp:
         for sector_size, data_offset in ((2048, 0), (2352, 24)):
             image, payloads = build_synthetic_disc(sector_size=sector_size, data_offset=data_offset)
@@ -1609,11 +2672,39 @@ def selftest() -> int:
             q = mapped["preloads"]["/DATA/GAME.QKL"]
             check(q["files"] == 2 and q["entries"] == 3 and q["header_copies"] == 1 and q["member_copies"] == 2, "QL01 %s" % q)
             check(mapped["executables"]["/SLUS_000.00"]["type"] == "EXEC" and mapped["identity"]["serial"] == "SLUS-00000", "ELF + identity")
+            z = mapped["zips"]["/DATA/ASSETS.ZIP"]; index = mapped["asset_indexes"]["/DATA/ASSETS.ZIH"]
+            check(z["entries"] == 4 and z["stored_only"] and z["member_kinds"].get("TEXT") == 1 and z["extensions"].get("rtd") == 1, "ZIP census %s" % z["member_kinds"])
+            check(index["zip_check"]["landed_on_a_local_file_header"] == 4 and index["zip_check"]["names_match"] == 4
+                  and index["zip_check"]["crc_matches"] == index["zip_check"]["crc_entries_checked"] == 4
+                  and index["zip_check"]["zip"] == "/DATA/ASSETS.ZIP", "ZIH offsets and CRCs check against the ZIP: %s" % index["zip_check"])
+            e = mapped["efs_archives"]["/DATA/PACK.EFS"]
+            check(e["entries"] == 3 and e["last_member_ends_at_eof"] and e["members_inside_file"] == 3 and e["sizes_agree"] == 3
+                  and e["nested_efs"] == 1 and e["nested_entries"] == 1 and e["hdr_directories"] == 1
+                  and e["hdr_directories_checked"] == 1, "EFS archive %s" % e)
+            pack = mapped["packs"]["/DATA/RESIMG.DAT"]
+            check(pack["body_plus_metadata_offset_is_file"] and pack["metadata"]["records"] == 2
+                  and pack["metadata"]["name_hash_matches_path_stem"] == 2, "PAK + metadata %s" % pack["metadata"])
+            check(mapped["metadata_lists"]["/DATA/RESMETA.LF"]["region_ends_at_file_end"], "loose 0x11111111 metadata list")
+            check(mapped["overlays"]["/DATA/OVL.BIN"]["segments_account_for_file"]
+                  and mapped["sound_banks"]["/DATA/SOUND.MS2"]["records_read"] == 2
+                  and mapped["option_trees"]["/DATA/OPTIONS.OBF"]["settings"] == 2
+                  and mapped["vag_audio"]["files"] == 1 and mapped["vag_audio"]["headers_account_for_file"] == 1, "overlay / bank / options / VAG")
+            foreign = mapped["totals"]["foreign"]
+            check(foreign["zip_entries"] == 4 and foreign["efs_members"] == 3 and foreign["metadata_records"] == 2
+                  and foreign["asset_index_names_matched"] == 4 and set(foreign["pack_categories"]) == {"anim", "playbooks"}, "foreign totals %s" % foreign)
+            check(mapped["kinds"].get("ZIP") == 1 and mapped["kinds"].get("ZIH") == 1 and mapped["kinds"].get("EFS") == 1
+                  and mapped["kinds"].get("MidwayPAK") == 1 and mapped["kinds"].get("MidwayResMeta") == 1
+                  and mapped["kinds"].get("MidwaySound") == 1 and mapped["kinds"].get("MidwayOBF") == 1
+                  and mapped["kinds"].get("MWo3") == 1 and mapped["kinds"].get("VAGp") == 1, "non-EA kinds on the disc %s" % mapped["kinds"])
             check(mapped["kinds"].get("TEXT") == 2 and mapped["kinds"].get("ICON.SYS") == 1 and mapped["kinds"].get("IOPRP") == 1 and mapped["kinds"].get("MPEG-video") == 1 and mapped["kinds"].get("zero-head") == 1 and mapped["kinds"].get("empty") == 1, "file kinds %s" % mapped["kinds"])
             check(mapped["totals"]["members"] == 10 and mapped["totals"]["mmap_containers"] == 2 and mapped["totals"]["unclassified"] == 1, "totals %s" % mapped["totals"]["formats"])
             md = render_markdown(mapped); page = render_page(mapped, today="1970-01-01")
             check("SLUS-00000" in md and "/DATA/X.DAT" in md and "TGID:uint8" in md and "Preload copies" in md and "Executables" in md, "markdown renders")
             check("| Uniforms & Equipment |" in page and "read-only-mapped" in page and "PT-header platform" in page, "page renders")
+            check("ZIP archives and their Midway index" in md and "AND 1 `EFS ` archives" in md and "Midway `MWo3` overlays" in md
+                  and "Sony `VAGp` streams" in md and "Midway option trees" in md, "the non-EA sections render")
+            check("### Non-EA containers (Midway / AND 1) [M]" in page and "local file header" in page
+                  and "no header word of this disc is an offset into it" in page, "the page carries the non-EA table")
             if sector_size == 2048:
                 first = mapped
             else:
@@ -1633,7 +2724,8 @@ def selftest() -> int:
            "archives": {}, "databases": {}, "schemas": {}}
     check("Disc map" in render_markdown(old) and "| Audio |" in render_page(old, today="1970-01-01"), "v1 JSON still renders")
     print(f"EA_DISC_MAP_SELFTEST_PASS checks={checks} tdb=schema-only terf=DATA+COMP+nested bigf=index+refpack+nested "
-          f"qkl=ok elf=ok raw-cd=ok markdown=ok page=ok compare=ok summary=ok")
+          f"qkl=ok elf=ok raw-cd=ok markdown=ok page=ok compare=ok summary=ok "
+          f"zip=index-checked efs=ok pak=ok mwo3=ok ms2=ok obf=ok vagp=ok")
     return 0
 
 
