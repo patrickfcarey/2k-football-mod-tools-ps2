@@ -293,6 +293,19 @@ class BigArchiveTests(unittest.TestCase):
                 ea_big.parse_big(magic.ljust(4, b"\x00") + bytes(60), name="A.BIG")
             self.assertIn(wanted, str(caught.exception))
 
+    def test_a_csv_table_is_measured_by_its_shape_and_none_of_its_bytes_escape(self) -> None:
+        header = b"Age,Name,Team,Bats,Throws\n0 first row of a table nobody may copy\n"
+        ledger, tally = readiness.Ledger(), readiness._new_tally()
+        readiness._probe_data_table(header, "DATABASE.BIG!attrib.dat", tally, "archive entry")
+        probe = tally["data_probes"][0]
+        self.assertEqual(probe["format"], "TEXT")
+        self.assertEqual(probe["csv_fields"], 5)
+        self.assertEqual((probe["magic"], probe["printable"], probe["first_words_le"]), ("", "", []))
+        blob = json.dumps({"probes": tally["data_probes"], "magics": dict(tally["data_magics"])})
+        self.assertNotIn("Age", blob)
+        self.assertNotIn(header[:4].hex(), blob)
+        self.assertFalse(ledger.as_list())
+
     def test_a_database_shaped_entry_name_is_probed_for_its_magic(self) -> None:
         _row, _ledger, tally = self._measure(_archive())
         self.assertEqual(tally["data_tdb"], 1)

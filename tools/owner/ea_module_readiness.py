@@ -674,8 +674,6 @@ def _probe_data_table(payload: bytes, where: str, tally: Dict[str, Any], source:
     """
 
     head = payload[:MEMBER_HEAD]
-    magic_hex = head[:4].hex()
-    printable = "".join(chr(b) if 32 <= b < 127 else "." for b in head[:4])
     kind = ea_terf.identify_member(head) or ea_big.FORMAT_UNCLASSIFIED
     opens_as_tdb = False
     try:
@@ -684,15 +682,28 @@ def _probe_data_table(payload: bytes, where: str, tally: Dict[str, Any], source:
     except (Refusal, ValueError, struct.error, IndexError):
         opens_as_tdb = False
     fields: Optional[int] = None
+    magic_hex = ""
+    printable = ""
+    words: List[int] = []
     if kind == ea_terf.FORMAT_TEXT:
+        # A CSV table's first four bytes are the first four characters of its
+        # header line, and their hex is that text reversibly.  Nothing about the
+        # bytes of a text table leaves this function: the shape a CSV has is how
+        # many comma-separated names its first line declares, and that is a count.
         line = payload[:DATA_PROBE_BYTES].split(b"\n", 1)[0]
         if b"," in line:
             fields = line.count(b",") + 1
-    # On the Street titles the slot where a magic would be holds a small
-    # little-endian count instead, so the first four words go in the row.
-    words = [struct.unpack_from("<I", payload, offset)[0]
-             for offset in range(0, min(16, max(0, len(payload) - 3)), 4)]
-    tally["data_magics"]["%s (%s)" % (magic_hex, printable)] += 1
+        key = ("plain text, %s comma-separated field(s) on its first line"
+               % (fields if fields is not None else "no"))
+    else:
+        magic_hex = head[:4].hex()
+        printable = "".join(chr(b) if 32 <= b < 127 else "." for b in head[:4])
+        # On the Street titles the slot where a magic would be holds a small
+        # little-endian count instead, so the first four words go in the row.
+        words = [struct.unpack_from("<I", payload, offset)[0]
+                 for offset in range(0, min(16, max(0, len(payload) - 3)), 4)]
+        key = "%s (%s)" % (magic_hex, printable)
+    tally["data_magics"][key] += 1
     tally["data_kinds"][kind] += 1
     if opens_as_tdb:
         tally["data_tdb"] += 1
@@ -1904,9 +1915,11 @@ def _big_section(m: Dict[str, Any]) -> List[str]:
                 "Every file and entry whose **name** is database-shaped, probed for its magic and "
                 "its shape. `opens as TDB` is `ea_tdb.parse_tdb` returning; `CSV fields` is the "
                 "number of comma-separated names on the first line, which is a count and not the "
-                "line. %s probe(s), %s of which open as an EA `TDB`." % (
+                "line. A table that *is* text has no magic row at all, because the first four "
+                "bytes of a CSV are four characters of its header. %s probe(s), %s of which open "
+                "as an EA `TDB`." % (
                     format(data["total"], ","), format(data.get("opens_as_tdb", 0), ",")), "",
-                "| magic (hex / printable) | files |", "|---|---:|"]
+                "| magic (hex / printable), or the shape of a text table | files |", "|---|---:|"]
         for key, value in (data.get("magics") or {}).items():
             out.append("| `%s` | %s |" % (key, format(value, ",")))
         out.append("")
@@ -1915,8 +1928,9 @@ def _big_section(m: Dict[str, Any]) -> List[str]:
             out += ["| where | bytes | magic | first four words, LE | format | opens as TDB | CSV fields |",
                     "|---|---:|---|---|---|---|---:|"]
             for probe in probes[:24]:
-                out.append("| `%s` | %s | `%s` | %s | %s | %s | %s |" % (
-                    probe["where"], format(probe["bytes"], ","), probe["magic"],
+                out.append("| `%s` | %s | %s | %s | %s | %s | %s |" % (
+                    probe["where"], format(probe["bytes"], ","),
+                    "`%s`" % probe["magic"] if probe["magic"] else "—",
                     ", ".join(str(word) for word in probe.get("first_words_le") or []) or "—",
                     probe["format"], "yes" if probe["opens_as_tdb"] else "no",
                     "—" if probe.get("csv_fields") is None else probe["csv_fields"]))
