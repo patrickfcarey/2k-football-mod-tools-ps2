@@ -1445,6 +1445,9 @@ def foreign_totals(zips: Dict[str, Any], asset_indexes: Dict[str, Any], efs_arch
         "option_settings": sum(o.get("settings", 0) for o in option_trees.values() if "error" not in o),
         "metadata_lists": len(metadata_lists),
         "metadata_records": sum(m.get("records", 0) for m in metadata_lists.values() if "error" not in m),
+        # a pack's own metadata and the loose .LF beside it are the same records twice; count the pack's, once
+        "pack_objects": sum(p.get("metadata", {}).get("records", 0) for p in packs.values()
+                            if "error" not in p and isinstance(p.get("metadata"), dict) and "records" in p["metadata"]),
         "pack_categories": dict(categories.most_common(64)),
         "vag": vag,
     }
@@ -1962,7 +1965,19 @@ def render_compare(a: Dict[str, Any], b: Dict[str, Any]) -> str:
     return "\n".join(out) + "\n"
 
 
-SUMMARY_COLUMNS = ("disc", "serial", "files", "containers", "refused", "members", "archives", "archive entries", "schemas", "MMAP", "SCHl", "TEXT", "TDB members", "nested TERF", "unclassified", "seconds", "image sha256")
+SUMMARY_COLUMNS = ("disc", "serial", "files", "containers", "refused", "members", "archives", "archive entries", "schemas", "MMAP", "SCHl", "TEXT", "TDB members", "nested TERF", "unclassified", "non-EA", "seconds", "image sha256")
+
+
+def _foreign_cell(foreign: Dict[str, Any]) -> str:
+    """One cell naming the non-EA families a disc holds, so a fleet row of EA zeros is never read as an empty disc."""
+    parts = []
+    for key, label in (("zip_entries", "ZIP entries"), ("efs_members", "EFS members"), ("pack_objects", "PAK objects"),
+                       ("sound_bank_records", "sound records"), ("option_settings", "OBF settings")):
+        if foreign.get(key):
+            parts.append(f"{foreign[key]:,} {label}")
+    if (foreign.get("vag") or {}).get("files"):
+        parts.append(f"{foreign['vag']['files']:,} VAG")
+    return "; ".join(parts) or "—"
 
 
 def summary_rows(maps: Sequence[Dict[str, Any]]) -> List[Dict[str, Any]]:
@@ -1973,8 +1988,8 @@ def summary_rows(maps: Sequence[Dict[str, Any]]) -> List[Dict[str, Any]]:
                      "files": len(m.get("files", [])), "containers": t["containers"], "refused": len(t["containers_refused"]), "members": t["members"],
                      "archives": t["archives"], "archive entries": t["archive_entries"], "schemas": len(m.get("schemas", {})),
                      "MMAP": t["mmap_members"], "SCHl": t["schl_members"], "TEXT": t["text_members"], "TDB members": t["tdb_members"],
-                     "nested TERF": t["nested_terf"], "unclassified": t["unclassified"], "seconds": m.get("seconds"),
-                     "image sha256": m.get("identity", {}).get("image_sha256") or "—"})
+                     "nested TERF": t["nested_terf"], "unclassified": t["unclassified"], "non-EA": _foreign_cell(t.get("foreign") or {}),
+                     "seconds": m.get("seconds"), "image sha256": m.get("identity", {}).get("image_sha256") or "—"})
     return sorted(rows, key=lambda r: (str(r["serial"]), str(r["disc"])))
 
 
@@ -2094,7 +2109,7 @@ def _foreign_kind_note(kind: str, m: Dict[str, Any]) -> str:
                 f"{f.get('efs_archives', 0) - f.get('efs_refused', 0)}; {f.get('efs_nested', 0)} nested `EFS `; "
                 f"{f.get('efs_hdr_directories', 0)} `.HDR` directories")
     if kind == "MidwayPAK":
-        return f"{f.get('metadata_records', 0)} metadata records naming {len(f.get('pack_categories') or {})} category words"
+        return f"{f.get('pack_objects', 0)} metadata records naming {len(f.get('pack_categories') or {})} category words"
     if kind == "MWo3":
         return f"{f.get('overlays', 0)} relocatable overlays (see the overlay table in the map)"
     if kind == "MidwaySound":
@@ -2242,7 +2257,7 @@ def render_page(m: Dict[str, Any], today: Optional[str] = None) -> str:
                        f"`entry-table offset + entries × 16` equal to their first member's offset | what a `.DIM` / `.PPD` / `BALL` / `NIS0` member *is* |")
         if m.get("packs"):
             out.append(f"| `PAK ` + `0x11111111` metadata | {foreign.get('packs', 0)} + {foreign.get('metadata_lists', 0)} | "
-                       f"`body bytes + metadata offset == file`; {foreign.get('metadata_records', 0)} records of 2,048 bytes, each naming a category "
+                       f"`body bytes + metadata offset == file`; {foreign.get('pack_objects', 0)} records of 2,048 bytes, each naming a category "
                        f"and an `objects\\<hex>.of` path whose stem equals the record's 32-bit hash | where a named object's bytes live in the pack body: "
                        f"no header word of this disc is an offset into it |")
         if m.get("overlays"):
@@ -2724,7 +2739,7 @@ def selftest() -> int:
                   and mapped["option_trees"]["/DATA/OPTIONS.OBF"]["settings"] == 2
                   and mapped["vag_audio"]["files"] == 1 and mapped["vag_audio"]["headers_account_for_file"] == 1, "overlay / bank / options / VAG")
             foreign = mapped["totals"]["foreign"]
-            check(foreign["zip_entries"] == 4 and foreign["efs_members"] == 3 and foreign["metadata_records"] == 2
+            check(foreign["zip_entries"] == 4 and foreign["efs_members"] == 3 and foreign["metadata_records"] == 2 and foreign["pack_objects"] == 2
                   and foreign["asset_index_names_matched"] == 4 and set(foreign["pack_categories"]) == {"anim", "playbooks"}, "foreign totals %s" % foreign)
             check(mapped["kinds"].get("ZIP") == 1 and mapped["kinds"].get("ZIH") == 1 and mapped["kinds"].get("EFS") == 1
                   and mapped["kinds"].get("MidwayPAK") == 1 and mapped["kinds"].get("MidwayResMeta") == 1
@@ -2747,7 +2762,7 @@ def selftest() -> int:
         compare = render_compare(first, mapped)
         check("identical in every mapped count 2" in compare, "compare renders")
         summary = render_summary([first, mapped])
-        check("Synthetic (USA)" in summary and "| 2 |" in summary, "summary renders")
+        check("Synthetic (USA)" in summary and "| 2 |" in summary and "4 ZIP entries" in summary and "1 VAG" in summary, "summary renders, non-EA column included")
     old = {"schema": "ea_disc_map/v1", "label": "Old", "generated_utc": "1970-01-01T00:00:00Z", "seconds": 0.0,
            "image": {"name": "old.iso", "size": 2048, "files": 1, "directories": 1, "sector_size": 2048},
            "identity": {"serial": "SLUS-00000", "boot_file": "SLUS_000.00", "boot_sha256": "0" * 64, "boot_size": 16, "pcsx2_crc": "00000000", "image_sha256": None},
