@@ -12,8 +12,12 @@ set -u
 CHECKOUT="$HOME/penguinscreen2-dev"
 GSRUNNER="$CHECKOUT/build/bin/pcsx2-gsrunner"
 CFG="$HOME/.config/PenguinScreen2"
-DAY=20260905
-OUT="$HOME/texdumps-$DAY"
+# DAY selects which day's GS dumps to replay; SERIAL narrows to one disc (default: every serial
+# that day). Both were hardcoded until 2026-09-06, so a caller passing them silently re-harvested
+# the wrong day -- one wasted 25,867-file run before it was noticed.
+DAY="${DAY:-$(date +%Y%m%d)}"
+SERIAL="${SERIAL:-}"
+OUT="$HOME/texdumps-$DAY${SERIAL:+-$SERIAL}"
 [ -x "$GSRUNNER" ] || { echo "FATAL: no gsrunner at $GSRUNNER"; exit 1; }
 if pgrep -x pcsx2-qt >/dev/null 2>&1; then echo "H-2: a live pcsx2-qt exists; refusing."; exit 3; fi
 mkdir -p "$OUT"
@@ -33,7 +37,8 @@ trap restore EXIT
 
 SERIALS=()
 total=0
-for DUMP in "$CFG"/snaps/*_"$DAY"*.gs.zst; do
+for DUMP in "$CFG"/snaps/*_${SERIAL:-*}_"$DAY"*.gs.zst; do
+  [ -e "$DUMP" ] || { echo "no GS dump matches *_${SERIAL:-<any>}_${DAY}*.gs.zst"; exit 4; }
   name=$(basename "$DUMP" .gs.zst)
   SERIAL=$(printf '%s' "$name" | sed -E 's/.*_(S[LC][UE]S-[0-9]+)_.*/\1/')
   stamp=$(printf '%s' "$name" | sed -E 's/.*_([0-9]{14})$/\1/')
