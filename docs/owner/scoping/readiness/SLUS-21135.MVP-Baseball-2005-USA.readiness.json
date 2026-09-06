@@ -1,0 +1,169 @@
+{
+ "caches": {
+  "containers_named": 0,
+  "copies": 0,
+  "differing": 0,
+  "files": 0,
+  "header_copies": 0,
+  "identical": 0,
+  "member_copies": 0,
+  "parsed": 0,
+  "per_cache": {},
+  "refused": 0,
+  "unread": 0,
+  "unresolved": 0,
+  "unresolved_kinds": {}
+ },
+ "containers": {},
+ "counts": {
+  "alignments": {},
+  "bnkl": {
+   "refused": 0,
+   "sounds": 0,
+   "total": 0,
+   "works": 0
+  },
+  "caches": {
+   "copies": 0,
+   "differing": 0,
+   "identical": 0,
+   "refused": 0,
+   "total": 0,
+   "unresolved": 0,
+   "works": 0
+  },
+  "chains": {},
+  "codecs": {},
+  "containers": {
+   "refused": 0,
+   "total": 0,
+   "works": 0
+  },
+  "crc_sites": {
+   "databases_refused": 0,
+   "refused": 0,
+   "total": 0,
+   "works": 0
+  },
+  "formats": {},
+  "members": {
+   "refused": 0,
+   "total": 0,
+   "works": 0
+  },
+  "mmap": {
+   "dimensions": {},
+   "images_in_sample": 0,
+   "members": 0,
+   "members_refused": 0,
+   "parsed": 0,
+   "reasons": {},
+   "refused": 0,
+   "sampled": 0,
+   "total": 0,
+   "works": 0
+  },
+  "schl": {
+   "codecs": {},
+   "headers_parsed": 0,
+   "headers_refused": 0,
+   "platforms": {},
+   "refused": 0,
+   "streams_complete": 0,
+   "streams_in_sample": 0,
+   "total": 0,
+   "undecodable": 0,
+   "walked_members": 0,
+   "works": 0
+  },
+  "tdb": {
+   "bare_files": 0,
+   "bare_parsed": 0,
+   "fields": 0,
+   "refused": 0,
+   "tables": 0,
+   "total": 0,
+   "works": 0
+  }
+ },
+ "data_files": 374,
+ "databases": {},
+ "files": 434,
+ "generated_utc": "2026-09-06T05:31:15Z",
+ "identity": {
+  "boot_file": "SLUS_211.35",
+  "boot_segments": 1,
+  "boot_sha256": "14db3aa3660e526ce12423db8102ce138e34f252985543406ff67a753e5c4615",
+  "boot_size": 8130840,
+  "pcsx2_crc": "0544E001",
+  "serial": "SLUS-21135"
+ },
+ "image": {
+  "directories": 30,
+  "files": 434,
+  "layout": "2048-byte logical sectors",
+  "name": "MVP Baseball 2005 (USA).iso",
+  "sector_size": 2048,
+  "size": 4300275712,
+  "volume_id": ""
+ },
+ "kinds": {
+  "ABKC": 24,
+  "BIGF": 211,
+  "BNKl": 2,
+  "ELF": 46,
+  "EVT": 8,
+  "ICON.SYS": 2,
+  "IOPRP": 2,
+  "LOCH": 3,
+  "MPCh": 42,
+  "PS2-ICO": 2,
+  "SCEI-HD": 1,
+  "SCHl": 31,
+  "SHPS": 21,
+  "TEXT": 21,
+  "other:00000000": 1,
+  "other:00000100": 2,
+  "other:00c0ffff": 1,
+  "other:03e0ffff": 1,
+  "other:04a00300": 1,
+  "other:37200100": 1,
+  "other:4131434c": 1,
+  "other:4d4f4952": 1,
+  "other:7c0fffff": 1,
+  "other:9380ffff": 1,
+  "other:9560ffff": 1,
+  "other:b2010000": 1,
+  "other:b35fffff": 1,
+  "other:d52e0000": 1,
+  "other:ffffff00": 1,
+  "zero-head": 2
+ },
+ "label": "MVP Baseball 2005 (USA)",
+ "readers": {
+  "containers": "eb08b8c1aac19bf6",
+  "ea_schl": "46892eed2b15637c",
+  "ea_tdb": "cd01ca75c5179f3b",
+  "ea_terf": "dde0f9adb662ed3e",
+  "mmap_art": "7456e7b2788ba367",
+  "ps2_iso9660": "a1baa176c4e28ea8"
+ },
+ "refusals": [],
+ "refusals_total": 0,
+ "schema": "ea_module_readiness/v1",
+ "schemas": {},
+ "seconds": 0.4,
+ "settings": {
+  "data_only": false,
+  "deep": true,
+  "member_head_bytes": 32,
+  "mmap_sample": 48,
+  "schl_head_bytes": 65536,
+  "schl_sample": 16
+ },
+ "table_names": {},
+ "timings": {
+  "caches": 0.0,
+  "containers": 0.1
+ }
+}
