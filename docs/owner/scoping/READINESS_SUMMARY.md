@@ -6,8 +6,9 @@ the **shipped Madden 09 readers themselves** — `ea_terf`, `ea_tdb`, `ea_schl`,
 `mmap_art` and the module's own preload-cache parser, imported and not
 re-implemented — over every `/DATA` file of every EA disc on this box.
 
-Tool: `tools/owner/ea_module_readiness.py` (`ea_module_readiness/v1`), selftested,
-23 unit tests in `tests/owner/test_ea_module_readiness.py`. Per-disc pages:
+Tool: `tools/owner/ea_module_readiness.py` (`ea_module_readiness/v1`); its selftest
+makes 37 checks on synthetic discs it builds itself, and 24 unit tests sit in
+`tests/owner/test_ea_module_readiness.py`. Per-disc pages:
 `docs/owner/scoping/readiness/<SERIAL>.<label>.md`, each rendered from its own
 `<SERIAL>.<label>.readiness.json`. **Every number on this page is copied from
 one of those JSON files**; where a claim is not, it says so.
@@ -352,7 +353,7 @@ work, and the owner's stated interests.
 
 | # | title | one reason |
 |---|---|---|
-| **1** | **Madden NFL 08** (`SLUS-21638`) | The only disc that is 100% on every family with a writer today *and* whose thirteen load-bearing table schemas are byte-identical to Madden 09's — so the roster, identity, text and playbook lanes are a container list, and its 6,270 cache copies all resolve where the control's do not. It is also the vehicle game of the owner's other project, and the community pack that covers it is a joint NCAA 06 + Madden 08 release [S]. |
+| **1** | **Madden NFL 08** (`SLUS-21638`) | The only other title whose thirteen load-bearing table schemas are byte-identical to Madden 09's — same names, same widths, same bit offsets — on top of 100% on containers, members, databases and checksums, so the roster, identity, text and playbook lanes are a container list and a boot witness. Its 6,270 cache copies all resolve, where the control leaves two of its own unresolved. It is also the vehicle game of the owner's other project, and the community pack that covers it is a joint NCAA 06 + Madden 08 release [S]. |
 | **2** | **Madden NFL 12 + Deluxe** (`SLUS-21946`) | The same 100% readings with the *least* remaining work of any non-08 disc: three `PLAY` widths the metadata-driven reader already absorbs, and **no preload cache at all**, which deletes the three-place edit rule the Madden 09 art writers spend most of their care on. |
 | **3** | **Madden NFL 06** (`SLUS-21213`) | 100% on containers, members, databases and checksums with nine of thirteen tables identical; the remaining work is one `TEAM` string width, four `PLAY` fields, and a rule for the twelve cache copies the module cannot resolve. |
 | **4** | **Madden NFL 2004** (`SLUS-20752`) | The deepest owner research on the fleet — this run measured its ELF CRC as `14F8B841`, the CRC the owner's 34 existing pnach patches target — and `COCH` shares 66 of 66 names, answering an open workstream as a read. Ranked below 06 only because its playbook tables are a different generation (`PBST` 27 fields against 5) and its uniform art is not where Madden 09 keeps it. |
