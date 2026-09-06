@@ -25,3 +25,5 @@ and never sent upstream. Rebase it onto `ps2-lane` when the lane moves.
   what a module for it would need, the rung it earns today, and what stays unknown.
 - `docs/owner/DUMP_SESSION_MADDEN09.md` — the owner's Madden 09 texture-dump session at the rig's keyboard (PCSX2
   replacement identities), and how a rebuilt disc is witnessed in one line.
+
+- `LESSONS_2026-09-06.md` — what cost us that day, ranked, with where each fix is enforced; `tools/owner/integration/` — the resolver, pin audit, gate and NAS loop that used to live in a scratch directory.

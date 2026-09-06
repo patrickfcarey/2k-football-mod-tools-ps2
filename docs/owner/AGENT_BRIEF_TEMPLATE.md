@@ -68,6 +68,15 @@ owner of the registry commit gets that commit from three agents at once).
 `2K5_MOD_STUDIO_RUNTIME_CLOSURE_PASS`, `PIN AUDIT: CLEAN`, `N of N conformance checks passed`.
 An agent that knows which strings it must be able to paste will run the gate that produces them.
 
+## The NAS loop is one line, not a paragraph
+
+Every brief on 2026-09-06 restated the same six instructions for the NAS test loop (rsync, retry
+the link, the `.git` marker, the fixtures copy, the script, the summary line). They are now
+`tools/owner/integration/nas_loop.sh <worktree> [workers]` on the owner branch; give the agent
+that absolute path and say "report its SUMMARY line". The same directory holds
+`integrate_gate.sh <worktree>` (every fast gate plus the release gates, PASS token per line),
+`resolve_step.py <worktree>` (the mechanical conflict resolver) and `pin_audit.py <worktree>`.
+
 ## Choosing the model, which is the launcher's job and not the brief's
 
 Every launch names its model. An agent launched with none inherits the *session's* model, so a
