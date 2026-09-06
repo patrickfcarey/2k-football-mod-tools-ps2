@@ -1,0 +1,2017 @@
+{
+ "archives": {
+  "/DATA/AUDIO/AEMSBANK.BIG": {
+   "alignment": 4,
+   "declared_size": 7050336,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 63,
+   "entries_classified": 63,
+   "entries_refused": 0,
+   "entry_span": 7050336,
+   "format": "BIGF",
+   "formats": {
+    "unclassified": 63
+   },
+   "index_bytes": 1737,
+   "iso_length": 7050336,
+   "layout_notes": [],
+   "length": 7050336,
+   "names_sample": [
+    "fesfx.abk",
+    "besfx.abk",
+    "AEMS2.csi",
+    "music_loadloop01.abk",
+    "music_loadloop02.abk",
+    "music_loadloop03.abk"
+   ],
+   "payload_bytes": 7048596,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/AUDIO/AEMSSTRM.BIG": {
+   "alignment": 128,
+   "declared_size": 253666248,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 36,
+   "entries_classified": 36,
+   "entries_refused": 0,
+   "entry_span": 253666248,
+   "format": "BIGF",
+   "formats": {
+    "SCHl": 36
+   },
+   "index_bytes": 1027,
+   "iso_length": 253666248,
+   "layout_notes": [],
+   "length": 253666248,
+   "names_sample": [
+    "practicePitch.ast",
+    "crowdloopsSmStad.ast",
+    "crowdloops.ast",
+    "crowdloops_Africa.ast",
+    "crowdloops_Asia.ast",
+    "crowdloops_SA.ast"
+   ],
+   "payload_bytes": 253662872,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "schl": {
+    "codecs": {
+     "EA-XA ADPCM": 36
+    },
+    "decodable": 36,
+    "headers_parsed": 36,
+    "headers_refused": 0,
+    "members": 36,
+    "platforms": {
+     "PT": 36
+    },
+    "streams": 3934,
+    "streams_complete": 3934,
+    "undecodable": 0,
+    "walked_members": 16
+   },
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/AUDIO/AUDIO.BIG": {
+   "alignment": 128,
+   "declared_size": 3099800,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 25,
+   "entries_classified": 25,
+   "entries_refused": 0,
+   "entry_span": 3099800,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 3,
+    "TEXT": 16,
+    "unclassified": 6
+   },
+   "index_bytes": 649,
+   "iso_length": 3099800,
+   "layout_notes": [],
+   "length": 3099800,
+   "names_sample": [
+    "c_excite.bin",
+    "system_vars.ini",
+    "chants.bin",
+    "songlist.bin",
+    "mix_lrgfull_eng.ini",
+    "mix_lrgpart_eng.ini"
+   ],
+   "nested": {
+    "archives": 3,
+    "entries": 18153,
+    "opened": 3,
+    "refused": 0,
+    "sampled": 3
+   },
+   "payload_bytes": 3097818,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/AUDIO/CHANTS.BIG": {
+   "alignment": 64,
+   "declared_size": 905718744,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 1453,
+   "entries_classified": 1453,
+   "entries_refused": 0,
+   "entry_span": 905718744,
+   "format": "BIGF",
+   "formats": {
+    "SCHl": 1453
+   },
+   "index_bytes": 30201,
+   "iso_length": 905718744,
+   "layout_notes": [],
+   "length": 905718744,
+   "names_sample": [
+    "ACM0601.asf",
+    "ACM0604.asf",
+    "ACM0607.asf",
+    "ACM0608.asf",
+    "ACM0609.asf",
+    "ACM0610.asf"
+   ],
+   "payload_bytes": 905643808,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "schl": {
+    "codecs": {
+     "EA-XA ADPCM": 1453
+    },
+    "decodable": 1453,
+    "headers_parsed": 1453,
+    "headers_refused": 0,
+    "members": 1453,
+    "platforms": {
+     "PT": 1453
+    },
+    "streams": 16,
+    "streams_complete": 16,
+    "undecodable": 0,
+    "walked_members": 16
+   },
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/AUDIO/DAT_ENG.BIG": {
+   "alignment": 128,
+   "declared_size": 315395456,
+   "depth": 0,
+   "duplicate_names": 160,
+   "empty_entries": 0,
+   "entries": 7714,
+   "entries_classified": 7714,
+   "entries_refused": 0,
+   "entry_span": 315395456,
+   "format": "BIGF",
+   "formats": {
+    "SCHl": 7714
+   },
+   "index_bytes": 172383,
+   "iso_length": 315395456,
+   "layout_notes": [
+    "160 entry name(s) appear more than once"
+   ],
+   "length": 315395456,
+   "names_sample": [
+    "1_TIME_PASS_ANT_GEN.dat",
+    "3RD_MAN_GETS_PASS.dat",
+    "3RD_MAN_RUN.dat",
+    "AC_MILAN.dat",
+    "AFTER_ADVANTAGE.dat",
+    "AFTER_BEATING_DEFENCE.dat"
+   ],
+   "payload_bytes": 315223040,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "schl": {
+    "codecs": {
+     "MicroTalk (EA speech, ~10:1)": 7714
+    },
+    "decodable": 0,
+    "headers_parsed": 7714,
+    "headers_refused": 0,
+    "members": 7714,
+    "platforms": {
+     "PT": 7714
+    },
+    "streams": 46,
+    "streams_complete": 46,
+    "undecodable": 7714,
+    "walked_members": 16
+   },
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/AUDIO/DAT_FRE.BIG": {
+   "alignment": 128,
+   "declared_size": 325513088,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 5944,
+   "entries_classified": 5944,
+   "entries_refused": 0,
+   "entry_span": 325513088,
+   "format": "BIGF",
+   "formats": {
+    "SCHl": 5944
+   },
+   "index_bytes": 143442,
+   "iso_length": 325513088,
+   "layout_notes": [],
+   "length": 325513088,
+   "names_sample": [
+    "1_TIME_PASS_ANT_GEN.dat",
+    "2_SEC_SILENCE.dat",
+    "3RD_MAN_GETS_PASS.dat",
+    "3RD_MAN_RUN.dat",
+    "3RD_M_RELEASE_FAIL.dat",
+    "3RD_M_RELEASE_SCSS.dat"
+   ],
+   "payload_bytes": 325369600,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "schl": {
+    "codecs": {
+     "MicroTalk (EA speech, ~10:1)": 5944
+    },
+    "decodable": 0,
+    "headers_parsed": 5944,
+    "headers_refused": 0,
+    "members": 5944,
+    "platforms": {
+     "GSTR": 5944
+    },
+    "streams": 43,
+    "streams_complete": 43,
+    "undecodable": 5944,
+    "walked_members": 16
+   },
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/AUDIO/DAT_MEX.BIG": {
+   "alignment": 128,
+   "declared_size": 372938368,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 4495,
+   "entries_classified": 4495,
+   "entries_refused": 0,
+   "entry_span": 372938368,
+   "format": "BIGF",
+   "formats": {
+    "SCHl": 4495
+   },
+   "index_bytes": 114997,
+   "iso_length": 372938368,
+   "layout_notes": [],
+   "length": 372938368,
+   "names_sample": [
+    "1_TIME_PASS_ANT_GEN.dat",
+    "2_SEC_SILENCE.dat",
+    "3RD_MAN_GETS_PASS.dat",
+    "3RD_MAN_RUN.dat",
+    "3RD_M_RELEASE_FAIL.dat",
+    "3RD_M_RELEASE_SCSS.dat"
+   ],
+   "payload_bytes": 372823296,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "schl": {
+    "codecs": {
+     "MicroTalk (EA speech, ~10:1)": 4495
+    },
+    "decodable": 0,
+    "headers_parsed": 4495,
+    "headers_refused": 0,
+    "members": 4495,
+    "platforms": {
+     "GSTR": 4495
+    },
+    "streams": 55,
+    "streams_complete": 55,
+    "undecodable": 4495,
+    "walked_members": 16
+   },
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/CMN/ACADEMY.BIG": {
+   "alignment": 64,
+   "declared_size": 1231040,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 8,
+   "entries_classified": 8,
+   "entries_refused": 0,
+   "entry_span": 1231040,
+   "format": "BIGF",
+   "formats": {
+    "TEXT": 4,
+    "unclassified": 4
+   },
+   "index_bytes": 174,
+   "iso_length": 1231040,
+   "layout_notes": [],
+   "length": 1231040,
+   "names_sample": [
+    "chip.txt",
+    "finesse.txt",
+    "goalie11.txt",
+    "long.txt",
+    "chip.fta",
+    "finesse.fta"
+   ],
+   "payload_bytes": 1230635,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/CMN/BE/MOTION.BIG": {
+   "alignment": 64,
+   "declared_size": 71052083,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 973,
+   "entries_classified": 973,
+   "entries_refused": 0,
+   "entry_span": 71052083,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 969,
+    "TEXT": 1,
+    "unclassified": 3
+   },
+   "index_bytes": 31874,
+   "iso_length": 71052083,
+   "layout_notes": [],
+   "length": 71052083,
+   "names_sample": [
+    "7sp_hit_by_ball_groin_hipower.viv",
+    "7sp_hit_by_ball_gut_hipower.viv",
+    "7sp_hit_by_ball_head2_hipower.viv",
+    "7sp_hit_by_ball_head_hipower.viv",
+    "fall_6sp_jostle_stumble_left_FIFA_MOMENT.viv",
+    "fall_6sp_jostle_stumble_right_FIFA_MOMENT.viv"
+   ],
+   "nested": {
+    "archives": 969,
+    "entries": 2007,
+    "opened": 969,
+    "refused": 0,
+    "sampled": 969
+   },
+   "payload_bytes": 70991177,
+   "refpack_entries": 1,
+   "refpack_unpacked": 1,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/CMN/INI.BIG": {
+   "alignment": 64,
+   "declared_size": 27718,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 2,
+   "entries_classified": 2,
+   "entries_refused": 0,
+   "entry_span": 27718,
+   "format": "BIGF",
+   "formats": {
+    "TEXT": 2
+   },
+   "index_bytes": 60,
+   "iso_length": 27718,
+   "layout_notes": [],
+   "length": 27718,
+   "names_sample": [
+    "jersynum.ini",
+    "ai.ini"
+   ],
+   "payload_bytes": 27652,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/CMN/INI_PS2.BIG": {
+   "alignment": 128,
+   "declared_size": 4167,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 3,
+   "entries_classified": 3,
+   "entries_refused": 0,
+   "entry_span": 4167,
+   "format": "BIGF",
+   "formats": {
+    "TEXT": 3
+   },
+   "index_bytes": 85,
+   "iso_length": 4167,
+   "layout_notes": [],
+   "length": 4167,
+   "names_sample": [
+    "cfg_def.ini",
+    "cfg_ps2.ini",
+    "rndlight.ini"
+   ],
+   "payload_bytes": 3983,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/EAGLRM.BIG": {
+   "alignment": 16,
+   "declared_size": 220045,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 1,
+   "entries_classified": 1,
+   "entries_refused": 0,
+   "entry_span": 220045,
+   "format": "BIGF",
+   "formats": {
+    "ELF": 1
+   },
+   "index_bytes": 41,
+   "iso_length": 220045,
+   "layout_notes": [],
+   "length": 220045,
+   "names_sample": [
+    "eaglrm.o"
+   ],
+   "payload_bytes": 219997,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/GUI/ASSETCMN.BIG": {
+   "alignment": 64,
+   "declared_size": 7844548,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 1254,
+   "entries_classified": 1254,
+   "entries_refused": 0,
+   "entry_span": 7844548,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 1254
+   },
+   "index_bytes": 53872,
+   "iso_length": 7844548,
+   "layout_notes": [],
+   "length": 7844548,
+   "names_sample": [
+    "data/gui/assetCmn/flags/CNTRY_AD.big",
+    "data/gui/assetCmn/flags/CNTRY_AE.big",
+    "data/gui/assetCmn/flags/CNTRY_AF.big",
+    "data/gui/assetCmn/flags/CNTRY_AG.big",
+    "data/gui/assetCmn/flags/CNTRY_AI.big",
+    "data/gui/assetCmn/flags/CNTRY_AL.big"
+   ],
+   "nested": {
+    "archives": 1254,
+    "entries": 5011,
+    "opened": 1254,
+    "refused": 0,
+    "sampled": 1254
+   },
+   "payload_bytes": 7751476,
+   "refpack_entries": 1254,
+   "refpack_unpacked": 1254,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/GUI/ASSETS.BIG": {
+   "alignment": 64,
+   "declared_size": 89760303,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 13121,
+   "entries_classified": 13121,
+   "entries_refused": 0,
+   "entry_span": 89760303,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 13121
+   },
+   "index_bytes": 570337,
+   "iso_length": 89760303,
+   "layout_notes": [],
+   "length": 89760303,
+   "names_sample": [
+    "data/gui/assets/back/Ani1_ps2.big",
+    "data/gui/assets/back/Ani2_ps2.big",
+    "data/gui/assets/back/Ani3_ps2.big",
+    "data/gui/assets/back/Ani4_ps2.big",
+    "data/gui/assets/back/Ani5_ps2.big",
+    "data/gui/assets/back/b1.big"
+   ],
+   "nested": {
+    "archives": 13121,
+    "entries": 52472,
+    "opened": 13121,
+    "refused": 0,
+    "sampled": 13121
+   },
+   "payload_bytes": 88776505,
+   "refpack_entries": 13121,
+   "refpack_unpacked": 13121,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/GUI/FE_PRE.BIG": {
+   "alignment": 128,
+   "declared_size": 660016,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 9,
+   "entries_classified": 9,
+   "entries_refused": 0,
+   "entry_span": 660016,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 9
+   },
+   "index_bytes": 353,
+   "iso_length": 660016,
+   "layout_notes": [],
+   "length": 660016,
+   "names_sample": [
+    "data/gui/playnow/02_play.big",
+    "data/gui/playnow/03_offl.big",
+    "data/gui/playnow/04_2tm.big",
+    "data/gui/playnow/05_opt.big",
+    "data/gui/playnow/20_team.big",
+    "data/gui/gameLib/playbar.big"
+   ],
+   "nested": {
+    "archives": 9,
+    "entries": 35,
+    "opened": 9,
+    "refused": 0,
+    "sampled": 9
+   },
+   "payload_bytes": 659152,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/GUI/FONTS_BE.FFC": {
+   "error": "/DATA/GUI/FONTS_BE.FFC is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte",
+   "iso_length": 277632,
+   "magic": "BIG4"
+  },
+  "/DATA/GUI/FONTS_FE.FFC": {
+   "error": "/DATA/GUI/FONTS_FE.FFC is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte",
+   "iso_length": 511616,
+   "magic": "BIG4"
+  },
+  "/DATA/GUI/FONTS_ON.FFC": {
+   "error": "/DATA/GUI/FONTS_ON.FFC is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte",
+   "iso_length": 285568,
+   "magic": "BIG4"
+  },
+  "/DATA/GUI/GUI.BIG": {
+   "alignment": 64,
+   "declared_size": 61931217,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 1186,
+   "entries_classified": 1186,
+   "entries_refused": 0,
+   "entry_span": 61931217,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 1167,
+    "SHPS": 8,
+    "unclassified": 11
+   },
+   "index_bytes": 48919,
+   "iso_length": 61931217,
+   "layout_notes": [],
+   "length": 61931217,
+   "names_sample": [
+    "data/gui/accomps/23a_detl.big",
+    "data/gui/accomps/23_accom.big",
+    "data/gui/accomps/acclist.big",
+    "data/gui/accomps/accview.big",
+    "data/gui/accomps/regnlist.big",
+    "data/gui/accomps/regnview.big"
+   ],
+   "nested": {
+    "archives": 1167,
+    "entries": 4526,
+    "opened": 1167,
+    "refused": 0,
+    "sampled": 1167
+   },
+   "payload_bytes": 61845308,
+   "refpack_entries": 1176,
+   "refpack_unpacked": 1176,
+   "shps": {
+    "banks": 8,
+    "decoded": 8,
+    "decoded_codes": {
+     "0x02": 6,
+     "0x05": 2
+    },
+    "image_refused": 0,
+    "images": 8,
+    "parsed": 8,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 8
+   },
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/GUI/PRELOAD2.BIG": {
+   "alignment": 128,
+   "declared_size": 431216,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 24,
+   "entries_classified": 24,
+   "entries_refused": 0,
+   "entry_span": 431216,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 24
+   },
+   "index_bytes": 831,
+   "iso_length": 431216,
+   "layout_notes": [],
+   "length": 431216,
+   "names_sample": [
+    "data/gui/mainbe.big",
+    "data/gui/gameLib/fifaHelp.big",
+    "data/gui/pause/80_pause.big",
+    "data/gui/gameLib/beDetail.big",
+    "data/gui/gameLib/menubox.big",
+    "data/gui/gameLib/overlay.big"
+   ],
+   "nested": {
+    "archives": 24,
+    "entries": 89,
+    "opened": 24,
+    "refused": 0,
+    "sampled": 24
+   },
+   "payload_bytes": 428469,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/ZDATA_01.BIG": {
+   "alignment": 64,
+   "declared_size": 413212185,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 9,
+   "entries": 9700,
+   "entries_classified": 9700,
+   "entries_refused": 0,
+   "entry_span": 413212185,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 1,
+    "ELF": 2021,
+    "SHPS": 7355,
+    "TEXT": 307,
+    "empty": 9,
+    "unclassified": 7
+   },
+   "index_bytes": 229191,
+   "iso_length": 413212185,
+   "layout_notes": [],
+   "length": 413212185,
+   "names_sample": [
+    "sle-1-0.loc",
+    "sle-1-1.loc",
+    "sle-1-3.loc",
+    "tag-1-0.loc",
+    "tag-1-1.loc",
+    "tag-1-3.loc"
+   ],
+   "nested": {
+    "archives": 1,
+    "entries": 353,
+    "opened": 1,
+    "refused": 0,
+    "sampled": 1
+   },
+   "payload_bytes": 412680169,
+   "refpack_entries": 9332,
+   "refpack_unpacked": 9332,
+   "shps": {
+    "banks": 7355,
+    "decoded": 3300,
+    "decoded_codes": {
+     "0x02": 3271,
+     "0x05": 29
+    },
+    "image_refused": 8434,
+    "images": 11734,
+    "parsed": 7355,
+    "refused": 0,
+    "refused_codes": {
+     "0x01": 392,
+     "0x08": 30,
+     "0x09": 5,
+     "0x0a": 2,
+     "0x0b": 49,
+     "0x0c": 42,
+     "0x0d": 7472,
+     "0x0e": 10,
+     "0x0f": 79,
+     "0x83": 353
+    },
+    "sampled": 7355
+   },
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/ZDATA_02.BIG": {
+   "alignment": 64,
+   "declared_size": 149829583,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 10000,
+   "entries_classified": 10000,
+   "entries_refused": 0,
+   "entry_span": 149829583,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 2,
+    "SHPS": 9454,
+    "TEXT": 384,
+    "unclassified": 160
+   },
+   "index_bytes": 252980,
+   "iso_length": 149829583,
+   "layout_notes": [],
+   "length": 149829583,
+   "names_sample": [
+    "t75__2_0_111239.ssh",
+    "t122__111239.ssh",
+    "t75__0_0_111259.ssh",
+    "t75__1_0_111264.ssh",
+    "t75__2_0_111264.ssh",
+    "t75__0_0_111264.ssh"
+   ],
+   "nested": {
+    "archives": 2,
+    "entries": 260,
+    "opened": 2,
+    "refused": 0,
+    "sampled": 2
+   },
+   "payload_bytes": 149259860,
+   "refpack_entries": 9887,
+   "refpack_unpacked": 9887,
+   "shps": {
+    "banks": 9454,
+    "decoded": 132,
+    "decoded_codes": {
+     "0x02": 132
+    },
+    "image_refused": 9996,
+    "images": 10128,
+    "parsed": 9454,
+    "refused": 0,
+    "refused_codes": {
+     "0x0d": 1201,
+     "0x0e": 8795
+    },
+    "sampled": 9454
+   },
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/ZDATA_03.BIG": {
+   "alignment": 64,
+   "declared_size": 29939541,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 5079,
+   "entries_classified": 5079,
+   "entries_refused": 0,
+   "entry_span": 29939541,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 1,
+    "ELF": 337,
+    "SHPS": 4494,
+    "TEXT": 165,
+    "unclassified": 82
+   },
+   "index_bytes": 131756,
+   "iso_length": 29939541,
+   "layout_notes": [],
+   "length": 29939541,
+   "names_sample": [
+    "scfx-110-2d.txt",
+    "coll-111-1.bin",
+    "coll-111-3.bin",
+    "coll-111-4.bin",
+    "chant-111-1.dat",
+    "chant-111-3.dat"
+   ],
+   "nested": {
+    "archives": 1,
+    "entries": 6,
+    "opened": 1,
+    "refused": 0,
+    "sampled": 1
+   },
+   "payload_bytes": 29650679,
+   "refpack_entries": 5006,
+   "refpack_unpacked": 5006,
+   "shps": {
+    "banks": 4494,
+    "decoded": 6568,
+    "decoded_codes": {
+     "0x02": 6474,
+     "0x05": 94
+    },
+    "image_refused": 808,
+    "images": 7376,
+    "parsed": 4494,
+    "refused": 0,
+    "refused_codes": {
+     "0x01": 780,
+     "0x03": 5,
+     "0x0d": 11,
+     "0x0e": 12
+    },
+    "sampled": 4494
+   },
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/IRXNONET.BIG": {
+   "alignment": 64,
+   "declared_size": 127852,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 8,
+   "entries_classified": 8,
+   "entries_refused": 0,
+   "entry_span": 127852,
+   "format": "BIGF",
+   "formats": {
+    "ELF": 8
+   },
+   "index_bytes": 176,
+   "iso_length": 127852,
+   "layout_notes": [],
+   "length": 127852,
+   "names_sample": [
+    "libsd.irx",
+    "mcman.irx",
+    "mcserv.irx",
+    "mtapman.irx",
+    "padman.irx",
+    "sdrdrv.irx"
+   ],
+   "payload_bytes": 127529,
+   "refpack_entries": 8,
+   "refpack_unpacked": 8,
+   "size_field": "little",
+   "size_note": "exact"
+  }
+ },
+ "caches": {
+  "containers_named": 0,
+  "copies": 0,
+  "differing": 0,
+  "files": 0,
+  "header_copies": 0,
+  "identical": 0,
+  "member_copies": 0,
+  "parsed": 0,
+  "per_cache": {},
+  "refused": 0,
+  "unread": 0,
+  "unresolved": 0,
+  "unresolved_kinds": {}
+ },
+ "containers": {},
+ "counts": {
+  "alignments": {},
+  "big": {
+   "alignments": {
+    "128": 16539,
+    "16": 1,
+    "256": 3,
+    "4": 3,
+    "64": 26
+   },
+   "loose": 24,
+   "nested": 16551,
+   "nested_opened": 16551,
+   "nested_unopened": 0,
+   "refused": 3,
+   "size_fields": {
+    "little": 16572
+   },
+   "total": 16575,
+   "with_layout_notes": 2,
+   "works": 16572
+  },
+  "big_entries": {
+   "extensions": {
+    "apt": 15575,
+    "asf": 1453,
+    "big": 15582,
+    "bin": 164,
+    "bnk": 969,
+    "const": 15575,
+    "dat": 18305,
+    "ebo": 925,
+    "fks": 156,
+    "hdr": 18153,
+    "loc": 298,
+    "o": 17870,
+    "set": 117,
+    "ssh": 37158,
+    "txt": 398,
+    "viv": 969
+   },
+   "formats": {
+    "BIGF": 16551,
+    "ELF": 17878,
+    "SCHl": 19642,
+    "SHPS": 37136,
+    "TEXT": 999,
+    "empty": 9,
+    "unclassified": 51795
+   },
+   "refused": 0,
+   "total": 144010,
+   "works": 144010
+  },
+  "bnkl": {
+   "refused": 0,
+   "sounds": 0,
+   "total": 0,
+   "works": 0
+  },
+  "caches": {
+   "copies": 0,
+   "differing": 0,
+   "identical": 0,
+   "refused": 0,
+   "total": 0,
+   "unresolved": 0,
+   "works": 0
+  },
+  "chains": {},
+  "codecs": {},
+  "containers": {
+   "refused": 0,
+   "total": 0,
+   "works": 0
+  },
+  "crc_sites": {
+   "databases_refused": 0,
+   "refused": 0,
+   "total": 0,
+   "works": 0
+  },
+  "data_tables": {
+   "formats": {
+    "unclassified": 5
+   },
+   "magics": {
+    "00000000 (....)": 5
+   },
+   "opens_as_tdb": 0,
+   "total": 5
+  },
+  "formats": {},
+  "members": {
+   "refused": 0,
+   "total": 0,
+   "works": 0
+  },
+  "mmap": {
+   "dimensions": {},
+   "images_in_sample": 0,
+   "members": 0,
+   "members_refused": 0,
+   "parsed": 0,
+   "reasons": {},
+   "refused": 0,
+   "sampled": 0,
+   "total": 0,
+   "works": 0
+  },
+  "refpack": {
+   "declared_bytes": 1066485148,
+   "loose_files": 1,
+   "loose_formats": {
+    "BIGF": 1
+   },
+   "loose_unpacked": 1,
+   "packed_entries": 39941,
+   "refused": 0,
+   "total": 39942,
+   "works": 39942
+  },
+  "schl": {
+   "codecs": {
+    "EA-XA ADPCM": 1521,
+    "MicroTalk (EA speech, ~10:1)": 18153
+   },
+   "headers_parsed": 19674,
+   "headers_refused": 0,
+   "platforms": {
+    "GSTR": 10439,
+    "PT": 9235
+   },
+   "refused": 18153,
+   "streams_complete": 4126,
+   "streams_in_sample": 4126,
+   "total": 19674,
+   "undecodable": 18153,
+   "walked_members": 112,
+   "works": 1521
+  },
+  "shps": {
+   "banks": 37137,
+   "banks_parsed": 37137,
+   "banks_refused": 0,
+   "block_codes": {
+    "0x01": 1172,
+    "0x02": 27377,
+    "0x03": 5,
+    "0x05": 125,
+    "0x08": 30,
+    "0x09": 5,
+    "0x0a": 2,
+    "0x0b": 49,
+    "0x0c": 42,
+    "0x0d": 8684,
+    "0x0e": 8817,
+    "0x0f": 79,
+    "0x21": 46257,
+    "0x69": 46300,
+    "0x6f": 28800,
+    "0x70": 47093,
+    "0x7c": 46293,
+    "0x83": 706
+   },
+   "decoded_codes": {
+    "0x02": 27377,
+    "0x05": 125
+   },
+   "dimensions": {
+    "104x100": 810,
+    "104x88": 8619,
+    "128x128": 4365,
+    "128x16": 944,
+    "128x64": 340,
+    "160x160": 243,
+    "16x16": 387,
+    "24x12": 254,
+    "296x52": 738,
+    "32x64": 3752,
+    "512x64": 945,
+    "64x64": 2478
+   },
+   "directory_ids": {
+    "G341": 38,
+    "G358": 15472,
+    "G359": 21627
+   },
+   "endians": {
+    "little": 37137
+   },
+   "mip_images": 343,
+   "reasons": {
+    "image # ('..') starts with block code #x# which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel -- every one of the # code-#x# images measured is #x# with a #-byte payload and a two-entry pal": 1172,
+    "image # ('..') starts with block code #x# which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel.": 746,
+    "image # ('..') starts with block code #x#b, which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel.": 49,
+    "image # ('..') starts with block code #x#d, which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel.": 8684,
+    "image # ('..') starts with block code #x#e, which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel -- all # code-#x#e images measured carry exactly # bytes per #x# block of pixels at every siz": 8817,
+    "image # ('..') starts with block code #x#f, which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel.": 79
+   },
+   "refused": 19591,
+   "refused_codes": {
+    "0x01": 1172,
+    "0x03": 5,
+    "0x08": 30,
+    "0x09": 5,
+    "0x0a": 2,
+    "0x0b": 49,
+    "0x0c": 42,
+    "0x0d": 8684,
+    "0x0e": 8817,
+    "0x0f": 79,
+    "0x83": 706
+   },
+   "sampled": 37137,
+   "total": 47093,
+   "works": 27502
+  },
+  "tdb": {
+   "bare_files": 0,
+   "bare_parsed": 0,
+   "fields": 0,
+   "refused": 0,
+   "tables": 0,
+   "total": 0,
+   "works": 0
+  }
+ },
+ "data_files": 91,
+ "data_tables": [
+  {
+   "bytes": 1030058,
+   "csv_fields": null,
+   "first_words_le": [
+    0,
+    4,
+    1,
+    56
+   ],
+   "format": "unclassified",
+   "magic": "00000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATA/CMN/FE/ENG.DB"
+  },
+  {
+   "bytes": 1159630,
+   "csv_fields": null,
+   "first_words_le": [
+    0,
+    4,
+    1,
+    56
+   ],
+   "format": "unclassified",
+   "magic": "00000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATA/CMN/FE/FRE.DB"
+  },
+  {
+   "bytes": 1150150,
+   "csv_fields": null,
+   "first_words_le": [
+    0,
+    4,
+    1,
+    56
+   ],
+   "format": "unclassified",
+   "magic": "00000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATA/CMN/FE/MEX.DB"
+  },
+  {
+   "bytes": 2931794,
+   "csv_fields": null,
+   "first_words_le": [
+    0,
+    4,
+    92,
+    15880
+   ],
+   "format": "unclassified",
+   "magic": "00000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATA/CMN/FIFA.DB"
+  },
+  {
+   "bytes": 5187,
+   "csv_fields": null,
+   "first_words_le": [
+    0,
+    4,
+    5,
+    352
+   ],
+   "format": "unclassified",
+   "magic": "00000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATA/CMN/META.DB"
+  }
+ ],
+ "databases": {},
+ "files": 99,
+ "generated_utc": "2026-09-06T06:22:52Z",
+ "identity": {
+  "boot_file": "SLUS_270.93",
+  "boot_segments": 1,
+  "boot_sha256": "d75944cd765d855f3fc1ee933de4ead74ffdf1211d0b40649b1ed9e196396821",
+  "boot_size": 6473268,
+  "pcsx2_crc": "C87A4E42",
+  "serial": "SLUS-27093"
+ },
+ "image": {
+  "directories": 12,
+  "files": 99,
+  "layout": "2048-byte logical sectors",
+  "name": "FIFA 14 (Latin America) (En,Fr,Es).iso",
+  "sector_size": 2048,
+  "size": 4698734592,
+  "volume_id": ""
+ },
+ "image_banks": {
+  "/DATA/CMN/CLRBARS/CLRBARS.SSH": {
+   "banks": 1,
+   "decoded": 1,
+   "decoded_codes": {
+    "0x02": 1
+   },
+   "image_refused": 0,
+   "images": 1,
+   "parsed": 1,
+   "refused": 0,
+   "refused_codes": {},
+   "sampled": 1
+  }
+ },
+ "kinds": {
+  "BIGF": 24,
+  "ELF": 1,
+  "IOPRP": 1,
+  "LOCH": 3,
+  "MPCh": 3,
+  "PS2-ICO": 1,
+  "SCHl": 32,
+  "SHPS": 1,
+  "TEXT": 5,
+  "other:00": 2,
+  "other:00000000": 5,
+  "other:00010000": 2,
+  "other:01000000": 1,
+  "other:05140f0a": 1,
+  "other:0d000000": 1,
+  "other:1000bd27": 1,
+  "other:10fb0122": 1,
+  "other:345f345f": 1,
+  "other:345f355f": 1,
+  "other:345f445f": 1,
+  "other:42464154": 1,
+  "other:42494e46": 3,
+  "other:45424f00": 1,
+  "other:49434f4e": 1,
+  "other:52450801": 1,
+  "other:5347534d": 2,
+  "other:56464154": 1,
+  "other:64000000": 1
+ },
+ "label": "FIFA 14 (Latin America)",
+ "loose_audio": {
+  "/DATA/AUDIO/S700.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S701.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S702.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S703.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S704.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S705.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S706.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S707.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S708.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S709.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S710.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S711.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S712.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S713.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S714.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S715.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S716.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S717.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S718.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S719.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S720.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S721.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S722.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S723.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S724.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S725.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S726.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S727.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S728.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S729.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S730.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/S731.SNG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  }
+ },
+ "loose_refpack": {
+  "/CONFIG.DAT": {
+   "bytes": 29822,
+   "declared": 74400,
+   "format": "BIGF",
+   "head": "10fb"
+  }
+ },
+ "readers": {
+  "containers": "eb08b8c1aac19bf6",
+  "ea_big": "1ce87b1c6739e704",
+  "ea_schl": "46892eed2b15637c",
+  "ea_shps": "3c01c9c5d6109f4c",
+  "ea_tdb": "cd01ca75c5179f3b",
+  "ea_terf": "dde0f9adb662ed3e",
+  "mmap_art": "7456e7b2788ba367",
+  "ps2_iso9660": "a1baa176c4e28ea8"
+ },
+ "refusals": [
+  {
+   "count": 8817,
+   "example": "image 0 ('buil') starts with block code 0x0e, which this reader does not decode; the block declares 64x64 in 1536 byte(s), which is 0.375 byte(s) per pixel -- all 7,996 code-0x0e images measured carry exactly 6 bytes per 4x4 block of pixels at every size, and their bytes are near-uniform at every position mod 6, 8 and 12, which is a fixed-rate compressed codec rather than a bit-packed bitmap; no r",
+   "reader": "ea_shps.undecodable_reason",
+   "sentence_class": "image # ('..') starts with block code #x#e, which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel -- all # code-#x#e images measured carry exactly # bytes per #x# block of pixels at every siz",
+   "type": "str",
+   "where": [
+    "/DATA/ZDATA_01.BIG!t226__105_0.ssh",
+    "/DATA/ZDATA_01.BIG!t226__105_3.ssh",
+    "/DATA/ZDATA_01.BIG!t226__111_4.ssh",
+    "/DATA/ZDATA_01.BIG!t226__16_0.ssh",
+    "/DATA/ZDATA_01.BIG!t226__16_1.ssh",
+    "/DATA/ZDATA_01.BIG!t226__42_0.ssh"
+   ]
+  },
+  {
+   "count": 8684,
+   "example": "image 3 ('SLCL') starts with block code 0x0d, which this reader does not decode; the block declares 256x128 in 16384 byte(s), which is 0.500 byte(s) per pixel.",
+   "reader": "ea_shps.undecodable_reason",
+   "sentence_class": "image # ('..') starts with block code #x#d, which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel.",
+   "type": "str",
+   "where": [
+    "/DATA/ZDATA_01.BIG!t16__1.ssh",
+    "/DATA/ZDATA_01.BIG!t16__2.ssh",
+    "/DATA/ZDATA_01.BIG!t16__3.ssh",
+    "/DATA/ZDATA_01.BIG!t16__4.ssh",
+    "/DATA/ZDATA_01.BIG!t16__5.ssh",
+    "/DATA/ZDATA_01.BIG!t16__6.ssh"
+   ]
+  },
+  {
+   "count": 1172,
+   "example": "image 0 ('tp05') starts with block code 0x01, which this reader does not decode; the block declares 32x256 in 4096 byte(s), which is 0.500 byte(s) per pixel -- every one of the 321 code-0x01 images measured is 1x1 with a 16-byte payload and a two-entry palette, so nothing about its row layout has been proved and it is not guessed at.",
+   "reader": "ea_shps.undecodable_reason",
+   "sentence_class": "image # ('..') starts with block code #x# which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel -- every one of the # code-#x# images measured is #x# with a #-byte payload and a two-entry pal",
+   "type": "str",
+   "where": [
+    "/DATA/ZDATA_01.BIG!t226__100_0.ssh",
+    "/DATA/ZDATA_01.BIG!t226__100_1.ssh",
+    "/DATA/ZDATA_01.BIG!t226__100_3.ssh",
+    "/DATA/ZDATA_01.BIG!t226__107_3.ssh",
+    "/DATA/ZDATA_01.BIG!t226__108_1.ssh",
+    "/DATA/ZDATA_01.BIG!t226__10_3.ssh"
+   ]
+  },
+  {
+   "count": 746,
+   "example": "image 0 ('tp01') starts with block code 0x83, which this reader does not decode; the block declares 256x128 in 27056 byte(s), which is 0.826 byte(s) per pixel.",
+   "reader": "ea_shps.undecodable_reason",
+   "sentence_class": "image # ('..') starts with block code #x# which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel.",
+   "type": "str",
+   "where": [
+    "/DATA/ZDATA_01.BIG!00_morphbaseface_1.ssh",
+    "/DATA/ZDATA_01.BIG!00_morphbaseface_2.ssh",
+    "/DATA/ZDATA_01.BIG!00_morphbaseface_3.ssh",
+    "/DATA/ZDATA_01.BIG!00_morphbaseface_4.ssh",
+    "/DATA/ZDATA_01.BIG!01_mouth_1_0001.ssh",
+    "/DATA/ZDATA_01.BIG!01_mouth_1_0002.ssh"
+   ]
+  },
+  {
+   "count": 79,
+   "example": "image 6 ('skcd') starts with block code 0x0f, which this reader does not decode; the block declares 1024x256 in 81920 byte(s), which is 0.312 byte(s) per pixel.",
+   "reader": "ea_shps.undecodable_reason",
+   "sentence_class": "image # ('..') starts with block code #x#f, which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel.",
+   "type": "str",
+   "where": [
+    "/DATA/ZDATA_01.BIG!t226__100_0.ssh",
+    "/DATA/ZDATA_01.BIG!t226__100_1.ssh",
+    "/DATA/ZDATA_01.BIG!t226__103_1.ssh",
+    "/DATA/ZDATA_01.BIG!t226__104_1.ssh",
+    "/DATA/ZDATA_01.BIG!t226__104_3.ssh",
+    "/DATA/ZDATA_01.BIG!t226__105_0.ssh"
+   ]
+  },
+  {
+   "count": 49,
+   "example": "image 6 ('skcd') starts with block code 0x0b, which this reader does not decode; the block declares 1024x256 in 49152 byte(s), which is 0.188 byte(s) per pixel.",
+   "reader": "ea_shps.undecodable_reason",
+   "sentence_class": "image # ('..') starts with block code #x#b, which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel.",
+   "type": "str",
+   "where": [
+    "/DATA/ZDATA_01.BIG!t226__100_3.ssh",
+    "/DATA/ZDATA_01.BIG!t226__102_1.ssh",
+    "/DATA/ZDATA_01.BIG!t226__102_3.ssh",
+    "/DATA/ZDATA_01.BIG!t226__102_4.ssh",
+    "/DATA/ZDATA_01.BIG!t226__103_1.ssh",
+    "/DATA/ZDATA_01.BIG!t226__104_1.ssh"
+   ]
+  },
+  {
+   "count": 42,
+   "example": "image 1 ('tp02') starts with block code 0x0c, which this reader does not decode; the block declares 256x128 in 24576 byte(s), which is 0.750 byte(s) per pixel.",
+   "reader": "ea_shps.undecodable_reason",
+   "sentence_class": "image # ('..') starts with block code #x#c, which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel.",
+   "type": "str",
+   "where": [
+    "/DATA/ZDATA_01.BIG!t226__100_3.ssh",
+    "/DATA/ZDATA_01.BIG!t226__104_1.ssh",
+    "/DATA/ZDATA_01.BIG!t226__104_3.ssh",
+    "/DATA/ZDATA_01.BIG!t226__104_4.ssh",
+    "/DATA/ZDATA_01.BIG!t226__107_1.ssh",
+    "/DATA/ZDATA_01.BIG!t226__107_3.ssh"
+   ]
+  },
+  {
+   "count": 2,
+   "example": "image 2 ('scor') starts with block code 0x0a, which this reader does not decode; the block declares 64x32 in 512 byte(s), which is 0.250 byte(s) per pixel.",
+   "reader": "ea_shps.undecodable_reason",
+   "sentence_class": "image # ('..') starts with block code #x#a, which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel.",
+   "type": "str",
+   "where": [
+    "/DATA/ZDATA_01.BIG!t226__123_1.ssh",
+    "/DATA/ZDATA_01.BIG!t226__123_4.ssh"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/DATA/GUI/FONTS_BE.FFC is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/DATA/GUI/FONTS_BE.FFC is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/DATA/GUI/FONTS_BE.FFC"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/DATA/GUI/FONTS_FE.FFC is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/DATA/GUI/FONTS_FE.FFC is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/DATA/GUI/FONTS_FE.FFC"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/DATA/GUI/FONTS_ON.FFC is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/DATA/GUI/FONTS_ON.FFC is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/DATA/GUI/FONTS_ON.FFC"
+   ]
+  }
+ ],
+ "refusals_total": 19594,
+ "schema": "ea_module_readiness/v2",
+ "schemas": {},
+ "seconds": 99.9,
+ "settings": {
+  "archive_depth": 2,
+  "data_only": false,
+  "deep": true,
+  "member_head_bytes": 32,
+  "mmap_sample": 48,
+  "nested_sample": null,
+  "schl_head_bytes": 65536,
+  "schl_sample": 16,
+  "shps_sample": null
+ },
+ "table_names": {},
+ "timings": {
+  "caches": 0.0,
+  "containers": 99.4
+ }
+}

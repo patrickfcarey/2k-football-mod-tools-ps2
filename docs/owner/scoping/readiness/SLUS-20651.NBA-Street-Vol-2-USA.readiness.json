@@ -1,0 +1,3134 @@
+{
+ "archives": {
+  "/FE/XAFELOAD.BIN": {
+   "alignment": 128,
+   "declared_size": 2010033667,
+   "depth": 0,
+   "duplicate_names": 46,
+   "empty_entries": 0,
+   "entries": 47,
+   "entries_classified": 47,
+   "entries_refused": 0,
+   "entry_span": 61790784,
+   "format": "BIGF",
+   "formats": {
+    "SHPS": 47
+   },
+   "index_bytes": 439,
+   "iso_length": 61790784,
+   "layout_notes": [
+    "the header declares 2010033667 byte(s) and the source holds 61790784",
+    "46 entry name(s) appear more than once"
+   ],
+   "length": 61790784,
+   "names_sample": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "payload_bytes": 61787328,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 47,
+    "decoded": 470,
+    "decoded_codes": {
+     "0x05": 470
+    },
+    "image_refused": 0,
+    "images": 470,
+    "parsed": 47,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 47
+   },
+   "size_field": "big",
+   "size_note": "declares 61787767 in a 61790784-byte file, and its last entry ends at 61790784"
+  },
+  "/SPEECH/SPCHDATS.BIG": {
+   "alignment": 128,
+   "declared_size": 2055758349,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 156,
+   "entries_classified": 156,
+   "entries_refused": 0,
+   "entry_span": 224561280,
+   "format": "BIGF",
+   "formats": {
+    "SCHl": 156
+   },
+   "index_bytes": 5242,
+   "iso_length": 224561280,
+   "layout_notes": [
+    "the header declares 2055758349 byte(s) and the source holds 224561280"
+   ],
+   "length": 224561280,
+   "names_sample": [
+    "BobbitoCrowHype.dat",
+    "GamePoint.dat",
+    "PassOut.dat",
+    "ScoreUpdate.dat",
+    "ShotClock.dat",
+    "Block\\BlockA.dat"
+   ],
+   "payload_bytes": 224556032,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "schl": {
+    "codecs": {
+     "EA-XA ADPCM": 156
+    },
+    "decodable": 156,
+    "headers_parsed": 156,
+    "headers_refused": 0,
+    "members": 156,
+    "platforms": {
+     "PT": 156
+    },
+    "streams": 311,
+    "streams_complete": 311,
+    "undecodable": 0,
+    "walked_members": 16
+   },
+   "size_field": "big",
+   "size_note": "declares 224561274 in a 224561280-byte file, and its last entry ends at 224561280"
+  },
+  "/XF/CENTER.VIV": {
+   "alignment": 32,
+   "declared_size": 2607750656,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 18,
+   "entries_classified": 18,
+   "entries_refused": 0,
+   "entry_span": 1994836,
+   "format": "BIGF",
+   "formats": {
+    "ELF": 10,
+    "SHPS": 7,
+    "TEXT": 1
+   },
+   "index_bytes": 359,
+   "iso_length": 1994836,
+   "layout_notes": [
+    "the header declares 2607750656 byte(s) and the source holds 1994836"
+   ],
+   "length": 1994836,
+   "names_sample": [
+    "center1.ssh",
+    "center2.ssh",
+    "center3.ssh",
+    "centera.o",
+    "centera.ssh",
+    "centerb.o"
+   ],
+   "payload_bytes": 1994292,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 7,
+    "decoded": 59,
+    "decoded_codes": {
+     "0x02": 56,
+     "0x05": 3
+    },
+    "image_refused": 0,
+    "images": 59,
+    "parsed": 7,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 7
+   },
+   "size_field": "big",
+   "size_note": "declares 1994651 in a 1994836-byte file, and its last entry ends at 1994836"
+  },
+  "/XF/CENTERC.VIV": {
+   "alignment": 32,
+   "declared_size": 8398080,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 10,
+   "entries_classified": 10,
+   "entries_refused": 0,
+   "entry_span": 2457722,
+   "format": "BIGF",
+   "formats": {
+    "SHPS": 4,
+    "TEXT": 1,
+    "unclassified": 5
+   },
+   "index_bytes": 216,
+   "iso_length": 2457722,
+   "layout_notes": [
+    "the header declares 8398080 byte(s) and the source holds 2457722"
+   ],
+   "length": 2457722,
+   "names_sample": [
+    "centerB.e3b",
+    "centerC.e3b",
+    "centerF.e3b",
+    "centerM.e3b",
+    "centerP.e3b",
+    "centerb.ssh"
+   ],
+   "payload_bytes": 2457384,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 4,
+    "decoded": 57,
+    "decoded_codes": {
+     "0x02": 57
+    },
+    "image_refused": 0,
+    "images": 57,
+    "parsed": 4,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 4
+   },
+   "size_field": "big",
+   "size_note": "declares 2457600 in a 2457722-byte file, and its last entry ends at 2457722"
+  },
+  "/XF/FOREST.VIV": {
+   "alignment": 32,
+   "declared_size": 3544587776,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 16,
+   "entries_classified": 16,
+   "entries_refused": 0,
+   "entry_span": 1984417,
+   "format": "BIGF",
+   "formats": {
+    "ELF": 8,
+    "SHPS": 7,
+    "TEXT": 1
+   },
+   "index_bytes": 322,
+   "iso_length": 1984417,
+   "layout_notes": [
+    "the header declares 3544587776 byte(s) and the source holds 1984417"
+   ],
+   "length": 1984417,
+   "names_sample": [
+    "forest1.ssh",
+    "forest2.ssh",
+    "forest3.ssh",
+    "foresta.o",
+    "foresta.ssh",
+    "forestb.o"
+   ],
+   "payload_bytes": 1983889,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 7,
+    "decoded": 41,
+    "decoded_codes": {
+     "0x02": 38,
+     "0x05": 3
+    },
+    "image_refused": 0,
+    "images": 41,
+    "parsed": 7,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 7
+   },
+   "size_field": "big",
+   "size_note": "declares 1984211 in a 1984417-byte file, and its last entry ends at 1984417"
+  },
+  "/XF/FORESTC.VIV": {
+   "alignment": 32,
+   "declared_size": 573449216,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 10,
+   "entries_classified": 10,
+   "entries_refused": 0,
+   "entry_span": 2371181,
+   "format": "BIGF",
+   "formats": {
+    "SHPS": 4,
+    "TEXT": 1,
+    "unclassified": 5
+   },
+   "index_bytes": 216,
+   "iso_length": 2371181,
+   "layout_notes": [
+    "the header declares 573449216 byte(s) and the source holds 2371181"
+   ],
+   "length": 2371181,
+   "names_sample": [
+    "forestB.e3b",
+    "forestC.e3b",
+    "forestF.e3b",
+    "forestM.e3b",
+    "forestP.e3b",
+    "forestb.ssh"
+   ],
+   "payload_bytes": 2370890,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 4,
+    "decoded": 57,
+    "decoded_codes": {
+     "0x02": 57
+    },
+    "image_refused": 0,
+    "images": 57,
+    "parsed": 4,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 4
+   },
+   "size_field": "big",
+   "size_note": "declares 2371106 in a 2371181-byte file, and its last entry ends at 2371181"
+  },
+  "/XF/FOSTER.VIV": {
+   "alignment": 32,
+   "declared_size": 3054379520,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 19,
+   "entries_classified": 19,
+   "entries_refused": 0,
+   "entry_span": 2232141,
+   "format": "BIGF",
+   "formats": {
+    "ELF": 11,
+    "SHPS": 7,
+    "TEXT": 1
+   },
+   "index_bytes": 377,
+   "iso_length": 2232141,
+   "layout_notes": [
+    "the header declares 3054379520 byte(s) and the source holds 2232141"
+   ],
+   "length": 2232141,
+   "names_sample": [
+    "foster1.ssh",
+    "foster2.ssh",
+    "foster3.ssh",
+    "fostera.o",
+    "fostera.ssh",
+    "fosterb.o"
+   ],
+   "payload_bytes": 2231613,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 7,
+    "decoded": 38,
+    "decoded_codes": {
+     "0x02": 35,
+     "0x05": 3
+    },
+    "image_refused": 0,
+    "images": 38,
+    "parsed": 7,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 7
+   },
+   "size_field": "big",
+   "size_note": "declares 2231990 in a 2232141-byte file, and its last entry ends at 2232141"
+  },
+  "/XF/FOSTERC.VIV": {
+   "alignment": 32,
+   "declared_size": 4082310400,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 10,
+   "entries_classified": 10,
+   "entries_refused": 0,
+   "entry_span": 1922106,
+   "format": "BIGF",
+   "formats": {
+    "SHPS": 4,
+    "TEXT": 1,
+    "unclassified": 5
+   },
+   "index_bytes": 216,
+   "iso_length": 1922106,
+   "layout_notes": [
+    "the header declares 4082310400 byte(s) and the source holds 1922106"
+   ],
+   "length": 1922106,
+   "names_sample": [
+    "fosterB.e3b",
+    "fosterC.e3b",
+    "fosterF.e3b",
+    "fosterM.e3b",
+    "fosterP.e3b",
+    "fosterb.ssh"
+   ],
+   "payload_bytes": 1921819,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 4,
+    "decoded": 57,
+    "decoded_codes": {
+     "0x02": 57
+    },
+    "image_refused": 0,
+    "images": 57,
+    "parsed": 4,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 4
+   },
+   "size_field": "big",
+   "size_note": "declares 1922035 in a 1922106-byte file, and its last entry ends at 1922106"
+  },
+  "/XF/GREENC.VIV": {
+   "alignment": 32,
+   "declared_size": 3423404288,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 4,
+   "entries_classified": 4,
+   "entries_refused": 0,
+   "entry_span": 69104,
+   "format": "BIGF",
+   "formats": {
+    "ELF": 2,
+    "SHPS": 2
+   },
+   "index_bytes": 92,
+   "iso_length": 69104,
+   "layout_notes": [
+    "the header declares 3423404288 byte(s) and the source holds 69104"
+   ],
+   "length": 69104,
+   "names_sample": [
+    "greenca.ssh",
+    "greencf.o",
+    "greenco.o",
+    "greenco.ssh"
+   ],
+   "payload_bytes": 68976,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 2,
+    "decoded": 2,
+    "decoded_codes": {
+     "0x02": 2
+    },
+    "image_refused": 0,
+    "images": 2,
+    "parsed": 2,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 2
+   },
+   "size_field": "big",
+   "size_note": "declares 69068 in a 69104-byte file, and its last entry ends at 69104"
+  },
+  "/XF/INDOOR.VIV": {
+   "alignment": 32,
+   "declared_size": 2709395968,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 15,
+   "entries_classified": 15,
+   "entries_refused": 0,
+   "entry_span": 1736515,
+   "format": "BIGF",
+   "formats": {
+    "ELF": 8,
+    "SHPS": 6,
+    "TEXT": 1
+   },
+   "index_bytes": 302,
+   "iso_length": 1736515,
+   "layout_notes": [
+    "the header declares 2709395968 byte(s) and the source holds 1736515"
+   ],
+   "length": 1736515,
+   "names_sample": [
+    "indoor1.ssh",
+    "indoor2.ssh",
+    "indoor3.ssh",
+    "indoora.o",
+    "indoora.ssh",
+    "indoorb.o"
+   ],
+   "payload_bytes": 1736051,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 6,
+    "decoded": 49,
+    "decoded_codes": {
+     "0x02": 46,
+     "0x05": 3
+    },
+    "image_refused": 0,
+    "images": 49,
+    "parsed": 6,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 6
+   },
+   "size_field": "big",
+   "size_note": "declares 1736353 in a 1736515-byte file, and its last entry ends at 1736515"
+  },
+  "/XF/INDOORC.VIV": {
+   "alignment": 32,
+   "declared_size": 877993216,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 10,
+   "entries_classified": 10,
+   "entries_refused": 0,
+   "entry_span": 1922427,
+   "format": "BIGF",
+   "formats": {
+    "SHPS": 4,
+    "TEXT": 1,
+    "unclassified": 5
+   },
+   "index_bytes": 216,
+   "iso_length": 1922427,
+   "layout_notes": [
+    "the header declares 877993216 byte(s) and the source holds 1922427"
+   ],
+   "length": 1922427,
+   "names_sample": [
+    "indoorB.e3b",
+    "indoorC.e3b",
+    "indoorF.e3b",
+    "indoorM.e3b",
+    "indoorP.e3b",
+    "indoorb.ssh"
+   ],
+   "payload_bytes": 1922140,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 4,
+    "decoded": 57,
+    "decoded_codes": {
+     "0x02": 57
+    },
+    "image_refused": 0,
+    "images": 57,
+    "parsed": 4,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 4
+   },
+   "size_field": "big",
+   "size_note": "declares 1922356 in a 1922427-byte file, and its last entry ends at 1922427"
+  },
+  "/XF/MOSSWD.VIV": {
+   "alignment": 32,
+   "declared_size": 2280528128,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 18,
+   "entries_classified": 18,
+   "entries_refused": 0,
+   "entry_span": 1699616,
+   "format": "BIGF",
+   "formats": {
+    "ELF": 10,
+    "SHPS": 7,
+    "TEXT": 1
+   },
+   "index_bytes": 359,
+   "iso_length": 1699616,
+   "layout_notes": [
+    "the header declares 2280528128 byte(s) and the source holds 1699616"
+   ],
+   "length": 1699616,
+   "names_sample": [
+    "mosswd1.ssh",
+    "mosswd2.ssh",
+    "mosswd3.ssh",
+    "mosswda.o",
+    "mosswda.ssh",
+    "mosswdb.o"
+   ],
+   "payload_bytes": 1699104,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 7,
+    "decoded": 46,
+    "decoded_codes": {
+     "0x02": 43,
+     "0x05": 3
+    },
+    "image_refused": 0,
+    "images": 46,
+    "parsed": 7,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 7
+   },
+   "size_field": "big",
+   "size_note": "declares 1699463 in a 1699616-byte file, and its last entry ends at 1699616"
+  },
+  "/XF/MOSSWDC.VIV": {
+   "alignment": 32,
+   "declared_size": 3893698048,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 10,
+   "entries_classified": 10,
+   "entries_refused": 0,
+   "entry_span": 1971779,
+   "format": "BIGF",
+   "formats": {
+    "SHPS": 4,
+    "TEXT": 1,
+    "unclassified": 5
+   },
+   "index_bytes": 216,
+   "iso_length": 1971779,
+   "layout_notes": [
+    "the header declares 3893698048 byte(s) and the source holds 1971779"
+   ],
+   "length": 1971779,
+   "names_sample": [
+    "mosswdB.e3b",
+    "mosswdC.e3b",
+    "mosswdF.e3b",
+    "mosswdM.e3b",
+    "mosswdP.e3b",
+    "mosswdb.ssh"
+   ],
+   "payload_bytes": 1971472,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 4,
+    "decoded": 57,
+    "decoded_codes": {
+     "0x02": 57
+    },
+    "image_refused": 0,
+    "images": 57,
+    "parsed": 4,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 4
+   },
+   "size_field": "big",
+   "size_note": "declares 1971688 in a 1971779-byte file, and its last entry ends at 1971779"
+  },
+  "/XF/NYCAGE.VIV": {
+   "alignment": 32,
+   "declared_size": 617617920,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 16,
+   "entries_classified": 16,
+   "entries_refused": 0,
+   "entry_span": 1757426,
+   "format": "BIGF",
+   "formats": {
+    "ELF": 8,
+    "SHPS": 7,
+    "TEXT": 1
+   },
+   "index_bytes": 322,
+   "iso_length": 1757426,
+   "layout_notes": [
+    "the header declares 617617920 byte(s) and the source holds 1757426"
+   ],
+   "length": 1757426,
+   "names_sample": [
+    "nycage1.ssh",
+    "nycage2.ssh",
+    "nycage3.ssh",
+    "nycagea.o",
+    "nycagea.ssh",
+    "nycageb.o"
+   ],
+   "payload_bytes": 1756898,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 7,
+    "decoded": 74,
+    "decoded_codes": {
+     "0x02": 71,
+     "0x05": 3
+    },
+    "image_refused": 0,
+    "images": 74,
+    "parsed": 7,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 7
+   },
+   "size_field": "big",
+   "size_note": "declares 1757220 in a 1757426-byte file, and its last entry ends at 1757426"
+  },
+  "/XF/NYCAGEC.VIV": {
+   "alignment": 32,
+   "declared_size": 2843747584,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 10,
+   "entries_classified": 10,
+   "entries_refused": 0,
+   "entry_span": 2457891,
+   "format": "BIGF",
+   "formats": {
+    "SHPS": 4,
+    "TEXT": 1,
+    "unclassified": 5
+   },
+   "index_bytes": 216,
+   "iso_length": 2457891,
+   "layout_notes": [
+    "the header declares 2843747584 byte(s) and the source holds 2457891"
+   ],
+   "length": 2457891,
+   "names_sample": [
+    "nycageB.e3b",
+    "nycageC.e3b",
+    "nycageF.e3b",
+    "nycageM.e3b",
+    "nycageP.e3b",
+    "nycageb.ssh"
+   ],
+   "payload_bytes": 2457553,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 4,
+    "decoded": 57,
+    "decoded_codes": {
+     "0x02": 57
+    },
+    "image_refused": 0,
+    "images": 57,
+    "parsed": 4,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 4
+   },
+   "size_field": "big",
+   "size_note": "declares 2457769 in a 2457891-byte file, and its last entry ends at 2457891"
+  },
+  "/XF/PHILLY.VIV": {
+   "alignment": 32,
+   "declared_size": 362161152,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 18,
+   "entries_classified": 18,
+   "entries_refused": 0,
+   "entry_span": 2397888,
+   "format": "BIGF",
+   "formats": {
+    "ELF": 11,
+    "SHPS": 7
+   },
+   "index_bytes": 357,
+   "iso_length": 2397888,
+   "layout_notes": [
+    "the header declares 362161152 byte(s) and the source holds 2397888"
+   ],
+   "length": 2397888,
+   "names_sample": [
+    "philly1.ssh",
+    "philly2.ssh",
+    "philly3.ssh",
+    "phillya.o",
+    "phillya.ssh",
+    "phillyb.o"
+   ],
+   "payload_bytes": 2397360,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 7,
+    "decoded": 108,
+    "decoded_codes": {
+     "0x02": 105,
+     "0x05": 3
+    },
+    "image_refused": 0,
+    "images": 108,
+    "parsed": 7,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 7
+   },
+   "size_field": "big",
+   "size_note": "declares 2397717 in a 2397888-byte file, and its last entry ends at 2397888"
+  },
+  "/XF/RUCKER.VIV": {
+   "alignment": 32,
+   "declared_size": 1790517248,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 18,
+   "entries_classified": 18,
+   "entries_refused": 0,
+   "entry_span": 2144787,
+   "format": "BIGF",
+   "formats": {
+    "ELF": 10,
+    "SHPS": 7,
+    "TEXT": 1
+   },
+   "index_bytes": 359,
+   "iso_length": 2144787,
+   "layout_notes": [
+    "the header declares 1790517248 byte(s) and the source holds 2144787"
+   ],
+   "length": 2144787,
+   "names_sample": [
+    "rucker1.ssh",
+    "rucker2.ssh",
+    "rucker3.ssh",
+    "ruckera.o",
+    "ruckera.ssh",
+    "ruckerb.o"
+   ],
+   "payload_bytes": 2144259,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 7,
+    "decoded": 72,
+    "decoded_codes": {
+     "0x02": 69,
+     "0x05": 3
+    },
+    "image_refused": 0,
+    "images": 72,
+    "parsed": 7,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 7
+   },
+   "size_field": "big",
+   "size_note": "declares 2144618 in a 2144787-byte file, and its last entry ends at 2144787"
+  },
+  "/XF/RUCKERC.VIV": {
+   "alignment": 32,
+   "declared_size": 3293977856,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 10,
+   "entries_classified": 10,
+   "entries_refused": 0,
+   "entry_span": 1922827,
+   "format": "BIGF",
+   "formats": {
+    "SHPS": 4,
+    "TEXT": 1,
+    "unclassified": 5
+   },
+   "index_bytes": 216,
+   "iso_length": 1922827,
+   "layout_notes": [
+    "the header declares 3293977856 byte(s) and the source holds 1922827"
+   ],
+   "length": 1922827,
+   "names_sample": [
+    "ruckerB.e3b",
+    "ruckerC.e3b",
+    "ruckerF.e3b",
+    "ruckerM.e3b",
+    "ruckerP.e3b",
+    "ruckerb.ssh"
+   ],
+   "payload_bytes": 1922540,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 4,
+    "decoded": 57,
+    "decoded_codes": {
+     "0x02": 57
+    },
+    "image_refused": 0,
+    "images": 57,
+    "parsed": 4,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 4
+   },
+   "size_field": "big",
+   "size_note": "declares 1922756 in a 1922827-byte file, and its last entry ends at 1922827"
+  },
+  "/XF/RUCKRC.VIV": {
+   "alignment": 32,
+   "declared_size": 3555925248,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 18,
+   "entries_classified": 18,
+   "entries_refused": 0,
+   "entry_span": 1963148,
+   "format": "BIGF",
+   "formats": {
+    "ELF": 10,
+    "SHPS": 7,
+    "TEXT": 1
+   },
+   "index_bytes": 359,
+   "iso_length": 1963148,
+   "layout_notes": [
+    "the header declares 3555925248 byte(s) and the source holds 1963148"
+   ],
+   "length": 1963148,
+   "names_sample": [
+    "ruckrc1.ssh",
+    "ruckrc2.ssh",
+    "ruckrc3.ssh",
+    "ruckrca.o",
+    "ruckrca.ssh",
+    "ruckrcb.o"
+   ],
+   "payload_bytes": 1962604,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 7,
+    "decoded": 58,
+    "decoded_codes": {
+     "0x02": 55,
+     "0x05": 3
+    },
+    "image_refused": 0,
+    "images": 58,
+    "parsed": 7,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 7
+   },
+   "size_field": "big",
+   "size_note": "declares 1962963 in a 1963148-byte file, and its last entry ends at 1963148"
+  },
+  "/XF/RUCKRCC.VIV": {
+   "alignment": 32,
+   "declared_size": 808461312,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 10,
+   "entries_classified": 10,
+   "entries_refused": 0,
+   "entry_span": 2371707,
+   "format": "BIGF",
+   "formats": {
+    "SHPS": 4,
+    "TEXT": 1,
+    "unclassified": 5
+   },
+   "index_bytes": 216,
+   "iso_length": 2371707,
+   "layout_notes": [
+    "the header declares 808461312 byte(s) and the source holds 2371707"
+   ],
+   "length": 2371707,
+   "names_sample": [
+    "ruckrcB.e3b",
+    "ruckrcC.e3b",
+    "ruckrcF.e3b",
+    "ruckrcM.e3b",
+    "ruckrcP.e3b",
+    "ruckrcb.ssh"
+   ],
+   "payload_bytes": 2371416,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 4,
+    "decoded": 57,
+    "decoded_codes": {
+     "0x02": 57
+    },
+    "image_refused": 0,
+    "images": 57,
+    "parsed": 4,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 4
+   },
+   "size_field": "big",
+   "size_note": "declares 2371632 in a 2371707-byte file, and its last entry ends at 2371707"
+  },
+  "/XF/SEATTL.VIV": {
+   "alignment": 32,
+   "declared_size": 2209291776,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 18,
+   "entries_classified": 18,
+   "entries_refused": 0,
+   "entry_span": 2011228,
+   "format": "BIGF",
+   "formats": {
+    "ELF": 10,
+    "SHPS": 7,
+    "TEXT": 1
+   },
+   "index_bytes": 359,
+   "iso_length": 2011228,
+   "layout_notes": [
+    "the header declares 2209291776 byte(s) and the source holds 2011228"
+   ],
+   "length": 2011228,
+   "names_sample": [
+    "seattl1.ssh",
+    "seattl2.ssh",
+    "seattl3.ssh",
+    "seattla.o",
+    "seattla.ssh",
+    "seattlb.o"
+   ],
+   "payload_bytes": 2010652,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 7,
+    "decoded": 51,
+    "decoded_codes": {
+     "0x02": 48,
+     "0x05": 3
+    },
+    "image_refused": 0,
+    "images": 51,
+    "parsed": 7,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 7
+   },
+   "size_field": "big",
+   "size_note": "declares 2011011 in a 2011228-byte file, and its last entry ends at 2011228"
+  },
+  "/XF/SEATTLC.VIV": {
+   "alignment": 32,
+   "declared_size": 2421366016,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 10,
+   "entries_classified": 10,
+   "entries_refused": 0,
+   "entry_span": 1922007,
+   "format": "BIGF",
+   "formats": {
+    "SHPS": 4,
+    "TEXT": 1,
+    "unclassified": 5
+   },
+   "index_bytes": 216,
+   "iso_length": 1922007,
+   "layout_notes": [
+    "the header declares 2421366016 byte(s) and the source holds 1922007"
+   ],
+   "length": 1922007,
+   "names_sample": [
+    "seattlB.e3b",
+    "seattlC.e3b",
+    "seattlF.e3b",
+    "seattlM.e3b",
+    "seattlP.e3b",
+    "seattlb.ssh"
+   ],
+   "payload_bytes": 1921720,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 4,
+    "decoded": 57,
+    "decoded_codes": {
+     "0x02": 57
+    },
+    "image_refused": 0,
+    "images": 57,
+    "parsed": 4,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 4
+   },
+   "size_field": "big",
+   "size_note": "declares 1921936 in a 1922007-byte file, and its last entry ends at 1922007"
+  },
+  "/XF/SOLHOL.VIV": {
+   "alignment": 32,
+   "declared_size": 3417251072,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 20,
+   "entries_classified": 20,
+   "entries_refused": 0,
+   "entry_span": 1945786,
+   "format": "BIGF",
+   "formats": {
+    "ELF": 10,
+    "SHPS": 9,
+    "TEXT": 1
+   },
+   "index_bytes": 401,
+   "iso_length": 1945786,
+   "layout_notes": [
+    "the header declares 3417251072 byte(s) and the source holds 1945786"
+   ],
+   "length": 1945786,
+   "names_sample": [
+    "solhol1.ssh",
+    "solhol2.ssh",
+    "solhol3.ssh",
+    "solhola.o",
+    "solhola.ssh",
+    "solholb.o"
+   ],
+   "payload_bytes": 1945146,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 9,
+    "decoded": 45,
+    "decoded_codes": {
+     "0x02": 40,
+     "0x05": 5
+    },
+    "image_refused": 0,
+    "images": 45,
+    "parsed": 9,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 9
+   },
+   "size_field": "big",
+   "size_note": "declares 1945547 in a 1945786-byte file, and its last entry ends at 1945786"
+  },
+  "/XF/SOLHOLC.VIV": {
+   "alignment": 32,
+   "declared_size": 1745099008,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 10,
+   "entries_classified": 10,
+   "entries_refused": 0,
+   "entry_span": 1639569,
+   "format": "BIGF",
+   "formats": {
+    "SHPS": 4,
+    "TEXT": 1,
+    "unclassified": 5
+   },
+   "index_bytes": 216,
+   "iso_length": 1639569,
+   "layout_notes": [
+    "the header declares 1745099008 byte(s) and the source holds 1639569"
+   ],
+   "length": 1639569,
+   "names_sample": [
+    "solholB.e3b",
+    "solholC.e3b",
+    "solholF.e3b",
+    "solholM.e3b",
+    "solholP.e3b",
+    "solholb.ssh"
+   ],
+   "payload_bytes": 1639312,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 4,
+    "decoded": 57,
+    "decoded_codes": {
+     "0x02": 57
+    },
+    "image_refused": 0,
+    "images": 57,
+    "parsed": 4,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 4
+   },
+   "size_field": "big",
+   "size_note": "declares 1639528 in a 1639569-byte file, and its last entry ends at 1639569"
+  },
+  "/XF/XF000001.": {
+   "alignment": 64,
+   "declared_size": 3121456132,
+   "depth": 0,
+   "duplicate_names": 3417,
+   "empty_entries": 0,
+   "entries": 3418,
+   "entries_classified": 3418,
+   "entries_refused": 0,
+   "entry_span": 77956688,
+   "format": "BIGF",
+   "formats": {
+    "ELF": 2532,
+    "SHPS": 886
+   },
+   "index_bytes": 30778,
+   "iso_length": 77956688,
+   "layout_notes": [
+    "the header declares 3121456132 byte(s) and the source holds 77956688",
+    "3417 entry name(s) appear more than once"
+   ],
+   "length": 77956688,
+   "names_sample": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "payload_bytes": 77829504,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 886,
+    "decoded": 1608,
+    "decoded_codes": {
+     "0x02": 1608
+    },
+    "image_refused": 0,
+    "images": 1608,
+    "parsed": 886,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 886
+   },
+   "size_field": "neither",
+   "size_note": "LE 3121456132 / BE 77860282 in a 77956688-byte file whose last entry ends at 77956688"
+  },
+  "/XF/XF000002.": {
+   "alignment": 64,
+   "declared_size": 1588983559,
+   "depth": 0,
+   "duplicate_names": 1101,
+   "empty_entries": 0,
+   "entries": 1102,
+   "entries_classified": 1102,
+   "entries_refused": 0,
+   "entry_span": 133702272,
+   "format": "BIGF",
+   "formats": {
+    "ELF": 599,
+    "SHPS": 502,
+    "TEXT": 1
+   },
+   "index_bytes": 9934,
+   "iso_length": 133702272,
+   "layout_notes": [
+    "the header declares 1588983559 byte(s) and the source holds 133702272",
+    "1101 entry name(s) appear more than once"
+   ],
+   "length": 133702272,
+   "names_sample": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+   ],
+   "payload_bytes": 133664400,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 502,
+    "decoded": 4766,
+    "decoded_codes": {
+     "0x02": 4766
+    },
+    "image_refused": 0,
+    "images": 4766,
+    "parsed": 502,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 502
+   },
+   "size_field": "neither",
+   "size_note": "LE 1588983559 / BE 133674334 in a 133702272-byte file whose last entry ends at 133702272"
+  },
+  "/XF/XF000003.": {
+   "alignment": 64,
+   "declared_size": 4264628480,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 73,
+   "entries_classified": 73,
+   "entries_refused": 0,
+   "entry_span": 1129056,
+   "format": "BIGF",
+   "formats": {
+    "ELF": 16,
+    "SHPS": 47,
+    "TEXT": 10
+   },
+   "index_bytes": 1314,
+   "iso_length": 1129056,
+   "layout_notes": [
+    "the header declares 4264628480 byte(s) and the source holds 1129056"
+   ],
+   "length": 1129056,
+   "names_sample": [
+    "centerw.bin",
+    "forestw.bin",
+    "fosterw.bin",
+    "indoorw.bin",
+    "mosswdw.bin",
+    "nycagew.bin"
+   ],
+   "payload_bytes": 1125596,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 47,
+    "decoded": 50,
+    "decoded_codes": {
+     "0x02": 46,
+     "0x05": 4
+    },
+    "image_refused": 0,
+    "images": 50,
+    "parsed": 47,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 47
+   },
+   "size_field": "big",
+   "size_note": "declares 1126910 in a 1129056-byte file, and its last entry ends at 1129056"
+  },
+  "/XF/XF000004.": {
+   "alignment": 64,
+   "declared_size": 1921851392,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 110,
+   "entries_classified": 110,
+   "entries_refused": 0,
+   "entry_span": 2136480,
+   "format": "BIGF",
+   "formats": {
+    "ELF": 46,
+    "SHPS": 44,
+    "TEXT": 20
+   },
+   "index_bytes": 2083,
+   "iso_length": 2136480,
+   "layout_notes": [
+    "the header declares 1921851392 byte(s) and the source holds 2136480"
+   ],
+   "length": 2136480,
+   "names_sample": [
+    "camr_cl.o",
+    "cbus_4.o",
+    "cbus_4_ps2.o",
+    "cbus_rk.o",
+    "civc_4.o",
+    "civc_mw.o"
+   ],
+   "payload_bytes": 2131279,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 44,
+    "decoded": 44,
+    "decoded_codes": {
+     "0x02": 44
+    },
+    "image_refused": 0,
+    "images": 44,
+    "parsed": 44,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 44
+   },
+   "size_field": "big",
+   "size_note": "declares 2133362 in a 2136480-byte file, and its last entry ends at 2136480"
+  }
+ },
+ "caches": {
+  "containers_named": 0,
+  "copies": 0,
+  "differing": 0,
+  "files": 0,
+  "header_copies": 0,
+  "identical": 0,
+  "member_copies": 0,
+  "parsed": 0,
+  "per_cache": {},
+  "refused": 0,
+  "unread": 0,
+  "unresolved": 0,
+  "unresolved_kinds": {}
+ },
+ "containers": {},
+ "counts": {
+  "alignments": {},
+  "big": {
+   "alignments": {
+    "128": 2,
+    "32": 22,
+    "64": 4
+   },
+   "loose": 28,
+   "nested": 0,
+   "nested_opened": 0,
+   "nested_unopened": 0,
+   "refused": 0,
+   "size_fields": {
+    "big": 26,
+    "neither": 2
+   },
+   "total": 28,
+   "with_layout_notes": 28,
+   "works": 28
+  },
+  "big_entries": {
+   "extensions": {
+    "(none)": 4567,
+    "bin": 50,
+    "dat": 156,
+    "e3b": 50,
+    "o": 170,
+    "ssh": 211
+   },
+   "formats": {
+    "ELF": 3301,
+    "SCHl": 156,
+    "SHPS": 1646,
+    "TEXT": 51,
+    "unclassified": 50
+   },
+   "refused": 0,
+   "total": 5204,
+   "works": 5204
+  },
+  "bnkl": {
+   "refused": 0,
+   "sounds": 790,
+   "total": 38,
+   "works": 38
+  },
+  "caches": {
+   "copies": 0,
+   "differing": 0,
+   "identical": 0,
+   "refused": 0,
+   "total": 0,
+   "unresolved": 0,
+   "works": 0
+  },
+  "chains": {},
+  "codecs": {},
+  "containers": {
+   "refused": 0,
+   "total": 0,
+   "works": 0
+  },
+  "crc_sites": {
+   "databases_refused": 0,
+   "refused": 0,
+   "total": 0,
+   "works": 0
+  },
+  "data_tables": {
+   "formats": {
+    "unclassified": 6
+   },
+   "magics": {
+    "03000000 (....)": 1,
+    "06000000 (....)": 2,
+    "0a000000 (....)": 1,
+    "0b000000 (....)": 1,
+    "65000000 (e...)": 1
+   },
+   "opens_as_tdb": 0,
+   "total": 6
+  },
+  "formats": {},
+  "members": {
+   "refused": 0,
+   "total": 0,
+   "works": 0
+  },
+  "mmap": {
+   "dimensions": {},
+   "images_in_sample": 0,
+   "members": 0,
+   "members_refused": 0,
+   "parsed": 0,
+   "reasons": {},
+   "refused": 0,
+   "sampled": 0,
+   "total": 0,
+   "works": 0
+  },
+  "refpack": {
+   "declared_bytes": 0,
+   "loose_files": 24,
+   "loose_formats": {
+    "undecodable": 24
+   },
+   "loose_unpacked": 0,
+   "packed_entries": 0,
+   "refused": 24,
+   "total": 24,
+   "works": 0
+  },
+  "schl": {
+   "codecs": {
+    "EA-XA ADPCM": 194
+   },
+   "headers_parsed": 194,
+   "headers_refused": 0,
+   "platforms": {
+    "PT": 194
+   },
+   "refused": 0,
+   "streams_complete": 2244,
+   "streams_in_sample": 2244,
+   "total": 194,
+   "undecodable": 0,
+   "walked_members": 53,
+   "works": 194
+  },
+  "shps": {
+   "banks": 1656,
+   "banks_parsed": 1656,
+   "banks_refused": 0,
+   "block_codes": {
+    "0x02": 7679,
+    "0x05": 511,
+    "0x21": 7679,
+    "0x69": 8190,
+    "0x70": 8190,
+    "0x7c": 474
+   },
+   "decoded_codes": {
+    "0x02": 7679,
+    "0x05": 511
+   },
+   "dimensions": {
+    "128x128": 2898,
+    "128x256": 470,
+    "128x32": 17,
+    "128x64": 123,
+    "256x128": 2041,
+    "256x256": 55,
+    "256x64": 21,
+    "32x16": 9,
+    "32x32": 655,
+    "512x256": 19,
+    "64x32": 171,
+    "64x64": 1679
+   },
+   "directory_ids": {
+    "G335": 1655,
+    "G352": 1
+   },
+   "endians": {
+    "little": 1656
+   },
+   "mip_images": 0,
+   "reasons": {},
+   "refused": 0,
+   "refused_codes": {},
+   "sampled": 1656,
+   "total": 8190,
+   "works": 8190
+  },
+  "tdb": {
+   "bare_files": 0,
+   "bare_parsed": 0,
+   "fields": 0,
+   "refused": 0,
+   "tables": 0,
+   "total": 0,
+   "works": 0
+  }
+ },
+ "data_files": 0,
+ "data_tables": [
+  {
+   "bytes": 700,
+   "csv_fields": null,
+   "first_words_le": [
+    3,
+    48,
+    316,
+    316
+   ],
+   "format": "unclassified",
+   "magic": "03000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBALIAS.ADF"
+  },
+  {
+   "bytes": 1384,
+   "csv_fields": null,
+   "first_words_le": [
+    6,
+    113,
+    1384,
+    1384
+   ],
+   "format": "unclassified",
+   "magic": "06000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBCARD.ADF"
+  },
+  {
+   "bytes": 836,
+   "csv_fields": null,
+   "first_words_le": [
+    10,
+    11,
+    248,
+    468
+   ],
+   "format": "unclassified",
+   "magic": "0a000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBCOURT.ADF"
+  },
+  {
+   "bytes": 2196,
+   "csv_fields": null,
+   "first_words_le": [
+    6,
+    93,
+    1144,
+    1144
+   ],
+   "format": "unclassified",
+   "magic": "06000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBMOVE.ADF"
+  },
+  {
+   "bytes": 52640,
+   "csv_fields": null,
+   "first_words_le": [
+    101,
+    240,
+    48532,
+    48532
+   ],
+   "format": "unclassified",
+   "magic": "65000000",
+   "opens_as_tdb": false,
+   "printable": "e...",
+   "source": "loose file",
+   "where": "/DATABASE/XDBPLYR.ADF"
+  },
+  {
+   "bytes": 2484,
+   "csv_fields": null,
+   "first_words_le": [
+    11,
+    49,
+    1108,
+    1108
+   ],
+   "format": "unclassified",
+   "magic": "0b000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBTEAM.ADF"
+  }
+ ],
+ "databases": {},
+ "files": 389,
+ "generated_utc": "2026-09-06T06:21:19Z",
+ "identity": {
+  "boot_file": "SLUS_206.51",
+  "boot_segments": 1,
+  "boot_sha256": "9f2cf237da7bd78dada337a2939f3878c05ddbe39588570b5328154cbe637614",
+  "boot_size": 3884836,
+  "pcsx2_crc": "92AEE337",
+  "serial": "SLUS-20651"
+ },
+ "image": {
+  "directories": 32,
+  "files": 389,
+  "layout": "2048-byte logical sectors",
+  "name": "NBA Street Vol. 2 (USA).iso",
+  "sector_size": 2048,
+  "size": 4068638720,
+  "volume_id": ""
+ },
+ "image_banks": {
+  "/FE/BALL.SSH": {
+   "banks": 1,
+   "decoded": 20,
+   "decoded_codes": {
+    "0x02": 20
+   },
+   "image_refused": 0,
+   "images": 20,
+   "parsed": 1,
+   "refused": 0,
+   "refused_codes": {},
+   "sampled": 1
+  },
+  "/FE/EXPLODE.SSH": {
+   "banks": 1,
+   "decoded": 11,
+   "decoded_codes": {
+    "0x02": 11
+   },
+   "image_refused": 0,
+   "images": 11,
+   "parsed": 1,
+   "refused": 0,
+   "refused_codes": {},
+   "sampled": 1
+  },
+  "/FE/HUD.SSH": {
+   "banks": 1,
+   "decoded": 1,
+   "decoded_codes": {
+    "0x02": 1
+   },
+   "image_refused": 0,
+   "images": 1,
+   "parsed": 1,
+   "refused": 0,
+   "refused_codes": {},
+   "sampled": 1
+  },
+  "/FE/HUDFR.SSH": {
+   "banks": 1,
+   "decoded": 1,
+   "decoded_codes": {
+    "0x02": 1
+   },
+   "image_refused": 0,
+   "images": 1,
+   "parsed": 1,
+   "refused": 0,
+   "refused_codes": {},
+   "sampled": 1
+  },
+  "/FE/OFFIND.SSH": {
+   "banks": 1,
+   "decoded": 1,
+   "decoded_codes": {
+    "0x02": 1
+   },
+   "image_refused": 0,
+   "images": 1,
+   "parsed": 1,
+   "refused": 0,
+   "refused_codes": {},
+   "sampled": 1
+  },
+  "/FE/REPLAY.SSH": {
+   "banks": 1,
+   "decoded": 1,
+   "decoded_codes": {
+    "0x02": 1
+   },
+   "image_refused": 0,
+   "images": 1,
+   "parsed": 1,
+   "refused": 0,
+   "refused_codes": {},
+   "sampled": 1
+  },
+  "/FRPRELD.BIN": {
+   "banks": 1,
+   "decoded": 1,
+   "decoded_codes": {
+    "0x02": 1
+   },
+   "image_refused": 0,
+   "images": 1,
+   "parsed": 1,
+   "refused": 0,
+   "refused_codes": {},
+   "sampled": 1
+  },
+  "/XLDFRSCN.BIN": {
+   "banks": 1,
+   "decoded": 1,
+   "decoded_codes": {
+    "0x05": 1
+   },
+   "image_refused": 0,
+   "images": 1,
+   "parsed": 1,
+   "refused": 0,
+   "refused_codes": {},
+   "sampled": 1
+  },
+  "/XLDSCRN.BIN": {
+   "banks": 1,
+   "decoded": 1,
+   "decoded_codes": {
+    "0x05": 1
+   },
+   "image_refused": 0,
+   "images": 1,
+   "parsed": 1,
+   "refused": 0,
+   "refused_codes": {},
+   "sampled": 1
+  },
+  "/XPRELOAD.BIN": {
+   "banks": 1,
+   "decoded": 1,
+   "decoded_codes": {
+    "0x02": 1
+   },
+   "image_refused": 0,
+   "images": 1,
+   "parsed": 1,
+   "refused": 0,
+   "refused_codes": {},
+   "sampled": 1
+  }
+ },
+ "kinds": {
+  "BIGF": 28,
+  "BNKl": 38,
+  "ELF": 16,
+  "IOPRP": 1,
+  "MPCh": 153,
+  "SCHl": 38,
+  "SHPS": 10,
+  "TEXT": 21,
+  "other:03000000": 1,
+  "other:030c3c07": 2,
+  "other:06000000": 2,
+  "other:0a000000": 1,
+  "other:0b000000": 1,
+  "other:41420900": 30,
+  "other:41451500": 2,
+  "other:46580a00": 1,
+  "other:65000000": 1,
+  "other:73736211": 2,
+  "other:78444650": 15,
+  "other:c0fb0009": 1,
+  "other:c0fb0017": 1,
+  "other:c0fb001e": 3,
+  "other:c0fb0020": 1,
+  "other:c0fb0025": 1,
+  "other:c0fb0056": 5,
+  "other:c0fb0064": 1,
+  "other:c0fb0072": 1,
+  "other:c0fb00f7": 1,
+  "other:c0fb0160": 1,
+  "other:c0fb01ad": 1,
+  "other:c0fb01f4": 1,
+  "other:c0fb021d": 1,
+  "other:c0fb02e1": 1,
+  "other:c0fb0373": 1,
+  "other:c0fb06b5": 1,
+  "other:c0fb06d4": 1,
+  "other:c0fb186d": 1,
+  "zero-head": 2
+ },
+ "label": "NBA Street Vol. 2 (USA)",
+ "loose_audio": {
+  "/MUSIC/BLAZE5/MAIN.MUS": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 94,
+   "streams_complete": 94,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/MUSIC/BLAZE5/TRICKS.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 48
+  },
+  "/MUSIC/BLAZE5/WHOOSH.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 4
+  },
+  "/MUSIC/BLEEK/MAIN.MUS": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 63,
+   "streams_complete": 63,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/MUSIC/BLEEK/TRICKS.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 48
+  },
+  "/MUSIC/BLEEK/WHOOSH.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 4
+  },
+  "/MUSIC/DILATED/MAIN.MUS": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 97,
+   "streams_complete": 97,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/MUSIC/DILATED/TRICKS.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 48
+  },
+  "/MUSIC/DILATED/WHOOSH.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 4
+  },
+  "/MUSIC/DULLY/MAIN.MUS": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 73,
+   "streams_complete": 73,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/MUSIC/DULLY/TRICKS.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 48
+  },
+  "/MUSIC/DULLY/WHOOSH.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 4
+  },
+  "/MUSIC/FE_MUSIC/BENZ.ASF": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/MUSIC/FE_MUSIC/BSHEEP.ASF": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/MUSIC/FE_MUSIC/DILAT.ASF": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/MUSIC/FE_MUSIC/ERICK.ASF": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/MUSIC/FE_MUSIC/INTRO.ASF": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/MUSIC/FE_MUSIC/LORDS.ASF": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/MUSIC/FE_MUSIC/LYTE.ASF": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/MUSIC/FE_MUSIC/NATE.ASF": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/MUSIC/FE_MUSIC/NELLY.ASF": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/MUSIC/FE_MUSIC/PETEROCK.ASF": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/MUSIC/GETUP/MAIN.MUS": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 99,
+   "streams_complete": 99,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/MUSIC/GETUP/TRICKS.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 48
+  },
+  "/MUSIC/GETUP/WHOOSH.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 4
+  },
+  "/MUSIC/GURU/MAIN.MUS": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 65,
+   "streams_complete": 65,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/MUSIC/GURU/TRICKS.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 48
+  },
+  "/MUSIC/GURU/WHOOSH.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 4
+  },
+  "/MUSIC/LOADLOOP/BLKLL.BNK": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 1
+  },
+  "/MUSIC/LOADLOOP/DLLYLL.BNK": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 1
+  },
+  "/MUSIC/LOADLOOP/GURULL.BNK": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 1
+  },
+  "/MUSIC/LOADLOOP/NRGLL.BNK": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 1
+  },
+  "/MUSIC/LOADLOOP/PLNBLL.BNK": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 1
+  },
+  "/MUSIC/LOADLOOP/WARLL.BNK": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 1
+  },
+  "/MUSIC/LOADLOOP/WURLLL.BNK": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 1
+  },
+  "/MUSIC/LOADLOOP/ZBEATLL.BNK": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 1
+  },
+  "/MUSIC/NRG/MAIN.MUS": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 105,
+   "streams_complete": 105,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/MUSIC/NRG/TRICKS.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 48
+  },
+  "/MUSIC/NRG/WHOOSH.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 4
+  },
+  "/MUSIC/PARTY/MAIN.MUS": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 126,
+   "streams_complete": 126,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/MUSIC/PARTY/TRICKS.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 48
+  },
+  "/MUSIC/PARTY/WHOOSH.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 4
+  },
+  "/MUSIC/PLANB/MAIN.MUS": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 62,
+   "streams_complete": 62,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/MUSIC/PLANB/TRICKS.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 48
+  },
+  "/MUSIC/PLANB/WHOOSH.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 4
+  },
+  "/MUSIC/RAW/MAIN.MUS": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 83,
+   "streams_complete": 83,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/MUSIC/RAW/TRICKS.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 50
+  },
+  "/MUSIC/RAW/WHOOSH.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 4
+  },
+  "/MUSIC/REACT/MAIN.MUS": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 110,
+   "streams_complete": 110,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/MUSIC/REACT/TRICKS.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 48
+  },
+  "/MUSIC/REACT/WHOOSH.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 4
+  },
+  "/MUSIC/RIDE/MAIN.MUS": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 117,
+   "streams_complete": 117,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/MUSIC/RIDE/TRICKS.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 48
+  },
+  "/MUSIC/RIDE/WHOOSH.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 4
+  },
+  "/MUSIC/ROCKA/MAIN.MUS": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 110,
+   "streams_complete": 110,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/MUSIC/ROCKA/TRICKS.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 48
+  },
+  "/MUSIC/ROCKA/WHOOSH.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 4
+  },
+  "/MUSIC/WURL/MAIN.MUS": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 66,
+   "streams_complete": 66,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/MUSIC/WURL/TRICKS.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 48
+  },
+  "/MUSIC/WURL/WHOOSH.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 4
+  },
+  "/MUSIC/ZBEAT/MAIN.MUS": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 74,
+   "streams_complete": 74,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/MUSIC/ZBEAT/TRICKS.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 48
+  },
+  "/MUSIC/ZBEAT/WHOOSH.MUS": {
+   "members": 1,
+   "parsed": 1,
+   "refused": 0,
+   "sounds": 4
+  },
+  "/SFX/CRD_CAGE.AST": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 49,
+   "streams_complete": 49,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/SFX/CRD_FOS.AST": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 44,
+   "streams_complete": 44,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/SFX/CRD_IND.AST": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 43,
+   "streams_complete": 43,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/SFX/CRD_MOSW.AST": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 47,
+   "streams_complete": 47,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/SFX/CRD_PARK.AST": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 48,
+   "streams_complete": 48,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/SFX/CRD_RECK.AST": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 49,
+   "streams_complete": 49,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/SFX/CRD_RUC1.AST": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 70,
+   "streams_complete": 70,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/SFX/CRD_RUCK.AST": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 71,
+   "streams_complete": 71,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/SFX/CRD_SEAT.AST": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 47,
+   "streams_complete": 47,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/SFX/CRD_SOUL.AST": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 64,
+   "streams_complete": 64,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/SFX/CRD_STRT.AST": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 46,
+   "streams_complete": 46,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/SFX/SFX_TRAN.AST": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/SPEECH/SPCH_PLY.AST": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 0,
+   "streams_complete": 0,
+   "undecodable": 0,
+   "walked_members": 0
+  }
+ },
+ "loose_refpack": {
+  "/CREDITS/XCREDITS.BIN": {
+   "bytes": 71856,
+   "declared": null,
+   "format": "undecodable",
+   "head": "c0fb"
+  },
+  "/FE/XACMNJPN.BIN": {
+   "bytes": 643776,
+   "declared": null,
+   "format": "undecodable",
+   "head": "c0fb"
+  },
+  "/FE/XACOMMON.BIN": {
+   "bytes": 643776,
+   "declared": null,
+   "format": "undecodable",
+   "head": "c0fb"
+  },
+  "/FE/XACOURTS.BIN": {
+   "bytes": 939120,
+   "declared": null,
+   "format": "undecodable",
+   "head": "c0fb"
+  },
+  "/FE/XAFEBG.BIN": {
+   "bytes": 10687680,
+   "declared": null,
+   "format": "undecodable",
+   "head": "c0fb"
+  },
+  "/FE/XAFEBGEX.BIN": {
+   "bytes": 2867776,
+   "declared": null,
+   "format": "undecodable",
+   "head": "c0fb"
+  },
+  "/FE/XAFERWD.BIN": {
+   "bytes": 10342480,
+   "declared": null,
+   "format": "undecodable",
+   "head": "c0fb"
+  },
+  "/FE/XAFESCRN.BIN": {
+   "bytes": 2979280,
+   "declared": null,
+   "format": "undecodable",
+   "head": "c0fb"
+  },
+  "/FE/XAPORTS.BIN": {
+   "bytes": 4392144,
+   "declared": null,
+   "format": "undecodable",
+   "head": "c0fb"
+  },
+  "/FE/XARWDBK.BIN": {
+   "bytes": 4641488,
+   "declared": null,
+   "format": "undecodable",
+   "head": "c0fb"
+  },
+  "/FE/XATEAMS.BIN": {
+   "bytes": 2529360,
+   "declared": null,
+   "format": "undecodable",
+   "head": "c0fb"
+  },
+  "/FE/XFONTNTS.BIN": {
+   "bytes": 411280,
+   "declared": null,
+   "format": "undecodable",
+   "head": "c0fb"
+  },
+  "/FE/XFONTSEN.BIN": {
+   "bytes": 458640,
+   "declared": null,
+   "format": "undecodable",
+   "head": "c0fb"
+  },
+  "/FE/XFONTSJA.BIN": {
+   "bytes": 772752,
+   "declared": null,
+   "format": "undecodable",
+   "head": "c0fb"
+  },
+  "/FE/XFONTSKO.BIN": {
+   "bytes": 795536,
+   "declared": null,
+   "format": "undecodable",
+   "head": "c0fb"
+  },
+  "/FE/XLAY_FE.BIN": {
+   "bytes": 113360,
+   "declared": null,
+   "format": "undecodable",
+   "head": "c0fb"
+  },
+  "/FE/XLAY_GM.BIN": {
+   "bytes": 19412,
+   "declared": null,
+   "format": "undecodable",
+   "head": "c0fb"
+  },
+  "/FE/XPAL_FE.BIN": {
+   "bytes": 28912,
+   "declared": null,
+   "format": "undecodable",
+   "head": "c0fb"
+  },
+  "/FE/XPAL_GM.BIN": {
+   "bytes": 4640,
+   "declared": null,
+   "format": "undecodable",
+   "head": "c0fb"
+  },
+  "/LOCALE/XLOC_FE.EUS": {
+   "bytes": 111616,
+   "declared": null,
+   "format": "undecodable",
+   "head": "c0fb"
+  },
+  "/LOCALE/XLOC_GM.EUS": {
+   "bytes": 69060,
+   "declared": null,
+   "format": "undecodable",
+   "head": "c0fb"
+  },
+  "/MCARD/XMCICONS.BIN": {
+   "bytes": 57592,
+   "declared": null,
+   "format": "undecodable",
+   "head": "c0fb"
+  },
+  "/SPEECH/PLYRHDRS.BIG": {
+   "bytes": 17996,
+   "declared": null,
+   "format": "undecodable",
+   "head": "c0fb"
+  },
+  "/SPEECH/SPCHHDRS.BIG": {
+   "bytes": 40364,
+   "declared": null,
+   "format": "undecodable",
+   "head": "c0fb"
+  }
+ },
+ "readers": {
+  "containers": "eb08b8c1aac19bf6",
+  "ea_big": "1ce87b1c6739e704",
+  "ea_schl": "46892eed2b15637c",
+  "ea_shps": "3c01c9c5d6109f4c",
+  "ea_tdb": "cd01ca75c5179f3b",
+  "ea_terf": "dde0f9adb662ed3e",
+  "mmap_art": "7456e7b2788ba367",
+  "ps2_iso9660": "a1baa176c4e28ea8"
+ },
+ "refusals": [
+  {
+   "count": 1,
+   "example": "/CREDITS/XCREDITS.BIN does not begin with a RefPack header: its first two bytes are c0 fb, and a RefPack stream's second byte is 0xFB with the family marker 0x10 in bits 0x3E of the first.",
+   "reader": "ea_big.refpack_decompress",
+   "sentence_class": "/CREDITS/XCREDITS.BIN does not begin with a RefPack header: its first two bytes are c# fb, and a RefPack stream's second byte is #xFB with the family marker #x# in bits #x#E of the first.",
+   "type": "RefpackError",
+   "where": [
+    "/CREDITS/XCREDITS.BIN"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/FE/XACMNJPN.BIN does not begin with a RefPack header: its first two bytes are c0 fb, and a RefPack stream's second byte is 0xFB with the family marker 0x10 in bits 0x3E of the first.",
+   "reader": "ea_big.refpack_decompress",
+   "sentence_class": "/FE/XACMNJPN.BIN does not begin with a RefPack header: its first two bytes are c# fb, and a RefPack stream's second byte is #xFB with the family marker #x# in bits #x#E of the first.",
+   "type": "RefpackError",
+   "where": [
+    "/FE/XACMNJPN.BIN"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/FE/XACOMMON.BIN does not begin with a RefPack header: its first two bytes are c0 fb, and a RefPack stream's second byte is 0xFB with the family marker 0x10 in bits 0x3E of the first.",
+   "reader": "ea_big.refpack_decompress",
+   "sentence_class": "/FE/XACOMMON.BIN does not begin with a RefPack header: its first two bytes are c# fb, and a RefPack stream's second byte is #xFB with the family marker #x# in bits #x#E of the first.",
+   "type": "RefpackError",
+   "where": [
+    "/FE/XACOMMON.BIN"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/FE/XACOURTS.BIN does not begin with a RefPack header: its first two bytes are c0 fb, and a RefPack stream's second byte is 0xFB with the family marker 0x10 in bits 0x3E of the first.",
+   "reader": "ea_big.refpack_decompress",
+   "sentence_class": "/FE/XACOURTS.BIN does not begin with a RefPack header: its first two bytes are c# fb, and a RefPack stream's second byte is #xFB with the family marker #x# in bits #x#E of the first.",
+   "type": "RefpackError",
+   "where": [
+    "/FE/XACOURTS.BIN"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/FE/XAFEBG.BIN does not begin with a RefPack header: its first two bytes are c0 fb, and a RefPack stream's second byte is 0xFB with the family marker 0x10 in bits 0x3E of the first.",
+   "reader": "ea_big.refpack_decompress",
+   "sentence_class": "/FE/XAFEBG.BIN does not begin with a RefPack header: its first two bytes are c# fb, and a RefPack stream's second byte is #xFB with the family marker #x# in bits #x#E of the first.",
+   "type": "RefpackError",
+   "where": [
+    "/FE/XAFEBG.BIN"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/FE/XAFEBGEX.BIN does not begin with a RefPack header: its first two bytes are c0 fb, and a RefPack stream's second byte is 0xFB with the family marker 0x10 in bits 0x3E of the first.",
+   "reader": "ea_big.refpack_decompress",
+   "sentence_class": "/FE/XAFEBGEX.BIN does not begin with a RefPack header: its first two bytes are c# fb, and a RefPack stream's second byte is #xFB with the family marker #x# in bits #x#E of the first.",
+   "type": "RefpackError",
+   "where": [
+    "/FE/XAFEBGEX.BIN"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/FE/XAFERWD.BIN does not begin with a RefPack header: its first two bytes are c0 fb, and a RefPack stream's second byte is 0xFB with the family marker 0x10 in bits 0x3E of the first.",
+   "reader": "ea_big.refpack_decompress",
+   "sentence_class": "/FE/XAFERWD.BIN does not begin with a RefPack header: its first two bytes are c# fb, and a RefPack stream's second byte is #xFB with the family marker #x# in bits #x#E of the first.",
+   "type": "RefpackError",
+   "where": [
+    "/FE/XAFERWD.BIN"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/FE/XAFESCRN.BIN does not begin with a RefPack header: its first two bytes are c0 fb, and a RefPack stream's second byte is 0xFB with the family marker 0x10 in bits 0x3E of the first.",
+   "reader": "ea_big.refpack_decompress",
+   "sentence_class": "/FE/XAFESCRN.BIN does not begin with a RefPack header: its first two bytes are c# fb, and a RefPack stream's second byte is #xFB with the family marker #x# in bits #x#E of the first.",
+   "type": "RefpackError",
+   "where": [
+    "/FE/XAFESCRN.BIN"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/FE/XAPORTS.BIN does not begin with a RefPack header: its first two bytes are c0 fb, and a RefPack stream's second byte is 0xFB with the family marker 0x10 in bits 0x3E of the first.",
+   "reader": "ea_big.refpack_decompress",
+   "sentence_class": "/FE/XAPORTS.BIN does not begin with a RefPack header: its first two bytes are c# fb, and a RefPack stream's second byte is #xFB with the family marker #x# in bits #x#E of the first.",
+   "type": "RefpackError",
+   "where": [
+    "/FE/XAPORTS.BIN"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/FE/XARWDBK.BIN does not begin with a RefPack header: its first two bytes are c0 fb, and a RefPack stream's second byte is 0xFB with the family marker 0x10 in bits 0x3E of the first.",
+   "reader": "ea_big.refpack_decompress",
+   "sentence_class": "/FE/XARWDBK.BIN does not begin with a RefPack header: its first two bytes are c# fb, and a RefPack stream's second byte is #xFB with the family marker #x# in bits #x#E of the first.",
+   "type": "RefpackError",
+   "where": [
+    "/FE/XARWDBK.BIN"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/FE/XATEAMS.BIN does not begin with a RefPack header: its first two bytes are c0 fb, and a RefPack stream's second byte is 0xFB with the family marker 0x10 in bits 0x3E of the first.",
+   "reader": "ea_big.refpack_decompress",
+   "sentence_class": "/FE/XATEAMS.BIN does not begin with a RefPack header: its first two bytes are c# fb, and a RefPack stream's second byte is #xFB with the family marker #x# in bits #x#E of the first.",
+   "type": "RefpackError",
+   "where": [
+    "/FE/XATEAMS.BIN"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/FE/XFONTNTS.BIN does not begin with a RefPack header: its first two bytes are c0 fb, and a RefPack stream's second byte is 0xFB with the family marker 0x10 in bits 0x3E of the first.",
+   "reader": "ea_big.refpack_decompress",
+   "sentence_class": "/FE/XFONTNTS.BIN does not begin with a RefPack header: its first two bytes are c# fb, and a RefPack stream's second byte is #xFB with the family marker #x# in bits #x#E of the first.",
+   "type": "RefpackError",
+   "where": [
+    "/FE/XFONTNTS.BIN"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/FE/XFONTSEN.BIN does not begin with a RefPack header: its first two bytes are c0 fb, and a RefPack stream's second byte is 0xFB with the family marker 0x10 in bits 0x3E of the first.",
+   "reader": "ea_big.refpack_decompress",
+   "sentence_class": "/FE/XFONTSEN.BIN does not begin with a RefPack header: its first two bytes are c# fb, and a RefPack stream's second byte is #xFB with the family marker #x# in bits #x#E of the first.",
+   "type": "RefpackError",
+   "where": [
+    "/FE/XFONTSEN.BIN"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/FE/XFONTSJA.BIN does not begin with a RefPack header: its first two bytes are c0 fb, and a RefPack stream's second byte is 0xFB with the family marker 0x10 in bits 0x3E of the first.",
+   "reader": "ea_big.refpack_decompress",
+   "sentence_class": "/FE/XFONTSJA.BIN does not begin with a RefPack header: its first two bytes are c# fb, and a RefPack stream's second byte is #xFB with the family marker #x# in bits #x#E of the first.",
+   "type": "RefpackError",
+   "where": [
+    "/FE/XFONTSJA.BIN"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/FE/XFONTSKO.BIN does not begin with a RefPack header: its first two bytes are c0 fb, and a RefPack stream's second byte is 0xFB with the family marker 0x10 in bits 0x3E of the first.",
+   "reader": "ea_big.refpack_decompress",
+   "sentence_class": "/FE/XFONTSKO.BIN does not begin with a RefPack header: its first two bytes are c# fb, and a RefPack stream's second byte is #xFB with the family marker #x# in bits #x#E of the first.",
+   "type": "RefpackError",
+   "where": [
+    "/FE/XFONTSKO.BIN"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/FE/XLAY_FE.BIN does not begin with a RefPack header: its first two bytes are c0 fb, and a RefPack stream's second byte is 0xFB with the family marker 0x10 in bits 0x3E of the first.",
+   "reader": "ea_big.refpack_decompress",
+   "sentence_class": "/FE/XLAY_FE.BIN does not begin with a RefPack header: its first two bytes are c# fb, and a RefPack stream's second byte is #xFB with the family marker #x# in bits #x#E of the first.",
+   "type": "RefpackError",
+   "where": [
+    "/FE/XLAY_FE.BIN"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/FE/XLAY_GM.BIN does not begin with a RefPack header: its first two bytes are c0 fb, and a RefPack stream's second byte is 0xFB with the family marker 0x10 in bits 0x3E of the first.",
+   "reader": "ea_big.refpack_decompress",
+   "sentence_class": "/FE/XLAY_GM.BIN does not begin with a RefPack header: its first two bytes are c# fb, and a RefPack stream's second byte is #xFB with the family marker #x# in bits #x#E of the first.",
+   "type": "RefpackError",
+   "where": [
+    "/FE/XLAY_GM.BIN"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/FE/XPAL_FE.BIN does not begin with a RefPack header: its first two bytes are c0 fb, and a RefPack stream's second byte is 0xFB with the family marker 0x10 in bits 0x3E of the first.",
+   "reader": "ea_big.refpack_decompress",
+   "sentence_class": "/FE/XPAL_FE.BIN does not begin with a RefPack header: its first two bytes are c# fb, and a RefPack stream's second byte is #xFB with the family marker #x# in bits #x#E of the first.",
+   "type": "RefpackError",
+   "where": [
+    "/FE/XPAL_FE.BIN"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/FE/XPAL_GM.BIN does not begin with a RefPack header: its first two bytes are c0 fb, and a RefPack stream's second byte is 0xFB with the family marker 0x10 in bits 0x3E of the first.",
+   "reader": "ea_big.refpack_decompress",
+   "sentence_class": "/FE/XPAL_GM.BIN does not begin with a RefPack header: its first two bytes are c# fb, and a RefPack stream's second byte is #xFB with the family marker #x# in bits #x#E of the first.",
+   "type": "RefpackError",
+   "where": [
+    "/FE/XPAL_GM.BIN"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/LOCALE/XLOC_FE.EUS does not begin with a RefPack header: its first two bytes are c0 fb, and a RefPack stream's second byte is 0xFB with the family marker 0x10 in bits 0x3E of the first.",
+   "reader": "ea_big.refpack_decompress",
+   "sentence_class": "/LOCALE/XLOC_FE.EUS does not begin with a RefPack header: its first two bytes are c# fb, and a RefPack stream's second byte is #xFB with the family marker #x# in bits #x#E of the first.",
+   "type": "RefpackError",
+   "where": [
+    "/LOCALE/XLOC_FE.EUS"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/LOCALE/XLOC_GM.EUS does not begin with a RefPack header: its first two bytes are c0 fb, and a RefPack stream's second byte is 0xFB with the family marker 0x10 in bits 0x3E of the first.",
+   "reader": "ea_big.refpack_decompress",
+   "sentence_class": "/LOCALE/XLOC_GM.EUS does not begin with a RefPack header: its first two bytes are c# fb, and a RefPack stream's second byte is #xFB with the family marker #x# in bits #x#E of the first.",
+   "type": "RefpackError",
+   "where": [
+    "/LOCALE/XLOC_GM.EUS"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/MCARD/XMCICONS.BIN does not begin with a RefPack header: its first two bytes are c0 fb, and a RefPack stream's second byte is 0xFB with the family marker 0x10 in bits 0x3E of the first.",
+   "reader": "ea_big.refpack_decompress",
+   "sentence_class": "/MCARD/XMCICONS.BIN does not begin with a RefPack header: its first two bytes are c# fb, and a RefPack stream's second byte is #xFB with the family marker #x# in bits #x#E of the first.",
+   "type": "RefpackError",
+   "where": [
+    "/MCARD/XMCICONS.BIN"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/SPEECH/PLYRHDRS.BIG does not begin with a RefPack header: its first two bytes are c0 fb, and a RefPack stream's second byte is 0xFB with the family marker 0x10 in bits 0x3E of the first.",
+   "reader": "ea_big.refpack_decompress",
+   "sentence_class": "/SPEECH/PLYRHDRS.BIG does not begin with a RefPack header: its first two bytes are c# fb, and a RefPack stream's second byte is #xFB with the family marker #x# in bits #x#E of the first.",
+   "type": "RefpackError",
+   "where": [
+    "/SPEECH/PLYRHDRS.BIG"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/SPEECH/SPCHHDRS.BIG does not begin with a RefPack header: its first two bytes are c0 fb, and a RefPack stream's second byte is 0xFB with the family marker 0x10 in bits 0x3E of the first.",
+   "reader": "ea_big.refpack_decompress",
+   "sentence_class": "/SPEECH/SPCHHDRS.BIG does not begin with a RefPack header: its first two bytes are c# fb, and a RefPack stream's second byte is #xFB with the family marker #x# in bits #x#E of the first.",
+   "type": "RefpackError",
+   "where": [
+    "/SPEECH/SPCHHDRS.BIG"
+   ]
+  }
+ ],
+ "refusals_total": 24,
+ "schema": "ea_module_readiness/v2",
+ "schemas": {},
+ "seconds": 7.0,
+ "settings": {
+  "archive_depth": 2,
+  "data_only": false,
+  "deep": true,
+  "member_head_bytes": 32,
+  "mmap_sample": 48,
+  "nested_sample": null,
+  "schl_head_bytes": 65536,
+  "schl_sample": 16,
+  "shps_sample": null
+ },
+ "table_names": {},
+ "timings": {
+  "caches": 0.0,
+  "containers": 6.8
+ }
+}

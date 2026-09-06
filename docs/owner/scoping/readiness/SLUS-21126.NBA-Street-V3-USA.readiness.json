@@ -1,0 +1,2215 @@
+{
+ "archives": {
+  "/FE/ANIMS.VIV": {
+   "alignment": 64,
+   "declared_size": 8196411,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 141,
+   "entries_classified": 141,
+   "entries_refused": 0,
+   "entry_span": 8196411,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 141
+   },
+   "index_bytes": 3823,
+   "iso_length": 8196411,
+   "layout_notes": [],
+   "length": 8196411,
+   "names_sample": [
+    "f_SM_b_default.big",
+    "f_SM_i_Apparel.big",
+    "f_SM_i_Baller_Select.big",
+    "f_SM_i_Central.big",
+    "f_SM_i_Custom_Apparel.big",
+    "f_SM_i_Look.big"
+   ],
+   "nested": {
+    "archives": 141,
+    "entries": 484,
+    "opened": 141,
+    "refused": 0,
+    "sampled": 141
+   },
+   "payload_bytes": 8188066,
+   "refpack_entries": 141,
+   "refpack_unpacked": 141,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/FE/ANIMSBH.VIV": {
+   "alignment": 64,
+   "declared_size": 8197499,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 143,
+   "entries_classified": 0,
+   "entries_refused": 143,
+   "entry_span": 8197499,
+   "format": "BIGF",
+   "formats": {},
+   "index_bytes": 3860,
+   "iso_length": 3860,
+   "layout_notes": [
+    "the header declares 8197499 byte(s) and the source holds 3860",
+    "entry 0 ('f_SM_b_default.big') runs to +84015, past the archive's 3860 bytes",
+    "entry 1 ('f_SM_i_Apparel.big') runs to +84301, past the archive's 3860 bytes",
+    "entry 2 ('f_SM_i_Baller_Select.big') runs to +143857, past the archive's 3860 bytes"
+   ],
+   "length": 3860,
+   "names_sample": [
+    "f_SM_b_default.big",
+    "f_SM_i_Apparel.big",
+    "f_SM_i_Baller_Select.big",
+    "f_SM_i_Central.big",
+    "f_SM_i_Custom_Apparel.big",
+    "f_SM_i_Look.big"
+   ],
+   "payload_bytes": 8188944,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "size_field": "neither",
+   "size_note": "LE 8197499 / BE 2065005824 in a 3860-byte file whose last entry ends at 8197499"
+  },
+  "/FE/CHLOG.VIV": {
+   "alignment": 64,
+   "declared_size": 371809,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 72,
+   "entries_classified": 72,
+   "entries_refused": 0,
+   "entry_span": 371809,
+   "format": "BIGF",
+   "formats": {
+    "SHPS": 72
+   },
+   "index_bytes": 2230,
+   "iso_length": 371809,
+   "layout_notes": [],
+   "length": 371809,
+   "names_sample": [
+    "CREATE_TEAM_10_128.ssh",
+    "CREATE_TEAM_11_128.ssh",
+    "CREATE_TEAM_12_128.ssh",
+    "CREATE_TEAM_13_128.ssh",
+    "CREATE_TEAM_14_128.ssh",
+    "CREATE_TEAM_15_128.ssh"
+   ],
+   "payload_bytes": 367119,
+   "refpack_entries": 72,
+   "refpack_unpacked": 72,
+   "shps": {
+    "banks": 72,
+    "decoded": 0,
+    "decoded_codes": {},
+    "image_refused": 72,
+    "images": 72,
+    "parsed": 72,
+    "refused": 0,
+    "refused_codes": {
+     "0x0e": 72
+    },
+    "sampled": 72
+   },
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/FE/COURTS.VIV": {
+   "alignment": 4,
+   "declared_size": 1412852,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 33,
+   "entries_classified": 33,
+   "entries_refused": 0,
+   "entry_span": 1412852,
+   "format": "BIGF",
+   "formats": {
+    "SHPS": 33
+   },
+   "index_bytes": 866,
+   "iso_length": 1412852,
+   "layout_notes": [],
+   "length": 1412852,
+   "names_sample": [
+    "bright_d_lrg.ssh",
+    "bright_n_lrg.ssh",
+    "createcourt_d_lrg.ssh",
+    "createcourt_d_thm.ssh",
+    "createcourt_n_lrg.ssh",
+    "createcourt_n_thm.ssh"
+   ],
+   "payload_bytes": 1411984,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 33,
+    "decoded": 0,
+    "decoded_codes": {},
+    "image_refused": 33,
+    "images": 33,
+    "parsed": 33,
+    "refused": 0,
+    "refused_codes": {
+     "0x0e": 33
+    },
+    "sampled": 33
+   },
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/FE/DEFS.VIV": {
+   "alignment": 64,
+   "declared_size": 103059,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 3,
+   "entries_classified": 3,
+   "entries_refused": 0,
+   "entry_span": 103059,
+   "format": "BIGF",
+   "formats": {
+    "SHPS": 3
+   },
+   "index_bytes": 101,
+   "iso_length": 103059,
+   "layout_notes": [],
+   "length": 103059,
+   "names_sample": [
+    "placeholder_med.ssh",
+    "placeholder_trophy_med.ssh",
+    "teams_med.ssh"
+   ],
+   "payload_bytes": 102836,
+   "refpack_entries": 3,
+   "refpack_unpacked": 3,
+   "shps": {
+    "banks": 3,
+    "decoded": 0,
+    "decoded_codes": {},
+    "image_refused": 3,
+    "images": 3,
+    "parsed": 3,
+    "refused": 0,
+    "refused_codes": {
+     "0x0d": 3
+    },
+    "sampled": 3
+   },
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/FE/DEFSM.VIV": {
+   "alignment": 128,
+   "declared_size": 6288,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 2,
+   "entries_classified": 2,
+   "entries_refused": 0,
+   "entry_span": 6288,
+   "format": "BIGF",
+   "formats": {
+    "SHPS": 2
+   },
+   "index_bytes": 79,
+   "iso_length": 6288,
+   "layout_notes": [],
+   "length": 6288,
+   "names_sample": [
+    "placeholder_thm.ssh",
+    "placeholder_trophy_thm.ssh"
+   ],
+   "payload_bytes": 6120,
+   "refpack_entries": 2,
+   "refpack_unpacked": 2,
+   "shps": {
+    "banks": 2,
+    "decoded": 0,
+    "decoded_codes": {},
+    "image_refused": 2,
+    "images": 2,
+    "parsed": 2,
+    "refused": 0,
+    "refused_codes": {
+     "0x0d": 2
+    },
+    "sampled": 2
+   },
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/FE/FEGLYPHS.VIV": {
+   "alignment": 64,
+   "declared_size": 177116,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 3,
+   "entries_classified": 3,
+   "entries_refused": 0,
+   "entry_span": 177116,
+   "format": "BIGF",
+   "formats": {
+    "TEXT": 1,
+    "unclassified": 2
+   },
+   "index_bytes": 84,
+   "iso_length": 177116,
+   "layout_notes": [],
+   "length": 177116,
+   "names_sample": [
+    "AachenSt.ttf",
+    "Eurostil.ttf",
+    "fonts.txt"
+   ],
+   "payload_bytes": 176964,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/FE/FEVIDS.VIV": {
+   "alignment": 64,
+   "declared_size": 1616015,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 7,
+   "entries_classified": 7,
+   "entries_refused": 0,
+   "entry_span": 1616015,
+   "format": "BIGF",
+   "formats": {
+    "SHPS": 7
+   },
+   "index_bytes": 167,
+   "iso_length": 1616015,
+   "layout_notes": [],
+   "length": 1616015,
+   "names_sample": [
+    "ball.ssh",
+    "fe_anim0.ssh",
+    "fe_anim1.ssh",
+    "fe_anim2.ssh",
+    "fe_anim3.ssh",
+    "fe_anim4.ssh"
+   ],
+   "payload_bytes": 1615708,
+   "refpack_entries": 7,
+   "refpack_unpacked": 7,
+   "shps": {
+    "banks": 7,
+    "decoded": 0,
+    "decoded_codes": {},
+    "image_refused": 474,
+    "images": 474,
+    "parsed": 7,
+    "refused": 0,
+    "refused_codes": {
+     "0x0e": 474
+    },
+    "sampled": 7
+   },
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/FE/FONTS.VIV": {
+   "alignment": 128,
+   "declared_size": 324480,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 7,
+   "entries_classified": 7,
+   "entries_refused": 0,
+   "entry_span": 324480,
+   "format": "BIGF",
+   "formats": {
+    "unclassified": 7
+   },
+   "index_bytes": 230,
+   "iso_length": 324480,
+   "layout_notes": [],
+   "length": 324480,
+   "names_sample": [
+    "AachenStdBold16.sfn",
+    "AachenStdBold20.sfn",
+    "AachenStdBold22.sfn",
+    "AachenStdBold24.sfn",
+    "AachenStdBold36.sfn",
+    "EurostileLTStdBold14.sfn"
+   ],
+   "payload_bytes": 324224,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/FE/LDSCREEN.VIV": {
+   "alignment": 64,
+   "declared_size": 2736,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 2,
+   "entries_classified": 2,
+   "entries_refused": 0,
+   "entry_span": 2736,
+   "format": "BIGF",
+   "formats": {
+    "SHPS": 1,
+    "TEXT": 1
+   },
+   "index_bytes": 51,
+   "iso_length": 2736,
+   "layout_notes": [],
+   "length": 2736,
+   "names_sample": [
+    "star.ssh",
+    "stars.xml"
+   ],
+   "payload_bytes": 2640,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 1,
+    "decoded": 0,
+    "decoded_codes": {},
+    "image_refused": 1,
+    "images": 1,
+    "parsed": 1,
+    "refused": 0,
+    "refused_codes": {
+     "0x0e": 1
+    },
+    "sampled": 1
+   },
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/FE/LOCALE.VIV": {
+   "alignment": 64,
+   "declared_size": 1381228,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 39,
+   "entries_classified": 39,
+   "entries_refused": 0,
+   "entry_span": 1381228,
+   "format": "BIGF",
+   "formats": {
+    "unclassified": 39
+   },
+   "index_bytes": 777,
+   "iso_length": 1381228,
+   "layout_notes": [],
+   "length": 1381228,
+   "names_sample": [
+    "feamer.loc",
+    "febrit.loc",
+    "fefren.loc",
+    "fegrmn.loc",
+    "fejpn.loc",
+    "bacamer.loc"
+   ],
+   "payload_bytes": 1379260,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/FE/LOGOS.VIV": {
+   "alignment": 64,
+   "declared_size": 183765,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 41,
+   "entries_classified": 41,
+   "entries_refused": 0,
+   "entry_span": 183765,
+   "format": "BIGF",
+   "formats": {
+    "SHPS": 41
+   },
+   "index_bytes": 985,
+   "iso_length": 183765,
+   "layout_notes": [],
+   "length": 183765,
+   "names_sample": [
+    "76ers_med.ssh",
+    "beasties_med.ssh",
+    "blazers_med.ssh",
+    "bobcats_med.ssh",
+    "bucks_med.ssh",
+    "bulls_med.ssh"
+   ],
+   "payload_bytes": 181772,
+   "refpack_entries": 41,
+   "refpack_unpacked": 41,
+   "shps": {
+    "banks": 41,
+    "decoded": 0,
+    "decoded_codes": {},
+    "image_refused": 41,
+    "images": 41,
+    "parsed": 41,
+    "refused": 0,
+    "refused_codes": {
+     "0x0e": 41
+    },
+    "sampled": 41
+   },
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/FE/LOGOSLG.VIV": {
+   "alignment": 64,
+   "declared_size": 340400,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 42,
+   "entries_classified": 42,
+   "entries_refused": 0,
+   "entry_span": 340400,
+   "format": "BIGF",
+   "formats": {
+    "SHPS": 42
+   },
+   "index_bytes": 1007,
+   "iso_length": 340400,
+   "layout_notes": [],
+   "length": 340400,
+   "names_sample": [
+    "76ers_lrg.ssh",
+    "beasties_lrg.ssh",
+    "blazers_lrg.ssh",
+    "bobcats_lrg.ssh",
+    "bucks_lrg.ssh",
+    "bulls_lrg.ssh"
+   ],
+   "payload_bytes": 338132,
+   "refpack_entries": 42,
+   "refpack_unpacked": 42,
+   "shps": {
+    "banks": 42,
+    "decoded": 0,
+    "decoded_codes": {},
+    "image_refused": 42,
+    "images": 42,
+    "parsed": 42,
+    "refused": 0,
+    "refused_codes": {
+     "0x0e": 42
+    },
+    "sampled": 42
+   },
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/FE/LOGOSSM.VIV": {
+   "alignment": 64,
+   "declared_size": 114934,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 43,
+   "entries_classified": 43,
+   "entries_refused": 0,
+   "entry_span": 114934,
+   "format": "BIGF",
+   "formats": {
+    "SHPS": 43
+   },
+   "index_bytes": 1026,
+   "iso_length": 114934,
+   "layout_notes": [],
+   "length": 114934,
+   "names_sample": [
+    "76ers_thm.ssh",
+    "beasties_thm.ssh",
+    "blazers_thm.ssh",
+    "bobcats_thm.ssh",
+    "bucks_thm.ssh",
+    "bulls_thm.ssh"
+   ],
+   "payload_bytes": 112600,
+   "refpack_entries": 43,
+   "refpack_unpacked": 43,
+   "shps": {
+    "banks": 43,
+    "decoded": 0,
+    "decoded_codes": {},
+    "image_refused": 43,
+    "images": 43,
+    "parsed": 43,
+    "refused": 0,
+    "refused_codes": {
+     "0x0e": 43
+    },
+    "sampled": 43
+   },
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/FE/ONLINE.VIV": {
+   "alignment": 64,
+   "declared_size": 8093696,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 196,
+   "entries_classified": 195,
+   "entries_refused": 1,
+   "entry_span": 4303060991,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 195
+   },
+   "index_bytes": 6301,
+   "iso_length": 8093696,
+   "layout_notes": [
+    "entry 0 ('temp/*.big') runs to +4294973631, past the archive's 8093696 bytes",
+    "entry 1 ('sound/cmnSnds.big') starts at +6336, inside entry 0 ('temp/*.big') which ends at +4294973631",
+    "entry 3 ('sound/temp/*.big') runs to +4295356607, past the archive's 8093696 bytes",
+    "entry 4 ('menu/scrMenuMain.big') starts at +389312, inside entry 3 ('sound/temp/*.big') which ends at +4295356607"
+   ],
+   "length": 8093696,
+   "names_sample": [
+    "temp/*.big",
+    "sound/cmnSnds.big",
+    "sound/fe_audio.big",
+    "sound/temp/*.big",
+    "menu/scrMenuMain.big",
+    "menu/temp/*.big"
+   ],
+   "nested": {
+    "archives": 195,
+    "entries": 709,
+    "opened": 195,
+    "refused": 0,
+    "sampled": 195
+   },
+   "payload_bytes": 77317494066,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/FE/OVL.VIV": {
+   "alignment": 64,
+   "declared_size": 6412926,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 96,
+   "entries_classified": 96,
+   "entries_refused": 0,
+   "entry_span": 6412926,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 96
+   },
+   "index_bytes": 3081,
+   "iso_length": 6412926,
+   "layout_notes": [],
+   "length": 6412926,
+   "names_sample": [
+    "f_LOD_b_default.big",
+    "f_LOD_i_alleniverson.big",
+    "f_LOD_i_barondavis.big",
+    "f_LOD_i_benwallace.big",
+    "f_LOD_i_bernardking.big",
+    "f_LOD_i_billrussell.big"
+   ],
+   "nested": {
+    "archives": 96,
+    "entries": 372,
+    "opened": 96,
+    "refused": 0,
+    "sampled": 96
+   },
+   "payload_bytes": 6406859,
+   "refpack_entries": 96,
+   "refpack_unpacked": 96,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/FE/OVLBH.VIV": {
+   "alignment": 64,
+   "declared_size": 6354238,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 95,
+   "entries_classified": 0,
+   "entries_refused": 95,
+   "entry_span": 6354238,
+   "format": "BIGF",
+   "formats": {},
+   "index_bytes": 3052,
+   "iso_length": 3052,
+   "layout_notes": [
+    "the header declares 6354238 byte(s) and the source holds 3052",
+    "entry 0 ('f_LOD_b_default.big') runs to +3222, past the archive's 3052 bytes",
+    "entry 1 ('f_LOD_i_alleniverson.big') runs to +74859, past the archive's 3052 bytes",
+    "entry 2 ('f_LOD_i_barondavis.big') runs to +139370, past the archive's 3052 bytes"
+   ],
+   "length": 3052,
+   "names_sample": [
+    "f_LOD_b_default.big",
+    "f_LOD_i_alleniverson.big",
+    "f_LOD_i_barondavis.big",
+    "f_LOD_i_benwallace.big",
+    "f_LOD_i_bernardking.big",
+    "f_LOD_i_billrussell.big"
+   ],
+   "payload_bytes": 6348560,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "size_field": "neither",
+   "size_note": "LE 6354238 / BE 1056268288 in a 3052-byte file whose last entry ends at 6354238"
+  },
+  "/FE/PLAYERS.VIV": {
+   "alignment": 64,
+   "declared_size": 3816090,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 513,
+   "entries_classified": 513,
+   "entries_refused": 0,
+   "entry_span": 3816090,
+   "format": "BIGF",
+   "formats": {
+    "SHPS": 513
+   },
+   "index_bytes": 14742,
+   "iso_length": 3816090,
+   "layout_notes": [],
+   "length": 3816090,
+   "names_sample": [
+    "CB_male.ssh",
+    "sharpshooter.ssh",
+    "bigman.ssh",
+    "supersized.ssh",
+    "anklebreaker.ssh",
+    "monster.ssh"
+   ],
+   "payload_bytes": 3785175,
+   "refpack_entries": 513,
+   "refpack_unpacked": 513,
+   "shps": {
+    "banks": 513,
+    "decoded": 0,
+    "decoded_codes": {},
+    "image_refused": 513,
+    "images": 513,
+    "parsed": 513,
+    "refused": 0,
+    "refused_codes": {
+     "0x0e": 513
+    },
+    "sampled": 513
+   },
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/FE/SLUSOVF.BIG": {
+   "error": "/FE/SLUSOVF.BIG is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "iso_length": 1773276,
+   "magic": "BIG4"
+  },
+  "/FE/TROPHY.VIV": {
+   "alignment": 64,
+   "declared_size": 345376,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 33,
+   "entries_classified": 33,
+   "entries_refused": 0,
+   "entry_span": 345376,
+   "format": "BIGF",
+   "formats": {
+    "SHPS": 33
+   },
+   "index_bytes": 889,
+   "iso_length": 345376,
+   "layout_notes": [],
+   "length": 345376,
+   "names_sample": [
+    "custom_clothes.ssh",
+    "looks.ssh",
+    "skills.ssh",
+    "moves.ssh",
+    "wardrobe.ssh",
+    "create_court.ssh"
+   ],
+   "payload_bytes": 343440,
+   "refpack_entries": 33,
+   "refpack_unpacked": 33,
+   "shps": {
+    "banks": 33,
+    "decoded": 0,
+    "decoded_codes": {},
+    "image_refused": 33,
+    "images": 33,
+    "parsed": 33,
+    "refused": 0,
+    "refused_codes": {
+     "0x0e": 33
+    },
+    "sampled": 33
+   },
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/MODULES.VIV": {
+   "error": "/MODULES.VIV is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "iso_length": 423422,
+   "magic": "BIG4"
+  },
+  "/SFX/BOOTSFX.BIG": {
+   "error": "/SFX/BOOTSFX.BIG is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order",
+   "iso_length": 604160,
+   "magic": "BIG4"
+  },
+  "/SFX/SFX.BIG": {
+   "error": "/SFX/SFX.BIG is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "iso_length": 34443264,
+   "magic": "BIG4"
+  },
+  "/SPEECH/BOBDATS.BIG": {
+   "error": "/SPEECH/BOBDATS.BIG is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte or",
+   "iso_length": 767361024,
+   "magic": "BIG4"
+  },
+  "/SPEECH/LMDATS.BIG": {
+   "error": "/SPEECH/LMDATS.BIG is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte ord",
+   "iso_length": 649369600,
+   "magic": "BIG4"
+  },
+  "/SPEECH/SPCHHDRS.BIG": {
+   "alignment": 128,
+   "declared_size": 117064,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 549,
+   "entries_classified": 549,
+   "entries_refused": 0,
+   "entry_span": 117064,
+   "format": "BIGF",
+   "formats": {
+    "unclassified": 549
+   },
+   "index_bytes": 18135,
+   "iso_length": 117064,
+   "layout_notes": [],
+   "length": 117064,
+   "names_sample": [
+    "Bob_Allyoop.hdr",
+    "Bob_Allyoop_Advanced_ST2.hdr",
+    "Bob_Allyoop_Generic_ST2.hdr",
+    "Bob_Block_Advanced_ST2.hdr",
+    "Bob_Block_Generic_ST2.hdr",
+    "Bob_Blocks.hdr"
+   ],
+   "payload_bytes": 54848,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/VIDEOS/EXTRAVID.VIV": {
+   "alignment": 2048,
+   "declared_size": 157504640,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 9,
+   "entries_classified": 9,
+   "entries_refused": 0,
+   "entry_span": 157504640,
+   "format": "BIGF",
+   "formats": {
+    "MPCh": 9
+   },
+   "index_bytes": 208,
+   "iso_length": 157504640,
+   "layout_notes": [],
+   "length": 157504640,
+   "names_sample": [
+    "credits.mpc",
+    "eabig.mpc",
+    "eabigfr.mpc",
+    "intro.mpc",
+    "thx.mpc",
+    "thxfr.mpc"
+   ],
+   "payload_bytes": 157492544,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/VIDEOS/FETRVID.VIV": {
+   "alignment": 2048,
+   "declared_size": 3166588,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 9,
+   "entries_classified": 9,
+   "entries_refused": 0,
+   "entry_span": 3166588,
+   "format": "BIGF",
+   "formats": {
+    "MPCh": 9
+   },
+   "index_bytes": 209,
+   "iso_length": 3166588,
+   "layout_notes": [],
+   "length": 3166588,
+   "names_sample": [
+    "fetr_cb.mpc",
+    "fetr_cbb.mpc",
+    "fetr_cmn.mpc",
+    "fetr_dc.mpc",
+    "fetr_dcb.mpc",
+    "fetr_pr.mpc"
+   ],
+   "payload_bytes": 3155152,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/VIDEOS/SUBTITLE.VIV": {
+   "alignment": 64,
+   "declared_size": 9221,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 19,
+   "entries_classified": 19,
+   "entries_refused": 0,
+   "entry_span": 9221,
+   "format": "BIGF",
+   "formats": {
+    "TEXT": 19
+   },
+   "index_bytes": 412,
+   "iso_length": 9221,
+   "layout_notes": [],
+   "length": 9221,
+   "names_sample": [
+    "bsctrick.stf",
+    "bscshoot.stf",
+    "bscdunk.stf",
+    "bscbloc.stf",
+    "batakoff.stf",
+    "baprops.stf"
+   ],
+   "payload_bytes": 8167,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/VIDEOS/TUTVID.VIV": {
+   "alignment": 2048,
+   "declared_size": 189418464,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 20,
+   "entries_classified": 20,
+   "entries_refused": 0,
+   "entry_span": 189418464,
+   "format": "BIGF",
+   "formats": {
+    "MPCh": 20
+   },
+   "index_bytes": 425,
+   "iso_length": 189418464,
+   "layout_notes": [],
+   "length": 189418464,
+   "names_sample": [
+    "advaloop.mpc",
+    "advbkpop.mpc",
+    "advdinnr.mpc",
+    "advlayup.mpc",
+    "advoit.mpc",
+    "advopptk.mpc"
+   ],
+   "payload_bytes": 189395712,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/XF/ANIMS.VIV": {
+   "error": "/XF/ANIMS.VIV is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "iso_length": 6702468,
+   "magic": "BIG4"
+  },
+  "/XF/BACOURT.VIV": {
+   "alignment": 64,
+   "declared_size": 101448736,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 2095,
+   "entries_classified": 2095,
+   "entries_refused": 0,
+   "entry_span": 101448736,
+   "format": "BIGF",
+   "formats": {
+    "ELF": 416,
+    "SHPS": 1615,
+    "TEXT": 46,
+    "unclassified": 18
+   },
+   "index_bytes": 51936,
+   "iso_length": 101448736,
+   "layout_notes": [],
+   "length": 101448736,
+   "names_sample": [
+    "3pt_logos.ssh",
+    "anwik.ttf",
+    "area_code_sld_sml.ttf",
+    "area_code_sml.ttf",
+    "atrox.ttf",
+    "audi2.o"
+   ],
+   "payload_bytes": 101333979,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "shps": {
+    "banks": 1615,
+    "decoded": 2477,
+    "decoded_codes": {
+     "0x02": 2477
+    },
+    "image_refused": 313,
+    "images": 2790,
+    "parsed": 1615,
+    "refused": 0,
+    "refused_codes": {
+     "0x01": 311,
+     "0x03": 2
+    },
+    "sampled": 1615
+   },
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/XF/CAMERA.VIV": {
+   "error": "/XF/CAMERA.VIV is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "iso_length": 404872,
+   "magic": "BIG4"
+  },
+  "/XF/COURTS.VIV": {
+   "error": "/XF/COURTS.VIV is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "iso_length": 36927895,
+   "magic": "BIG4"
+  },
+  "/XF/CROWDGEN.VIV": {
+   "error": "/XF/CROWDGEN.VIV is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order",
+   "iso_length": 3358304,
+   "magic": "BIG4"
+  },
+  "/XF/CROWDS.VIV": {
+   "error": "/XF/CROWDS.VIV is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "iso_length": 12876342,
+   "magic": "BIG4"
+  },
+  "/XF/DYNBAN.VIV": {
+   "error": "/XF/DYNBAN.VIV is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "iso_length": 9754016,
+   "magic": "BIG4"
+  },
+  "/XF/GBREAKER.VIV": {
+   "error": "/XF/GBREAKER.VIV is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order",
+   "iso_length": 208484,
+   "magic": "BIG4"
+  },
+  "/XF/GENERAL.VIV": {
+   "error": "/XF/GENERAL.VIV is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "iso_length": 1332640,
+   "magic": "BIG4"
+  },
+  "/XF/PLAYER.VIV": {
+   "error": "/XF/PLAYER.VIV is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "iso_length": 70901243,
+   "magic": "BIG4"
+  },
+  "/XF/PLAYER2S.VIV": {
+   "error": "/XF/PLAYER2S.VIV is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order",
+   "iso_length": 13610828,
+   "magic": "BIG4"
+  },
+  "/XF/PLAYER2X.VIV": {
+   "error": "/XF/PLAYER2X.VIV is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order",
+   "iso_length": 54399226,
+   "magic": "BIG4"
+  },
+  "/XF/SCRPTCMN.VIV": {
+   "error": "/XF/SCRPTCMN.VIV is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order",
+   "iso_length": 45236,
+   "magic": "BIG4"
+  }
+ },
+ "caches": {
+  "containers_named": 0,
+  "copies": 0,
+  "differing": 0,
+  "files": 0,
+  "header_copies": 0,
+  "identical": 0,
+  "member_copies": 0,
+  "parsed": 0,
+  "per_cache": {},
+  "refused": 0,
+  "unread": 0,
+  "unresolved": 0,
+  "unresolved_kinds": {}
+ },
+ "containers": {},
+ "counts": {
+  "alignments": {},
+  "big": {
+   "alignments": {
+    "128": 425,
+    "2048": 3,
+    "256": 10,
+    "4": 1,
+    "64": 18
+   },
+   "loose": 43,
+   "nested": 432,
+   "nested_opened": 432,
+   "nested_unopened": 0,
+   "refused": 18,
+   "size_fields": {
+    "little": 455,
+    "neither": 2
+   },
+   "total": 475,
+   "with_layout_notes": 20,
+   "works": 457
+  },
+  "big_entries": {
+   "extensions": {
+    "apt": 432,
+    "asf": 3,
+    "asf_lut": 3,
+    "big": 671,
+    "bin": 28,
+    "const": 432,
+    "hdr": 549,
+    "ini": 16,
+    "loc": 39,
+    "ltr": 6,
+    "mpc": 38,
+    "o": 778,
+    "sfn": 7,
+    "ssh": 2738,
+    "stf": 19,
+    "ttf": 14
+   },
+   "formats": {
+    "BIGF": 432,
+    "BNKl": 3,
+    "ELF": 778,
+    "MPCh": 38,
+    "SHPS": 2738,
+    "TEXT": 67,
+    "unclassified": 1482
+   },
+   "refused": 239,
+   "total": 5777,
+   "works": 5538
+  },
+  "bnkl": {
+   "refused": 0,
+   "sounds": 17,
+   "total": 3,
+   "works": 3
+  },
+  "caches": {
+   "copies": 0,
+   "differing": 0,
+   "identical": 0,
+   "refused": 0,
+   "total": 0,
+   "unresolved": 0,
+   "works": 0
+  },
+  "chains": {},
+  "codecs": {},
+  "containers": {
+   "refused": 0,
+   "total": 0,
+   "works": 0
+  },
+  "crc_sites": {
+   "databases_refused": 0,
+   "refused": 0,
+   "total": 0,
+   "works": 0
+  },
+  "data_tables": {
+   "formats": {
+    "unclassified": 31
+   },
+   "magics": {
+    "02000000 (....)": 4,
+    "03000000 (....)": 3,
+    "04000000 (....)": 7,
+    "05000000 (....)": 7,
+    "06000000 (....)": 3,
+    "07000000 (....)": 1,
+    "0b000000 (....)": 1,
+    "17000000 (....)": 1,
+    "1d000000 (....)": 1,
+    "1f000000 (....)": 1,
+    "40000000 (@...)": 1,
+    "6d000000 (m...)": 1
+   },
+   "opens_as_tdb": 0,
+   "total": 31
+  },
+  "formats": {},
+  "members": {
+   "refused": 0,
+   "total": 0,
+   "works": 0
+  },
+  "mmap": {
+   "dimensions": {},
+   "images_in_sample": 0,
+   "members": 0,
+   "members_refused": 0,
+   "parsed": 0,
+   "reasons": {},
+   "refused": 0,
+   "sampled": 0,
+   "total": 0,
+   "works": 0
+  },
+  "refpack": {
+   "declared_bytes": 43673640,
+   "loose_files": 3,
+   "loose_formats": {
+    "BIGF": 2,
+    "ELF": 1
+   },
+   "loose_unpacked": 3,
+   "packed_entries": 993,
+   "refused": 0,
+   "total": 996,
+   "works": 996
+  },
+  "schl": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "platforms": {
+    "PT": 1
+   },
+   "refused": 0,
+   "streams_complete": 0,
+   "streams_in_sample": 0,
+   "total": 1,
+   "undecodable": 0,
+   "walked_members": 0,
+   "works": 1
+  },
+  "shps": {
+   "banks": 2739,
+   "banks_parsed": 2739,
+   "banks_refused": 0,
+   "block_codes": {
+    "0x01": 311,
+    "0x02": 2651,
+    "0x03": 2,
+    "0x05": 555,
+    "0x0d": 6,
+    "0x0e": 2343,
+    "0x21": 5311,
+    "0x69": 5808,
+    "0x6f": 68,
+    "0x70": 5868,
+    "0x7c": 1821
+   },
+   "decoded_codes": {
+    "0x02": 2651,
+    "0x05": 555
+   },
+   "dimensions": {
+    "128x128": 679,
+    "128x64": 134,
+    "16x16": 83,
+    "256x128": 311,
+    "256x16": 45,
+    "256x8": 82,
+    "32x32": 356,
+    "496x245": 50,
+    "512x256": 280,
+    "64x128": 135,
+    "64x64": 314,
+    "8x4": 47
+   },
+   "directory_ids": {
+    "G357": 11,
+    "G358": 333,
+    "G359": 2395
+   },
+   "endians": {
+    "little": 2739
+   },
+   "mip_images": 253,
+   "reasons": {
+    "image # ('..') starts with block code #x# which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel -- every one of the # code-#x# images measured is #x# with a #-byte payload and a two-entry pal": 311,
+    "image # ('..') starts with block code #x# which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel.": 2,
+    "image # ('..') starts with block code #x#d, which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel.": 6,
+    "image # ('..') starts with block code #x#e, which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel -- all # code-#x#e images measured carry exactly # bytes per #x# block of pixels at every siz": 2343
+   },
+   "refused": 2662,
+   "refused_codes": {
+    "0x01": 311,
+    "0x03": 2,
+    "0x0d": 6,
+    "0x0e": 2343
+   },
+   "sampled": 2739,
+   "total": 5868,
+   "works": 3206
+  },
+  "tdb": {
+   "bare_files": 0,
+   "bare_parsed": 0,
+   "fields": 0,
+   "refused": 0,
+   "tables": 0,
+   "total": 0,
+   "works": 0
+  }
+ },
+ "data_files": 0,
+ "data_tables": [
+  {
+   "bytes": 1024,
+   "csv_fields": null,
+   "first_words_le": [
+    3,
+    13,
+    108,
+    108
+   ],
+   "format": "unclassified",
+   "magic": "03000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XBLRDSK.ADF"
+  },
+  {
+   "bytes": 728,
+   "csv_fields": null,
+   "first_words_le": [
+    4,
+    70,
+    588,
+    588
+   ],
+   "format": "unclassified",
+   "magic": "04000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBHSCR.ADF"
+  },
+  {
+   "bytes": 6772,
+   "csv_fields": null,
+   "first_words_le": [
+    4,
+    267,
+    2164,
+    2164
+   ],
+   "format": "unclassified",
+   "magic": "04000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBALIAS.ADF"
+  },
+  {
+   "bytes": 3912,
+   "csv_fields": null,
+   "first_words_le": [
+    23,
+    42,
+    1964,
+    1964
+   ],
+   "format": "unclassified",
+   "magic": "17000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBTEAM.ADF"
+  },
+  {
+   "bytes": 4268,
+   "csv_fields": null,
+   "first_words_le": [
+    31,
+    35,
+    2204,
+    2904
+   ],
+   "format": "unclassified",
+   "magic": "1f000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBCOURT.ADF"
+  },
+  {
+   "bytes": 3252,
+   "csv_fields": null,
+   "first_words_le": [
+    5,
+    124,
+    1268,
+    1268
+   ],
+   "format": "unclassified",
+   "magic": "05000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBJUKE.ADF"
+  },
+  {
+   "bytes": 428,
+   "csv_fields": null,
+   "first_words_le": [
+    5,
+    40,
+    428,
+    428
+   ],
+   "format": "unclassified",
+   "magic": "05000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBTRKBK.ADF"
+  },
+  {
+   "bytes": 1760,
+   "csv_fields": null,
+   "first_words_le": [
+    5,
+    69,
+    720,
+    720
+   ],
+   "format": "unclassified",
+   "magic": "05000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBDUNK.ADF"
+  },
+  {
+   "bytes": 380,
+   "csv_fields": null,
+   "first_words_le": [
+    4,
+    27,
+    244,
+    244
+   ],
+   "format": "unclassified",
+   "magic": "04000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBLAYUP.ADF"
+  },
+  {
+   "bytes": 1652,
+   "csv_fields": null,
+   "first_words_le": [
+    2,
+    89,
+    384,
+    384
+   ],
+   "format": "unclassified",
+   "magic": "02000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBPASS.ADF"
+  },
+  {
+   "bytes": 508,
+   "csv_fields": null,
+   "first_words_le": [
+    4,
+    19,
+    180,
+    180
+   ],
+   "format": "unclassified",
+   "magic": "04000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBSHOT.ADF"
+  },
+  {
+   "bytes": 392,
+   "csv_fields": null,
+   "first_words_le": [
+    4,
+    12,
+    124,
+    124
+   ],
+   "format": "unclassified",
+   "magic": "04000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBTAUNT.ADF"
+  },
+  {
+   "bytes": 10008,
+   "csv_fields": null,
+   "first_words_le": [
+    29,
+    172,
+    10008,
+    10008
+   ],
+   "format": "unclassified",
+   "magic": "1d000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBFANIM.ADF"
+  },
+  {
+   "bytes": 164,
+   "csv_fields": null,
+   "first_words_le": [
+    4,
+    6,
+    76,
+    76
+   ],
+   "format": "unclassified",
+   "magic": "04000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBOOP.ADF"
+  },
+  {
+   "bytes": 1744,
+   "csv_fields": null,
+   "first_words_le": [
+    5,
+    59,
+    620,
+    620
+   ],
+   "format": "unclassified",
+   "magic": "05000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBMID.ADF"
+  },
+  {
+   "bytes": 732,
+   "csv_fields": null,
+   "first_words_le": [
+    5,
+    16,
+    188,
+    188
+   ],
+   "format": "unclassified",
+   "magic": "05000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBFBALL.ADF"
+  },
+  {
+   "bytes": 3432,
+   "csv_fields": null,
+   "first_words_le": [
+    4,
+    215,
+    1748,
+    1748
+   ],
+   "format": "unclassified",
+   "magic": "04000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBNAVTO.ADF"
+  },
+  {
+   "bytes": 18300,
+   "csv_fields": null,
+   "first_words_le": [
+    2,
+    1298,
+    5220,
+    5220
+   ],
+   "format": "unclassified",
+   "magic": "02000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBHLPTX.ADF"
+  },
+  {
+   "bytes": 19136,
+   "csv_fields": null,
+   "first_words_le": [
+    6,
+    1224,
+    14716,
+    14716
+   ],
+   "format": "unclassified",
+   "magic": "06000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBHLPSC.ADF"
+  },
+  {
+   "bytes": 3028,
+   "csv_fields": null,
+   "first_words_le": [
+    3,
+    53,
+    348,
+    348
+   ],
+   "format": "unclassified",
+   "magic": "03000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBHINT.ADF"
+  },
+  {
+   "bytes": 776,
+   "csv_fields": null,
+   "first_words_le": [
+    5,
+    13,
+    160,
+    212
+   ],
+   "format": "unclassified",
+   "magic": "05000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBTRAX.ADF"
+  },
+  {
+   "bytes": 1652,
+   "csv_fields": null,
+   "first_words_le": [
+    3,
+    38,
+    256,
+    256
+   ],
+   "format": "unclassified",
+   "magic": "03000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBMOVIE.ADF"
+  },
+  {
+   "bytes": 292608,
+   "csv_fields": null,
+   "first_words_le": [
+    5,
+    4377,
+    43800,
+    43800
+   ],
+   "format": "unclassified",
+   "magic": "05000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBAGAME.ADF"
+  },
+  {
+   "bytes": 77344,
+   "csv_fields": null,
+   "first_words_le": [
+    109,
+    237,
+    51720,
+    51720
+   ],
+   "format": "unclassified",
+   "magic": "6d000000",
+   "opens_as_tdb": false,
+   "printable": "m...",
+   "source": "loose file",
+   "where": "/DATABASE/XDBPLYR.ADF"
+  },
+  {
+   "bytes": 39188,
+   "csv_fields": null,
+   "first_words_le": [
+    64,
+    238,
+    30504,
+    31456
+   ],
+   "format": "unclassified",
+   "magic": "40000000",
+   "opens_as_tdb": false,
+   "printable": "@...",
+   "source": "loose file",
+   "where": "/DATABASE/XDBEVENT.ADF"
+  },
+  {
+   "bytes": 149068,
+   "csv_fields": null,
+   "first_words_le": [
+    7,
+    4377,
+    61308,
+    61308
+   ],
+   "format": "unclassified",
+   "magic": "07000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBAFE.ADF"
+  },
+  {
+   "bytes": 1004,
+   "csv_fields": null,
+   "first_words_le": [
+    2,
+    244,
+    1004,
+    1004
+   ],
+   "format": "unclassified",
+   "magic": "02000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBEVCRT.ADF"
+  },
+  {
+   "bytes": 48,
+   "csv_fields": null,
+   "first_words_le": [
+    2,
+    1,
+    32,
+    32
+   ],
+   "format": "unclassified",
+   "magic": "02000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBBKGRD.ADF"
+  },
+  {
+   "bytes": 3812,
+   "csv_fields": null,
+   "first_words_le": [
+    6,
+    58,
+    724,
+    724
+   ],
+   "format": "unclassified",
+   "magic": "06000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBTRPH.ADF"
+  },
+  {
+   "bytes": 90692,
+   "csv_fields": null,
+   "first_words_le": [
+    6,
+    1680,
+    20188,
+    20188
+   ],
+   "format": "unclassified",
+   "magic": "06000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBCRTE.ADF"
+  },
+  {
+   "bytes": 235824,
+   "csv_fields": null,
+   "first_words_le": [
+    11,
+    1202,
+    26472,
+    26472
+   ],
+   "format": "unclassified",
+   "magic": "0b000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "loose file",
+   "where": "/DATABASE/XDBBACRT.ADF"
+  }
+ ],
+ "databases": {},
+ "files": 147,
+ "generated_utc": "2026-09-06T06:21:21Z",
+ "identity": {
+  "boot_file": "SLUS_211.26",
+  "boot_segments": 1,
+  "boot_sha256": "d8ecae84a16f8afe930fb29aff5cb4ca88c35d8c92a3f6a4fbb9219b692aa937",
+  "boot_size": 5509292,
+  "pcsx2_crc": "E31858FD",
+  "serial": "SLUS-21126"
+ },
+ "image": {
+  "directories": 11,
+  "files": 147,
+  "layout": "2048-byte logical sectors",
+  "name": "NBA Street V3 (USA).iso",
+  "sector_size": 2048,
+  "size": 4698701824,
+  "volume_id": ""
+ },
+ "image_banks": {
+  "/XLDSCRN.BIN": {
+   "banks": 1,
+   "decoded": 0,
+   "decoded_codes": {},
+   "image_refused": 1,
+   "images": 1,
+   "parsed": 1,
+   "refused": 0,
+   "refused_codes": {
+    "0x0d": 1
+   },
+   "sampled": 1
+  }
+ },
+ "kinds": {
+  "BIGF": 43,
+  "ELF": 25,
+  "EVT": 1,
+  "ICON.SYS": 1,
+  "IOPRP": 2,
+  "PS2-ICO": 3,
+  "SCEI-HD": 1,
+  "SCHl": 1,
+  "SHPS": 1,
+  "TEXT": 11,
+  "other:00000000": 1,
+  "other:00000100": 2,
+  "other:02000000": 4,
+  "other:03000000": 3,
+  "other:04000000": 7,
+  "other:05000000": 7,
+  "other:06000000": 3,
+  "other:07000000": 1,
+  "other:0b000000": 1,
+  "other:0c99e477": 1,
+  "other:10fb0021": 1,
+  "other:10fb016b": 1,
+  "other:10fb0421": 1,
+  "other:17000000": 1,
+  "other:1b0216a1": 1,
+  "other:1d000000": 1,
+  "other:1f000000": 1,
+  "other:40000000": 1,
+  "other:46580b00": 2,
+  "other:4d4f4952": 1,
+  "other:56495634": 5,
+  "other:6d000000": 1,
+  "other:78444650": 1,
+  "other:8c703b2b": 1,
+  "other:9ad1b5ba": 1,
+  "other:a2b0709f": 1,
+  "other:ad06d345": 1,
+  "other:c5c2ad05": 1,
+  "other:f4f4aa98": 1,
+  "other:f6c18446": 1,
+  "other:ffffff00": 1,
+  "zero-head": 2
+ },
+ "label": "NBA Street V3 (USA)",
+ "loose_audio": {
+  "/SFX/ENVIRO.AST": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 0,
+   "streams_complete": 0,
+   "undecodable": 0,
+   "walked_members": 0
+  }
+ },
+ "loose_refpack": {
+  "/FE/CHYRON.VIV": {
+   "bytes": 2317,
+   "declared": 8493,
+   "format": "BIGF",
+   "head": "10fb"
+  },
+  "/FE/HUD.VIV": {
+   "bytes": 22742,
+   "declared": 93033,
+   "format": "BIGF",
+   "head": "10fb"
+  },
+  "/XF/RMETHODS.BIN": {
+   "bytes": 39898,
+   "declared": 270799,
+   "format": "ELF",
+   "head": "10fb"
+  }
+ },
+ "readers": {
+  "containers": "eb08b8c1aac19bf6",
+  "ea_big": "1ce87b1c6739e704",
+  "ea_schl": "46892eed2b15637c",
+  "ea_shps": "3c01c9c5d6109f4c",
+  "ea_tdb": "cd01ca75c5179f3b",
+  "ea_terf": "dde0f9adb662ed3e",
+  "mmap_art": "7456e7b2788ba367",
+  "ps2_iso9660": "a1baa176c4e28ea8"
+ },
+ "refusals": [
+  {
+   "count": 2343,
+   "example": "image 0 ('1') starts with block code 0x0e, which this reader does not decode; the block declares 512x64 in 12288 byte(s), which is 0.375 byte(s) per pixel -- all 7,996 code-0x0e images measured carry exactly 6 bytes per 4x4 block of pixels at every size, and their bytes are near-uniform at every position mod 6, 8 and 12, which is a fixed-rate compressed codec rather than a bit-packed bitmap; no re",
+   "reader": "ea_shps.undecodable_reason",
+   "sentence_class": "image # ('..') starts with block code #x#e, which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel -- all # code-#x#e images measured carry exactly # bytes per #x# block of pixels at every siz",
+   "type": "str",
+   "where": [
+    "/FE/ONLINE.VIV!menu/temp/*.big!footer.ssh",
+    "/FE/ONLINE.VIV!gameLib/footer.big!footer.ssh",
+    "/FE/ONLINE.VIV!gameLib/temp/*.big!selgtag.ssh",
+    "/FE/ONLINE.VIV!easn/*.big!selgtag.ssh",
+    "/FE/ONLINE.VIV!easn/xlogin/selgtag.big!selgtag.ssh",
+    "/FE/ONLINE.VIV!easn/xlogin/tranacnt.big!tranacnt.ssh"
+   ]
+  },
+  {
+   "count": 311,
+   "example": "image 0 ('aaah') starts with block code 0x01, which this reader does not decode; the block declares 64x64 in 2048 byte(s), which is 0.500 byte(s) per pixel -- every one of the 321 code-0x01 images measured is 1x1 with a 16-byte payload and a two-entry palette, so nothing about its row layout has been proved and it is not guessed at.",
+   "reader": "ea_shps.undecodable_reason",
+   "sentence_class": "image # ('..') starts with block code #x# which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel -- every one of the # code-#x# images measured is #x# with a #-byte payload and a two-entry pal",
+   "type": "str",
+   "where": [
+    "/XF/BACOURT.VIV!basecourt_d.ssh",
+    "/XF/BACOURT.VIV!basecourt_n.ssh",
+    "/XF/BACOURT.VIV!court_fe_n.ssh",
+    "/XF/BACOURT.VIV!court_n.ssh",
+    "/XF/BACOURT.VIV!crtrefl0.ssh",
+    "/XF/BACOURT.VIV!crtrefl1.ssh"
+   ]
+  },
+  {
+   "count": 239,
+   "example": "entry 195 ('cafeLib/icons/temp/*.big') wants 2 byte(s) at +8093696, past the 8093696 byte(s) the archive occupies.",
+   "reader": "ea_big.stored",
+   "sentence_class": "entry # ('..') wants # byte(s) at +# past the # byte(s) the archive occupies.",
+   "type": "TruncatedArchive",
+   "where": [
+    "/FE/ONLINE.VIV!cafeLib/icons/temp/*.big",
+    "/FE/ANIMSBH.VIV!f_SM_b_default.big",
+    "/FE/ANIMSBH.VIV!f_SM_i_Apparel.big",
+    "/FE/ANIMSBH.VIV!f_SM_i_Baller_Select.big",
+    "/FE/ANIMSBH.VIV!f_SM_i_Central.big",
+    "/FE/ANIMSBH.VIV!f_SM_i_Custom_Apparel.big"
+   ]
+  },
+  {
+   "count": 6,
+   "example": "image 0 ('plac') starts with block code 0x0d, which this reader does not decode; the block declares 128x128 in 8192 byte(s), which is 0.500 byte(s) per pixel.",
+   "reader": "ea_shps.undecodable_reason",
+   "sentence_class": "image # ('..') starts with block code #x#d, which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel.",
+   "type": "str",
+   "where": [
+    "/FE/DEFS.VIV!placeholder_med.ssh",
+    "/FE/DEFS.VIV!placeholder_trophy_med.ssh",
+    "/FE/DEFS.VIV!teams_med.ssh",
+    "/FE/DEFSM.VIV!placeholder_thm.ssh",
+    "/FE/DEFSM.VIV!placeholder_trophy_thm.ssh",
+    "/XLDSCRN.BIN"
+   ]
+  },
+  {
+   "count": 2,
+   "example": "image 1 ('cort') starts with block code 0x03, which this reader does not decode; the block declares 512x256 in 262144 byte(s), which is 2.000 byte(s) per pixel.",
+   "reader": "ea_shps.undecodable_reason",
+   "sentence_class": "image # ('..') starts with block code #x# which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel.",
+   "type": "str",
+   "where": [
+    "/XF/BACOURT.VIV!court_fe_d.ssh",
+    "/XF/BACOURT.VIV!court_fe_n.ssh"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/FE/SLUSOVF.BIG is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/FE/SLUSOVF.BIG is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/FE/SLUSOVF.BIG"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/MODULES.VIV is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/MODULES.VIV is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/MODULES.VIV"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/SFX/BOOTSFX.BIG is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/SFX/BOOTSFX.BIG is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/SFX/BOOTSFX.BIG"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/SFX/SFX.BIG is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/SFX/SFX.BIG is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/SFX/SFX.BIG"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/SPEECH/BOBDATS.BIG is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/SPEECH/BOBDATS.BIG is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/SPEECH/BOBDATS.BIG"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/SPEECH/LMDATS.BIG is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/SPEECH/LMDATS.BIG is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/SPEECH/LMDATS.BIG"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/XF/ANIMS.VIV is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/XF/ANIMS.VIV is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/XF/ANIMS.VIV"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/XF/CAMERA.VIV is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/XF/CAMERA.VIV is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/XF/CAMERA.VIV"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/XF/COURTS.VIV is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/XF/COURTS.VIV is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/XF/COURTS.VIV"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/XF/CROWDGEN.VIV is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/XF/CROWDGEN.VIV is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/XF/CROWDGEN.VIV"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/XF/CROWDS.VIV is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/XF/CROWDS.VIV is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/XF/CROWDS.VIV"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/XF/DYNBAN.VIV is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/XF/DYNBAN.VIV is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/XF/DYNBAN.VIV"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/XF/GBREAKER.VIV is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/XF/GBREAKER.VIV is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/XF/GBREAKER.VIV"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/XF/GENERAL.VIV is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/XF/GENERAL.VIV is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/XF/GENERAL.VIV"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/XF/PLAYER2S.VIV is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/XF/PLAYER#S.VIV is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/XF/PLAYER2S.VIV"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/XF/PLAYER2X.VIV is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/XF/PLAYER#X.VIV is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/XF/PLAYER2X.VIV"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/XF/PLAYER.VIV is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/XF/PLAYER.VIV is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/XF/PLAYER.VIV"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/XF/SCRPTCMN.VIV is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/XF/SCRPTCMN.VIV is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/XF/SCRPTCMN.VIV"
+   ]
+  }
+ ],
+ "refusals_total": 2919,
+ "schema": "ea_module_readiness/v2",
+ "schemas": {},
+ "seconds": 8.6,
+ "settings": {
+  "archive_depth": 2,
+  "data_only": false,
+  "deep": true,
+  "member_head_bytes": 32,
+  "mmap_sample": 48,
+  "nested_sample": null,
+  "schl_head_bytes": 65536,
+  "schl_sample": 16,
+  "shps_sample": null
+ },
+ "table_names": {},
+ "timings": {
+  "caches": 0.0,
+  "containers": 8.2
+ }
+}

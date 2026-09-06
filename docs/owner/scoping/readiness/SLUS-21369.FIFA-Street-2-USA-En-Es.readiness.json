@@ -1,0 +1,2242 @@
+{
+ "archives": {
+  "/DATA/ANIMS.BIG": {
+   "error": "/DATA/ANIMS.BIG is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "iso_length": 5533040,
+   "magic": "BIG4"
+  },
+  "/DATA/APTANIMS/APTFNTS.BIG": {
+   "alignment": 128,
+   "declared_size": 73208,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 3,
+   "entries_classified": 3,
+   "entries_refused": 0,
+   "entry_span": 73208,
+   "format": "BIGF",
+   "formats": {
+    "unclassified": 3
+   },
+   "index_bytes": 80,
+   "iso_length": 73208,
+   "layout_notes": [],
+   "length": 73208,
+   "names_sample": [
+    "_body.ttf",
+    "_leigh.ttf",
+    "_radio.ttf"
+   ],
+   "payload_bytes": 73009,
+   "refpack_entries": 3,
+   "refpack_unpacked": 3,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/APTANIMS/FE.VIV": {
+   "alignment": 64,
+   "declared_size": 23962919,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 166,
+   "entries_classified": 166,
+   "entries_refused": 0,
+   "entry_span": 23962919,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 166
+   },
+   "index_bytes": 4480,
+   "iso_length": 23962919,
+   "layout_notes": [],
+   "length": 23962919,
+   "names_sample": [
+    "ArrBLeft.big",
+    "ArrBRight.big",
+    "ArrDown.big",
+    "ArrLeft.big",
+    "ArrRight.big",
+    "ArrTLeft.big"
+   ],
+   "nested": {
+    "archives": 166,
+    "entries": 644,
+    "opened": 166,
+    "refused": 0,
+    "sampled": 166
+   },
+   "payload_bytes": 23952957,
+   "refpack_entries": 166,
+   "refpack_unpacked": 166,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/APTANIMS/FEART.BIG": {
+   "error": "/DATA/APTANIMS/FEART.BIG is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed by",
+   "iso_length": 5695840,
+   "magic": "BIG4"
+  },
+  "/DATA/APTANIMS/IG.VIV": {
+   "alignment": 64,
+   "declared_size": 15014240,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 123,
+   "entries_classified": 123,
+   "entries_refused": 0,
+   "entry_span": 15014240,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 123
+   },
+   "index_bytes": 3395,
+   "iso_length": 15014240,
+   "layout_notes": [],
+   "length": 15014240,
+   "names_sample": [
+    "ArrBLeft.big",
+    "ArrBRight.big",
+    "ArrDown.big",
+    "ArrLeft.big",
+    "ArrRight.big",
+    "ArrTLeft.big"
+   ],
+   "nested": {
+    "archives": 123,
+    "entries": 482,
+    "opened": 123,
+    "refused": 0,
+    "sampled": 123
+   },
+   "payload_bytes": 15007101,
+   "refpack_entries": 123,
+   "refpack_unpacked": 123,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/APTANIMS/SPLINES.BIG": {
+   "alignment": 64,
+   "declared_size": 5523,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 10,
+   "entries_classified": 10,
+   "entries_refused": 0,
+   "entry_span": 5523,
+   "format": "BIGF",
+   "formats": {
+    "unclassified": 10
+   },
+   "index_bytes": 209,
+   "iso_length": 5523,
+   "layout_notes": [],
+   "length": 5523,
+   "names_sample": [
+    "lee.bin",
+    "leee.bin",
+    "spincycle.bin",
+    "spincycle1.bin",
+    "test.bin",
+    "testa.bin"
+   ],
+   "payload_bytes": 4885,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/AUDIO/LOADLOOP.BIG": {
+   "alignment": 64,
+   "bnkl": {
+    "members": 58,
+    "parsed": 58,
+    "refused": 0,
+    "sounds": 58
+   },
+   "declared_size": 10100640,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 58,
+   "entries_classified": 58,
+   "entries_refused": 0,
+   "entry_span": 10100640,
+   "format": "BIGF",
+   "formats": {
+    "BNKl": 58
+   },
+   "index_bytes": 1584,
+   "iso_length": 10100640,
+   "layout_notes": [],
+   "length": 10100640,
+   "names_sample": [
+    "2trueskool load.bnk",
+    "ant music load.bnk",
+    "baby maker load.bnk",
+    "babylon rising load.bnk",
+    "big picture load.bnk",
+    "bram van load.bnk"
+   ],
+   "payload_bytes": 10097728,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/AUDIO/TUNA.BIG": {
+   "alignment": 64,
+   "declared_size": 6313,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 1,
+   "entries_classified": 1,
+   "entries_refused": 0,
+   "entry_span": 6313,
+   "format": "BIGF",
+   "formats": {
+    "TEXT": 1
+   },
+   "index_bytes": 45,
+   "iso_length": 6313,
+   "layout_notes": [],
+   "length": 6313,
+   "names_sample": [
+    "tunavars.txt"
+   ],
+   "payload_bytes": 6249,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/DATABASE/DB.BIG": {
+   "alignment": 64,
+   "declared_size": 77295,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 29,
+   "entries_classified": 29,
+   "entries_refused": 0,
+   "entry_span": 77295,
+   "format": "BIGF",
+   "formats": {
+    "unclassified": 29
+   },
+   "index_bytes": 739,
+   "iso_length": 77295,
+   "layout_notes": [],
+   "length": 77295,
+   "names_sample": [
+    "xdbaudiosfx.adf",
+    "xdbbotnum.adf",
+    "xdbcountries.adf",
+    "xdbcreatepitch.adf",
+    "xdbcreateplayer.adf",
+    "xdbcreateteams.adf"
+   ],
+   "payload_bytes": 75621,
+   "refpack_entries": 29,
+   "refpack_unpacked": 29,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/DATAFILE.BIG": {
+   "error": "/DATA/DATAFILE.BIG is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte ord",
+   "iso_length": 871123,
+   "magic": "BIG4"
+  },
+  "/DATA/HUD/FEMAN.BIG": {
+   "error": "/DATA/HUD/FEMAN.BIG is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte or",
+   "iso_length": 1088,
+   "magic": "BIG4"
+  },
+  "/DATA/HUD/FONTS.BIG": {
+   "error": "/DATA/HUD/FONTS.BIG is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte or",
+   "iso_length": 79253,
+   "magic": "BIG4"
+  },
+  "/DATA/HUD/INGAME.BIG": {
+   "error": "/DATA/HUD/INGAME.BIG is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte o",
+   "iso_length": 603024,
+   "magic": "BIG4"
+  },
+  "/DATA/INITPRGZ.BIG": {
+   "alignment": 16,
+   "declared_size": 1637,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 1,
+   "entries_classified": 1,
+   "entries_refused": 0,
+   "entry_span": 1637,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 1
+   },
+   "index_bytes": 46,
+   "iso_length": 1637,
+   "layout_notes": [],
+   "length": 1637,
+   "names_sample": [
+    "initpurge.big"
+   ],
+   "nested": {
+    "archives": 1,
+    "entries": 3,
+    "opened": 1,
+    "refused": 0,
+    "sampled": 1
+   },
+   "payload_bytes": 1589,
+   "refpack_entries": 1,
+   "refpack_unpacked": 1,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/INITSTAZ.BIG": {
+   "alignment": 16,
+   "declared_size": 47530,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 1,
+   "entries_classified": 1,
+   "entries_refused": 0,
+   "entry_span": 47530,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 1
+   },
+   "index_bytes": 45,
+   "iso_length": 47530,
+   "layout_notes": [],
+   "length": 47530,
+   "names_sample": [
+    "initstay.big"
+   ],
+   "nested": {
+    "archives": 1,
+    "entries": 12,
+    "opened": 1,
+    "refused": 0,
+    "sampled": 1
+   },
+   "payload_bytes": 47482,
+   "refpack_entries": 1,
+   "refpack_unpacked": 1,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/IOP.BIG": {
+   "alignment": 1024,
+   "declared_size": 2504786944,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 7,
+   "entries_classified": 7,
+   "entries_refused": 0,
+   "entry_span": 281817,
+   "format": "BIGF",
+   "formats": {
+    "ELF": 7
+   },
+   "index_bytes": 149,
+   "iso_length": 282624,
+   "layout_notes": [
+    "the header declares 2504786944 byte(s) and the source holds 282624"
+   ],
+   "length": 282624,
+   "names_sample": [
+    "sio2man.irx",
+    "mtapman.irx",
+    "padman.irx",
+    "libsd.irx",
+    "snddrv.irx",
+    "mcman.irx"
+   ],
+   "payload_bytes": 278670,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "size_field": "big",
+   "size_note": "declares 281749 in a 282624-byte file, and its last entry ends at 281817"
+  },
+  "/DATA/LOADART.BIG": {
+   "error": "/DATA/LOADART.BIG is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte orde",
+   "iso_length": 219424,
+   "magic": "BIG4"
+  },
+  "/DATA/LOCALE.BIG": {
+   "alignment": 64,
+   "declared_size": 1562416,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 45,
+   "entries_classified": 45,
+   "entries_refused": 0,
+   "entry_span": 1562416,
+   "format": "BIGF",
+   "formats": {
+    "unclassified": 45
+   },
+   "index_bytes": 990,
+   "iso_length": 1562416,
+   "layout_notes": [],
+   "length": 1562416,
+   "names_sample": [
+    "advdefp-Dut.loc",
+    "advdefp-Eng.loc",
+    "advdefp-Fre.loc",
+    "advdefp-Ger.loc",
+    "advdefp-Ita.loc",
+    "advdefp-Spa.loc"
+   ],
+   "payload_bytes": 1559888,
+   "refpack_entries": 0,
+   "refpack_unpacked": 0,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/MODELS.BIG": {
+   "alignment": 32,
+   "declared_size": 40098613,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 1115,
+   "entries_classified": 1115,
+   "entries_refused": 0,
+   "entry_span": 40098613,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 391,
+    "SHPS": 724
+   },
+   "index_bytes": 23439,
+   "iso_length": 40098613,
+   "layout_notes": [],
+   "length": 40098613,
+   "names_sample": [
+    "star0001.big",
+    "star0002.big",
+    "star0003.big",
+    "star0004.big",
+    "star0005.big",
+    "star0006.big"
+   ],
+   "nested": {
+    "archives": 391,
+    "entries": 2658,
+    "opened": 391,
+    "refused": 0,
+    "sampled": 391
+   },
+   "payload_bytes": 40058070,
+   "refpack_entries": 1115,
+   "refpack_unpacked": 1115,
+   "shps": {
+    "banks": 724,
+    "decoded": 1545,
+    "decoded_codes": {
+     "0x02": 1545
+    },
+    "image_refused": 0,
+    "images": 1545,
+    "parsed": 724,
+    "refused": 0,
+    "refused_codes": {},
+    "sampled": 724
+   },
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/PRELOADZ.BIG": {
+   "alignment": 64,
+   "declared_size": 4638208,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 1,
+   "entries_classified": 1,
+   "entries_refused": 0,
+   "entry_span": 4638208,
+   "format": "BIGF",
+   "formats": {
+    "unclassified": 1
+   },
+   "index_bytes": 44,
+   "iso_length": 4638208,
+   "layout_notes": [],
+   "length": 4638208,
+   "names_sample": [
+    "preload.big"
+   ],
+   "payload_bytes": 4638144,
+   "refpack_entries": 1,
+   "refpack_unpacked": 1,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/STADIUM/AMSTERDA.BIG": {
+   "alignment": 16,
+   "declared_size": 1381666,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 1,
+   "entries_classified": 1,
+   "entries_refused": 0,
+   "entry_span": 1381666,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 1
+   },
+   "index_bytes": 44,
+   "iso_length": 1381666,
+   "layout_notes": [],
+   "length": 1381666,
+   "names_sample": [
+    "stadium.big"
+   ],
+   "nested": {
+    "archives": 1,
+    "entries": 19,
+    "opened": 1,
+    "refused": 0,
+    "sampled": 1
+   },
+   "payload_bytes": 1381618,
+   "refpack_entries": 1,
+   "refpack_unpacked": 1,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/STADIUM/BARRA.BIG": {
+   "alignment": 16,
+   "declared_size": 1453302,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 1,
+   "entries_classified": 1,
+   "entries_refused": 0,
+   "entry_span": 1453302,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 1
+   },
+   "index_bytes": 44,
+   "iso_length": 1453302,
+   "layout_notes": [],
+   "length": 1453302,
+   "names_sample": [
+    "stadium.big"
+   ],
+   "nested": {
+    "archives": 1,
+    "entries": 22,
+    "opened": 1,
+    "refused": 0,
+    "sampled": 1
+   },
+   "payload_bytes": 1453254,
+   "refpack_entries": 1,
+   "refpack_unpacked": 1,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/STADIUM/BERLIN.BIG": {
+   "alignment": 16,
+   "declared_size": 1739209,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 1,
+   "entries_classified": 1,
+   "entries_refused": 0,
+   "entry_span": 1739209,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 1
+   },
+   "index_bytes": 44,
+   "iso_length": 1739209,
+   "layout_notes": [],
+   "length": 1739209,
+   "names_sample": [
+    "stadium.big"
+   ],
+   "nested": {
+    "archives": 1,
+    "entries": 16,
+    "opened": 1,
+    "refused": 0,
+    "sampled": 1
+   },
+   "payload_bytes": 1739161,
+   "refpack_entries": 1,
+   "refpack_unpacked": 1,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/STADIUM/BRAZIL.BIG": {
+   "alignment": 16,
+   "declared_size": 1765548,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 1,
+   "entries_classified": 1,
+   "entries_refused": 0,
+   "entry_span": 1765548,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 1
+   },
+   "index_bytes": 44,
+   "iso_length": 1765548,
+   "layout_notes": [],
+   "length": 1765548,
+   "names_sample": [
+    "stadium.big"
+   ],
+   "nested": {
+    "archives": 1,
+    "entries": 16,
+    "opened": 1,
+    "refused": 0,
+    "sampled": 1
+   },
+   "payload_bytes": 1765500,
+   "refpack_entries": 1,
+   "refpack_unpacked": 1,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/STADIUM/CAMEROON.BIG": {
+   "alignment": 16,
+   "declared_size": 1795736,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 1,
+   "entries_classified": 1,
+   "entries_refused": 0,
+   "entry_span": 1795736,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 1
+   },
+   "index_bytes": 44,
+   "iso_length": 1795736,
+   "layout_notes": [],
+   "length": 1795736,
+   "names_sample": [
+    "stadium.big"
+   ],
+   "nested": {
+    "archives": 1,
+    "entries": 21,
+    "opened": 1,
+    "refused": 0,
+    "sampled": 1
+   },
+   "payload_bytes": 1795688,
+   "refpack_entries": 1,
+   "refpack_unpacked": 1,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/STADIUM/CAPITCH.BIG": {
+   "alignment": 128,
+   "declared_size": 8912283,
+   "depth": 0,
+   "duplicate_names": 1,
+   "empty_entries": 0,
+   "entries": 350,
+   "entries_classified": 350,
+   "entries_refused": 0,
+   "entry_span": 8912283,
+   "format": "BIGF",
+   "formats": {
+    "ELF": 44,
+    "SHPS": 132,
+    "TEXT": 128,
+    "unclassified": 46
+   },
+   "index_bytes": 10201,
+   "iso_length": 8912283,
+   "layout_notes": [
+    "1 entry name(s) appear more than once"
+   ],
+   "length": 8912283,
+   "names_sample": [
+    "aitags.ini",
+    "behindcam_00.ord",
+    "behindcam_00.orl",
+    "behindcam_01.ord",
+    "behindcam_01.orl",
+    "coll_goal_afence_aset_a_00.dat"
+   ],
+   "payload_bytes": 8880160,
+   "refpack_entries": 347,
+   "refpack_unpacked": 347,
+   "shps": {
+    "banks": 132,
+    "decoded": 213,
+    "decoded_codes": {
+     "0x02": 213
+    },
+    "image_refused": 114,
+    "images": 327,
+    "parsed": 132,
+    "refused": 0,
+    "refused_codes": {
+     "0x01": 114
+    },
+    "sampled": 132
+   },
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/STADIUM/MARSEILL.BIG": {
+   "alignment": 16,
+   "declared_size": 1975071,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 1,
+   "entries_classified": 1,
+   "entries_refused": 0,
+   "entry_span": 1975071,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 1
+   },
+   "index_bytes": 44,
+   "iso_length": 1975071,
+   "layout_notes": [],
+   "length": 1975071,
+   "names_sample": [
+    "stadium.big"
+   ],
+   "nested": {
+    "archives": 1,
+    "entries": 22,
+    "opened": 1,
+    "refused": 0,
+    "sampled": 1
+   },
+   "payload_bytes": 1975023,
+   "refpack_entries": 1,
+   "refpack_unpacked": 1,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/STADIUM/MEXICO.BIG": {
+   "alignment": 16,
+   "declared_size": 1681961,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 1,
+   "entries_classified": 1,
+   "entries_refused": 0,
+   "entry_span": 1681961,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 1
+   },
+   "index_bytes": 44,
+   "iso_length": 1681961,
+   "layout_notes": [],
+   "length": 1681961,
+   "names_sample": [
+    "stadium.big"
+   ],
+   "nested": {
+    "archives": 1,
+    "entries": 16,
+    "opened": 1,
+    "refused": 0,
+    "sampled": 1
+   },
+   "payload_bytes": 1681913,
+   "refpack_entries": 1,
+   "refpack_unpacked": 1,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/STADIUM/NEWYORK.BIG": {
+   "alignment": 16,
+   "declared_size": 1702467,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 1,
+   "entries_classified": 1,
+   "entries_refused": 0,
+   "entry_span": 1702467,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 1
+   },
+   "index_bytes": 44,
+   "iso_length": 1702467,
+   "layout_notes": [],
+   "length": 1702467,
+   "names_sample": [
+    "stadium.big"
+   ],
+   "nested": {
+    "archives": 1,
+    "entries": 16,
+    "opened": 1,
+    "refused": 0,
+    "sampled": 1
+   },
+   "payload_bytes": 1702419,
+   "refpack_entries": 1,
+   "refpack_unpacked": 1,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/STADIUM/ROMA.BIG": {
+   "alignment": 16,
+   "declared_size": 1730784,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 1,
+   "entries_classified": 1,
+   "entries_refused": 0,
+   "entry_span": 1730784,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 1
+   },
+   "index_bytes": 44,
+   "iso_length": 1730784,
+   "layout_notes": [],
+   "length": 1730784,
+   "names_sample": [
+    "stadium.big"
+   ],
+   "nested": {
+    "archives": 1,
+    "entries": 17,
+    "opened": 1,
+    "refused": 0,
+    "sampled": 1
+   },
+   "payload_bytes": 1730736,
+   "refpack_entries": 1,
+   "refpack_unpacked": 1,
+   "size_field": "little",
+   "size_note": "exact"
+  },
+  "/DATA/STADIUM/WESTWAY.BIG": {
+   "alignment": 16,
+   "declared_size": 1620560,
+   "depth": 0,
+   "duplicate_names": 0,
+   "empty_entries": 0,
+   "entries": 1,
+   "entries_classified": 1,
+   "entries_refused": 0,
+   "entry_span": 1620560,
+   "format": "BIGF",
+   "formats": {
+    "BIGF": 1
+   },
+   "index_bytes": 44,
+   "iso_length": 1620560,
+   "layout_notes": [],
+   "length": 1620560,
+   "names_sample": [
+    "stadium.big"
+   ],
+   "nested": {
+    "archives": 1,
+    "entries": 20,
+    "opened": 1,
+    "refused": 0,
+    "sampled": 1
+   },
+   "payload_bytes": 1620512,
+   "refpack_entries": 1,
+   "refpack_unpacked": 1,
+   "size_field": "little",
+   "size_note": "exact"
+  }
+ },
+ "caches": {
+  "containers_named": 0,
+  "copies": 0,
+  "differing": 0,
+  "files": 0,
+  "header_copies": 0,
+  "identical": 0,
+  "member_copies": 0,
+  "parsed": 0,
+  "per_cache": {},
+  "refused": 0,
+  "unread": 0,
+  "unresolved": 0,
+  "unresolved_kinds": {}
+ },
+ "containers": {},
+ "counts": {
+  "alignments": {},
+  "big": {
+   "alignments": {
+    "1024": 1,
+    "128": 687,
+    "16": 12,
+    "256": 6,
+    "32": 2,
+    "64": 8
+   },
+   "loose": 31,
+   "nested": 693,
+   "nested_opened": 692,
+   "nested_unopened": 0,
+   "refused": 8,
+   "size_fields": {
+    "big": 1,
+    "little": 715
+   },
+   "total": 724,
+   "with_layout_notes": 2,
+   "works": 716
+  },
+  "big_entries": {
+   "extensions": {
+    "adf": 29,
+    "apt": 289,
+    "big": 693,
+    "bin": 10,
+    "bnk": 58,
+    "const": 289,
+    "dat": 208,
+    "ini": 49,
+    "irx": 7,
+    "loc": 45,
+    "o": 1174,
+    "ord": 951,
+    "orl": 951,
+    "ssh": 1143,
+    "ttf": 5,
+    "txt": 1
+   },
+   "formats": {
+    "BIGF": 693,
+    "BNKl": 58,
+    "ELF": 2132,
+    "SHPS": 1143,
+    "TEXT": 258,
+    "unclassified": 1620
+   },
+   "refused": 0,
+   "total": 5904,
+   "works": 5904
+  },
+  "bnkl": {
+   "refused": 0,
+   "sounds": 58,
+   "total": 58,
+   "works": 58
+  },
+  "caches": {
+   "copies": 0,
+   "differing": 0,
+   "identical": 0,
+   "refused": 0,
+   "total": 0,
+   "unresolved": 0,
+   "works": 0
+  },
+  "chains": {},
+  "codecs": {},
+  "containers": {
+   "refused": 0,
+   "total": 0,
+   "works": 0
+  },
+  "crc_sites": {
+   "databases_refused": 0,
+   "refused": 0,
+   "total": 0,
+   "works": 0
+  },
+  "data_tables": {
+   "formats": {
+    "unclassified": 30
+   },
+   "magics": {
+    "02000000 (....)": 3,
+    "03000000 (....)": 3,
+    "04000000 (....)": 2,
+    "05000000 (....)": 2,
+    "07000000 (....)": 4,
+    "08000000 (....)": 1,
+    "0a000000 (....)": 2,
+    "0c000000 (....)": 2,
+    "0d000000 (....)": 1,
+    "0e000000 (....)": 1,
+    "10000000 (....)": 1,
+    "12000000 (....)": 2,
+    "13000000 (....)": 1,
+    "17000000 (....)": 2,
+    "19000000 (....)": 1,
+    "43000000 (C...)": 1,
+    "56697646 (VivF)": 1
+   },
+   "opens_as_tdb": 0,
+   "total": 30
+  },
+  "formats": {},
+  "members": {
+   "refused": 0,
+   "total": 0,
+   "works": 0
+  },
+  "mmap": {
+   "dimensions": {},
+   "images_in_sample": 0,
+   "members": 0,
+   "members_refused": 0,
+   "parsed": 0,
+   "reasons": {},
+   "refused": 0,
+   "sampled": 0,
+   "total": 0,
+   "works": 0
+  },
+  "refpack": {
+   "declared_bytes": 228002714,
+   "loose_files": 0,
+   "loose_formats": {},
+   "loose_unpacked": 0,
+   "packed_entries": 1797,
+   "refused": 0,
+   "total": 1797,
+   "works": 1797
+  },
+  "schl": {
+   "codecs": {
+    "EA-XA ADPCM": 23
+   },
+   "headers_parsed": 23,
+   "headers_refused": 0,
+   "platforms": {
+    "GSTR": 9,
+    "PT": 14
+   },
+   "refused": 0,
+   "streams_complete": 10,
+   "streams_in_sample": 12,
+   "total": 23,
+   "undecodable": 0,
+   "walked_members": 7,
+   "works": 23
+  },
+  "shps": {
+   "banks": 1146,
+   "banks_parsed": 1146,
+   "banks_refused": 0,
+   "block_codes": {
+    "0x01": 264,
+    "0x02": 4773,
+    "0x04": 8,
+    "0x05": 8,
+    "0x0a": 1,
+    "0x0d": 9,
+    "0x20": 4,
+    "0x21": 5043,
+    "0x69": 5063,
+    "0x70": 5063,
+    "0x7c": 2433
+   },
+   "decoded_codes": {
+    "0x02": 4769,
+    "0x05": 8
+   },
+   "dimensions": {
+    "128x128": 1006,
+    "128x256": 66,
+    "128x64": 150,
+    "16x16": 121,
+    "256x128": 443,
+    "256x256": 466,
+    "256x64": 85,
+    "312x120": 67,
+    "32x32": 288,
+    "64x64": 423,
+    "80x128": 58,
+    "88x80": 64
+   },
+   "directory_ids": {
+    "G358": 264,
+    "G359": 882
+   },
+   "endians": {
+    "little": 1146
+   },
+   "mip_images": 336,
+   "reasons": {
+    "image # ('..') is #-bit indexed and no palette block follows it; the blocks after the pixels are #x# #x# #x#.": 4,
+    "image # ('..') starts with block code #x# which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel -- every one of the # code-#x# images measured is #x# with a #-byte payload and a two-entry pal": 264,
+    "image # ('..') starts with block code #x# which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel.": 8,
+    "image # ('..') starts with block code #x#a, which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel.": 1,
+    "image # ('..') starts with block code #x#d, which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel.": 9
+   },
+   "refused": 286,
+   "refused_codes": {
+    "0x01": 264,
+    "0x02": 4,
+    "0x04": 8,
+    "0x0a": 1,
+    "0x0d": 9
+   },
+   "sampled": 1146,
+   "total": 5063,
+   "works": 4777
+  },
+  "tdb": {
+   "bare_files": 0,
+   "bare_parsed": 0,
+   "fields": 0,
+   "refused": 0,
+   "tables": 0,
+   "total": 0,
+   "works": 0
+  }
+ },
+ "data_files": 123,
+ "data_tables": [
+  {
+   "bytes": 496,
+   "csv_fields": null,
+   "first_words_le": [
+    1182165334,
+    496,
+    486539264,
+    4026597376
+   ],
+   "format": "unclassified",
+   "magic": "56697646",
+   "opens_as_tdb": false,
+   "printable": "VivF",
+   "source": "loose file",
+   "where": "/DATA/DATABASE/DB.BH"
+  },
+  {
+   "bytes": 2456,
+   "csv_fields": null,
+   "first_words_le": [
+    4,
+    58,
+    492,
+    492
+   ],
+   "format": "unclassified",
+   "magic": "04000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbaudiosfx.adf"
+  },
+  {
+   "bytes": 208,
+   "csv_fields": null,
+   "first_words_le": [
+    5,
+    18,
+    208,
+    208
+   ],
+   "format": "unclassified",
+   "magic": "05000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbbotnum.adf"
+  },
+  {
+   "bytes": 1072,
+   "csv_fields": null,
+   "first_words_le": [
+    4,
+    23,
+    212,
+    212
+   ],
+   "format": "unclassified",
+   "magic": "04000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbcountries.adf"
+  },
+  {
+   "bytes": 2680,
+   "csv_fields": null,
+   "first_words_le": [
+    8,
+    89,
+    1452,
+    1452
+   ],
+   "format": "unclassified",
+   "magic": "08000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbcreatepitch.adf"
+  },
+  {
+   "bytes": 36148,
+   "csv_fields": null,
+   "first_words_le": [
+    25,
+    559,
+    27984,
+    27984
+   ],
+   "format": "unclassified",
+   "magic": "19000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbcreateplayer.adf"
+  },
+  {
+   "bytes": 1132,
+   "csv_fields": null,
+   "first_words_le": [
+    23,
+    20,
+    952,
+    952
+   ],
+   "format": "unclassified",
+   "magic": "17000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbcreateteams.adf"
+  },
+  {
+   "bytes": 4576,
+   "csv_fields": null,
+   "first_words_le": [
+    12,
+    47,
+    1156,
+    1720
+   ],
+   "format": "unclassified",
+   "magic": "0c000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbeatrax.adf"
+  },
+  {
+   "bytes": 10768,
+   "csv_fields": null,
+   "first_words_le": [
+    7,
+    358,
+    5040,
+    10768
+   ],
+   "format": "unclassified",
+   "magic": "07000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbeyehat.adf"
+  },
+  {
+   "bytes": 4752,
+   "csv_fields": null,
+   "first_words_le": [
+    5,
+    250,
+    2528,
+    3528
+   ],
+   "format": "unclassified",
+   "magic": "05000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbheadpresets.adf"
+  },
+  {
+   "bytes": 96,
+   "csv_fields": null,
+   "first_words_le": [
+    2,
+    1,
+    32,
+    32
+   ],
+   "format": "unclassified",
+   "magic": "02000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbhlptxt.adf"
+  },
+  {
+   "bytes": 3308,
+   "csv_fields": null,
+   "first_words_le": [
+    10,
+    110,
+    2228,
+    2228
+   ],
+   "format": "unclassified",
+   "magic": "0a000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbhsvbc.adf"
+  },
+  {
+   "bytes": 3688,
+   "csv_fields": null,
+   "first_words_le": [
+    2,
+    915,
+    3688,
+    3688
+   ],
+   "format": "unclassified",
+   "magic": "02000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbhsvbcset.adf"
+  },
+  {
+   "bytes": 828,
+   "csv_fields": null,
+   "first_words_le": [
+    16,
+    25,
+    828,
+    828
+   ],
+   "format": "unclassified",
+   "magic": "10000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbkitclash.adf"
+  },
+  {
+   "bytes": 1728,
+   "csv_fields": null,
+   "first_words_le": [
+    7,
+    77,
+    1108,
+    1108
+   ],
+   "format": "unclassified",
+   "magic": "07000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdblogos.adf"
+  },
+  {
+   "bytes": 76,
+   "csv_fields": null,
+   "first_words_le": [
+    2,
+    4,
+    44,
+    44
+   ],
+   "format": "unclassified",
+   "magic": "02000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdblogoset.adf"
+  },
+  {
+   "bytes": 1200,
+   "csv_fields": null,
+   "first_words_le": [
+    7,
+    60,
+    868,
+    868
+   ],
+   "format": "unclassified",
+   "magic": "07000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbminigameLeaders.adf"
+  },
+  {
+   "bytes": 15300,
+   "csv_fields": null,
+   "first_words_le": [
+    10,
+    505,
+    10128,
+    10128
+   ],
+   "format": "unclassified",
+   "magic": "0a000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbnavto.adf"
+  },
+  {
+   "bytes": 52,
+   "csv_fields": null,
+   "first_words_le": [
+    3,
+    4,
+    52,
+    52
+   ],
+   "format": "unclassified",
+   "magic": "03000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbneckaccessorygroup.adf"
+  },
+  {
+   "bytes": 1572,
+   "csv_fields": null,
+   "first_words_le": [
+    3,
+    252,
+    1540,
+    1540
+   ],
+   "format": "unclassified",
+   "magic": "03000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbpatternprimlink.adf"
+  },
+  {
+   "bytes": 1572,
+   "csv_fields": null,
+   "first_words_le": [
+    3,
+    252,
+    1540,
+    1540
+   ],
+   "format": "unclassified",
+   "magic": "03000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbpatternseclink.adf"
+  },
+  {
+   "bytes": 48284,
+   "csv_fields": null,
+   "first_words_le": [
+    67,
+    360,
+    48284,
+    48284
+   ],
+   "format": "unclassified",
+   "magic": "43000000",
+   "opens_as_tdb": false,
+   "printable": "C...",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbplayer.adf"
+  },
+  {
+   "bytes": 17324,
+   "csv_fields": null,
+   "first_words_le": [
+    18,
+    362,
+    13064,
+    13064
+   ],
+   "format": "unclassified",
+   "magic": "12000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbplayerstat.adf"
+  },
+  {
+   "bytes": 14448,
+   "csv_fields": null,
+   "first_words_le": [
+    23,
+    128,
+    5920,
+    5920
+   ],
+   "format": "unclassified",
+   "magic": "17000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbrtsevents.adf"
+  },
+  {
+   "bytes": 3816,
+   "csv_fields": null,
+   "first_words_le": [
+    14,
+    33,
+    952,
+    952
+   ],
+   "format": "unclassified",
+   "magic": "0e000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbrtsseries.adf"
+  },
+  {
+   "bytes": 1068,
+   "csv_fields": null,
+   "first_words_le": [
+    7,
+    69,
+    996,
+    996
+   ],
+   "format": "unclassified",
+   "magic": "07000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbrulesets.adf"
+  },
+  {
+   "bytes": 1384,
+   "csv_fields": null,
+   "first_words_le": [
+    18,
+    23,
+    860,
+    860
+   ],
+   "format": "unclassified",
+   "magic": "12000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbteams.adf"
+  },
+  {
+   "bytes": 700,
+   "csv_fields": null,
+   "first_words_le": [
+    12,
+    28,
+    700,
+    700
+   ],
+   "format": "unclassified",
+   "magic": "0c000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbtopnum.adf"
+  },
+  {
+   "bytes": 11896,
+   "csv_fields": null,
+   "first_words_le": [
+    13,
+    226,
+    5904,
+    5904
+   ],
+   "format": "unclassified",
+   "magic": "0d000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbtricks.adf"
+  },
+  {
+   "bytes": 1568,
+   "csv_fields": null,
+   "first_words_le": [
+    19,
+    13,
+    528,
+    528
+   ],
+   "format": "unclassified",
+   "magic": "13000000",
+   "opens_as_tdb": false,
+   "printable": "....",
+   "source": "archive entry",
+   "where": "/DATA/DATABASE/DB.BIG!xdbvenues.adf"
+  }
+ ],
+ "databases": {},
+ "files": 126,
+ "generated_utc": "2026-09-06T06:21:38Z",
+ "identity": {
+  "boot_file": "SLUS_213.69",
+  "boot_segments": 1,
+  "boot_sha256": "22c49ed4e5bfd695411f041ae370cc9b35f1087c3c364cd7ad92dac07d68ba74",
+  "boot_size": 4211896,
+  "pcsx2_crc": "67963EA7",
+  "serial": "SLUS-21369"
+ },
+ "image": {
+  "directories": 7,
+  "files": 126,
+  "layout": "2048-byte logical sectors",
+  "name": "FIFA Street 2 (USA) (En,Es).iso",
+  "sector_size": 2048,
+  "size": 4698734592,
+  "volume_id": ""
+ },
+ "image_banks": {
+  "/DATA/APTANIMS/PLAYER0.SSH": {
+   "banks": 1,
+   "decoded": 1,
+   "decoded_codes": {
+    "0x02": 1
+   },
+   "image_refused": 0,
+   "images": 1,
+   "parsed": 1,
+   "refused": 0,
+   "refused_codes": {},
+   "sampled": 1
+  },
+  "/DATA/APTANIMS/PLAYER1.SSH": {
+   "banks": 1,
+   "decoded": 46,
+   "decoded_codes": {
+    "0x02": 46
+   },
+   "image_refused": 0,
+   "images": 46,
+   "parsed": 1,
+   "refused": 0,
+   "refused_codes": {},
+   "sampled": 1
+  },
+  "/DATA/APTANIMS/PLAYER2.SSH": {
+   "banks": 1,
+   "decoded": 1,
+   "decoded_codes": {
+    "0x02": 1
+   },
+   "image_refused": 0,
+   "images": 1,
+   "parsed": 1,
+   "refused": 0,
+   "refused_codes": {},
+   "sampled": 1
+  }
+ },
+ "kinds": {
+  "ABKC": 16,
+  "BIGF": 31,
+  "ELF": 1,
+  "EVT": 2,
+  "ICON.SYS": 1,
+  "IOPRP": 1,
+  "MPCh": 2,
+  "PS2-ICO": 2,
+  "SCHl": 23,
+  "SHPS": 3,
+  "TEXT": 17,
+  "other:03000000": 1,
+  "other:0d00ffff": 1,
+  "other:1700ffff": 1,
+  "other:2200ffff": 1,
+  "other:2800ffff": 1,
+  "other:296983b2": 1,
+  "other:2e00ffff": 1,
+  "other:3400ffff": 1,
+  "other:3a00ffff": 1,
+  "other:4d4f4952": 1,
+  "other:56697646": 15,
+  "other:78444650": 1,
+  "other:9520ffff": 1
+ },
+ "label": "FIFA Street 2 (USA) (En,Es)",
+ "loose_audio": {
+  "/DATA/AUDIO/AMBSTRM.AST": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 0,
+   "streams_complete": 0,
+   "undecodable": 0,
+   "walked_members": 0
+  },
+  "/DATA/AUDIO/DJDAT_BO.BIG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 0,
+   "streams_complete": 0,
+   "undecodable": 0,
+   "walked_members": 0
+  },
+  "/DATA/AUDIO/DJDAT_EN.BIG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 0,
+   "streams_complete": 0,
+   "undecodable": 0,
+   "walked_members": 0
+  },
+  "/DATA/AUDIO/DJDAT_FR.BIG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 0,
+   "streams_complete": 0,
+   "undecodable": 0,
+   "walked_members": 0
+  },
+  "/DATA/AUDIO/DJDAT_GE.BIG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 0,
+   "streams_complete": 0,
+   "undecodable": 0,
+   "walked_members": 0
+  },
+  "/DATA/AUDIO/DJDAT_IT.BIG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 0,
+   "streams_complete": 0,
+   "undecodable": 0,
+   "walked_members": 0
+  },
+  "/DATA/AUDIO/DJDAT_RR.BIG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 0,
+   "streams_complete": 0,
+   "undecodable": 0,
+   "walked_members": 0
+  },
+  "/DATA/AUDIO/DJDAT_SP.BIG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 0,
+   "streams_complete": 0,
+   "undecodable": 0,
+   "walked_members": 0
+  },
+  "/DATA/AUDIO/GBREAK.AST": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 2,
+   "streams_complete": 2,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/GBREAKLC.AST": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 2,
+   "streams_complete": 2,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/HUD.AST": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 3,
+   "streams_complete": 3,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/MINIHUD.AST": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 1,
+   "streams_complete": 1,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/AUDIO/PCPADAT.BIG": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 0,
+   "streams_complete": 0,
+   "undecodable": 0,
+   "walked_members": 0
+  },
+  "/DATA/AUDIO/REPLAY.AST": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "PT": 1
+   },
+   "streams": 2,
+   "streams_complete": 2,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/MOVIES/ADVDEFN.MPC": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "GSTR": 1
+   },
+   "streams": 0,
+   "streams_complete": 0,
+   "undecodable": 0,
+   "walked_members": 0
+  },
+  "/DATA/MOVIES/ADVOFFN.MPC": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "GSTR": 1
+   },
+   "streams": 0,
+   "streams_complete": 0,
+   "undecodable": 0,
+   "walked_members": 0
+  },
+  "/DATA/MOVIES/CONTROLN.MPC": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "GSTR": 1
+   },
+   "streams": 0,
+   "streams_complete": 0,
+   "undecodable": 0,
+   "walked_members": 0
+  },
+  "/DATA/MOVIES/EABIGN.MPC": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "GSTR": 1
+   },
+   "streams": 1,
+   "streams_complete": 0,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/MOVIES/EABIGSPN.MPC": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "GSTR": 1
+   },
+   "streams": 1,
+   "streams_complete": 0,
+   "undecodable": 0,
+   "walked_members": 1
+  },
+  "/DATA/MOVIES/GBN.MPC": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "GSTR": 1
+   },
+   "streams": 0,
+   "streams_complete": 0,
+   "undecodable": 0,
+   "walked_members": 0
+  },
+  "/DATA/MOVIES/INTRON.MPC": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "GSTR": 1
+   },
+   "streams": 0,
+   "streams_complete": 0,
+   "undecodable": 0,
+   "walked_members": 0
+  },
+  "/DATA/MOVIES/JUGGLEN.MPC": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "GSTR": 1
+   },
+   "streams": 0,
+   "streams_complete": 0,
+   "undecodable": 0,
+   "walked_members": 0
+  },
+  "/DATA/MOVIES/WKN.MPC": {
+   "codecs": {
+    "EA-XA ADPCM": 1
+   },
+   "decodable": 1,
+   "headers_parsed": 1,
+   "headers_refused": 0,
+   "members": 1,
+   "platforms": {
+    "GSTR": 1
+   },
+   "streams": 0,
+   "streams_complete": 0,
+   "undecodable": 0,
+   "walked_members": 0
+  }
+ },
+ "loose_refpack": {},
+ "readers": {
+  "containers": "eb08b8c1aac19bf6",
+  "ea_big": "1ce87b1c6739e704",
+  "ea_schl": "46892eed2b15637c",
+  "ea_shps": "3c01c9c5d6109f4c",
+  "ea_tdb": "cd01ca75c5179f3b",
+  "ea_terf": "dde0f9adb662ed3e",
+  "mmap_art": "7456e7b2788ba367",
+  "ps2_iso9660": "a1baa176c4e28ea8"
+ },
+ "refusals": [
+  {
+   "count": 264,
+   "example": "image 1 ('gs00') starts with block code 0x01, which this reader does not decode; the block declares 128x64 in 4096 byte(s), which is 0.500 byte(s) per pixel -- every one of the 321 code-0x01 images measured is 1x1 with a 16-byte payload and a two-entry palette, so nothing about its row layout has been proved and it is not guessed at.",
+   "reader": "ea_shps.undecodable_reason",
+   "sentence_class": "image # ('..') starts with block code #x# which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel -- every one of the # code-#x# images measured is #x# with a #-byte payload and a two-entry pal",
+   "type": "str",
+   "where": [
+    "/DATA/STADIUM/CAPITCH.BIG!goal_a_skin00.ssh",
+    "/DATA/STADIUM/CAPITCH.BIG!goal_b_skin00.ssh",
+    "/DATA/STADIUM/CAPITCH.BIG!goal_c_skin00.ssh",
+    "/DATA/STADIUM/CAPITCH.BIG!goal_d_skin00.ssh",
+    "/DATA/STADIUM/CAPITCH.BIG!goal_e_skin00.ssh",
+    "/DATA/STADIUM/CAPITCH.BIG!goal_f_skin00.ssh"
+   ]
+  },
+  {
+   "count": 9,
+   "example": "image 18 ('aabv') starts with block code 0x0d, which this reader does not decode; the block declares 512x256 in 65536 byte(s), which is 0.500 byte(s) per pixel.",
+   "reader": "ea_shps.undecodable_reason",
+   "sentence_class": "image # ('..') starts with block code #x#d, which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel.",
+   "type": "str",
+   "where": [
+    "/DATA/STADIUM/NEWYORK.BIG!stadium.big!pitch.ssh",
+    "/DATA/STADIUM/AMSTERDA.BIG!stadium.big!pitch.ssh",
+    "/DATA/STADIUM/MEXICO.BIG!stadium.big!pitch.ssh",
+    "/DATA/STADIUM/BERLIN.BIG!stadium.big!pitch.ssh",
+    "/DATA/STADIUM/BARRA.BIG!stadium.big!pitch.ssh",
+    "/DATA/STADIUM/CAMEROON.BIG!stadium.big!pitch.ssh"
+   ]
+  },
+  {
+   "count": 8,
+   "example": "image 6 ('aabj') starts with block code 0x04, which this reader does not decode; the block declares 128x128 in 49152 byte(s), which is 3.000 byte(s) per pixel.",
+   "reader": "ea_shps.undecodable_reason",
+   "sentence_class": "image # ('..') starts with block code #x# which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel.",
+   "type": "str",
+   "where": [
+    "/DATA/STADIUM/BRAZIL.BIG!stadium.big!pitch.ssh",
+    "/DATA/STADIUM/MEXICO.BIG!stadium.big!pitch.ssh",
+    "/DATA/STADIUM/ROMA.BIG!stadium.big!pitch.ssh"
+   ]
+  },
+  {
+   "count": 4,
+   "example": "image 41 ('aadp') is 8-bit indexed and no palette block follows it; the blocks after the pixels are 0x20, 0x69, 0x70.",
+   "reader": "ea_shps.undecodable_reason",
+   "sentence_class": "image # ('..') is #-bit indexed and no palette block follows it; the blocks after the pixels are #x# #x# #x#.",
+   "type": "str",
+   "where": [
+    "/DATA/STADIUM/AMSTERDA.BIG!stadium.big!pitch.ssh",
+    "/DATA/STADIUM/BARRA.BIG!stadium.big!pitch.ssh",
+    "/DATA/STADIUM/CAMEROON.BIG!stadium.big!pitch.ssh"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/DATA/ANIMS.BIG is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/DATA/ANIMS.BIG is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/DATA/ANIMS.BIG"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/DATA/APTANIMS/FEART.BIG is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/DATA/APTANIMS/FEART.BIG is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/DATA/APTANIMS/FEART.BIG"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/DATA/DATAFILE.BIG is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/DATA/DATAFILE.BIG is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/DATA/DATAFILE.BIG"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/DATA/HUD/FEMAN.BIG is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/DATA/HUD/FEMAN.BIG is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/DATA/HUD/FEMAN.BIG"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/DATA/HUD/FONTS.BIG is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/DATA/HUD/FONTS.BIG is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/DATA/HUD/FONTS.BIG"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/DATA/HUD/INGAME.BIG is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/DATA/HUD/INGAME.BIG is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/DATA/HUD/INGAME.BIG"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/DATA/INITSTAZ.BIG!initstay.big!cameras.viv is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/DATA/INITSTAZ.BIG!initstay.big!cameras.viv is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byt",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/DATA/INITSTAZ.BIG!initstay.big!cameras.viv"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "/DATA/LOADART.BIG is a BIG4 archive. BIG4 stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "reader": "ea_big.parse_big",
+   "sentence_class": "/DATA/LOADART.BIG is a BIG# archive. BIG# stores its integers little-endian throughout, and no disc this reader has been measured against carries one, so it is refused by name rather than read with BIGF's mixed byte order.",
+   "type": "UnsupportedArchive",
+   "where": [
+    "/DATA/LOADART.BIG"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "image 43 ('aaac') starts with block code 0x0a, which this reader does not decode; the block declares 1024x512 in 131072 byte(s), which is 0.250 byte(s) per pixel.",
+   "reader": "ea_shps.undecodable_reason",
+   "sentence_class": "image # ('..') starts with block code #x#a, which this reader does not decode; the block declares #x# in # byte(s), which is #.# byte(s) per pixel.",
+   "type": "str",
+   "where": [
+    "/DATA/STADIUM/BRAZIL.BIG!stadium.big!pitch.ssh"
+   ]
+  }
+ ],
+ "refusals_total": 294,
+ "schema": "ea_module_readiness/v2",
+ "schemas": {},
+ "seconds": 25.5,
+ "settings": {
+  "archive_depth": 2,
+  "data_only": false,
+  "deep": true,
+  "member_head_bytes": 32,
+  "mmap_sample": 48,
+  "nested_sample": null,
+  "schl_head_bytes": 65536,
+  "schl_sample": 16,
+  "shps_sample": null
+ },
+ "table_names": {},
+ "timings": {
+  "caches": 0.0,
+  "containers": 25.2
+ }
+}
