@@ -383,6 +383,12 @@ PYTHONPATH=. python3 tools/owner/ea_module_readiness.py --page <dir>/<SERIAL>.<l
 PYTHONPATH=. python3 tools/owner/ea_module_readiness.py --summary <dir>
 ```
 
+The ten `<SERIAL>.<label>.readiness.json` files this run produced sit beside the
+pages in `docs/owner/scoping/readiness/`, so `--page` re-run on any of them
+reproduces its page's every mechanical cell and a diff shows exactly what prose
+was added. They are 1.1 MB together and carry counts, names, digests and schema
+field names and widths only; a test asserts that no member payload reaches one.
+
 Ten images, 1,269 s of wall time in total, single-threaded, and never more than
 a few hundred megabytes resident — a 415 MB speech container is read through a
 memory map, never loaded.

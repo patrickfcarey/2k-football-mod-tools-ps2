@@ -1,0 +1,6014 @@
+{
+ "caches": {
+  "containers_named": 30,
+  "copies": 1356,
+  "differing": 0,
+  "files": 3,
+  "header_copies": 64,
+  "identical": 1356,
+  "member_copies": 1292,
+  "parsed": 3,
+  "per_cache": {
+   "FE.QKL": {
+    "bytes": 12012104,
+    "containers": 26,
+    "copies": 941,
+    "differing": 0,
+    "header_copies": 38,
+    "identical": 941,
+    "member_copies": 903,
+    "unresolved": 0
+   },
+   "GAME.QKL": {
+    "bytes": 13080580,
+    "containers": 25,
+    "copies": 405,
+    "differing": 0,
+    "header_copies": 25,
+    "identical": 405,
+    "member_copies": 380,
+    "unresolved": 0
+   },
+   "PL.QKL": {
+    "bytes": 682384,
+    "containers": 1,
+    "copies": 10,
+    "differing": 0,
+    "header_copies": 1,
+    "identical": 10,
+    "member_copies": 9,
+    "unresolved": 0
+   }
+  },
+  "refused": 0,
+  "unread": 0,
+  "unresolved": 0,
+  "unresolved_kinds": {}
+ },
+ "containers": {
+  "/DATA/ANIMDATA.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 800
+   },
+   "compressed": false,
+   "declared_length": 16311040,
+   "formats": {
+    "SEVT": 2,
+    "SKL1": 13,
+    "empty": 2,
+    "unclassified": 783
+   },
+   "iso_length": 16311040,
+   "layout_violations": [],
+   "members": 800,
+   "members_head_decoded": 800,
+   "members_refused": 0,
+   "size_mismatch": 0
+  },
+  "/DATA/COACFACE.DAT": {
+   "alignment": 2048,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 23
+   },
+   "compressed": false,
+   "declared_length": 534528,
+   "formats": {
+    "MMAP": 23
+   },
+   "iso_length": 534528,
+   "layout_violations": [],
+   "members": 23,
+   "members_head_decoded": 23,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "128x128": 23
+    },
+    "image0_decoded": 23,
+    "image0_refused": 0,
+    "images": 23,
+    "members": 23,
+    "parsed": 23,
+    "reasons": {},
+    "refused": 0,
+    "sampled": 23,
+    "versions": {
+     "2": 23
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/GAMEDATA.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 136
+   },
+   "compressed": false,
+   "declared_length": 14578048,
+   "formats": {
+    "MMAP": 7,
+    "SEVT": 2,
+    "TDB": 124,
+    "TEXT": 1,
+    "empty": 1,
+    "unclassified": 1
+   },
+   "iso_length": 14578048,
+   "layout_violations": [],
+   "members": 136,
+   "members_head_decoded": 136,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "128x192": 1,
+     "32x32": 1,
+     "64x32": 1
+    },
+    "image0_decoded": 3,
+    "image0_refused": 4,
+    "images": 7,
+    "members": 7,
+    "parsed": 7,
+    "reasons": {
+     "not an indexed texture -- it declares no palette and pixel layout #; only indexed textures are decoded here": 4
+    },
+    "refused": 0,
+    "sampled": 7,
+    "versions": {
+     "2": 7
+    }
+   },
+   "size_mismatch": 0,
+   "tdb": {
+    "crc_matched": 4464,
+    "crc_refused": 0,
+    "crc_sites": 4464,
+    "fields": 26908,
+    "parsed": 124,
+    "refused": 0,
+    "tables": 2108,
+    "total": 124
+   }
+  },
+  "/DATA/ICONS.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 9
+   },
+   "compressed": false,
+   "declared_length": 245952,
+   "formats": {
+    "unclassified": 9
+   },
+   "iso_length": 245952,
+   "layout_violations": [],
+   "members": 9,
+   "members_head_decoded": 9,
+   "members_refused": 0,
+   "size_mismatch": 0
+  },
+  "/DATA/LEAGUE.DAT": {
+   "alignment": 4,
+   "chain": "TERF -> DIR1 -> COMP -> DATA",
+   "codecs": {
+    "NONE (stored)": 38,
+    "RLE1": 391
+   },
+   "compressed": true,
+   "declared_length": 1874520,
+   "formats": {
+    "TDB": 391,
+    "empty": 38
+   },
+   "iso_length": 1874520,
+   "layout_violations": [],
+   "members": 429,
+   "members_head_decoded": 429,
+   "members_refused": 0,
+   "size_mismatch": 0,
+   "tdb": {
+    "crc_matched": 2416,
+    "crc_refused": 0,
+    "crc_sites": 2416,
+    "fields": 27608,
+    "parsed": 391,
+    "refused": 0,
+    "tables": 817,
+    "total": 391
+   }
+  },
+  "/DATA/LOADDATA.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 10
+   },
+   "compressed": false,
+   "declared_length": 2637312,
+   "formats": {
+    "MMAP": 10
+   },
+   "iso_length": 2637312,
+   "layout_violations": [],
+   "members": 10,
+   "members_head_decoded": 10,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "256x16": 1,
+     "640x448": 7,
+     "640x480": 2
+    },
+    "image0_decoded": 10,
+    "image0_refused": 0,
+    "images": 10,
+    "members": 10,
+    "parsed": 10,
+    "reasons": {},
+    "refused": 0,
+    "sampled": 10,
+    "versions": {
+     "2": 10
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/MOVIEDAT.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 53
+   },
+   "compressed": false,
+   "declared_length": 1414239936,
+   "formats": {
+    "MPCh": 51,
+    "SCHl": 1,
+    "empty": 1
+   },
+   "iso_length": 1414239936,
+   "layout_violations": [],
+   "members": 53,
+   "members_head_decoded": 53,
+   "members_refused": 0,
+   "schl": {
+    "channels": {
+     "1": 1
+    },
+    "codecs": {
+     "EA-XA ADPCM": 1
+    },
+    "decodable": 1,
+    "headers_parsed": 1,
+    "headers_refused": 0,
+    "members": 1,
+    "platforms": {
+     "PT": 1
+    },
+    "rates": {
+     "48000": 1
+    },
+    "streams": 1,
+    "streams_complete": 0,
+    "undecodable": 0,
+    "walked_members": 1
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/ONLINE.DAT": {
+   "alignment": 2048,
+   "chain": "TERF -> DIR1 -> COMP -> DATA",
+   "codecs": {
+    "LZH1": 1,
+    "NONE (stored)": 3
+   },
+   "compressed": true,
+   "declared_length": 475136,
+   "formats": {
+    "ELF": 1,
+    "unclassified": 3
+   },
+   "iso_length": 475136,
+   "layout_violations": [],
+   "members": 4,
+   "members_head_decoded": 4,
+   "members_refused": 0,
+   "size_mismatch": 0
+  },
+  "/DATA/PLADATA.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> COMP -> DATA",
+   "codecs": {
+    "LZH1": 2485,
+    "NONE (stored)": 58
+   },
+   "compressed": true,
+   "declared_length": 140326336,
+   "formats": {
+    "DMF": 353,
+    "MMAP": 2140,
+    "SEVT": 1,
+    "empty": 49
+   },
+   "iso_length": 140326336,
+   "layout_violations": [],
+   "members": 2543,
+   "members_head_decoded": 2543,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "128x128": 12,
+     "128x64": 1,
+     "256x128": 4,
+     "256x64": 13,
+     "64x64": 10
+    },
+    "image0_decoded": 40,
+    "image0_refused": 8,
+    "images": 302,
+    "members": 2140,
+    "parsed": 48,
+    "reasons": {
+     "a palette-only entry: it carries # alternate CLUT(s) for another image in this member and has no pixels of its own": 8
+    },
+    "refused": 0,
+    "sampled": 48,
+    "versions": {
+     "2": 48
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/PLYRFACE.DAT": {
+   "alignment": 2048,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 80
+   },
+   "compressed": false,
+   "declared_length": 1480704,
+   "formats": {
+    "MMAP": 64,
+    "unclassified": 16
+   },
+   "iso_length": 1480704,
+   "layout_violations": [],
+   "members": 80,
+   "members_head_decoded": 80,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "128x128": 48
+    },
+    "image0_decoded": 48,
+    "image0_refused": 0,
+    "images": 48,
+    "members": 64,
+    "parsed": 48,
+    "reasons": {},
+    "refused": 0,
+    "sampled": 48,
+    "versions": {
+     "2": 48
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/SOUNDDAT.DAT": {
+   "alignment": 2048,
+   "bnkl": {
+    "empty_slots": 67,
+    "members": 384,
+    "parsed": 384,
+    "refused": 0,
+    "sounds": 794
+   },
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 714
+   },
+   "compressed": false,
+   "declared_length": 328654848,
+   "formats": {
+    "BNKl": 384,
+    "SCHl": 315,
+    "TERF": 3,
+    "unclassified": 12
+   },
+   "iso_length": 328654848,
+   "layout_violations": [],
+   "members": 714,
+   "members_head_decoded": 714,
+   "members_refused": 0,
+   "schl": {
+    "channels": {
+     "2": 315
+    },
+    "codecs": {
+     "EA-XA ADPCM": 315
+    },
+    "decodable": 315,
+    "headers_parsed": 315,
+    "headers_refused": 0,
+    "members": 315,
+    "platforms": {
+     "PT": 315
+    },
+    "rates": {
+     "36000": 315
+    },
+    "streams": 16,
+    "streams_complete": 16,
+    "undecodable": 0,
+    "walked_members": 16
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/SPCHDATA.DAT": {
+   "alignment": 2048,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 7610
+   },
+   "compressed": false,
+   "declared_length": 347854848,
+   "formats": {
+    "SCHl": 7605,
+    "TERF": 1,
+    "unclassified": 4
+   },
+   "iso_length": 347854848,
+   "layout_violations": [],
+   "members": 7610,
+   "members_head_decoded": 7610,
+   "members_refused": 0,
+   "schl": {
+    "channels": {
+     "1": 7605
+    },
+    "codecs": {
+     "MicroTalk (EA speech, ~10:1)": 7605
+    },
+    "decodable": 0,
+    "headers_parsed": 7605,
+    "headers_refused": 0,
+    "members": 7605,
+    "platforms": {
+     "PT": 7605
+    },
+    "rates": {
+     "36000": 3300,
+     "None": 4305
+    },
+    "streams": 44,
+    "streams_complete": 44,
+    "undecodable": 7605,
+    "walked_members": 16
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/SPCHHDRS.DAT": {
+   "alignment": 4,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 6121
+   },
+   "compressed": false,
+   "declared_length": 211892,
+   "formats": {
+    "unclassified": 6121
+   },
+   "iso_length": 211892,
+   "layout_violations": [],
+   "members": 6121,
+   "members_head_decoded": 6121,
+   "members_refused": 0,
+   "size_mismatch": 0
+  },
+  "/DATA/STADATA.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> COMP -> DATA",
+   "codecs": {
+    "LZH1": 736,
+    "NONE (stored)": 1064
+   },
+   "compressed": true,
+   "declared_length": 27446208,
+   "formats": {
+    "DMF": 2,
+    "MMAP": 1116,
+    "SMF": 620,
+    "empty": 55,
+    "unclassified": 7
+   },
+   "iso_length": 27446208,
+   "layout_violations": [],
+   "members": 1800,
+   "members_head_decoded": 1800,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "128x128": 45,
+     "128x64": 1,
+     "256x256": 1,
+     "8x8": 1
+    },
+    "image0_decoded": 48,
+    "image0_refused": 0,
+    "images": 51,
+    "members": 1116,
+    "parsed": 48,
+    "reasons": {},
+    "refused": 0,
+    "sampled": 48,
+    "versions": {
+     "2": 48
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/STADIUMS.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> COMP -> DATA",
+   "codecs": {
+    "LZH1": 544,
+    "NONE (stored)": 110
+   },
+   "compressed": true,
+   "declared_length": 147265984,
+   "formats": {
+    "SMF": 544,
+    "empty": 110
+   },
+   "iso_length": 147265984,
+   "layout_violations": [],
+   "members": 654,
+   "members_head_decoded": 654,
+   "members_refused": 0,
+   "size_mismatch": 0
+  },
+  "/DATA/STAD_CR.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> COMP -> DATA",
+   "codecs": {
+    "LZH1": 147,
+    "NONE (stored)": 562
+   },
+   "compressed": true,
+   "declared_length": 19196096,
+   "formats": {
+    "MMAP": 14,
+    "SMF": 629,
+    "empty": 66
+   },
+   "iso_length": 19196096,
+   "layout_violations": [],
+   "members": 709,
+   "members_head_decoded": 709,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "128x128": 11,
+     "18432x251": 1,
+     "4608x90": 1,
+     "7680x169": 1
+    },
+    "image0_decoded": 14,
+    "image0_refused": 0,
+    "images": 14,
+    "members": 14,
+    "parsed": 14,
+    "reasons": {},
+    "refused": 0,
+    "sampled": 14,
+    "versions": {
+     "2": 14
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/TEMPLATE.DAT": {
+   "alignment": 2048,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 16
+   },
+   "compressed": false,
+   "declared_length": 3584000,
+   "formats": {
+    "TDB": 9,
+    "TERF": 1,
+    "empty": 6
+   },
+   "iso_length": 3584000,
+   "layout_violations": [],
+   "members": 16,
+   "members_head_decoded": 16,
+   "members_refused": 0,
+   "size_mismatch": 0,
+   "tdb": {
+    "crc_matched": 344,
+    "crc_refused": 0,
+    "crc_sites": 344,
+    "fields": 2663,
+    "parsed": 6,
+    "refused": 3,
+    "tables": 166,
+    "total": 9
+   }
+  },
+  "/DATA/UIS_ALL.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 24
+   },
+   "compressed": false,
+   "declared_length": 5598656,
+   "formats": {
+    "TERF": 22,
+    "empty": 2
+   },
+   "iso_length": 5598656,
+   "layout_violations": [],
+   "members": 24,
+   "members_head_decoded": 24,
+   "members_refused": 0,
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_CLBG.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 20
+   },
+   "compressed": false,
+   "declared_length": 621184,
+   "formats": {
+    "MMAP": 20
+   },
+   "iso_length": 621184,
+   "layout_violations": [],
+   "members": 20,
+   "members_head_decoded": 20,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "128x256": 20
+    },
+    "image0_decoded": 20,
+    "image0_refused": 0,
+    "images": 20,
+    "members": 20,
+    "parsed": 20,
+    "reasons": {},
+    "refused": 0,
+    "sampled": 20,
+    "versions": {
+     "2": 20
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_CLRS.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 3
+   },
+   "compressed": false,
+   "declared_length": 2304,
+   "formats": {
+    "unclassified": 3
+   },
+   "iso_length": 2304,
+   "layout_violations": [],
+   "members": 3,
+   "members_head_decoded": 3,
+   "members_refused": 0,
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_COCH.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> COMP -> DATA",
+   "codecs": {
+    "LZH1": 200
+   },
+   "compressed": true,
+   "declared_length": 188672,
+   "formats": {
+    "MMAP": 200
+   },
+   "iso_length": 188672,
+   "layout_violations": [],
+   "members": 200,
+   "members_head_decoded": 200,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "128x128": 1
+    },
+    "image0_decoded": 1,
+    "image0_refused": 47,
+    "images": 48,
+    "members": 200,
+    "parsed": 48,
+    "reasons": {
+     "a palette-only entry: it carries # alternate CLUT(s) for another image in this member and has no pixels of its own": 47
+    },
+    "refused": 0,
+    "sampled": 48,
+    "versions": {
+     "2": 48
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_COMN.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 62
+   },
+   "compressed": false,
+   "declared_length": 146944,
+   "formats": {
+    "MMAP": 62
+   },
+   "iso_length": 146944,
+   "layout_violations": [],
+   "members": 62,
+   "members_head_decoded": 62,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "128x128": 6,
+     "128x64": 1,
+     "16x16": 2,
+     "16x32": 1,
+     "256x32": 1,
+     "32x32": 28,
+     "40x30": 1,
+     "64x32": 3,
+     "64x64": 4,
+     "8x32": 1
+    },
+    "image0_decoded": 48,
+    "image0_refused": 0,
+    "images": 48,
+    "members": 62,
+    "parsed": 48,
+    "reasons": {},
+    "refused": 0,
+    "sampled": 48,
+    "versions": {
+     "2": 48
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_CRSC.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> HSH1 -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 23
+   },
+   "compressed": false,
+   "declared_length": 125824,
+   "formats": {
+    "MMAP": 23
+   },
+   "iso_length": 125824,
+   "layout_violations": [],
+   "members": 23,
+   "members_head_decoded": 23,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "128x128": 18,
+     "256x128": 1,
+     "256x64": 3,
+     "32x32": 1
+    },
+    "image0_decoded": 23,
+    "image0_refused": 0,
+    "images": 23,
+    "members": 23,
+    "parsed": 23,
+    "reasons": {},
+    "refused": 0,
+    "sampled": 23,
+    "versions": {
+     "2": 23
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_FE.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 76
+   },
+   "compressed": false,
+   "declared_length": 577856,
+   "formats": {
+    "MMAP": 76
+   },
+   "iso_length": 577856,
+   "layout_violations": [],
+   "members": 76,
+   "members_head_decoded": 76,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "128x128": 4,
+     "128x256": 2,
+     "128x64": 2,
+     "16x16": 4,
+     "170x128": 3,
+     "200x9": 1,
+     "256x256": 3,
+     "256x32": 3,
+     "32x32": 5,
+     "512x512": 2,
+     "64x32": 10,
+     "64x64": 5
+    },
+    "image0_decoded": 48,
+    "image0_refused": 0,
+    "images": 48,
+    "members": 76,
+    "parsed": 48,
+    "reasons": {},
+    "refused": 0,
+    "sampled": 48,
+    "versions": {
+     "2": 48
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_FLAN.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 1
+   },
+   "compressed": false,
+   "declared_length": 768,
+   "formats": {
+    "unclassified": 1
+   },
+   "iso_length": 768,
+   "layout_violations": [],
+   "members": 1,
+   "members_head_decoded": 1,
+   "members_refused": 0,
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_FLGM.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 581
+   },
+   "compressed": false,
+   "declared_length": 1449984,
+   "formats": {
+    "MMAP": 577,
+    "empty": 4
+   },
+   "iso_length": 1449984,
+   "layout_violations": [],
+   "members": 581,
+   "members_head_decoded": 581,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "128x64": 32
+    },
+    "image0_decoded": 32,
+    "image0_refused": 16,
+    "images": 48,
+    "members": 577,
+    "parsed": 48,
+    "reasons": {
+     "a palette-only entry: it carries # alternate CLUT(s) for another image in this member and has no pixels of its own": 16
+    },
+    "refused": 0,
+    "sampled": 48,
+    "versions": {
+     "2": 48
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_FONT.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 14
+   },
+   "compressed": false,
+   "declared_length": 403456,
+   "formats": {
+    "FNTS": 14
+   },
+   "iso_length": 403456,
+   "layout_violations": [],
+   "members": 14,
+   "members_head_decoded": 14,
+   "members_refused": 0,
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_HELM.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 203
+   },
+   "compressed": false,
+   "declared_length": 7874944,
+   "formats": {
+    "MMAP": 203
+   },
+   "iso_length": 7874944,
+   "layout_violations": [],
+   "members": 203,
+   "members_head_decoded": 203,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "256x128": 48
+    },
+    "image0_decoded": 48,
+    "image0_refused": 0,
+    "images": 144,
+    "members": 203,
+    "parsed": 48,
+    "reasons": {},
+    "refused": 0,
+    "sampled": 48,
+    "versions": {
+     "2": 48
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_IG.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 25
+   },
+   "compressed": false,
+   "declared_length": 66944,
+   "formats": {
+    "MMAP": 25
+   },
+   "iso_length": 66944,
+   "layout_violations": [],
+   "members": 25,
+   "members_head_decoded": 25,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "128x128": 1,
+     "128x64": 1,
+     "15x16": 1,
+     "16x16": 3,
+     "16x32": 1,
+     "256x128": 2,
+     "2x16": 1,
+     "32x16": 1,
+     "32x32": 7,
+     "64x64": 6,
+     "8x16": 1
+    },
+    "image0_decoded": 25,
+    "image0_refused": 0,
+    "images": 25,
+    "members": 25,
+    "parsed": 25,
+    "reasons": {},
+    "refused": 0,
+    "sampled": 25,
+    "versions": {
+     "2": 25
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_MAGT.DAT": {
+   "alignment": 2048,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 38
+   },
+   "compressed": false,
+   "declared_length": 724992,
+   "formats": {
+    "MMAP": 38
+   },
+   "iso_length": 724992,
+   "layout_violations": [],
+   "members": 38,
+   "members_head_decoded": 38,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "128x256": 38
+    },
+    "image0_decoded": 38,
+    "image0_refused": 0,
+    "images": 38,
+    "members": 38,
+    "parsed": 38,
+    "reasons": {},
+    "refused": 0,
+    "sampled": 38,
+    "versions": {
+     "2": 38
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_MCFL.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 368
+   },
+   "compressed": false,
+   "declared_length": 12278976,
+   "formats": {
+    "MMAP": 368
+   },
+   "iso_length": 12278976,
+   "layout_violations": [],
+   "members": 368,
+   "members_head_decoded": 368,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "528x256": 48
+    },
+    "image0_decoded": 48,
+    "image0_refused": 0,
+    "images": 48,
+    "members": 368,
+    "parsed": 48,
+    "reasons": {},
+    "refused": 0,
+    "sampled": 48,
+    "versions": {
+     "2": 48
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_MODL.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 98
+   },
+   "compressed": false,
+   "declared_length": 63211136,
+   "formats": {
+    "DMF": 98
+   },
+   "iso_length": 63211136,
+   "layout_violations": [],
+   "members": 98,
+   "members_head_decoded": 98,
+   "members_refused": 0,
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_PDST.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 68
+   },
+   "compressed": false,
+   "declared_length": 34816,
+   "formats": {
+    "MMAP": 67,
+    "empty": 1
+   },
+   "iso_length": 34816,
+   "layout_violations": [],
+   "members": 68,
+   "members_head_decoded": 68,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "32x32": 48
+    },
+    "image0_decoded": 48,
+    "image0_refused": 0,
+    "images": 48,
+    "members": 67,
+    "parsed": 48,
+    "reasons": {},
+    "refused": 0,
+    "sampled": 48,
+    "versions": {
+     "2": 48
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_POPS.DAT": {
+   "alignment": 4,
+   "chain": "TERF -> DIR1 -> COMP -> DATA",
+   "codecs": {
+    "LZH1": 52
+   },
+   "compressed": true,
+   "declared_length": 527484,
+   "formats": {
+    "unclassified": 52
+   },
+   "iso_length": 527484,
+   "layout_violations": [],
+   "members": 52,
+   "members_head_decoded": 52,
+   "members_refused": 0,
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_RCIC.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 8
+   },
+   "compressed": false,
+   "declared_length": 35456,
+   "formats": {
+    "MMAP": 8
+   },
+   "iso_length": 35456,
+   "layout_violations": [],
+   "members": 8,
+   "members_head_decoded": 8,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "64x64": 8
+    },
+    "image0_decoded": 8,
+    "image0_refused": 0,
+    "images": 8,
+    "members": 8,
+    "parsed": 8,
+    "reasons": {},
+    "refused": 0,
+    "sampled": 8,
+    "versions": {
+     "2": 8
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_SMAP.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 51
+   },
+   "compressed": false,
+   "declared_length": 99584,
+   "formats": {
+    "MMAP": 51
+   },
+   "iso_length": 99584,
+   "layout_violations": [],
+   "members": 51,
+   "members_head_decoded": 51,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "128x128": 3,
+     "128x64": 10,
+     "16x16": 2,
+     "16x32": 3,
+     "32x32": 1,
+     "32x64": 2,
+     "64x128": 4,
+     "64x32": 1,
+     "64x64": 21,
+     "8x8": 1
+    },
+    "image0_decoded": 48,
+    "image0_refused": 0,
+    "images": 48,
+    "members": 51,
+    "parsed": 48,
+    "reasons": {},
+    "refused": 0,
+    "sampled": 48,
+    "versions": {
+     "2": 48
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_STAD.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 224
+   },
+   "compressed": false,
+   "declared_length": 3126528,
+   "formats": {
+    "MMAP": 224
+   },
+   "iso_length": 3126528,
+   "layout_violations": [],
+   "members": 224,
+   "members_head_decoded": 224,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "128x128": 48
+    },
+    "image0_decoded": 48,
+    "image0_refused": 0,
+    "images": 48,
+    "members": 224,
+    "parsed": 48,
+    "reasons": {},
+    "refused": 0,
+    "sampled": 48,
+    "versions": {
+     "2": 48
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_TMLO.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 390
+   },
+   "compressed": false,
+   "declared_length": 1052032,
+   "formats": {
+    "MMAP": 390
+   },
+   "iso_length": 1052032,
+   "layout_violations": [],
+   "members": 390,
+   "members_head_decoded": 390,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "128x128": 48
+    },
+    "image0_decoded": 48,
+    "image0_refused": 0,
+    "images": 48,
+    "members": 390,
+    "parsed": 48,
+    "reasons": {},
+    "refused": 0,
+    "sampled": 48,
+    "versions": {
+     "2": 48
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_TMSS.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 1170
+   },
+   "compressed": false,
+   "declared_length": 29474816,
+   "formats": {
+    "MMAP": 1170
+   },
+   "iso_length": 29474816,
+   "layout_violations": [],
+   "members": 1170,
+   "members_head_decoded": 1170,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "256x128": 48
+    },
+    "image0_decoded": 48,
+    "image0_refused": 0,
+    "images": 48,
+    "members": 1170,
+    "parsed": 48,
+    "reasons": {},
+    "refused": 0,
+    "sampled": 48,
+    "versions": {
+     "2": 48
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_TRPH.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 103
+   },
+   "compressed": false,
+   "declared_length": 824448,
+   "formats": {
+    "MMAP": 103
+   },
+   "iso_length": 824448,
+   "layout_violations": [],
+   "members": 103,
+   "members_head_decoded": 103,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "128x128": 48
+    },
+    "image0_decoded": 48,
+    "image0_refused": 0,
+    "images": 48,
+    "members": 103,
+    "parsed": 48,
+    "reasons": {},
+    "refused": 0,
+    "sampled": 48,
+    "versions": {
+     "2": 48
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_UGBG.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 20
+   },
+   "compressed": false,
+   "declared_length": 67776,
+   "formats": {
+    "MMAP": 20
+   },
+   "iso_length": 67776,
+   "layout_violations": [],
+   "members": 20,
+   "members_head_decoded": 20,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "128x128": 20
+    },
+    "image0_decoded": 20,
+    "image0_refused": 0,
+    "images": 20,
+    "members": 20,
+    "parsed": 20,
+    "reasons": {},
+    "refused": 0,
+    "sampled": 20,
+    "versions": {
+     "2": 20
+    }
+   },
+   "size_mismatch": 0
+  }
+ },
+ "counts": {
+  "alignments": {
+   "2048": 7,
+   "4": 3,
+   "64": 31
+  },
+  "bnkl": {
+   "refused": 0,
+   "sounds": 794,
+   "total": 384,
+   "works": 384
+  },
+  "caches": {
+   "copies": 1356,
+   "differing": 0,
+   "identical": 1356,
+   "refused": 0,
+   "total": 3,
+   "unresolved": 0,
+   "works": 3
+  },
+  "chains": {
+   "TERF -> DIR1 -> COMP -> DATA": 8,
+   "TERF -> DIR1 -> DATA": 32,
+   "TERF -> HSH1 -> DIR1 -> DATA": 1
+  },
+  "codecs": {
+   "LZH1": 4165,
+   "NONE (stored)": 20977,
+   "RLE1": 391
+  },
+  "containers": {
+   "refused": 0,
+   "total": 41,
+   "works": 41
+  },
+  "crc_sites": {
+   "databases_refused": 0,
+   "refused": 0,
+   "total": 7224,
+   "works": 7224
+  },
+  "formats": {
+   "BNKl": 384,
+   "DMF": 453,
+   "ELF": 1,
+   "FNTS": 14,
+   "MMAP": 6999,
+   "MPCh": 51,
+   "SCHl": 7921,
+   "SEVT": 5,
+   "SKL1": 13,
+   "SMF": 1793,
+   "TDB": 524,
+   "TERF": 27,
+   "TEXT": 1,
+   "empty": 335,
+   "unclassified": 7012
+  },
+  "members": {
+   "refused": 0,
+   "total": 25533,
+   "works": 25533
+  },
+  "mmap": {
+   "dimensions": {
+    "128x128": 336,
+    "128x256": 60,
+    "128x64": 48,
+    "16x16": 11,
+    "16x32": 5,
+    "256x128": 104,
+    "256x64": 17,
+    "32x32": 91,
+    "528x256": 48,
+    "640x448": 7,
+    "64x32": 15,
+    "64x64": 54
+   },
+   "images_in_sample": 1261,
+   "members": 6999,
+   "members_refused": 0,
+   "parsed": 908,
+   "reasons": {
+    "a palette-only entry: it carries # alternate CLUT(s) for another image in this member and has no pixels of its own": 71,
+    "not an indexed texture -- it declares no palette and pixel layout #; only indexed textures are decoded here": 4
+   },
+   "refused": 75,
+   "sampled": 908,
+   "total": 908,
+   "works": 833
+  },
+  "schl": {
+   "codecs": {
+    "EA-XA ADPCM": 316,
+    "MicroTalk (EA speech, ~10:1)": 7605
+   },
+   "headers_parsed": 7921,
+   "headers_refused": 0,
+   "platforms": {
+    "PT": 7921
+   },
+   "refused": 7605,
+   "streams_complete": 60,
+   "streams_in_sample": 61,
+   "total": 7921,
+   "undecodable": 7605,
+   "walked_members": 33,
+   "works": 316
+  },
+  "tdb": {
+   "bare_files": 1,
+   "bare_parsed": 0,
+   "fields": 57179,
+   "refused": 4,
+   "tables": 3091,
+   "total": 525,
+   "works": 521
+  }
+ },
+ "data_files": 45,
+ "databases": {
+  "/DATA/STRMDATA.DB": {
+   "crc_matched": 0,
+   "crc_refused": 0,
+   "crc_sites": 0,
+   "fields": 0,
+   "parsed": 0,
+   "refused": 1,
+   "tables": 0,
+   "total": 1
+  }
+ },
+ "files": 110,
+ "generated_utc": "2026-09-06T00:53:33Z",
+ "identity": {
+  "boot_file": "SLUS_207.19",
+  "boot_segments": 1,
+  "boot_sha256": "244c2dcfaa63afb5b9c30b135dbe4893cee86a91ee72669cee0dd19ec2b6428d",
+  "boot_size": 4391532,
+  "pcsx2_crc": "BAE70857",
+  "serial": "SLUS-20719"
+ },
+ "image": {
+  "directories": 6,
+  "files": 110,
+  "layout": "2048-byte logical sectors",
+  "name": "NCAA Football 2004 (USA).iso",
+  "sector_size": 2048,
+  "size": 2637266944,
+  "volume_id": "NCAA2004"
+ },
+ "kinds": {
+  "ELF": 48,
+  "ICON.SYS": 2,
+  "IOPRP": 3,
+  "PS2-ICO": 2,
+  "QL01": 3,
+  "SCEI-HD": 1,
+  "TDB": 1,
+  "TERF": 41,
+  "TEXT": 3,
+  "other:00000000": 1,
+  "other:00000100": 2,
+  "other:ffffff00": 1,
+  "zero-head": 2
+ },
+ "label": "NCAA Football 2004 (USA)",
+ "readers": {
+  "containers": "e3233c4e55df1abf",
+  "ea_schl": "302185d06af22ce9",
+  "ea_tdb": "849ba5e6a81805d1",
+  "ea_terf": "8140f0e67d0664eb",
+  "mmap_art": "7456e7b2788ba367",
+  "ps2_iso9660": "a1baa176c4e28ea8"
+ },
+ "refusals": [
+  {
+   "count": 71,
+   "example": "a palette-only entry: it carries 1 alternate CLUT(s) for another image in this member and has no pixels of its own",
+   "reader": "mmap_art.undecodable_reason",
+   "sentence_class": "a palette-only entry: it carries # alternate CLUT(s) for another image in this member and has no pixels of its own",
+   "type": "str",
+   "where": [
+    "PLADATA.DAT:877",
+    "PLADATA.DAT:921",
+    "PLADATA.DAT:966",
+    "PLADATA.DAT:1010",
+    "PLADATA.DAT:1623",
+    "PLADATA.DAT:1668"
+   ]
+  },
+  {
+   "count": 4,
+   "example": "not an indexed texture -- it declares no palette and pixel layout 4; only indexed textures are decoded here",
+   "reader": "mmap_art.undecodable_reason",
+   "sentence_class": "not an indexed texture -- it declares no palette and pixel layout #; only indexed textures are decoded here",
+   "type": "str",
+   "where": [
+    "GAMEDATA.DAT:129",
+    "GAMEDATA.DAT:130",
+    "GAMEDATA.DAT:131",
+    "GAMEDATA.DAT:134"
+   ]
+  },
+  {
+   "count": 2,
+   "example": "field SPFN of table RCFN covers bits 0..80 of a record that is 8 byte(s) long; the field directory is being read at the wrong offset or the file is damaged.",
+   "reader": "ea_tdb.parse_tdb",
+   "sentence_class": "field SPFN of table RCFN covers bits #..# of a record that is # byte(s) long; the field directory is being read at the wrong offset or the file is damaged.",
+   "type": "TdbError",
+   "where": [
+    "TEMPLATE.DAT:3",
+    "TEMPLATE.DAT:13"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "field ASNA of table ANIN covers bits 0..400 of a record that is 8 byte(s) long; the field directory is being read at the wrong offset or the file is damaged.",
+   "reader": "ea_tdb.parse_tdb",
+   "sentence_class": "field ASNA of table ANIN covers bits #..# of a record that is # byte(s) long; the field directory is being read at the wrong offset or the file is damaged.",
+   "type": "TdbError",
+   "where": [
+    "/DATA/STRMDATA.DB"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "field SEDP of table CSDC covers bits 0..800 of a record that is 8 byte(s) long; the field directory is being read at the wrong offset or the file is damaged.",
+   "reader": "ea_tdb.parse_tdb",
+   "sentence_class": "field SEDP of table CSDC covers bits #..# of a record that is # byte(s) long; the field directory is being read at the wrong offset or the file is damaged.",
+   "type": "TdbError",
+   "where": [
+    "TEMPLATE.DAT:12"
+   ]
+  }
+ ],
+ "refusals_total": 79,
+ "schema": "ea_module_readiness/v1",
+ "schemas": {
+  "COCH": {
+   "09d4915caedf998e": {
+    "count": 1,
+    "field_count": 42,
+    "fields": [
+     [
+      "CDTA",
+      "UINT",
+      8,
+      256
+     ],
+     [
+      "COTA",
+      "UINT",
+      8,
+      264
+     ],
+     [
+      "CFRC",
+      "UINT",
+      1,
+      808
+     ],
+     [
+      "CYCD",
+      "UINT",
+      7,
+      809
+     ],
+     [
+      "CCID",
+      "UINT",
+      16,
+      0
+     ],
+     [
+      "CDID",
+      "UINT",
+      16,
+      16
+     ],
+     [
+      "TGID",
+      "UINT",
+      9,
+      816
+     ],
+     [
+      "CPID",
+      "UINT",
+      8,
+      272
+     ],
+     [
+      "CLTF",
+      "UINT",
+      16,
+      32
+     ],
+     [
+      "CSKI",
+      "UINT",
+      3,
+      825
+     ],
+     [
+      "CCWI",
+      "UINT",
+      16,
+      48
+     ],
+     [
+      "CSBL",
+      "UINT",
+      16,
+      64
+     ],
+     [
+      "CBLL",
+      "UINT",
+      7,
+      828
+     ],
+     [
+      "CCPL",
+      "UINT",
+      16,
+      80
+     ],
+     [
+      "CCPM",
+      "UINT",
+      16,
+      96
+     ],
+     [
+      "CLFN",
+      "STRING",
+      240,
+      280
+     ],
+     [
+      "CLLN",
+      "STRING",
+      240,
+      520
+     ],
+     [
+      "CTWN",
+      "UINT",
+      16,
+      112
+     ],
+     [
+      "CCLO",
+      "UINT",
+      16,
+      128
+     ],
+     [
+      "CSXP",
+      "UINT",
+      16,
+      144
+     ],
+     [
+      "CHAR",
+      "UINT",
+      3,
+      835
+     ],
+     [
+      "CDTR",
+      "UINT",
+      8,
+      760
+     ],
+     [
+      "CLTR",
+      "UINT",
+      16,
+      160
+     ],
+     [
+      "COTR",
+      "UINT",
+      8,
+      768
+     ],
+     [
+      "CCYR",
+      "UINT",
+      4,
+      838
+     ],
+     [
+      "CTYR",
+      "UINT",
+      7,
+      842
+     ],
+     [
+      "COFS",
+      "UINT",
+      3,
+      849
+     ],
+     [
+      "CTLS",
+      "UINT",
+      16,
+      176
+     ],
+     [
+      "CDTS",
+      "UINT",
+      8,
+      776
+     ],
+     [
+      "COTS",
+      "UINT",
+      8,
+      784
+     ],
+     [
+      "CCWS",
+      "UINT",
+      16,
+      192
+     ],
+     [
+      "COHT",
+      "UINT",
+      3,
+      852
+     ],
+     [
+      "CSBW",
+      "UINT",
+      16,
+      208
+     ],
+     [
+      "CBLW",
+      "UINT",
+      7,
+      855
+     ],
+     [
+      "CCPW",
+      "UINT",
+      16,
+      224
+     ],
+     [
+      "CCTW",
+      "UINT",
+      7,
+      862
+     ],
+     [
+      "CNTW",
+      "UINT",
+      7,
+      869
+     ],
+     [
+      "CFEX",
+      "UINT",
+      16,
+      240
+     ],
+     [
+      "COTY",
+      "UINT",
+      8,
+      792
+     ],
+     [
+      "CBSZ",
+      "UINT",
+      1,
+      876
+     ],
+     [
+      "CThg",
+      "SINT",
+      8,
+      800
+     ],
+     [
+      "CTgw",
+      "UINT",
+      1,
+      877
+     ]
+    ],
+    "first_seen": "LEAGUE.DAT:0",
+    "record_bits": 895,
+    "record_bytes": 112
+   },
+   "1e3e5c80a415c5cc": {
+    "count": 1,
+    "field_count": 79,
+    "fields": [
+     [
+      "CT05",
+      "UINT",
+      2,
+      1000
+     ],
+     [
+      "CT15",
+      "UINT",
+      2,
+      1002
+     ],
+     [
+      "CT25",
+      "UINT",
+      2,
+      1004
+     ],
+     [
+      "CDTA",
+      "UINT",
+      8,
+      368
+     ],
+     [
+      "COTA",
+      "UINT",
+      8,
+      376
+     ],
+     [
+      "CCBB",
+      "UINT",
+      4,
+      1006
+     ],
+     [
+      "CFRC",
+      "UINT",
+      1,
+      1010
+     ],
+     [
+      "CFUC",
+      "UINT",
+      1,
+      1011
+     ],
+     [
+      "CYCD",
+      "UINT",
+      7,
+      1012
+     ],
+     [
+      "CCID",
+      "UINT",
+      16,
+      32
+     ],
+     [
+      "CDID",
+      "UINT",
+      16,
+      48
+     ],
+     [
+      "TGID",
+      "UINT",
+      9,
+      1019
+     ],
+     [
+      "CPID",
+      "UINT",
+      8,
+      384
+     ],
+     [
+      "PTID",
+      "UINT",
+      9,
+      1028
+     ],
+     [
+      "CPRE",
+      "SINT",
+      8,
+      392
+     ],
+     [
+      "CCTF",
+      "UINT",
+      1,
+      1037
+     ],
+     [
+      "CLTF",
+      "UINT",
+      16,
+      64
+     ],
+     [
+      "COCI",
+      "UINT",
+      9,
+      1038
+     ],
+     [
+      "CSKI",
+      "UINT",
+      3,
+      1047
+     ],
+     [
+      "CCWI",
+      "UINT",
+      16,
+      80
+     ],
+     [
+      "CSWI",
+      "UINT",
+      16,
+      96
+     ],
+     [
+      "C25L",
+      "UINT",
+      8,
+      400
+     ],
+     [
+      "CBLL",
+      "UINT",
+      7,
+      1050
+     ],
+     [
+      "CCOL",
+      "UINT",
+      8,
+      408
+     ],
+     [
+      "CCRL",
+      "UINT",
+      8,
+      416
+     ],
+     [
+      "CNTL",
+      "UINT",
+      6,
+      1057
+     ],
+     [
+      "CRTL",
+      "UINT",
+      6,
+      1063
+     ],
+     [
+      "CTTL",
+      "UINT",
+      16,
+      112
+     ],
+     [
+      "CRVL",
+      "UINT",
+      16,
+      128
+     ],
+     [
+      "CLFN",
+      "STRING",
+      240,
+      424
+     ],
+     [
+      "CLLN",
+      "STRING",
+      240,
+      664
+     ],
+     [
+      "CCRN",
+      "UINT",
+      1,
+      1069
+     ],
+     [
+      "CCWN",
+      "UINT",
+      8,
+      904
+     ],
+     [
+      "CTWN",
+      "UINT",
+      16,
+      144
+     ],
+     [
+      "CCJO",
+      "UINT",
+      1,
+      1070
+     ],
+     [
+      "CCLO",
+      "UINT",
+      16,
+      160
+     ],
+     [
+      "CSLO",
+      "UINT",
+      16,
+      176
+     ],
+     [
+      "CCPO",
+      "UINT",
+      8,
+      912
+     ],
+     [
+      "CTOP",
+      "UINT",
+      3,
+      1071
+     ],
+     [
+      "CCTP",
+      "UINT",
+      1,
+      1074
+     ],
+     [
+      "CSXP",
+      "UINT",
+      16,
+      192
+     ],
+     [
+      "CHAR",
+      "UINT",
+      3,
+      1075
+     ],
+     [
+      "CDTR",
+      "UINT",
+      8,
+      920
+     ],
+     [
+      "CLTR",
+      "UINT",
+      16,
+      208
+     ],
+     [
+      "COTR",
+      "UINT",
+      8,
+      928
+     ],
+     [
+      "CCYR",
+      "UINT",
+      4,
+      1078
+     ],
+     [
+      "CTYR",
+      "UINT",
+      7,
+      1082
+     ],
+     [
+      "COFS",
+      "UINT",
+      3,
+      1089
+     ],
+     [
+      "CCLS",
+      "UINT",
+      16,
+      224
+     ],
+     [
+      "CSLS",
+      "UINT",
+      16,
+      240
+     ],
+     [
+      "CTLS",
+      "UINT",
+      16,
+      256
+     ],
+     [
+      "CDTS",
+      "UINT",
+      8,
+      936
+     ],
+     [
+      "COTS",
+      "UINT",
+      8,
+      944
+     ],
+     [
+      "CCWS",
+      "UINT",
+      16,
+      272
+     ],
+     [
+      "CRWS",
+      "SINT",
+      8,
+      952
+     ],
+     [
+      "CSWS",
+      "SINT",
+      16,
+      288
+     ],
+     [
+      "CCCT",
+      "UINT",
+      4,
+      1092
+     ],
+     [
+      "COCT",
+      "UINT",
+      8,
+      960
+     ],
+     [
+      "COHT",
+      "UINT",
+      3,
+      1096
+     ],
+     [
+      "CCNT",
+      "UINT",
+      4,
+      1099
+     ],
+     [
+      "CWST",
+      "SINT",
+      16,
+      304
+     ],
+     [
+      "C25W",
+      "UINT",
+      8,
+      968
+     ],
+     [
+      "CBLW",
+      "UINT",
+      7,
+      1103
+     ],
+     [
+      "CCRW",
+      "UINT",
+      8,
+      976
+     ],
+     [
+      "CCSW",
+      "UINT",
+      4,
+      1110
+     ],
+     [
+      "CCTW",
+      "UINT",
+      7,
+      1114
+     ],
+     [
+      "CNTW",
+      "UINT",
+      7,
+      1121
+     ],
+     [
+      "CRTW",
+      "UINT",
+      6,
+      1128
+     ],
+     [
+      "CTTW",
+      "UINT",
+      16,
+      320
+     ],
+     [
+      "CNVW",
+      "UINT",
+      6,
+      1134
+     ],
+     [
+      "CRVW",
+      "UINT",
+      16,
+      336
+     ],
+     [
+      "CCEX",
+      "UINT",
+      3,
+      1140
+     ],
+     [
+      "CFEX",
+      "UINT",
+      16,
+      352
+     ],
+     [
+      "CCFY",
+      "UINT",
+      6,
+      1143
+     ],
+     [
+      "COTY",
+      "UINT",
+      8,
+      984
+     ],
+     [
+      "CBSZ",
+      "UINT",
+      1,
+      1149
+     ],
+     [
+      "USid",
+      "UINT",
+      32,
+      0
+     ],
+     [
+      "CThg",
+      "SINT",
+      8,
+      992
+     ],
+     [
+      "CTgw",
+      "UINT",
+      1,
+      1150
+     ]
+    ],
+    "first_seen": "TEMPLATE.DAT:1",
+    "record_bits": 1151,
+    "record_bytes": 144
+   },
+   "9977c2a5e6cda4b9": {
+    "count": 1,
+    "field_count": 22,
+    "fields": [
+     [
+      "CDTA",
+      "UINT",
+      8,
+      64
+     ],
+     [
+      "COTA",
+      "UINT",
+      8,
+      72
+     ],
+     [
+      "CFUC",
+      "UINT",
+      1,
+      608
+     ],
+     [
+      "CCID",
+      "UINT",
+      16,
+      0
+     ],
+     [
+      "CDID",
+      "UINT",
+      16,
+      16
+     ],
+     [
+      "TGID",
+      "UINT",
+      9,
+      609
+     ],
+     [
+      "CPID",
+      "UINT",
+      8,
+      80
+     ],
+     [
+      "CSKI",
+      "UINT",
+      3,
+      618
+     ],
+     [
+      "CLFN",
+      "STRING",
+      240,
+      88
+     ],
+     [
+      "CLLN",
+      "STRING",
+      240,
+      328
+     ],
+     [
+      "CSXP",
+      "UINT",
+      16,
+      32
+     ],
+     [
+      "CHAR",
+      "UINT",
+      3,
+      621
+     ],
+     [
+      "CDTR",
+      "UINT",
+      8,
+      568
+     ],
+     [
+      "COTR",
+      "UINT",
+      8,
+      576
+     ],
+     [
+      "COFS",
+      "UINT",
+      3,
+      624
+     ],
+     [
+      "CDTS",
+      "UINT",
+      8,
+      584
+     ],
+     [
+      "COTS",
+      "UINT",
+      8,
+      592
+     ],
+     [
+      "COHT",
+      "UINT",
+      3,
+      627
+     ],
+     [
+      "CFEX",
+      "UINT",
+      16,
+      48
+     ],
+     [
+      "CBSZ",
+      "UINT",
+      1,
+      630
+     ],
+     [
+      "CThg",
+      "SINT",
+      8,
+      600
+     ],
+     [
+      "CTgw",
+      "UINT",
+      1,
+      631
+     ]
+    ],
+    "first_seen": "TEMPLATE.DAT:0",
+    "record_bits": 639,
+    "record_bytes": 80
+   }
+  },
+  "DCHT": {
+   "2915b769dc08fc8f": {
+    "count": 394,
+    "field_count": 4,
+    "fields": [
+     [
+      "PGID",
+      "UINT",
+      14,
+      0
+     ],
+     [
+      "TGID",
+      "UINT",
+      9,
+      14
+     ],
+     [
+      "PPOS",
+      "UINT",
+      5,
+      23
+     ],
+     [
+      "ddep",
+      "UINT",
+      3,
+      28
+     ]
+    ],
+    "first_seen": "LEAGUE.DAT:0",
+    "record_bits": 31,
+    "record_bytes": 4
+   }
+  },
+  "FORM": {
+   "6043773a5b2d97f4": {
+    "count": 124,
+    "field_count": 3,
+    "fields": [
+     [
+      "FORM",
+      "UINT",
+      8,
+      0
+     ],
+     [
+      "FTYP",
+      "UINT",
+      8,
+      8
+     ],
+     [
+      "name",
+      "STRING",
+      192,
+      16
+     ]
+    ],
+    "first_seen": "GAMEDATA.DAT:3",
+    "record_bits": 223,
+    "record_bytes": 28
+   }
+  },
+  "INJY": {
+   "225263b550949cb1": {
+    "count": 1,
+    "field_count": 4,
+    "fields": [
+     [
+      "PGID",
+      "UINT",
+      14,
+      24
+     ],
+     [
+      "INJL",
+      "UINT",
+      8,
+      0
+     ],
+     [
+      "SEWN",
+      "UINT",
+      8,
+      8
+     ],
+     [
+      "INJT",
+      "UINT",
+      8,
+      16
+     ]
+    ],
+    "first_seen": "TEMPLATE.DAT:1",
+    "record_bits": 63,
+    "record_bytes": 8
+   }
+  },
+  "PBFM": {
+   "21914c0eaaedb9c5": {
+    "count": 124,
+    "field_count": 5,
+    "fields": [
+     [
+      "PBFM",
+      "UINT",
+      16,
+      32
+     ],
+     [
+      "FTYP",
+      "UINT",
+      8,
+      48
+     ],
+     [
+      "ord_",
+      "UINT",
+      8,
+      56
+     ],
+     [
+      "grid",
+      "UINT",
+      32,
+      0
+     ],
+     [
+      "name",
+      "STRING",
+      400,
+      64
+     ]
+    ],
+    "first_seen": "GAMEDATA.DAT:3",
+    "record_bits": 479,
+    "record_bytes": 60
+   }
+  },
+  "PBPL": {
+   "7fca37e59149f282": {
+    "count": 124,
+    "field_count": 4,
+    "fields": [
+     [
+      "PBPL",
+      "UINT",
+      24,
+      32
+     ],
+     [
+      "PLYL",
+      "UINT",
+      16,
+      0
+     ],
+     [
+      "PBST",
+      "UINT",
+      16,
+      16
+     ],
+     [
+      "ord_",
+      "UINT",
+      8,
+      56
+     ]
+    ],
+    "first_seen": "GAMEDATA.DAT:3",
+    "record_bits": 95,
+    "record_bytes": 12
+   }
+  },
+  "PBST": {
+   "7b3aab6bae632b6d": {
+    "count": 124,
+    "field_count": 27,
+    "fields": [
+     [
+      "ax10",
+      "UINT",
+      16,
+      0
+     ],
+     [
+      "ay10",
+      "UINT",
+      8,
+      208
+     ],
+     [
+      "SETL",
+      "UINT",
+      8,
+      216
+     ],
+     [
+      "PBFM",
+      "UINT",
+      16,
+      16
+     ],
+     [
+      "PBST",
+      "UINT",
+      16,
+      32
+     ],
+     [
+      "ax0_",
+      "UINT",
+      16,
+      48
+     ],
+     [
+      "ay0_",
+      "UINT",
+      8,
+      224
+     ],
+     [
+      "ax1_",
+      "UINT",
+      16,
+      64
+     ],
+     [
+      "ay1_",
+      "UINT",
+      8,
+      232
+     ],
+     [
+      "ax2_",
+      "UINT",
+      16,
+      80
+     ],
+     [
+      "ay2_",
+      "UINT",
+      8,
+      240
+     ],
+     [
+      "ax3_",
+      "UINT",
+      16,
+      96
+     ],
+     [
+      "ay3_",
+      "UINT",
+      8,
+      248
+     ],
+     [
+      "ax4_",
+      "UINT",
+      16,
+      112
+     ],
+     [
+      "ay4_",
+      "UINT",
+      8,
+      256
+     ],
+     [
+      "ax5_",
+      "UINT",
+      16,
+      128
+     ],
+     [
+      "ay5_",
+      "UINT",
+      8,
+      264
+     ],
+     [
+      "ax6_",
+      "UINT",
+      16,
+      144
+     ],
+     [
+      "ay6_",
+      "UINT",
+      8,
+      272
+     ],
+     [
+      "ax7_",
+      "UINT",
+      16,
+      160
+     ],
+     [
+      "ay7_",
+      "UINT",
+      8,
+      280
+     ],
+     [
+      "ax8_",
+      "UINT",
+      16,
+      176
+     ],
+     [
+      "ay8_",
+      "UINT",
+      8,
+      288
+     ],
+     [
+      "ax9_",
+      "UINT",
+      16,
+      192
+     ],
+     [
+      "ay9_",
+      "UINT",
+      8,
+      296
+     ],
+     [
+      "ord_",
+      "UINT",
+      8,
+      304
+     ],
+     [
+      "name",
+      "STRING",
+      192,
+      312
+     ]
+    ],
+    "first_seen": "GAMEDATA.DAT:3",
+    "record_bits": 511,
+    "record_bytes": 64
+   }
+  },
+  "PLAY": {
+   "0a552eaa3a5e2185": {
+    "count": 1,
+    "field_count": 40,
+    "fields": [
+     [
+      "PFNA",
+      "STRING",
+      80,
+      0
+     ],
+     [
+      "PLNA",
+      "STRING",
+      104,
+      80
+     ],
+     [
+      "PLEB",
+      "UINT",
+      4,
+      192
+     ],
+     [
+      "PREB",
+      "UINT",
+      4,
+      196
+     ],
+     [
+      "PHED",
+      "UINT",
+      4,
+      200
+     ],
+     [
+      "PGID",
+      "UINT",
+      14,
+      204
+     ],
+     [
+      "TGID",
+      "UINT",
+      9,
+      218
+     ],
+     [
+      "PBRE",
+      "UINT",
+      1,
+      227
+     ],
+     [
+      "PEYE",
+      "UINT",
+      1,
+      228
+     ],
+     [
+      "PLMG",
+      "UINT",
+      1,
+      229
+     ],
+     [
+      "PFSH",
+      "SINT",
+      4,
+      230
+     ],
+     [
+      "PLSH",
+      "UINT",
+      2,
+      234
+     ],
+     [
+      "PMSH",
+      "SINT",
+      4,
+      236
+     ],
+     [
+      "PRSH",
+      "UINT",
+      2,
+      240
+     ],
+     [
+      "PSSH",
+      "SINT",
+      4,
+      242
+     ],
+     [
+      "PSKI",
+      "UINT",
+      3,
+      246
+     ],
+     [
+      "PNEK",
+      "UINT",
+      3,
+      249
+     ],
+     [
+      "PFMK",
+      "UINT",
+      4,
+      252
+     ],
+     [
+      "PHCL",
+      "UINT",
+      3,
+      256
+     ],
+     [
+      "PFGM",
+      "UINT",
+      4,
+      259
+     ],
+     [
+      "PHAN",
+      "UINT",
+      1,
+      263
+     ],
+     [
+      "PJEN",
+      "UINT",
+      7,
+      264
+     ],
+     [
+      "PTEN",
+      "UINT",
+      7,
+      271
+     ],
+     [
+      "PLHN",
+      "UINT",
+      3,
+      278
+     ],
+     [
+      "PRHN",
+      "UINT",
+      3,
+      281
+     ],
+     [
+      "PSLO",
+      "UINT",
+      2,
+      284
+     ],
+     [
+      "PTTO",
+      "UINT",
+      2,
+      286
+     ],
+     [
+      "PLFP",
+      "UINT",
+      1,
+      288
+     ],
+     [
+      "PFMP",
+      "UINT",
+      6,
+      289
+     ],
+     [
+      "PIMP",
+      "UINT",
+      6,
+      295
+     ],
+     [
+      "PVIS",
+      "UINT",
+      2,
+      301
+     ],
+     [
+      "PFJS",
+      "SINT",
+      4,
+      303
+     ],
+     [
+      "PPOS",
+      "UINT",
+      5,
+      307
+     ],
+     [
+      "PMUS",
+      "UINT",
+      2,
+      312
+     ],
+     [
+      "PLWS",
+      "UINT",
+      3,
+      314
+     ],
+     [
+      "PRWS",
+      "UINT",
+      3,
+      317
+     ],
+     [
+      "PHGT",
+      "UINT",
+      7,
+      320
+     ],
+     [
+      "PWGT",
+      "UINT",
+      8,
+      184
+     ],
+     [
+      "PSLT",
+      "UINT",
+      2,
+      327
+     ],
+     [
+      "PRST",
+      "UINT",
+      6,
+      329
+     ]
+    ],
+    "first_seen": "TEMPLATE.DAT:10",
+    "record_bits": 351,
+    "record_bytes": 44
+   },
+   "341d005a15ad9d56": {
+    "count": 1,
+    "field_count": 66,
+    "fields": [
+     [
+      "PTHA",
+      "UINT",
+      6,
+      208
+     ],
+     [
+      "PFNA",
+      "STRING",
+      80,
+      0
+     ],
+     [
+      "PLNA",
+      "STRING",
+      104,
+      80
+     ],
+     [
+      "PSTA",
+      "UINT",
+      6,
+      214
+     ],
+     [
+      "PLEB",
+      "UINT",
+      4,
+      220
+     ],
+     [
+      "PREB",
+      "UINT",
+      4,
+      224
+     ],
+     [
+      "PKAC",
+      "UINT",
+      6,
+      228
+     ],
+     [
+      "PACC",
+      "UINT",
+      6,
+      234
+     ],
+     [
+      "PHED",
+      "UINT",
+      4,
+      240
+     ],
+     [
+      "PGID",
+      "UINT",
+      14,
+      244
+     ],
+     [
+      "TGID",
+      "UINT",
+      9,
+      258
+     ],
+     [
+      "PSPD",
+      "UINT",
+      6,
+      267
+     ],
+     [
+      "PRSD",
+      "UINT",
+      2,
+      273
+     ],
+     [
+      "PPOE",
+      "UINT",
+      8,
+      184
+     ],
+     [
+      "PBRE",
+      "UINT",
+      1,
+      275
+     ],
+     [
+      "PEYE",
+      "UINT",
+      1,
+      276
+     ],
+     [
+      "PLMG",
+      "UINT",
+      1,
+      277
+     ],
+     [
+      "PFSH",
+      "SINT",
+      4,
+      278
+     ],
+     [
+      "PLSH",
+      "UINT",
+      2,
+      282
+     ],
+     [
+      "PMSH",
+      "SINT",
+      4,
+      284
+     ],
+     [
+      "PRSH",
+      "UINT",
+      2,
+      288
+     ],
+     [
+      "PSSH",
+      "SINT",
+      4,
+      290
+     ],
+     [
+      "PCTH",
+      "UINT",
+      6,
+      294
+     ],
+     [
+      "PAGI",
+      "UINT",
+      6,
+      300
+     ],
+     [
+      "PSKI",
+      "UINT",
+      3,
+      306
+     ],
+     [
+      "PINJ",
+      "UINT",
+      6,
+      309
+     ],
+     [
+      "PTAK",
+      "UINT",
+      6,
+      315
+     ],
+     [
+      "PPBK",
+      "UINT",
+      6,
+      321
+     ],
+     [
+      "PRBK",
+      "UINT",
+      6,
+      327
+     ],
+     [
+      "PNEK",
+      "UINT",
+      3,
+      333
+     ],
+     [
+      "PFMK",
+      "UINT",
+      4,
+      336
+     ],
+     [
+      "PBTK",
+      "UINT",
+      6,
+      340
+     ],
+     [
+      "PHCL",
+      "UINT",
+      3,
+      346
+     ],
+     [
+      "PLPL",
+      "UINT",
+      8,
+      192
+     ],
+     [
+      "PFGM",
+      "UINT",
+      4,
+      349
+     ],
+     [
+      "PHAN",
+      "UINT",
+      1,
+      353
+     ],
+     [
+      "PJEN",
+      "UINT",
+      7,
+      354
+     ],
+     [
+      "PTEN",
+      "UINT",
+      7,
+      361
+     ],
+     [
+      "PLHN",
+      "UINT",
+      3,
+      368
+     ],
+     [
+      "PRHN",
+      "UINT",
+      3,
+      371
+     ],
+     [
+      "PSLO",
+      "UINT",
+      2,
+      374
+     ],
+     [
+      "PTTO",
+      "UINT",
+      2,
+      376
+     ],
+     [
+      "PLFP",
+      "UINT",
+      1,
+      378
+     ],
+     [
+      "PTHP",
+      "UINT",
+      6,
+      379
+     ],
+     [
+      "PFMP",
+      "UINT",
+      6,
+      385
+     ],
+     [
+      "PIMP",
+      "UINT",
+      6,
+      391
+     ],
+     [
+      "PJMP",
+      "UINT",
+      6,
+      397
+     ],
+     [
+      "PTYP",
+      "UINT",
+      3,
+      403
+     ],
+     [
+      "PCAR",
+      "UINT",
+      6,
+      406
+     ],
+     [
+      "PYER",
+      "UINT",
+      3,
+      412
+     ],
+     [
+      "PFKR",
+      "UINT",
+      1,
+      415
+     ],
+     [
+      "PFPR",
+      "UINT",
+      1,
+      416
+     ],
+     [
+      "PKPR",
+      "UINT",
+      6,
+      417
+     ],
+     [
+      "PSTR",
+      "UINT",
+      6,
+      423
+     ],
+     [
+      "POVR",
+      "UINT",
+      6,
+      429
+     ],
+     [
+      "PAWR",
+      "UINT",
+      6,
+      435
+     ],
+     [
+      "PVIS",
+      "UINT",
+      2,
+      441
+     ],
+     [
+      "PFJS",
+      "SINT",
+      4,
+      443
+     ],
+     [
+      "PPOS",
+      "UINT",
+      5,
+      447
+     ],
+     [
+      "PMUS",
+      "UINT",
+      2,
+      452
+     ],
+     [
+      "PLWS",
+      "UINT",
+      3,
+      454
+     ],
+     [
+      "PRWS",
+      "UINT",
+      3,
+      457
+     ],
+     [
+      "PHGT",
+      "UINT",
+      7,
+      460
+     ],
+     [
+      "PWGT",
+      "UINT",
+      8,
+      200
+     ],
+     [
+      "PSLT",
+      "UINT",
+      2,
+      467
+     ],
+     [
+      "PRST",
+      "UINT",
+      6,
+      469
+     ]
+    ],
+    "first_seen": "TEMPLATE.DAT:1",
+    "record_bits": 479,
+    "record_bytes": 60
+   },
+   "862895b8108a7563": {
+    "count": 392,
+    "field_count": 65,
+    "fields": [
+     [
+      "PTHA",
+      "UINT",
+      6,
+      200
+     ],
+     [
+      "PFNA",
+      "STRING",
+      80,
+      0
+     ],
+     [
+      "PLNA",
+      "STRING",
+      104,
+      80
+     ],
+     [
+      "PSTA",
+      "UINT",
+      6,
+      206
+     ],
+     [
+      "PLEB",
+      "UINT",
+      4,
+      212
+     ],
+     [
+      "PREB",
+      "UINT",
+      4,
+      216
+     ],
+     [
+      "PKAC",
+      "UINT",
+      6,
+      220
+     ],
+     [
+      "PACC",
+      "UINT",
+      6,
+      226
+     ],
+     [
+      "PHED",
+      "UINT",
+      4,
+      232
+     ],
+     [
+      "PGID",
+      "UINT",
+      14,
+      236
+     ],
+     [
+      "TGID",
+      "UINT",
+      9,
+      250
+     ],
+     [
+      "PHPD",
+      "UINT",
+      1,
+      259
+     ],
+     [
+      "PSPD",
+      "UINT",
+      6,
+      260
+     ],
+     [
+      "PRSD",
+      "UINT",
+      2,
+      266
+     ],
+     [
+      "PPOE",
+      "UINT",
+      8,
+      184
+     ],
+     [
+      "PBRE",
+      "UINT",
+      1,
+      268
+     ],
+     [
+      "PEYE",
+      "UINT",
+      1,
+      269
+     ],
+     [
+      "PLMG",
+      "UINT",
+      1,
+      270
+     ],
+     [
+      "PFSH",
+      "SINT",
+      4,
+      271
+     ],
+     [
+      "PLSH",
+      "UINT",
+      2,
+      275
+     ],
+     [
+      "PMSH",
+      "SINT",
+      4,
+      277
+     ],
+     [
+      "PRSH",
+      "UINT",
+      2,
+      281
+     ],
+     [
+      "PSSH",
+      "SINT",
+      4,
+      283
+     ],
+     [
+      "PCTH",
+      "UINT",
+      6,
+      287
+     ],
+     [
+      "PAGI",
+      "UINT",
+      6,
+      293
+     ],
+     [
+      "PSKI",
+      "UINT",
+      3,
+      299
+     ],
+     [
+      "PINJ",
+      "UINT",
+      6,
+      302
+     ],
+     [
+      "PTAK",
+      "UINT",
+      6,
+      308
+     ],
+     [
+      "PPBK",
+      "UINT",
+      6,
+      314
+     ],
+     [
+      "PRBK",
+      "UINT",
+      6,
+      320
+     ],
+     [
+      "PNEK",
+      "UINT",
+      3,
+      326
+     ],
+     [
+      "PFMK",
+      "UINT",
+      4,
+      329
+     ],
+     [
+      "PBTK",
+      "UINT",
+      6,
+      333
+     ],
+     [
+      "PHCL",
+      "UINT",
+      3,
+      339
+     ],
+     [
+      "PFGM",
+      "UINT",
+      4,
+      342
+     ],
+     [
+      "PHAN",
+      "UINT",
+      1,
+      346
+     ],
+     [
+      "PJEN",
+      "UINT",
+      7,
+      347
+     ],
+     [
+      "PTEN",
+      "UINT",
+      7,
+      354
+     ],
+     [
+      "PLHN",
+      "UINT",
+      3,
+      361
+     ],
+     [
+      "PRHN",
+      "UINT",
+      3,
+      364
+     ],
+     [
+      "PSLO",
+      "UINT",
+      2,
+      367
+     ],
+     [
+      "PTTO",
+      "UINT",
+      2,
+      369
+     ],
+     [
+      "PLFP",
+      "UINT",
+      1,
+      371
+     ],
+     [
+      "PTHP",
+      "UINT",
+      6,
+      372
+     ],
+     [
+      "PFMP",
+      "UINT",
+      6,
+      378
+     ],
+     [
+      "PIMP",
+      "UINT",
+      6,
+      384
+     ],
+     [
+      "PJMP",
+      "UINT",
+      6,
+      390
+     ],
+     [
+      "PTYP",
+      "UINT",
+      3,
+      396
+     ],
+     [
+      "PCAR",
+      "UINT",
+      6,
+      399
+     ],
+     [
+      "PYER",
+      "UINT",
+      3,
+      405
+     ],
+     [
+      "PFKR",
+      "UINT",
+      1,
+      408
+     ],
+     [
+      "PFPR",
+      "UINT",
+      1,
+      409
+     ],
+     [
+      "PKPR",
+      "UINT",
+      6,
+      410
+     ],
+     [
+      "PSTR",
+      "UINT",
+      6,
+      416
+     ],
+     [
+      "POVR",
+      "UINT",
+      6,
+      422
+     ],
+     [
+      "PAWR",
+      "UINT",
+      6,
+      428
+     ],
+     [
+      "PVIS",
+      "UINT",
+      2,
+      434
+     ],
+     [
+      "PFJS",
+      "SINT",
+      4,
+      436
+     ],
+     [
+      "PPOS",
+      "UINT",
+      5,
+      440
+     ],
+     [
+      "PMUS",
+      "UINT",
+      2,
+      445
+     ],
+     [
+      "PLWS",
+      "UINT",
+      3,
+      447
+     ],
+     [
+      "PRWS",
+      "UINT",
+      3,
+      450
+     ],
+     [
+      "PHGT",
+      "UINT",
+      7,
+      453
+     ],
+     [
+      "PWGT",
+      "UINT",
+      8,
+      192
+     ],
+     [
+      "PSLT",
+      "UINT",
+      2,
+      460
+     ]
+    ],
+    "first_seen": "LEAGUE.DAT:0",
+    "record_bits": 479,
+    "record_bytes": 60
+   },
+   "cade42ac393d8d77": {
+    "count": 1,
+    "field_count": 69,
+    "fields": [
+     [
+      "PTHA",
+      "UINT",
+      6,
+      216
+     ],
+     [
+      "PFNA",
+      "STRING",
+      80,
+      0
+     ],
+     [
+      "PLNA",
+      "STRING",
+      104,
+      80
+     ],
+     [
+      "PSTA",
+      "UINT",
+      6,
+      222
+     ],
+     [
+      "PLEB",
+      "UINT",
+      4,
+      228
+     ],
+     [
+      "PREB",
+      "UINT",
+      4,
+      232
+     ],
+     [
+      "PSIB",
+      "UINT",
+      10,
+      236
+     ],
+     [
+      "PKAC",
+      "UINT",
+      6,
+      246
+     ],
+     [
+      "PPAC",
+      "UINT",
+      8,
+      184
+     ],
+     [
+      "PACC",
+      "UINT",
+      6,
+      252
+     ],
+     [
+      "PHED",
+      "UINT",
+      4,
+      258
+     ],
+     [
+      "PGID",
+      "UINT",
+      14,
+      262
+     ],
+     [
+      "TGID",
+      "UINT",
+      9,
+      276
+     ],
+     [
+      "PHPD",
+      "UINT",
+      1,
+      285
+     ],
+     [
+      "PSPD",
+      "UINT",
+      6,
+      286
+     ],
+     [
+      "PRSD",
+      "UINT",
+      2,
+      292
+     ],
+     [
+      "PPOE",
+      "UINT",
+      8,
+      192
+     ],
+     [
+      "PBRE",
+      "UINT",
+      1,
+      294
+     ],
+     [
+      "PEYE",
+      "UINT",
+      1,
+      295
+     ],
+     [
+      "PLMG",
+      "UINT",
+      1,
+      296
+     ],
+     [
+      "PFSH",
+      "SINT",
+      4,
+      297
+     ],
+     [
+      "PLSH",
+      "UINT",
+      2,
+      301
+     ],
+     [
+      "PMSH",
+      "SINT",
+      4,
+      303
+     ],
+     [
+      "PRSH",
+      "UINT",
+      2,
+      307
+     ],
+     [
+      "PSSH",
+      "SINT",
+      4,
+      309
+     ],
+     [
+      "PCTH",
+      "UINT",
+      6,
+      313
+     ],
+     [
+      "PAGI",
+      "UINT",
+      6,
+      319
+     ],
+     [
+      "PSKI",
+      "UINT",
+      3,
+      325
+     ],
+     [
+      "PINJ",
+      "UINT",
+      6,
+      328
+     ],
+     [
+      "PTAK",
+      "UINT",
+      6,
+      334
+     ],
+     [
+      "PPBK",
+      "UINT",
+      6,
+      340
+     ],
+     [
+      "PRBK",
+      "UINT",
+      6,
+      346
+     ],
+     [
+      "PNEK",
+      "UINT",
+      3,
+      352
+     ],
+     [
+      "PFMK",
+      "UINT",
+      4,
+      355
+     ],
+     [
+      "PBTK",
+      "UINT",
+      6,
+      359
+     ],
+     [
+      "PHCL",
+      "UINT",
+      3,
+      365
+     ],
+     [
+      "PFGM",
+      "UINT",
+      4,
+      368
+     ],
+     [
+      "PHAN",
+      "UINT",
+      1,
+      372
+     ],
+     [
+      "PJEN",
+      "UINT",
+      7,
+      373
+     ],
+     [
+      "PTEN",
+      "UINT",
+      7,
+      380
+     ],
+     [
+      "PLHN",
+      "UINT",
+      3,
+      387
+     ],
+     [
+      "PRHN",
+      "UINT",
+      3,
+      390
+     ],
+     [
+      "PSLO",
+      "UINT",
+      2,
+      393
+     ],
+     [
+      "PTTO",
+      "UINT",
+      2,
+      395
+     ],
+     [
+      "PLFP",
+      "UINT",
+      1,
+      397
+     ],
+     [
+      "PTHP",
+      "UINT",
+      6,
+      398
+     ],
+     [
+      "PFMP",
+      "UINT",
+      6,
+      404
+     ],
+     [
+      "PIMP",
+      "UINT",
+      6,
+      410
+     ],
+     [
+      "PJMP",
+      "UINT",
+      6,
+      416
+     ],
+     [
+      "PTYP",
+      "UINT",
+      3,
+      422
+     ],
+     [
+      "PCAR",
+      "UINT",
+      6,
+      425
+     ],
+     [
+      "PYER",
+      "UINT",
+      3,
+      431
+     ],
+     [
+      "PFKR",
+      "UINT",
+      1,
+      434
+     ],
+     [
+      "PFPR",
+      "UINT",
+      1,
+      435
+     ],
+     [
+      "PKPR",
+      "UINT",
+      6,
+      436
+     ],
+     [
+      "PSTR",
+      "UINT",
+      6,
+      442
+     ],
+     [
+      "POVR",
+      "UINT",
+      6,
+      448
+     ],
+     [
+      "PAWR",
+      "UINT",
+      6,
+      454
+     ],
+     [
+      "PVIS",
+      "UINT",
+      2,
+      460
+     ],
+     [
+      "PFJS",
+      "SINT",
+      4,
+      462
+     ],
+     [
+      "PPOS",
+      "UINT",
+      5,
+      466
+     ],
+     [
+      "PMUS",
+      "UINT",
+      2,
+      471
+     ],
+     [
+      "PLWS",
+      "UINT",
+      3,
+      473
+     ],
+     [
+      "PRWS",
+      "UINT",
+      3,
+      476
+     ],
+     [
+      "PHGT",
+      "UINT",
+      7,
+      479
+     ],
+     [
+      "PWGT",
+      "UINT",
+      8,
+      200
+     ],
+     [
+      "PSLT",
+      "UINT",
+      2,
+      486
+     ],
+     [
+      "PRST",
+      "UINT",
+      6,
+      488
+     ],
+     [
+      "PPPW",
+      "UINT",
+      8,
+      208
+     ]
+    ],
+    "first_seen": "TEMPLATE.DAT:0",
+    "record_bits": 511,
+    "record_bytes": 64
+   }
+  },
+  "PLYL": {
+   "c4a6cfdb02077b1e": {
+    "count": 124,
+    "field_count": 10,
+    "fields": [
+     [
+      "SETL",
+      "UINT",
+      8,
+      48
+     ],
+     [
+      "PLYL",
+      "UINT",
+      16,
+      32
+     ],
+     [
+      "SITT",
+      "UINT",
+      8,
+      56
+     ],
+     [
+      "PLYT",
+      "UINT",
+      8,
+      64
+     ],
+     [
+      "PLF_",
+      "UINT",
+      32,
+      0
+     ],
+     [
+      "name",
+      "STRING",
+      192,
+      72
+     ],
+     [
+      "risk",
+      "UINT",
+      8,
+      264
+     ],
+     [
+      "motn",
+      "UINT",
+      8,
+      272
+     ],
+     [
+      "phlp",
+      "UINT",
+      8,
+      280
+     ],
+     [
+      "vpos",
+      "UINT",
+      8,
+      288
+     ]
+    ],
+    "first_seen": "GAMEDATA.DAT:3",
+    "record_bits": 319,
+    "record_bytes": 40
+   }
+  },
+  "SEAI": {
+   "da1594e3a8dac5da": {
+    "count": 1,
+    "field_count": 15,
+    "fields": [
+     [
+      "SERB",
+      "UINT",
+      8,
+      32
+     ],
+     [
+      "SSYE",
+      "UINT",
+      16,
+      0
+     ],
+     [
+      "SESI",
+      "UINT",
+      16,
+      16
+     ],
+     [
+      "SEWN",
+      "UINT",
+      8,
+      40
+     ],
+     [
+      "SNCP",
+      "UINT",
+      8,
+      48
+     ],
+     [
+      "SNDP",
+      "UINT",
+      8,
+      56
+     ],
+     [
+      "SEFP",
+      "UINT",
+      8,
+      64
+     ],
+     [
+      "SNWP",
+      "UINT",
+      8,
+      72
+     ],
+     [
+      "SEYR",
+      "UINT",
+      6,
+      128
+     ],
+     [
+      "SEST",
+      "UINT",
+      8,
+      80
+     ],
+     [
+      "SEWT",
+      "UINT",
+      8,
+      88
+     ],
+     [
+      "SEOW",
+      "UINT",
+      8,
+      96
+     ],
+     [
+      "SNPW",
+      "UINT",
+      8,
+      104
+     ],
+     [
+      "SERW",
+      "UINT",
+      8,
+      112
+     ],
+     [
+      "SESW",
+      "UINT",
+      8,
+      120
+     ]
+    ],
+    "first_seen": "TEMPLATE.DAT:1",
+    "record_bits": 159,
+    "record_bytes": 20
+   }
+  },
+  "SETL": {
+   "635538064d75c066": {
+    "count": 124,
+    "field_count": 8,
+    "fields": [
+     [
+      "SETL",
+      "UINT",
+      8,
+      48
+     ],
+     [
+      "FORM",
+      "UINT",
+      8,
+      56
+     ],
+     [
+      "MOTN",
+      "UINT",
+      16,
+      32
+     ],
+     [
+      "SETT",
+      "UINT",
+      8,
+      64
+     ],
+     [
+      "SITT",
+      "UINT",
+      8,
+      72
+     ],
+     [
+      "SLF_",
+      "UINT",
+      32,
+      0
+     ],
+     [
+      "name",
+      "STRING",
+      192,
+      80
+     ],
+     [
+      "poso",
+      "UINT",
+      8,
+      272
+     ]
+    ],
+    "first_seen": "GAMEDATA.DAT:3",
+    "record_bits": 287,
+    "record_bytes": 36
+   }
+  },
+  "TEAM": {
+   "3161b95bda07079b": {
+    "count": 1,
+    "field_count": 104,
+    "fields": [
+     [
+      "TEZ1",
+      "UINT",
+      16,
+      32
+     ],
+     [
+      "TEZ2",
+      "UINT",
+      16,
+      48
+     ],
+     [
+      "TL35",
+      "UINT",
+      8,
+      432
+     ],
+     [
+      "TMAA",
+      "UINT",
+      32,
+      0
+     ],
+     [
+      "TMIA",
+      "UINT",
+      7,
+      1408
+     ],
+     [
+      "TDNA",
+      "STRING",
+      168,
+      440
+     ],
+     [
+      "TMNA",
+      "STRING",
+      144,
+      608
+     ],
+     [
+      "TSNA",
+      "STRING",
+      56,
+      752
+     ],
+     [
+      "TCPA",
+      "UINT",
+      16,
+      64
+     ],
+     [
+      "TDPA",
+      "UINT",
+      16,
+      80
+     ],
+     [
+      "TSPA",
+      "UINT",
+      16,
+      96
+     ],
+     [
+      "TRDB",
+      "UINT",
+      8,
+      808
+     ],
+     [
+      "TFFB",
+      "UINT",
+      16,
+      112
+     ],
+     [
+      "TRLB",
+      "UINT",
+      8,
+      816
+     ],
+     [
+      "TFOB",
+      "UINT",
+      16,
+      128
+     ],
+     [
+      "TDPB",
+      "UINT",
+      8,
+      824
+     ],
+     [
+      "TOPB",
+      "UINT",
+      8,
+      832
+     ],
+     [
+      "TRQB",
+      "UINT",
+      8,
+      840
+     ],
+     [
+      "TRRB",
+      "UINT",
+      8,
+      848
+     ],
+     [
+      "TWPC",
+      "UINT",
+      8,
+      856
+     ],
+     [
+      "TMSC",
+      "UINT",
+      8,
+      864
+     ],
+     [
+      "CGID",
+      "UINT",
+      16,
+      144
+     ],
+     [
+      "DGID",
+      "UINT",
+      16,
+      160
+     ],
+     [
+      "LGID",
+      "UINT",
+      16,
+      176
+     ],
+     [
+      "SGID",
+      "UINT",
+      8,
+      872
+     ],
+     [
+      "TGID",
+      "UINT",
+      9,
+      1415
+     ],
+     [
+      "TOID",
+      "UINT",
+      16,
+      192
+     ],
+     [
+      "MSID",
+      "UINT",
+      8,
+      880
+     ],
+     [
+      "TFRD",
+      "UINT",
+      16,
+      208
+     ],
+     [
+      "TORD",
+      "UINT",
+      16,
+      224
+     ],
+     [
+      "TRDE",
+      "UINT",
+      8,
+      888
+     ],
+     [
+      "TCHE",
+      "UINT",
+      1,
+      1424
+     ],
+     [
+      "TROF",
+      "UINT",
+      8,
+      896
+     ],
+     [
+      "TCPF",
+      "UINT",
+      16,
+      240
+     ],
+     [
+      "TDPF",
+      "UINT",
+      16,
+      256
+     ],
+     [
+      "TSPF",
+      "UINT",
+      16,
+      272
+     ],
+     [
+      "TFFG",
+      "UINT",
+      16,
+      288
+     ],
+     [
+      "TFOG",
+      "UINT",
+      16,
+      304
+     ],
+     [
+      "THLI",
+      "UINT",
+      8,
+      904
+     ],
+     [
+      "TSTI",
+      "UINT",
+      8,
+      912
+     ],
+     [
+      "TSWI",
+      "UINT",
+      8,
+      920
+     ],
+     [
+      "TBRK",
+      "UINT",
+      8,
+      928
+     ],
+     [
+      "TCRK",
+      "UINT",
+      8,
+      936
+     ],
+     [
+      "TMRK",
+      "UINT",
+      8,
+      944
+     ],
+     [
+      "TNCL",
+      "UINT",
+      8,
+      952
+     ],
+     [
+      "TRDL",
+      "UINT",
+      8,
+      960
+     ],
+     [
+      "TMFL",
+      "UINT",
+      16,
+      320
+     ],
+     [
+      "TLGL",
+      "UINT",
+      16,
+      336
+     ],
+     [
+      "TROL",
+      "UINT",
+      8,
+      968
+     ],
+     [
+      "TFTL",
+      "UINT",
+      8,
+      976
+     ],
+     [
+      "JJNM",
+      "BINARY",
+      104,
+      984
+     ],
+     [
+      "TSLO",
+      "UINT",
+      8,
+      1088
+     ],
+     [
+      "TMCP",
+      "UINT",
+      16,
+      352
+     ],
+     [
+      "TCFP",
+      "UINT",
+      7,
+      1425
+     ],
+     [
+      "TMFP",
+      "UINT",
+      7,
+      1432
+     ],
+     [
+      "TMPP",
+      "UINT",
+      8,
+      1096
+     ],
+     [
+      "TCRP",
+      "UINT",
+      16,
+      368
+     ],
+     [
+      "TCWP",
+      "UINT",
+      8,
+      1104
+     ],
+     [
+      "TDWP",
+      "UINT",
+      8,
+      1112
+     ],
+     [
+      "TTYP",
+      "UINT",
+      8,
+      1120
+     ],
+     [
+      "TFFR",
+      "UINT",
+      8,
+      1128
+     ],
+     [
+      "TFOR",
+      "UINT",
+      16,
+      384
+     ],
+     [
+      "TBPR",
+      "UINT",
+      8,
+      1136
+     ],
+     [
+      "TCPR",
+      "UINT",
+      8,
+      1144
+     ],
+     [
+      "TDPR",
+      "UINT",
+      8,
+      1152
+     ],
+     [
+      "TMPR",
+      "UINT",
+      3,
+      1439
+     ],
+     [
+      "TOPR",
+      "UINT",
+      8,
+      1160
+     ],
+     [
+      "TDRR",
+      "UINT",
+      8,
+      1168
+     ],
+     [
+      "TORR",
+      "UINT",
+      8,
+      1176
+     ],
+     [
+      "TWRR",
+      "UINT",
+      8,
+      1184
+     ],
+     [
+      "TOVR",
+      "UINT",
+      8,
+      1192
+     ],
+     [
+      "TSCS",
+      "SINT",
+      8,
+      1200
+     ],
+     [
+      "TSDS",
+      "UINT",
+      8,
+      1208
+     ],
+     [
+      "TVIS",
+      "UINT",
+      1,
+      1442
+     ],
+     [
+      "THPS",
+      "UINT",
+      1,
+      1443
+     ],
+     [
+      "TMPS",
+      "UINT",
+      8,
+      1216
+     ],
+     [
+      "TPRS",
+      "UINT",
+      8,
+      1224
+     ],
+     [
+      "TNCT",
+      "UINT",
+      8,
+      1232
+     ],
+     [
+      "TCPT",
+      "UINT",
+      16,
+      400
+     ],
+     [
+      "TMPT",
+      "UINT",
+      16,
+      416
+     ],
+     [
+      "TRST",
+      "UINT",
+      8,
+      1240
+     ],
+     [
+      "TENV",
+      "UINT",
+      2,
+      1444
+     ],
+     [
+      "TROV",
+      "UINT",
+      8,
+      1248
+     ],
+     [
+      "TMRV",
+      "UINT",
+      8,
+      1256
+     ],
+     [
+      "TNCW",
+      "UINT",
+      8,
+      1264
+     ],
+     [
+      "TSLW",
+      "UINT",
+      8,
+      1272
+     ],
+     [
+      "TAth",
+      "UINT",
+      1,
+      1446
+     ],
+     [
+      "tsdi",
+      "UINT",
+      8,
+      1280
+     ],
+     [
+      "tsal",
+      "UINT",
+      8,
+      1288
+     ],
+     [
+      "tsbl",
+      "UINT",
+      8,
+      1296
+     ],
+     [
+      "tscl",
+      "UINT",
+      8,
+      1304
+     ],
+     [
+      "tsdl",
+      "UINT",
+      8,
+      1312
+     ],
+     [
+      "tshl",
+      "UINT",
+      8,
+      1320
+     ],
+     [
+      "tscs",
+      "UINT",
+      8,
+      1328
+     ],
+     [
+      "tsns",
+      "UINT",
+      8,
+      1336
+     ],
+     [
+      "TAss",
+      "UINT",
+      1,
+      1447
+     ],
+     [
+      "tsat",
+      "UINT",
+      8,
+      1344
+     ],
+     [
+      "tsct",
+      "UINT",
+      8,
+      1352
+     ],
+     [
+      "tsht",
+      "UINT",
+      8,
+      1360
+     ],
+     [
+      "tsaw",
+      "UINT",
+      8,
+      1368
+     ],
+     [
+      "tsbw",
+      "UINT",
+      8,
+      1376
+     ],
+     [
+      "tscw",
+      "UINT",
+      8,
+      1384
+     ],
+     [
+      "tsdw",
+      "UINT",
+      8,
+      1392
+     ],
+     [
+      "tshw",
+      "UINT",
+      8,
+      1400
+     ]
+    ],
+    "first_seen": "TEMPLATE.DAT:1",
+    "record_bits": 1471,
+    "record_bytes": 184
+   },
+   "6515b59ab3349ab5": {
+    "count": 1,
+    "field_count": 62,
+    "fields": [
+     [
+      "TEZ1",
+      "UINT",
+      16,
+      32
+     ],
+     [
+      "TEZ2",
+      "UINT",
+      16,
+      48
+     ],
+     [
+      "TL35",
+      "UINT",
+      8,
+      320
+     ],
+     [
+      "TMAA",
+      "UINT",
+      32,
+      0
+     ],
+     [
+      "TMIA",
+      "UINT",
+      7,
+      912
+     ],
+     [
+      "TDNA",
+      "STRING",
+      168,
+      328
+     ],
+     [
+      "TMNA",
+      "STRING",
+      144,
+      496
+     ],
+     [
+      "TSNA",
+      "STRING",
+      56,
+      640
+     ],
+     [
+      "TRDB",
+      "UINT",
+      8,
+      696
+     ],
+     [
+      "TFFB",
+      "UINT",
+      16,
+      64
+     ],
+     [
+      "TRLB",
+      "UINT",
+      8,
+      704
+     ],
+     [
+      "TFOB",
+      "UINT",
+      16,
+      80
+     ],
+     [
+      "TDPB",
+      "UINT",
+      8,
+      712
+     ],
+     [
+      "TOPB",
+      "UINT",
+      8,
+      720
+     ],
+     [
+      "TRQB",
+      "UINT",
+      8,
+      728
+     ],
+     [
+      "TRRB",
+      "UINT",
+      8,
+      736
+     ],
+     [
+      "CGID",
+      "UINT",
+      16,
+      96
+     ],
+     [
+      "DGID",
+      "UINT",
+      16,
+      112
+     ],
+     [
+      "SGID",
+      "UINT",
+      8,
+      744
+     ],
+     [
+      "TGID",
+      "UINT",
+      9,
+      919
+     ],
+     [
+      "TOID",
+      "UINT",
+      16,
+      128
+     ],
+     [
+      "MSID",
+      "UINT",
+      8,
+      752
+     ],
+     [
+      "TFRD",
+      "UINT",
+      16,
+      144
+     ],
+     [
+      "TORD",
+      "UINT",
+      16,
+      160
+     ],
+     [
+      "TRDE",
+      "UINT",
+      8,
+      760
+     ],
+     [
+      "TCHE",
+      "UINT",
+      1,
+      928
+     ],
+     [
+      "TCRE",
+      "UINT",
+      1,
+      929
+     ],
+     [
+      "TROF",
+      "UINT",
+      8,
+      768
+     ],
+     [
+      "TTVF",
+      "UINT",
+      8,
+      776
+     ],
+     [
+      "TFFG",
+      "UINT",
+      16,
+      176
+     ],
+     [
+      "TFOG",
+      "UINT",
+      16,
+      192
+     ],
+     [
+      "THLI",
+      "UINT",
+      8,
+      784
+     ],
+     [
+      "TCRK",
+      "UINT",
+      8,
+      792
+     ],
+     [
+      "TMRK",
+      "UINT",
+      8,
+      800
+     ],
+     [
+      "TRDL",
+      "UINT",
+      8,
+      808
+     ],
+     [
+      "TMFL",
+      "UINT",
+      16,
+      208
+     ],
+     [
+      "TLGL",
+      "UINT",
+      16,
+      224
+     ],
+     [
+      "TROL",
+      "UINT",
+      8,
+      816
+     ],
+     [
+      "TFTL",
+      "UINT",
+      8,
+      824
+     ],
+     [
+      "TMCP",
+      "UINT",
+      16,
+      240
+     ],
+     [
+      "TCFP",
+      "UINT",
+      7,
+      930
+     ],
+     [
+      "TMFP",
+      "UINT",
+      7,
+      937
+     ],
+     [
+      "TCRP",
+      "UINT",
+      16,
+      256
+     ],
+     [
+      "TTYP",
+      "UINT",
+      8,
+      832
+     ],
+     [
+      "TFOR",
+      "UINT",
+      16,
+      272
+     ],
+     [
+      "TDPR",
+      "UINT",
+      8,
+      840
+     ],
+     [
+      "TMPR",
+      "UINT",
+      3,
+      944
+     ],
+     [
+      "TOPR",
+      "UINT",
+      8,
+      848
+     ],
+     [
+      "TDRR",
+      "UINT",
+      8,
+      856
+     ],
+     [
+      "TORR",
+      "UINT",
+      8,
+      864
+     ],
+     [
+      "TWRR",
+      "UINT",
+      8,
+      872
+     ],
+     [
+      "TVIS",
+      "UINT",
+      1,
+      947
+     ],
+     [
+      "THPS",
+      "UINT",
+      1,
+      948
+     ],
+     [
+      "TPRS",
+      "UINT",
+      8,
+      880
+     ],
+     [
+      "TCPT",
+      "UINT",
+      16,
+      288
+     ],
+     [
+      "TMPT",
+      "UINT",
+      16,
+      304
+     ],
+     [
+      "TRST",
+      "UINT",
+      8,
+      888
+     ],
+     [
+      "TENV",
+      "UINT",
+      2,
+      949
+     ],
+     [
+      "TROV",
+      "UINT",
+      8,
+      896
+     ],
+     [
+      "TMRV",
+      "UINT",
+      8,
+      904
+     ],
+     [
+      "TAth",
+      "UINT",
+      1,
+      951
+     ],
+     [
+      "TAss",
+      "UINT",
+      1,
+      952
+     ]
+    ],
+    "first_seen": "LEAGUE.DAT:0",
+    "record_bits": 959,
+    "record_bytes": 120
+   },
+   "8cdfdf4d82f9919a": {
+    "count": 1,
+    "field_count": 59,
+    "fields": [
+     [
+      "TEZ1",
+      "UINT",
+      16,
+      0
+     ],
+     [
+      "TEZ2",
+      "UINT",
+      16,
+      16
+     ],
+     [
+      "TL35",
+      "UINT",
+      8,
+      256
+     ],
+     [
+      "TMIA",
+      "UINT",
+      7,
+      880
+     ],
+     [
+      "TDNA",
+      "STRING",
+      168,
+      264
+     ],
+     [
+      "TMNA",
+      "STRING",
+      144,
+      432
+     ],
+     [
+      "TSNA",
+      "STRING",
+      56,
+      576
+     ],
+     [
+      "TRDB",
+      "UINT",
+      8,
+      632
+     ],
+     [
+      "TFFB",
+      "UINT",
+      16,
+      32
+     ],
+     [
+      "TRLB",
+      "UINT",
+      8,
+      640
+     ],
+     [
+      "TFOB",
+      "UINT",
+      16,
+      48
+     ],
+     [
+      "TDPB",
+      "UINT",
+      8,
+      648
+     ],
+     [
+      "TOPB",
+      "UINT",
+      8,
+      656
+     ],
+     [
+      "TRQB",
+      "UINT",
+      8,
+      664
+     ],
+     [
+      "TRRB",
+      "UINT",
+      8,
+      672
+     ],
+     [
+      "TMSC",
+      "UINT",
+      8,
+      680
+     ],
+     [
+      "CGID",
+      "UINT",
+      16,
+      64
+     ],
+     [
+      "DGID",
+      "UINT",
+      16,
+      80
+     ],
+     [
+      "SGID",
+      "UINT",
+      8,
+      688
+     ],
+     [
+      "TGID",
+      "UINT",
+      9,
+      887
+     ],
+     [
+      "TOID",
+      "UINT",
+      16,
+      96
+     ],
+     [
+      "MSID",
+      "UINT",
+      8,
+      696
+     ],
+     [
+      "TFRD",
+      "UINT",
+      16,
+      112
+     ],
+     [
+      "TORD",
+      "UINT",
+      16,
+      128
+     ],
+     [
+      "TRDE",
+      "UINT",
+      8,
+      704
+     ],
+     [
+      "TCHE",
+      "UINT",
+      1,
+      896
+     ],
+     [
+      "TCRE",
+      "UINT",
+      1,
+      897
+     ],
+     [
+      "TROF",
+      "UINT",
+      8,
+      712
+     ],
+     [
+      "TTVF",
+      "UINT",
+      8,
+      720
+     ],
+     [
+      "TFFG",
+      "UINT",
+      16,
+      144
+     ],
+     [
+      "TFOG",
+      "UINT",
+      16,
+      160
+     ],
+     [
+      "THLI",
+      "UINT",
+      8,
+      728
+     ],
+     [
+      "TCRK",
+      "UINT",
+      8,
+      736
+     ],
+     [
+      "TRDL",
+      "UINT",
+      8,
+      744
+     ],
+     [
+      "TMFL",
+      "UINT",
+      16,
+      176
+     ],
+     [
+      "TLGL",
+      "UINT",
+      16,
+      192
+     ],
+     [
+      "TROL",
+      "UINT",
+      8,
+      752
+     ],
+     [
+      "TFTL",
+      "UINT",
+      8,
+      760
+     ],
+     [
+      "TMCP",
+      "UINT",
+      16,
+      208
+     ],
+     [
+      "TCRP",
+      "UINT",
+      16,
+      224
+     ],
+     [
+      "TRVP",
+      "UINT",
+      8,
+      768
+     ],
+     [
+      "TTYP",
+      "UINT",
+      8,
+      776
+     ],
+     [
+      "TFFR",
+      "UINT",
+      8,
+      784
+     ],
+     [
+      "TFOR",
+      "UINT",
+      16,
+      240
+     ],
+     [
+      "TDPR",
+      "UINT",
+      8,
+      792
+     ],
+     [
+      "TMPR",
+      "UINT",
+      3,
+      898
+     ],
+     [
+      "TOPR",
+      "UINT",
+      8,
+      800
+     ],
+     [
+      "TDRR",
+      "UINT",
+      8,
+      808
+     ],
+     [
+      "TORR",
+      "UINT",
+      8,
+      816
+     ],
+     [
+      "TWRR",
+      "UINT",
+      8,
+      824
+     ],
+     [
+      "TOVR",
+      "UINT",
+      8,
+      832
+     ],
+     [
+      "TVIS",
+      "UINT",
+      1,
+      901
+     ],
+     [
+      "THPS",
+      "UINT",
+      1,
+      902
+     ],
+     [
+      "TMPS",
+      "UINT",
+      8,
+      840
+     ],
+     [
+      "TPRS",
+      "UINT",
+      8,
+      848
+     ],
+     [
+      "TRST",
+      "UINT",
+      8,
+      856
+     ],
+     [
+      "TENV",
+      "UINT",
+      2,
+      903
+     ],
+     [
+      "TROV",
+      "UINT",
+      8,
+      864
+     ],
+     [
+      "TMRV",
+      "UINT",
+      8,
+      872
+     ]
+    ],
+    "first_seen": "TEMPLATE.DAT:0",
+    "record_bits": 927,
+    "record_bytes": 116
+   }
+  }
+ },
+ "seconds": 76.0,
+ "settings": {
+  "data_only": false,
+  "deep": true,
+  "member_head_bytes": 32,
+  "mmap_sample": 48,
+  "schl_head_bytes": 65536,
+  "schl_sample": 16
+ },
+ "table_names": {
+  "ARTL": 124,
+  "BOWL": 3,
+  "COCH": 3,
+  "CONF": 3,
+  "CTUN": 3,
+  "DCHT": 394,
+  "DIVI": 3,
+  "DRPS": 3,
+  "FORM": 124,
+  "LEAG": 3,
+  "MSCT": 3,
+  "NESG": 3,
+  "PBAI": 124,
+  "PBAU": 124,
+  "PBFM": 124,
+  "PBPL": 124,
+  "PBST": 124,
+  "PCVT": 3,
+  "PLAB": 3,
+  "PLAY": 395,
+  "PLCM": 124,
+  "PLPD": 124,
+  "PLPS": 3,
+  "PLRD": 124,
+  "PLYL": 124,
+  "PLYS": 124,
+  "POSG": 3,
+  "PSAL": 124,
+  "RVLY": 3,
+  "RVNM": 3,
+  "SETG": 124,
+  "SETL": 124,
+  "SETP": 124,
+  "SGF\\x00": 124,
+  "STAD": 3,
+  "TEAM": 3,
+  "TM2R": 3,
+  "TPRS": 3,
+  "TUNI": 3,
+  "UNIF": 3
+ },
+ "timings": {
+  "caches": 0.6,
+  "containers": 75.1
+ }
+}

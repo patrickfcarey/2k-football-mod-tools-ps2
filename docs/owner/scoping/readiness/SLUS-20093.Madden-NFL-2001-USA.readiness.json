@@ -1,0 +1,1077 @@
+{
+ "caches": {
+  "containers_named": 0,
+  "copies": 0,
+  "differing": 0,
+  "files": 0,
+  "header_copies": 0,
+  "identical": 0,
+  "member_copies": 0,
+  "parsed": 0,
+  "per_cache": {},
+  "refused": 0,
+  "unread": 0,
+  "unresolved": 0,
+  "unresolved_kinds": {}
+ },
+ "containers": {
+  "/DATA/ICONS.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 3
+   },
+   "compressed": false,
+   "declared_length": 388224,
+   "formats": {
+    "unclassified": 3
+   },
+   "iso_length": 388224,
+   "layout_violations": [],
+   "members": 3,
+   "members_head_decoded": 3,
+   "members_refused": 0,
+   "size_mismatch": 0
+  },
+  "/DATA/LEAGUE.DAT": {
+   "alignment": 4,
+   "chain": "TERF -> DIR1 -> COMP -> DATA",
+   "codecs": {
+    "NONE (stored)": 253,
+    "RLE1": 313
+   },
+   "compressed": true,
+   "declared_length": 1578580,
+   "formats": {
+    "TDB": 313,
+    "empty": 253
+   },
+   "iso_length": 1578580,
+   "layout_violations": [],
+   "members": 566,
+   "members_head_decoded": 566,
+   "members_refused": 0,
+   "size_mismatch": 0,
+   "tdb": {
+    "crc_matched": 0,
+    "crc_refused": 0,
+    "crc_sites": 0,
+    "fields": 0,
+    "parsed": 0,
+    "refused": 313,
+    "tables": 0,
+    "total": 313
+   }
+  },
+  "/DATA/LOADDATA.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 9
+   },
+   "compressed": false,
+   "declared_length": 2329344,
+   "formats": {
+    "MMAP": 9
+   },
+   "iso_length": 2329344,
+   "layout_violations": [],
+   "members": 9,
+   "members_head_decoded": 9,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "256x16": 1,
+     "640x448": 7,
+     "640x480": 1
+    },
+    "image0_decoded": 9,
+    "image0_refused": 0,
+    "images": 9,
+    "members": 9,
+    "parsed": 9,
+    "reasons": {},
+    "refused": 0,
+    "sampled": 9,
+    "versions": {
+     "1": 9
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/MOVIEDAT.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 4
+   },
+   "compressed": false,
+   "declared_length": 74035776,
+   "formats": {
+    "SCHl": 4
+   },
+   "iso_length": 74035776,
+   "layout_violations": [],
+   "members": 4,
+   "members_head_decoded": 4,
+   "members_refused": 0,
+   "schl": {
+    "channels": {
+     "2": 4
+    },
+    "codecs": {
+     "EA-XA ADPCM": 4
+    },
+    "decodable": 4,
+    "headers_parsed": 4,
+    "headers_refused": 0,
+    "members": 4,
+    "platforms": {
+     "PT": 4
+    },
+    "rates": {
+     "44100": 3,
+     "48000": 1
+    },
+    "streams": 4,
+    "streams_complete": 0,
+    "undecodable": 0,
+    "walked_members": 4
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/SOUNDPS2.DAT": {
+   "alignment": 2048,
+   "bnkl": {
+    "empty_slots": 12,
+    "members": 252,
+    "parsed": 252,
+    "refused": 0,
+    "sounds": 669
+   },
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 339
+   },
+   "compressed": false,
+   "declared_length": 65419264,
+   "formats": {
+    "BNKl": 252,
+    "SCHl": 68,
+    "TERF": 2,
+    "unclassified": 17
+   },
+   "iso_length": 65419264,
+   "layout_violations": [
+    "header version word is b'\\x02\\x01\\x00\\x05', not the b'\\x02\\x02\\x00\\x05' every measured container carries"
+   ],
+   "members": 339,
+   "members_head_decoded": 339,
+   "members_refused": 0,
+   "schl": {
+    "channels": {
+     "1": 62,
+     "2": 6
+    },
+    "codecs": {
+     "EA-XA ADPCM": 68
+    },
+    "decodable": 68,
+    "headers_parsed": 68,
+    "headers_refused": 0,
+    "members": 68,
+    "platforms": {
+     "PT": 68
+    },
+    "rates": {
+     "24000": 1,
+     "44100": 4,
+     "None": 63
+    },
+    "streams": 16,
+    "streams_complete": 16,
+    "undecodable": 0,
+    "walked_members": 16
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/SPCHDATA.DAT": {
+   "alignment": 2048,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 4041
+   },
+   "compressed": false,
+   "declared_length": 169672704,
+   "formats": {
+    "SCHl": 4033,
+    "TERF": 1,
+    "unclassified": 7
+   },
+   "iso_length": 169672704,
+   "layout_violations": [],
+   "members": 4041,
+   "members_head_decoded": 4041,
+   "members_refused": 0,
+   "schl": {
+    "channels": {
+     "1": 4033
+    },
+    "codecs": {
+     "EA-XA ADPCM": 4003,
+     "MicroTalk (EA speech, ~10:1)": 30
+    },
+    "decodable": 4003,
+    "headers_parsed": 4033,
+    "headers_refused": 0,
+    "members": 4033,
+    "platforms": {
+     "PT": 4033
+    },
+    "rates": {
+     "14000": 3567,
+     "44100": 466
+    },
+    "streams": 30,
+    "streams_complete": 30,
+    "undecodable": 30,
+    "walked_members": 16
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/TEMPLATE.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 14
+   },
+   "compressed": false,
+   "declared_length": 1494400,
+   "formats": {
+    "TDB": 6,
+    "TERF": 1,
+    "empty": 7
+   },
+   "iso_length": 1494400,
+   "layout_violations": [],
+   "members": 14,
+   "members_head_decoded": 14,
+   "members_refused": 0,
+   "size_mismatch": 0,
+   "tdb": {
+    "crc_matched": 0,
+    "crc_refused": 0,
+    "crc_sites": 0,
+    "fields": 0,
+    "parsed": 0,
+    "refused": 6,
+    "tables": 0,
+    "total": 6
+   }
+  },
+  "/DATA/UIS_3DOB.DAT": {
+   "alignment": 16,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {},
+   "compressed": false,
+   "declared_length": 48,
+   "formats": {},
+   "iso_length": 48,
+   "layout_violations": [
+    "header version word is b'\\x02\\x01\\x00\\x05', not the b'\\x02\\x02\\x00\\x05' every measured container carries"
+   ],
+   "members": 0,
+   "members_head_decoded": 0,
+   "members_refused": 0,
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_ALL.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 15
+   },
+   "compressed": false,
+   "declared_length": 6263616,
+   "formats": {
+    "TERF": 15
+   },
+   "iso_length": 6263616,
+   "layout_violations": [],
+   "members": 15,
+   "members_head_decoded": 15,
+   "members_refused": 0,
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_COAC.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 30
+   },
+   "compressed": false,
+   "declared_length": 309504,
+   "formats": {
+    "unclassified": 30
+   },
+   "iso_length": 309504,
+   "layout_violations": [],
+   "members": 30,
+   "members_head_decoded": 30,
+   "members_refused": 0,
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_COMN.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 26
+   },
+   "compressed": false,
+   "declared_length": 71104,
+   "formats": {
+    "MMAP": 26
+   },
+   "iso_length": 71104,
+   "layout_violations": [],
+   "members": 26,
+   "members_head_decoded": 26,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "128x128": 2,
+     "128x32": 2,
+     "128x64": 1,
+     "2x32": 1,
+     "32x16": 2,
+     "32x32": 9,
+     "64x32": 1,
+     "64x64": 5,
+     "8x8": 2
+    },
+    "image0_decoded": 25,
+    "image0_refused": 1,
+    "images": 26,
+    "members": 26,
+    "parsed": 26,
+    "reasons": {
+     "pixel layout # is not one this decoder reads": 1
+    },
+    "refused": 0,
+    "sampled": 26,
+    "versions": {
+     "1": 26
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_CRED.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 67
+   },
+   "compressed": false,
+   "declared_length": 879488,
+   "formats": {
+    "unclassified": 67
+   },
+   "iso_length": 879488,
+   "layout_violations": [],
+   "members": 67,
+   "members_head_decoded": 67,
+   "members_refused": 0,
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_FE.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 62
+   },
+   "compressed": false,
+   "declared_length": 233536,
+   "formats": {
+    "MMAP": 62
+   },
+   "iso_length": 233536,
+   "layout_violations": [],
+   "members": 62,
+   "members_head_decoded": 62,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "128x128": 3,
+     "128x16": 4,
+     "16x16": 6,
+     "16x64": 2,
+     "200x9": 1,
+     "256x256": 2,
+     "256x32": 4,
+     "256x64": 2,
+     "32x32": 9,
+     "32x64": 1,
+     "64x16": 3,
+     "64x64": 7
+    },
+    "image0_decoded": 45,
+    "image0_refused": 3,
+    "images": 48,
+    "members": 62,
+    "parsed": 48,
+    "reasons": {
+     "pixel layout # is not one this decoder reads": 3
+    },
+    "refused": 0,
+    "sampled": 48,
+    "versions": {
+     "1": 48
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_FONT.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> HSH1 -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 16
+   },
+   "compressed": false,
+   "declared_length": 449280,
+   "formats": {
+    "unclassified": 16
+   },
+   "iso_length": 449280,
+   "layout_violations": [],
+   "members": 16,
+   "members_head_decoded": 16,
+   "members_refused": 0,
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_IG.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 29
+   },
+   "compressed": false,
+   "declared_length": 92032,
+   "formats": {
+    "MMAP": 29
+   },
+   "iso_length": 92032,
+   "layout_violations": [],
+   "members": 29,
+   "members_head_decoded": 29,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "128x128": 5,
+     "16x16": 2,
+     "2x128": 1,
+     "2x16": 1,
+     "2x32": 2,
+     "32x128": 3,
+     "32x16": 1,
+     "32x32": 4,
+     "64x16": 1,
+     "64x32": 2,
+     "64x64": 3,
+     "8x16": 1
+    },
+    "image0_decoded": 28,
+    "image0_refused": 1,
+    "images": 29,
+    "members": 29,
+    "parsed": 29,
+    "reasons": {
+     "pixel layout # is not one this decoder reads": 1
+    },
+    "refused": 0,
+    "sampled": 29,
+    "versions": {
+     "1": 29
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_MCFL.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 1326
+   },
+   "compressed": false,
+   "declared_length": 43478464,
+   "formats": {
+    "MMAP": 1326
+   },
+   "iso_length": 43478464,
+   "layout_violations": [],
+   "members": 1326,
+   "members_head_decoded": 1326,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {},
+    "image0_decoded": 0,
+    "image0_refused": 48,
+    "images": 48,
+    "members": 1326,
+    "parsed": 48,
+    "reasons": {
+     "stored under EA codec # (IPU#), the PlayStation # IPU's own format; nothing here decodes it": 48
+    },
+    "refused": 0,
+    "sampled": 48,
+    "versions": {
+     "1": 48
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_MCIC.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 17
+   },
+   "compressed": false,
+   "declared_length": 297344,
+   "formats": {
+    "unclassified": 17
+   },
+   "iso_length": 297344,
+   "layout_violations": [],
+   "members": 17,
+   "members_head_decoded": 17,
+   "members_refused": 0,
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_MODL.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 26
+   },
+   "compressed": false,
+   "declared_length": 1219328,
+   "formats": {
+    "SMF": 26
+   },
+   "iso_length": 1219328,
+   "layout_violations": [],
+   "members": 26,
+   "members_head_decoded": 26,
+   "members_refused": 0,
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_PLYR.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 1912
+   },
+   "compressed": false,
+   "declared_length": 19716736,
+   "formats": {
+    "unclassified": 1912
+   },
+   "iso_length": 19716736,
+   "layout_violations": [],
+   "members": 1912,
+   "members_head_decoded": 1912,
+   "members_refused": 0,
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_POPS.DAT": {
+   "alignment": 4,
+   "chain": "TERF -> DIR1 -> COMP -> DATA",
+   "codecs": {
+    "LZM1": 65
+   },
+   "compressed": true,
+   "declared_length": 309204,
+   "formats": {},
+   "iso_length": 309204,
+   "layout_violations": [],
+   "members": 65,
+   "members_head_decoded": 0,
+   "members_refused": 65,
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_SLIV.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 91
+   },
+   "compressed": false,
+   "declared_length": 286272,
+   "formats": {
+    "unclassified": 91
+   },
+   "iso_length": 286272,
+   "layout_violations": [],
+   "members": 91,
+   "members_head_decoded": 91,
+   "members_refused": 0,
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_STAD.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 53
+   },
+   "compressed": false,
+   "declared_length": 1794944,
+   "formats": {
+    "unclassified": 53
+   },
+   "iso_length": 1794944,
+   "layout_violations": [],
+   "members": 53,
+   "members_head_decoded": 53,
+   "members_refused": 0,
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_TMFN.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 64
+   },
+   "compressed": false,
+   "declared_length": 594624,
+   "formats": {
+    "unclassified": 64
+   },
+   "iso_length": 594624,
+   "layout_violations": [],
+   "members": 64,
+   "members_head_decoded": 64,
+   "members_refused": 0,
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_TMHL.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 96
+   },
+   "compressed": false,
+   "declared_length": 3486656,
+   "formats": {
+    "MMAP": 96
+   },
+   "iso_length": 3486656,
+   "layout_violations": [],
+   "members": 96,
+   "members_head_decoded": 96,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {},
+    "image0_decoded": 0,
+    "image0_refused": 0,
+    "images": 0,
+    "members": 96,
+    "parsed": 0,
+    "reasons": {},
+    "refused": 48,
+    "sampled": 48,
+    "versions": {}
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_TMLO.DAT": {
+   "alignment": 64,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {
+    "NONE (stored)": 91
+   },
+   "compressed": false,
+   "declared_length": 714432,
+   "formats": {
+    "MMAP": 91
+   },
+   "iso_length": 714432,
+   "layout_violations": [],
+   "members": 91,
+   "members_head_decoded": 91,
+   "members_refused": 0,
+   "mmap": {
+    "dimensions": {
+     "128x128": 48
+    },
+    "image0_decoded": 48,
+    "image0_refused": 0,
+    "images": 48,
+    "members": 91,
+    "parsed": 48,
+    "reasons": {},
+    "refused": 0,
+    "sampled": 48,
+    "versions": {
+     "1": 48
+    }
+   },
+   "size_mismatch": 0
+  },
+  "/DATA/UIS_UNI.DAT": {
+   "alignment": 16,
+   "chain": "TERF -> DIR1 -> DATA",
+   "codecs": {},
+   "compressed": false,
+   "declared_length": 48,
+   "formats": {},
+   "iso_length": 48,
+   "layout_violations": [
+    "header version word is b'\\x02\\x01\\x00\\x05', not the b'\\x02\\x02\\x00\\x05' every measured container carries"
+   ],
+   "members": 0,
+   "members_head_decoded": 0,
+   "members_refused": 0,
+   "size_mismatch": 0
+  }
+ },
+ "counts": {
+  "alignments": {
+   "16": 2,
+   "2048": 2,
+   "4": 2,
+   "64": 20
+  },
+  "bnkl": {
+   "refused": 0,
+   "sounds": 669,
+   "total": 252,
+   "works": 252
+  },
+  "caches": {
+   "copies": 0,
+   "differing": 0,
+   "identical": 0,
+   "refused": 0,
+   "total": 0,
+   "unresolved": 0,
+   "works": 0
+  },
+  "chains": {
+   "TERF -> DIR1 -> COMP -> DATA": 2,
+   "TERF -> DIR1 -> DATA": 23,
+   "TERF -> HSH1 -> DIR1 -> DATA": 1
+  },
+  "codecs": {
+   "LZM1": 65,
+   "NONE (stored)": 8584,
+   "RLE1": 313
+  },
+  "containers": {
+   "refused": 0,
+   "total": 26,
+   "works": 26
+  },
+  "crc_sites": {
+   "databases_refused": 0,
+   "refused": 0,
+   "total": 0,
+   "works": 0
+  },
+  "formats": {
+   "BNKl": 252,
+   "MMAP": 1639,
+   "SCHl": 4105,
+   "SMF": 26,
+   "TDB": 319,
+   "TERF": 19,
+   "empty": 260,
+   "unclassified": 2277
+  },
+  "members": {
+   "refused": 65,
+   "total": 8962,
+   "works": 8897
+  },
+  "mmap": {
+   "dimensions": {
+    "128x128": 58,
+    "128x16": 4,
+    "16x16": 8,
+    "256x256": 3,
+    "256x32": 4,
+    "2x32": 3,
+    "32x16": 3,
+    "32x32": 22,
+    "640x448": 7,
+    "64x16": 4,
+    "64x32": 3,
+    "64x64": 15
+   },
+   "images_in_sample": 208,
+   "members": 1639,
+   "members_refused": 48,
+   "parsed": 208,
+   "reasons": {
+    "pixel layout # is not one this decoder reads": 5,
+    "stored under EA codec # (IPU#), the PlayStation # IPU's own format; nothing here decodes it": 48
+   },
+   "refused": 101,
+   "sampled": 256,
+   "total": 256,
+   "works": 155
+  },
+  "schl": {
+   "codecs": {
+    "EA-XA ADPCM": 4075,
+    "MicroTalk (EA speech, ~10:1)": 30
+   },
+   "headers_parsed": 4105,
+   "headers_refused": 0,
+   "platforms": {
+    "PT": 4105
+   },
+   "refused": 30,
+   "streams_complete": 46,
+   "streams_in_sample": 50,
+   "total": 4105,
+   "undecodable": 30,
+   "walked_members": 36,
+   "works": 4075
+  },
+  "tdb": {
+   "bare_files": 0,
+   "bare_parsed": 0,
+   "fields": 0,
+   "refused": 319,
+   "tables": 0,
+   "total": 319,
+   "works": 0
+  }
+ },
+ "data_files": 29,
+ "databases": {},
+ "files": 41,
+ "generated_utc": "2026-09-06T00:54:33Z",
+ "identity": {
+  "boot_file": "SLUS_200.93",
+  "boot_segments": 1,
+  "boot_sha256": "3f9f32643e1a930d3333121875920276037fa9925b0a1eb360fc04c41bce311b",
+  "boot_size": 2991448,
+  "pcsx2_crc": "4E7B2C18",
+  "serial": "SLUS-20093"
+ },
+ "image": {
+  "directories": 1,
+  "files": 41,
+  "layout": "raw CD, 2352-byte sectors, payload at +24",
+  "name": "Madden NFL 2001 (USA).bin",
+  "sector_size": 2352,
+  "size": 639214800,
+  "volume_id": "MADDEN_2001"
+ },
+ "kinds": {
+  "ELF": 10,
+  "IOPRP": 1,
+  "TERF": 26,
+  "TEXT": 1,
+  "other:54424947": 2,
+  "zero-head": 1
+ },
+ "label": "Madden NFL 2001 (USA)",
+ "readers": {
+  "containers": "e3233c4e55df1abf",
+  "ea_schl": "302185d06af22ce9",
+  "ea_tdb": "849ba5e6a81805d1",
+  "ea_terf": "8140f0e67d0664eb",
+  "mmap_art": "7456e7b2788ba367",
+  "ps2_iso9660": "a1baa176c4e28ea8"
+ },
+ "refusals": [
+  {
+   "count": 248,
+   "example": "table PLAY declares 1280 record(s) of 134217728 byte(s), which would end at 171798693409 in a 18198-byte file; the file is truncated.",
+   "reader": "ea_tdb.parse_tdb",
+   "sentence_class": "table PLAY declares # record(s) of # byte(s), which would end at # in a #-byte file; the file is truncated.",
+   "type": "TdbError",
+   "where": [
+    "LEAGUE.DAT:1",
+    "LEAGUE.DAT:2",
+    "LEAGUE.DAT:3",
+    "LEAGUE.DAT:4",
+    "LEAGUE.DAT:5",
+    "LEAGUE.DAT:6"
+   ]
+  },
+  {
+   "count": 65,
+   "example": "member 0: member uses codec 3 (LZM1), which this reader does not implement: it implements 0 = NONE (stored), 1 = RLE1, 5 = LZH1. Codecs 2 (HUFF), 3 (LZM1) and 4 (IPU1) are registered by the engine and used by no member of any disc measured. This is a refusal, not an empty member.",
+   "reader": "ea_terf.decompress_member",
+   "sentence_class": "member #: member uses codec # (LZM#), which this reader does not implement: it implements # = NONE (stored), # = RLE# # = LZH#. Codecs # (HUFF), # (LZM#) and # (IPU#) are registered by the engine and used by no member of any disc measured. ",
+   "type": "UnsupportedCodec",
+   "where": [
+    "UIS_POPS.DAT"
+   ]
+  },
+  {
+   "count": 48,
+   "example": "this member declares 2 surface(s) but puts its surface table at +0x2C, not the +0x28 every measured member with surfaces uses. Re-derive the header before trusting it.",
+   "reader": "mmap_art.parse",
+   "sentence_class": "this member declares # surface(s) but puts its surface table at +#x#C, not the +#x# every measured member with surfaces uses. Re-derive the header before trusting it.",
+   "type": "MmapError",
+   "where": [
+    "UIS_TMHL.DAT:0",
+    "UIS_TMHL.DAT:2",
+    "UIS_TMHL.DAT:4",
+    "UIS_TMHL.DAT:6",
+    "UIS_TMHL.DAT:8",
+    "UIS_TMHL.DAT:10"
+   ]
+  },
+  {
+   "count": 48,
+   "example": "stored under EA codec 4 (IPU1), the PlayStation 2 IPU's own format; nothing here decodes it",
+   "reader": "mmap_art.undecodable_reason",
+   "sentence_class": "stored under EA codec # (IPU#), the PlayStation # IPU's own format; nothing here decodes it",
+   "type": "str",
+   "where": [
+    "UIS_MCFL.DAT:0",
+    "UIS_MCFL.DAT:27",
+    "UIS_MCFL.DAT:55",
+    "UIS_MCFL.DAT:82",
+    "UIS_MCFL.DAT:110",
+    "UIS_MCFL.DAT:138"
+   ]
+  },
+  {
+   "count": 32,
+   "example": "table PCDE declares 29539 record(s) of 1935867904 byte(s), which would end at 57183602016426 in a 22492-byte file; the file is truncated.",
+   "reader": "ea_tdb.parse_tdb",
+   "sentence_class": "table PCDE declares # record(s) of # byte(s), which would end at # in a #-byte file; the file is truncated.",
+   "type": "TdbError",
+   "where": [
+    "LEAGUE.DAT:502",
+    "LEAGUE.DAT:503",
+    "LEAGUE.DAT:504",
+    "LEAGUE.DAT:505",
+    "LEAGUE.DAT:506",
+    "LEAGUE.DAT:507"
+   ]
+  },
+  {
+   "count": 32,
+   "example": "table TSSE declares 29299 record(s) of 1886614528 byte(s), which would end at 55275919055983 in a 528-byte file; the file is truncated.",
+   "reader": "ea_tdb.parse_tdb",
+   "sentence_class": "table TSSE declares # record(s) of # byte(s), which would end at # in a #-byte file; the file is truncated.",
+   "type": "TdbError",
+   "where": [
+    "LEAGUE.DAT:534",
+    "LEAGUE.DAT:535",
+    "LEAGUE.DAT:536",
+    "LEAGUE.DAT:537",
+    "LEAGUE.DAT:538",
+    "LEAGUE.DAT:539"
+   ]
+  },
+  {
+   "count": 5,
+   "example": "pixel layout 4 is not one this decoder reads",
+   "reader": "mmap_art.undecodable_reason",
+   "sentence_class": "pixel layout # is not one this decoder reads",
+   "type": "str",
+   "where": [
+    "UIS_COMN.DAT:13",
+    "UIS_FE.DAT:21",
+    "UIS_FE.DAT:24",
+    "UIS_FE.DAT:32",
+    "UIS_IG.DAT:0"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "field A\\x04\\x00\\x00 of table GOPT covers bits 1129334016..1129334272 of a record that is 2048 byte(s) long; the field directory is being read at the wrong offset or the file is damaged.",
+   "reader": "ea_tdb.parse_tdb",
+   "sentence_class": "field A\\x#\\x#\\x# of table GOPT covers bits #..# of a record that is # byte(s) long; the field directory is being read at the wrong offset or the file is damaged.",
+   "type": "TdbError",
+   "where": [
+    "TEMPLATE.DAT:10"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "table AGCM declares 8308 record(s) of 1851881248 byte(s), which would end at 15385429411132 in a 778633-byte file; the file is truncated.",
+   "reader": "ea_tdb.parse_tdb",
+   "sentence_class": "table AGCM declares # record(s) of # byte(s), which would end at # in a #-byte file; the file is truncated.",
+   "type": "TdbError",
+   "where": [
+    "TEMPLATE.DAT:1"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "table COCH declares 1280 record(s) of 83886080 byte(s), which would end at 107374186949 in a 46998-byte file; the file is truncated.",
+   "reader": "ea_tdb.parse_tdb",
+   "sentence_class": "table COCH declares # record(s) of # byte(s), which would end at # in a #-byte file; the file is truncated.",
+   "type": "TdbError",
+   "where": [
+    "TEMPLATE.DAT:0"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "table LEAG declares 65280 record(s) of 71915081 byte(s), which would end at 4694616487955 in a 54701-byte file; the file is truncated.",
+   "reader": "ea_tdb.parse_tdb",
+   "sentence_class": "table LEAG declares # record(s) of # byte(s), which would end at # in a #-byte file; the file is truncated.",
+   "type": "TdbError",
+   "where": [
+    "LEAGUE.DAT:0"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "table PSUA declares 1216 record(s) of 29425471 byte(s), which would end at 35781375941 in a 219567-byte file; the file is truncated.",
+   "reader": "ea_tdb.parse_tdb",
+   "sentence_class": "table PSUA declares # record(s) of # byte(s), which would end at # in a #-byte file; the file is truncated.",
+   "type": "TdbError",
+   "where": [
+    "TEMPLATE.DAT:11"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "table SCHD declares 8 record(s) of 327690 byte(s), which would end at 2622994 in a 3560-byte file; the file is truncated.",
+   "reader": "ea_tdb.parse_tdb",
+   "sentence_class": "table SCHD declares # record(s) of # byte(s), which would end at # in a #-byte file; the file is truncated.",
+   "type": "TdbError",
+   "where": [
+    "TEMPLATE.DAT:2"
+   ]
+  },
+  {
+   "count": 1,
+   "example": "the field at offset 140 is named b'\\x02\\x00\\x00\\x00', which carries no printable character at all; the directory is being read at the wrong offset or the file is damaged.",
+   "reader": "ea_tdb.parse_tdb",
+   "sentence_class": "the field at offset # is named '..', which carries no printable character at all; the directory is being read at the wrong offset or the file is damaged.",
+   "type": "TdbError",
+   "where": [
+    "TEMPLATE.DAT:12"
+   ]
+  }
+ ],
+ "refusals_total": 485,
+ "schema": "ea_module_readiness/v1",
+ "schemas": {},
+ "seconds": 59.7,
+ "settings": {
+  "data_only": false,
+  "deep": true,
+  "member_head_bytes": 32,
+  "mmap_sample": 48,
+  "schl_head_bytes": 65536,
+  "schl_sample": 16
+ },
+ "table_names": {},
+ "timings": {
+  "caches": 0.0,
+  "containers": 58.8
+ }
+}
