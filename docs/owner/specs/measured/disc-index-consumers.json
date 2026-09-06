@@ -1,0 +1,202 @@
+{
+  "note": "Line spans measured with ast over the files at this branch's head. 'moved' leaves the file but survives in the indexer; 'deleted' is duplicate work that goes away; 'partial' is a named line range inside a def that stays.",
+  "per_consumer": {
+    "mod_editor/games/madden09_ps2/inventory_lane.py": {
+      "deleted": 14,
+      "deleted_names": [
+        "InventoryLane._member_format"
+      ],
+      "file_lines": 340,
+      "keeps": "the Target rows and the lane contract",
+      "moved": 0,
+      "moved_names": [],
+      "partial": 40,
+      "partial_ranges": [
+        {
+          "count": 40,
+          "lines": "96-135",
+          "what": "InventoryLane.build_catalogue disc walk"
+        }
+      ],
+      "percent_of_file": 15.9,
+      "reads_from_the_index": "the same, on 4 discs instead of 1",
+      "removed_from_this_file": 54
+    },
+    "mod_editor/games/mvp05_ps2/inventory_lane.py": {
+      "deleted": 31,
+      "deleted_names": [
+        "TextureInventoryLane._count"
+      ],
+      "file_lines": 183,
+      "keeps": "the Catalogue/Target construction and the lane contract",
+      "moved": 0,
+      "moved_names": [],
+      "partial": 17,
+      "partial_ranges": [
+        {
+          "count": 17,
+          "lines": "85-101",
+          "what": "TextureInventoryLane.build_catalogue disc walk"
+        }
+      ],
+      "percent_of_file": 26.2,
+      "reads_from_the_index": "archives, nested archives, banks, images, pixel codes, refusals",
+      "removed_from_this_file": 48
+    },
+    "mod_editor/games/ncaa09_ps2/inventory_lane.py": {
+      "deleted": 14,
+      "deleted_names": [
+        "InventoryLane._member_format"
+      ],
+      "file_lines": 310,
+      "keeps": "the Target rows and the lane contract",
+      "moved": 0,
+      "moved_names": [],
+      "partial": 40,
+      "partial_ranges": [
+        {
+          "count": 40,
+          "lines": "82-121",
+          "what": "InventoryLane.build_catalogue disc walk"
+        }
+      ],
+      "percent_of_file": 17.4,
+      "reads_from_the_index": "containers, members, codec histograms and member formats -- and the FORMAT_SAMPLE cap disappears, because the index already holds every member's format, not the first N",
+      "removed_from_this_file": 54
+    },
+    "tools/mvp05_ps2_texture_identities.py": {
+      "deleted": 0,
+      "deleted_names": [],
+      "file_lines": 1891,
+      "keeps": "everything below the enumeration. Its own docstring already says so: 'the three readers here (scan_dump, pair, derivation_check) are the parts worth lifting; the disc walk is not.'",
+      "moved": 0,
+      "moved_names": [],
+      "partial": 39,
+      "partial_ranges": [
+        {
+          "count": 28,
+          "lines": "474-501",
+          "what": "index_disc walk() enumeration"
+        },
+        {
+          "count": 11,
+          "lines": "576-586",
+          "what": "index_disc archive loop"
+        }
+      ],
+      "percent_of_file": 2.1,
+      "reads_from_the_index": "which entries are SHPS banks and how many images each holds",
+      "removed_from_this_file": 39
+    },
+    "tools/owner/ea_disc_map.py": {
+      "deleted": 331,
+      "deleted_names": [
+        "map_disc",
+        "totals_of",
+        "foreign_totals",
+        "_size_stats",
+        "_schl_stats",
+        "_vag_stats",
+        "schema_signature",
+        "_record_schema"
+      ],
+      "file_lines": 3161,
+      "keeps": "the renderers -- render_markdown, render_foreign, render_page, render_summary, render_compare, readiness/summary tables -- and the CLI. It becomes a renderer over an index.",
+      "moved": 1131,
+      "moved_names": [
+        "identify_head",
+        "magic_kind",
+        "ext_hint",
+        "_extra_member_kind",
+        "tdb_schema",
+        "shps_header",
+        "schl_header",
+        "refpack_head",
+        "mmap_ids",
+        "elf_info",
+        "map_qkl",
+        "map_terf",
+        "map_bigf",
+        "_big_entries",
+        "_classify_big_member",
+        "mwo3_header",
+        "zih_index",
+        "zih_versus_zip",
+        "map_zip",
+        "midway_meta",
+        "map_midway_pak",
+        "map_midway_sound",
+        "obf_tree",
+        "hdr_dir",
+        "renderware_section",
+        "map_efs",
+        "vagp_header",
+        "_View",
+        "_Extent",
+        "container_span",
+        "_ExtentIO",
+        "_sha256_extent",
+        "_pack_databases",
+        "_pack_sections",
+        "_pack_timestamps"
+      ],
+      "partial": 0,
+      "partial_ranges": [],
+      "percent_of_file": 46.3,
+      "reads_from_the_index": "file kinds, container chains/alignments/codecs, member formats and shape facts, TDB schemas, archive entries, the non-EA family blocks",
+      "removed_from_this_file": 1462
+    },
+    "tools/owner/ea_module_readiness.py": {
+      "deleted": 305,
+      "deleted_names": [
+        "measure_disc",
+        "_evenly",
+        "measure_loose_archive",
+        "_entry_label",
+        "size_field",
+        "_new_shps_row",
+        "_new_schl_row",
+        "_finish_schl_row",
+        "_table_signature",
+        "_fields_of"
+      ],
+      "file_lines": 2666,
+      "keeps": "every measure_* that actually runs a shipped reader. 'Can ea_terf open this member' is a question about the product, not about the disc, and no index answers it.",
+      "moved": 0,
+      "moved_names": [],
+      "partial": 0,
+      "partial_ranges": [],
+      "percent_of_file": 11.4,
+      "reads_from_the_index": "which files are containers, which members are MMAP / SCHl / TDB / SHPS and where, so the sampling constants (DEFAULT_MMAP_SAMPLE = 48) stop being needed to pick targets",
+      "removed_from_this_file": 305
+    },
+    "tools/ps2_texture_identities.py": {
+      "deleted": 0,
+      "deleted_names": [],
+      "file_lines": 1501,
+      "keeps": "the decode and the pairing -- scan_dump, pair, derivation_check, the whole of the identity work",
+      "moved": 0,
+      "moved_names": [],
+      "partial": 15,
+      "partial_ranges": [
+        {
+          "count": 15,
+          "lines": "387-401",
+          "what": "index_disc enumeration"
+        }
+      ],
+      "percent_of_file": 1.0,
+      "reads_from_the_index": "which members are MMAP and where; the pixels it must still decode itself",
+      "removed_from_this_file": 15
+    }
+  },
+  "schema": "disc_index_consumers/v1",
+  "totals": {
+    "deleted": 695,
+    "file_lines": 10052,
+    "moved": 1131,
+    "partial": 151,
+    "percent": 19.7,
+    "removed_from_these_files": 1977
+  }
+}

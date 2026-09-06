@@ -1,0 +1,289 @@
+{
+  "cost": {
+    "ea_disc_map_same_box": {
+      "blitz2002": {
+        "reported_seconds": 0.2,
+        "wall_seconds": 0.55
+      },
+      "ncaa09": {
+        "reported_seconds": 15.0,
+        "wall_seconds": 15.39
+      }
+    },
+    "index_build_vs_one_mapper_run": {
+      "blitz2002_ea_disc_map_seconds": 0.2,
+      "blitz2002_head_only_seconds": 0.17,
+      "ncaa09_deep_seconds": 20.38,
+      "ncaa09_ea_disc_map_seconds": 15.0,
+      "ncaa09_head_only_seconds": 14.3,
+      "regeneration_from_the_index_seconds": 1.1
+    }
+  },
+  "discs": {
+    "blitz2002": {
+      "deep_walk": {
+        "archives": 1,
+        "command": "-m tools.owner.prototypes.disc_index.walk --iso /tmp/claude-1000/-mnt-c-GitHub-NCAA-Draft-Class-Editor/fd4470c7-7f37-4a40-88e2-054f7c50a442/scratchpad/discs/blitz2002.iso --out /tmp/claude-1000/-mnt-c-GitHub-NCAA-Draft-Class-Editor/fd4470c7-7f37-4a40-88e2-054f7c50a442/scratchpad/dix-out/deep --label NFL Blitz 2002 (USA) --deep",
+        "containers": 0,
+        "files": 36,
+        "members": 2426,
+        "rows": 4892,
+        "walk_seconds": 1.62,
+        "wall_seconds": 1.97
+      },
+      "family": "Midway stored ZIP + .ZIH",
+      "head_walk": {
+        "archives": 1,
+        "command": "-m tools.owner.prototypes.disc_index.walk --iso /tmp/claude-1000/-mnt-c-GitHub-NCAA-Draft-Class-Editor/fd4470c7-7f37-4a40-88e2-054f7c50a442/scratchpad/discs/blitz2002.iso --out /tmp/claude-1000/-mnt-c-GitHub-NCAA-Draft-Class-Editor/fd4470c7-7f37-4a40-88e2-054f7c50a442/scratchpad/dix-out/head --label NFL Blitz 2002 (USA)",
+        "containers": 0,
+        "files": 36,
+        "members": 2426,
+        "rows": 4892,
+        "walk_seconds": 0.17,
+        "wall_seconds": 0.48
+      },
+      "image_bytes": 1464205312,
+      "index_bytes_deep": 2123967,
+      "index_bytes_head": 1847403,
+      "label": "NFL Blitz 2002 (USA)",
+      "retail_free_violations": [],
+      "serial": "SLUS-20051"
+    },
+    "blitz2003": {
+      "deep_walk": {
+        "archives": 1,
+        "command": "-m tools.owner.prototypes.disc_index.walk --iso /tmp/claude-1000/-mnt-c-GitHub-NCAA-Draft-Class-Editor/fd4470c7-7f37-4a40-88e2-054f7c50a442/scratchpad/discs/blitz2003.iso --out /tmp/claude-1000/-mnt-c-GitHub-NCAA-Draft-Class-Editor/fd4470c7-7f37-4a40-88e2-054f7c50a442/scratchpad/dix-out/deep --label NFL Blitz 2003 (USA) --deep",
+        "containers": 0,
+        "files": 22,
+        "members": 2695,
+        "rows": 5416,
+        "walk_seconds": 1.95,
+        "wall_seconds": 2.22
+      },
+      "family": "Midway stored ZIP + .ZIH",
+      "head_walk": {
+        "archives": 1,
+        "command": "-m tools.owner.prototypes.disc_index.walk --iso /tmp/claude-1000/-mnt-c-GitHub-NCAA-Draft-Class-Editor/fd4470c7-7f37-4a40-88e2-054f7c50a442/scratchpad/discs/blitz2003.iso --out /tmp/claude-1000/-mnt-c-GitHub-NCAA-Draft-Class-Editor/fd4470c7-7f37-4a40-88e2-054f7c50a442/scratchpad/dix-out/head --label NFL Blitz 2003 (USA)",
+        "containers": 0,
+        "files": 22,
+        "members": 2695,
+        "rows": 5416,
+        "walk_seconds": 0.16,
+        "wall_seconds": 0.46
+      },
+      "image_bytes": 1029144576,
+      "index_bytes_deep": 2292356,
+      "index_bytes_head": 1985126,
+      "label": "NFL Blitz 2003 (USA)",
+      "retail_free_violations": [],
+      "serial": "SLUS-20474"
+    },
+    "ncaa09": {
+      "deep_walk": {
+        "archives": 73,
+        "command": "-m tools.owner.prototypes.disc_index.walk --iso /tmp/claude-1000/-mnt-c-GitHub-NCAA-Draft-Class-Editor/fd4470c7-7f37-4a40-88e2-054f7c50a442/scratchpad/discs/ncaa09.iso --out /tmp/claude-1000/-mnt-c-GitHub-NCAA-Draft-Class-Editor/fd4470c7-7f37-4a40-88e2-054f7c50a442/scratchpad/dix-out/deep --label NCAA Football 09 (USA) --deep",
+        "containers": 496,
+        "files": 166,
+        "members": 36280,
+        "rows": 37017,
+        "walk_seconds": 20.38,
+        "wall_seconds": 20.71
+      },
+      "family": "EA TERF + EA BIG",
+      "head_walk": {
+        "archives": 73,
+        "command": "-m tools.owner.prototypes.disc_index.walk --iso /tmp/claude-1000/-mnt-c-GitHub-NCAA-Draft-Class-Editor/fd4470c7-7f37-4a40-88e2-054f7c50a442/scratchpad/discs/ncaa09.iso --out /tmp/claude-1000/-mnt-c-GitHub-NCAA-Draft-Class-Editor/fd4470c7-7f37-4a40-88e2-054f7c50a442/scratchpad/dix-out/head --label NCAA Football 09 (USA)",
+        "containers": 496,
+        "files": 166,
+        "members": 36280,
+        "rows": 37017,
+        "walk_seconds": 14.3,
+        "wall_seconds": 14.62
+      },
+      "image_bytes": 2175041536,
+      "index_bytes_deep": 15087828,
+      "index_bytes_head": 10348851,
+      "label": "NCAA Football 09 (USA)",
+      "retail_free_violations": [],
+      "serial": "SLUS-21752"
+    }
+  },
+  "format_choice": {
+    "jsonl_bytes": 15087828,
+    "jsonl_line_filter_without_parsing_seconds": 0.0133,
+    "jsonl_parse_every_row_seconds": 0.3807,
+    "measured_on": "the NCAA Football 09 deep index, 37,017 rows",
+    "note": "The question is how a consumer reads the artefact, not how compactly it stores. Every number is the best of three runs on the dev box (WSL).",
+    "single_json_bytes": 15124845,
+    "single_json_load_seconds": 0.2892,
+    "sqlite_build_from_jsonl_seconds": 0.53,
+    "sqlite_bytes": 18726912,
+    "sqlite_indexed_query_seconds": 0.0007,
+    "verdict": "JSONL. A whole-disc filter is 10 ms with grep and needs no reader; a full parse of every row is 0.33 s, which is below the noise floor of any consumer that was spending 15 to 953 s walking. SQLite's indexed query is ~800x faster than the full parse and saves 0.33 s on a 15 s task, in exchange for a binary artefact git cannot diff and grep cannot read. A consumer that ever needs indexed queries builds the database from the JSONL in 0.53 s."
+  },
+  "misidentifications_retested": {
+    "blitz2002": {
+      "CPTH": {
+        "forward_magic_hex": [
+          "43505448"
+        ],
+        "forward_tag": [
+          "CPTH"
+        ],
+        "members": 85,
+        "rule_that_earned_the_identity": [
+          "16 + records * 32 == the member"
+        ],
+        "the_study_called_it": "HTPC",
+        "why_the_study_was_wrong": "the mapper prints an unrecognised head as other:<forward hex>; read as a little-endian word that hex spells the tag backwards"
+      },
+      "a_third_instance": {
+        "forward_magic_hex": [
+          "454b4142"
+        ],
+        "forward_tag": [
+          "EKAB"
+        ],
+        "members": 4,
+        "the_study_called_it": "BAKE"
+      },
+      "dff": {
+        "identified_as": {
+          "RW-CLUMP": 1043,
+          "RW-CLUMP?": 229
+        },
+        "library_versions": {
+          "0x00000310": 592,
+          "0x0401ffff": 680
+        },
+        "members": 1272,
+        "one_section_accounts_for_the_file": 0,
+        "the_map_said": "not RenderWare: section bytes + 12 == the file fails on every one",
+        "walk_consumes_the_member": 1043
+      }
+    },
+    "blitz2003": {
+      "CPTH": {
+        "forward_magic_hex": [
+          "43505448"
+        ],
+        "forward_tag": [
+          "CPTH"
+        ],
+        "members": 88,
+        "rule_that_earned_the_identity": [
+          "16 + records * 32 == the member"
+        ],
+        "the_study_called_it": "HTPC",
+        "why_the_study_was_wrong": "the mapper prints an unrecognised head as other:<forward hex>; read as a little-endian word that hex spells the tag backwards"
+      },
+      "a_third_instance": {
+        "forward_magic_hex": [
+          "454b4142"
+        ],
+        "forward_tag": [
+          "EKAB"
+        ],
+        "members": 5,
+        "the_study_called_it": "BAKE"
+      },
+      "dff": {
+        "identified_as": {
+          "RW-CLUMP": 1167,
+          "RW-CLUMP?": 269
+        },
+        "library_versions": {
+          "0x00000310": 593,
+          "0x0401ffff": 843
+        },
+        "members": 1436,
+        "one_section_accounts_for_the_file": 0,
+        "the_map_said": "not RenderWare: section bytes + 12 == the file fails on every one",
+        "walk_consumes_the_member": 1167
+      }
+    }
+  },
+  "note": "Every number here was produced on the dev box (WSL) by tools/owner/prototypes/disc_index/. Counts, names, offsets, format identities and digests only; no payload left either disc.",
+  "prototype": "tools/owner/prototypes/disc_index (walk.py, identify.py, regen.py, map_md.py)",
+  "round_trips": [
+    {
+      "differences": [],
+      "disc": "blitz2002",
+      "family": "Midway stored ZIP + .ZIH",
+      "identical": true,
+      "published_census": "docs/product/measured/nflblitz2002_ps2/containers.json",
+      "regenerated_from": "the index alone"
+    },
+    {
+      "differences": [],
+      "disc": "blitz2002",
+      "family": "Midway stored ZIP + .ZIH",
+      "identical": true,
+      "published_census": "docs/product/measured/nflblitz2002_ps2/zip-index.json",
+      "regenerated_from": "the index alone"
+    },
+    {
+      "differences": [],
+      "disc": "blitz2003",
+      "family": "Midway stored ZIP + .ZIH",
+      "identical": true,
+      "published_census": "docs/product/measured/nflblitz2003_ps2/containers.json",
+      "regenerated_from": "the index alone"
+    },
+    {
+      "differences": [],
+      "disc": "blitz2003",
+      "family": "Midway stored ZIP + .ZIH",
+      "identical": true,
+      "published_census": "docs/product/measured/nflblitz2003_ps2/zip-index.json",
+      "regenerated_from": "the index alone"
+    },
+    {
+      "differences": [],
+      "disc": "ncaa09",
+      "family": "EA TERF + EA BIG",
+      "identical": true,
+      "index_carries_beyond_the_page": [
+        "big_entries_all_depths",
+        "big_nested",
+        "decompressed_formats_measured",
+        "file_kinds_measured"
+      ],
+      "keys_compared": [
+        "alignments",
+        "bare_tdb_files",
+        "big_archives",
+        "big_entries",
+        "big_shps",
+        "chains",
+        "codecs",
+        "decompressed_formats",
+        "distinct_tdb_schemas",
+        "file_kinds",
+        "members_level_1",
+        "mmap_containers",
+        "mmap_dimensions_top10",
+        "mmap_members",
+        "mmap_version_format",
+        "nested_terf",
+        "schl_codec2",
+        "schl_containers",
+        "schl_members",
+        "schl_platforms",
+        "tdb_members",
+        "terf_containers",
+        "terf_containers_refused",
+        "text_bytes",
+        "text_containers",
+        "text_members",
+        "unclassified_all_depths",
+        "unclassified_level_1",
+        "undecodable_level_1"
+      ],
+      "keys_the_index_cannot_answer": [],
+      "published_census": "docs/owner/disc_maps/SLUS-21752.NCAA-Football-09-USA.map.md",
+      "regenerated_from": "the index alone"
+    }
+  ],
+  "schema": "disc_index_roundtrip/v1"
+}

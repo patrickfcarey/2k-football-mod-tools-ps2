@@ -30,3 +30,19 @@ and never sent upstream. Rebase it onto `ps2-lane` when the lane moves.
 - `LESSONS_2026-09-06.md` — what cost us that day, ranked, with where each fix is enforced; `tools/owner/integration/` — the resolver, pin audit, gate and NAS loop that used to live in a scratch directory.
 - `CAPTURE_WISHLIST.md` — the standing queue of savestates and GS dumps to take on the rig, ranked by what each unblocks.
 - `SAVESTATE_QUEUE.md` — the rig checklist: which savestates to take, where to stand, and what each unblocks (incl. headless writer proof).
+
+## Specifications (`docs/owner/specs/`)
+
+Designs decided but not yet built. Each says what to build well enough that it can be built in
+one pass without re-deciding anything, and each carries its own measurements under
+`docs/owner/specs/measured/`.
+
+- `ONE_DISC_INDEX.md` — one walk over a disc, one artefact; every tool that walks the disc for
+  itself reads it instead. Leads on accuracy: the `CPTH`-read-as-`HTPC` and the "`.dff` is not
+  RenderWare" corrections both exist because there is no single identifier to fix. Decides the
+  artefact (JSON Lines, per file → per container → per member), the content-addressed store on
+  the NAS, the identifier that becomes authoritative, what each of seven consumers stops doing
+  (1,977 of 10,052 lines), the read budget (a 96-byte window, not a 55 ms member decode), and
+  the migration. Proved by a prototype under `tools/owner/prototypes/disc_index/` that
+  regenerates five published censuses across two disc families byte-identically from the index
+  alone — `docs/owner/specs/measured/disc-index-roundtrip.json`.
