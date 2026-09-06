@@ -1015,6 +1015,10 @@ def map_zip(extent: "_Extent", *, base: int = 0, size: Optional[int] = None, dep
             except (zipfile.BadZipFile, OSError, ValueError, EOFError, NotImplementedError):
                 unreadable += 1; kinds["unreadable"] += 1; continue
             kind = identify_head(head) if head else "empty"
+            if kind.startswith("other:"):
+                section_id = renderware_section(head, info.file_size)
+                if section_id is not None:
+                    kind = "RenderWare 0x%02x" % section_id
             kinds[kind] += 1
             if kind in ("ZIP", "EFS", "HDR-dir") and depth < 1:
                 nested += 1
@@ -1201,23 +1205,41 @@ def obf_tree(data) -> Dict[str, Any]:
 def hdr_dir(head: bytes) -> Dict[str, Any]:
     """AND 1 Streetball's ``.HDR`` member directory: 8-character space-padded names and offsets.
 
-    Header: ``".HDR"``, ``u32 entries``, ``u32 32`` (where the entries start), ``u32 0x80000000``, then
-    16 zero bytes.  Entries are ``char[8] name`` + ``u32 offset`` + ``u32``.  ``32 + entries * 16`` equals
-    the first entry's offset (checked) -- which is what makes this a directory rather than a guess.
+    Header: ``".HDR"``, ``u32 entries``, ``u32`` where the entries start, ``u32 0x80000000``.  Entries are
+    ``char[8] name`` + ``u32 offset`` + ``u32``.  The identity that makes this a directory rather than a
+    guess is ``entry table offset + entries * 16 == the first entry's offset``; it is checked, and the
+    header's own table offset is used, never a constant -- the ``.HDR`` inside a ``.BOB`` member starts its
+    table at 20 where every other member starts at 32.
     """
-    if len(head) < HDR_DIR_HEADER_BYTES or head[:4] != b".HDR":
+    if len(head) < 16 or head[:4] != b".HDR":
         raise MapError("not a .HDR directory")
-    count, first, flags = struct.unpack_from("<3I", head, 4)
-    result: Dict[str, Any] = {"entries": count, "entry_table_offset": first, "flag_word": flags,
-                              "table_bytes": HDR_DIR_HEADER_BYTES + count * HDR_DIR_ENTRY_BYTES}
-    if count and len(head) >= HDR_DIR_HEADER_BYTES + HDR_DIR_ENTRY_BYTES:
-        first_offset = struct.unpack_from("<I", head, HDR_DIR_HEADER_BYTES + 8)[0]
+    count, table_offset, flags = struct.unpack_from("<3I", head, 4)
+    if table_offset < 16 or table_offset > (1 << 20) or count > 1_000_000:
+        raise MapError(".HDR declares %d entries starting at %d; refusing" % (count, table_offset))
+    result: Dict[str, Any] = {"entries": count, "entry_table_offset": table_offset, "flag_word": flags,
+                              "table_bytes": table_offset + count * HDR_DIR_ENTRY_BYTES}
+    if count and len(head) >= table_offset + HDR_DIR_ENTRY_BYTES:
+        first_offset = struct.unpack_from("<I", head, table_offset + 8)[0]
         result["first_member_offset"] = first_offset
         result["table_ends_at_first_member"] = (result["table_bytes"] == first_offset)
-        result["names_sample"] = [_printable(head[HDR_DIR_HEADER_BYTES + i * HDR_DIR_ENTRY_BYTES:
-                                                  HDR_DIR_HEADER_BYTES + i * HDR_DIR_ENTRY_BYTES + 8]).rstrip()
-                                  for i in range(min(count, 6)) if HDR_DIR_HEADER_BYTES + (i + 1) * HDR_DIR_ENTRY_BYTES <= len(head)]
+        result["names_sample"] = [_printable(head[table_offset + i * HDR_DIR_ENTRY_BYTES:
+                                                  table_offset + i * HDR_DIR_ENTRY_BYTES + 8]).rstrip()
+                                  for i in range(min(count, 6)) if table_offset + (i + 1) * HDR_DIR_ENTRY_BYTES <= len(head)]
     return result
+
+
+def renderware_section(head: bytes, size: int) -> Optional[int]:
+    """The RenderWare section id of a member whose declared section length accounts for the whole file.
+
+    A RenderWare binary stream is ``u32 section id``, ``u32 section bytes``, ``u32 library version``; a
+    file that *is* one section satisfies ``section bytes + 12 == the file``.  Returns the id only when
+    that holds, so the label is earned rather than read off a four-byte constant. [S: RenderWare's
+    published section ids -- 0x10 clump, 0x16 texture dictionary.]
+    """
+    if len(head) < 12:
+        return None
+    section_id, section_bytes, _version = struct.unpack_from("<3I", head, 0)
+    return section_id if section_bytes + 12 == size else None
 
 
 def map_efs(extent: "_Extent", *, base: int = 0, size: Optional[int] = None, depth: int = 0,
@@ -1242,7 +1264,7 @@ def map_efs(extent: "_Extent", *, base: int = 0, size: Optional[int] = None, dep
     names = extent.read(base, min(first_data, size), limit=base + size)
     kinds: Counter = Counter(); exts: Counter = Counter(); flags: Counter = Counter()
     inside = 0; equal_sizes = 0; total = 0; last_end = 0; nested_efs = 0; hdr_members = 0; hdr_checked = 0
-    nested_entries = 0; nested_kinds: Counter = Counter(); largest = ("", 0)
+    nested_entries = 0; nested_kinds: Counter = Counter(); largest = ("", 0); hdr_empty = 0
     for i in range(count):
         name_off, data_off, member, member2, flag = struct.unpack_from("<5I", table, i * EFS_ENTRY_BYTES)
         flags[flag] += 1
@@ -1274,8 +1296,11 @@ def map_efs(extent: "_Extent", *, base: int = 0, size: Optional[int] = None, dep
         elif kind == "HDR-dir":
             hdr_members += 1
             try:
-                directory = hdr_dir(extent.read(base + data_off, min(member, HDR_DIR_HEADER_BYTES + HDR_DIR_ENTRY_BYTES * 8), limit=base + size))
+                directory = hdr_dir(extent.read(base + data_off, min(member, 64), limit=base + size))
+                wanted = min(member, directory["entry_table_offset"] + HDR_DIR_ENTRY_BYTES)
+                directory = hdr_dir(extent.read(base + data_off, wanted, limit=base + size))
                 hdr_checked += 1 if directory.get("table_ends_at_first_member") else 0
+                hdr_empty += 1 if directory["entries"] == 0 else 0
             except (MapError, struct.error):
                 pass
     return {"entries": count, "first_data_offset": first_data, "header_word3": word3,
@@ -1284,7 +1309,7 @@ def map_efs(extent: "_Extent", *, base: int = 0, size: Optional[int] = None, dep
             "last_member_ends_at_eof": (last_end == size), "member_kinds": dict(kinds.most_common(20)),
             "extensions": dict(exts.most_common(20)), "entry_flags": {str(k): v for k, v in flags.most_common(4)},
             "nested_efs": nested_efs, "nested_entries": nested_entries, "nested_member_kinds": dict(nested_kinds.most_common(12)),
-            "hdr_directories": hdr_members, "hdr_directories_checked": hdr_checked,
+            "hdr_directories": hdr_members, "hdr_directories_checked": hdr_checked, "hdr_directories_empty": hdr_empty,
             "largest_entry": {"name": largest[0], "bytes": largest[1]}}
 
 
@@ -1412,6 +1437,7 @@ def foreign_totals(zips: Dict[str, Any], asset_indexes: Dict[str, Any], efs_arch
         "efs_nested": sum(e.get("nested_efs", 0) for e in efs_ok),
         "efs_hdr_directories": sum(e.get("hdr_directories", 0) for e in efs_ok),
         "efs_hdr_directories_checked": sum(e.get("hdr_directories_checked", 0) for e in efs_ok),
+        "efs_hdr_directories_empty": sum(e.get("hdr_directories_empty", 0) for e in efs_ok),
         "efs_member_kinds": dict(efs_kinds.most_common(20)), "efs_extensions": dict(efs_exts.most_common(20)),
         "packs": len(packs), "overlays": len(overlays), "sound_banks": len(sound_banks),
         "sound_bank_records": sum(b.get("records_read", 0) for b in sound_banks.values() if "error" not in b),
@@ -1660,7 +1686,8 @@ def render_foreign(m: Dict[str, Any]) -> List[str]:
                 f"{len(efs)} archives ({len(efs) - len(ok)} refused) holding {totals.get('efs_members', 0):,} members. "
                 f"The last member's end equals the file's length in {totals.get('efs_last_member_at_eof', 0)} of {len(ok)}. "
                 f"Nested `EFS ` members: {totals.get('efs_nested', 0)}. `.HDR` member directories: {totals.get('efs_hdr_directories', 0)}, "
-                f"of which {totals.get('efs_hdr_directories_checked', 0)} have `32 + entries × 16` equal to their first member's offset.", "",
+                f"of which {totals.get('efs_hdr_directories_checked', 0)} have `entry-table offset + entries × 16` equal to their first "
+                f"member's offset and {totals.get('efs_hdr_directories_empty', 0)} declare no entries at all.", "",
                 f"Member kinds across every archive: {_fmt_counts(totals.get('efs_member_kinds'), 14) or '—'}.", "",
                 f"Member extensions: {_fmt_counts(totals.get('efs_extensions'), 20) or '—'}.", "",
                 "| archive | bytes | entries | members inside the file | sizes agree | member kinds | extensions |", "|---|---:|---:|---:|---:|---|---|"]
@@ -2212,7 +2239,7 @@ def render_page(m: Dict[str, Any], today: Optional[str] = None) -> str:
             out.append(f"| `EFS ` | {foreign.get('efs_archives', 0)} | {foreign.get('efs_members', 0):,} members; the last member's end equals the "
                        f"file length in {foreign.get('efs_last_member_at_eof', 0)} of {foreign.get('efs_archives', 0) - foreign.get('efs_refused', 0)}; "
                        f"{foreign.get('efs_hdr_directories_checked', 0)} of {foreign.get('efs_hdr_directories', 0)} `.HDR` members have "
-                       f"`32 + entries × 16` equal to their first member's offset | what a `.DIM` / `.PPD` / `BALL` / `NIS0` member *is* |")
+                       f"`entry-table offset + entries × 16` equal to their first member's offset | what a `.DIM` / `.PPD` / `BALL` / `NIS0` member *is* |")
         if m.get("packs"):
             out.append(f"| `PAK ` + `0x11111111` metadata | {foreign.get('packs', 0)} + {foreign.get('metadata_lists', 0)} | "
                        f"`body bytes + metadata offset == file`; {foreign.get('metadata_records', 0)} records of 2,048 bytes, each naming a category "
@@ -2484,13 +2511,16 @@ def _synthetic_pak(meta: bytes, payload: bytes) -> bytes:
 
 
 def _synthetic_ms2(records: Sequence[Tuple[int, bytes]], *, names: Sequence[str] = ()) -> bytes:
+    """A Midway sound bank; a record with no bytes becomes an all-zero (offset, size) empty slot, as the discs' do."""
     name_blob = b"".join(n.encode("latin-1") + b"\x00" for n in names)
     directory_bytes = 24 + len(records) * 12 + len(name_blob)
-    payload = bytearray(); table = bytearray(); cursor = directory_bytes
+    body = bytearray(); table = bytearray(); cursor = directory_bytes
     for record_id, blob in records:
-        table += struct.pack("<3I", record_id, cursor, len(blob)); payload += blob; cursor += len(blob)
-    total = directory_bytes + len(payload)
-    return struct.pack("<6I", 1, len(records), directory_bytes, 0, total, 0) + bytes(table) + name_blob + bytes(payload)
+        if not blob:
+            table += struct.pack("<3I", record_id, 0, 0); continue
+        table += struct.pack("<3I", record_id, cursor, len(blob)); body += blob; cursor += len(blob)
+    total = directory_bytes + len(body)
+    return struct.pack("<6I", 1, len(records), directory_bytes, 0, total, 0) + bytes(table) + name_blob + bytes(body)
 
 
 def _synthetic_obf(settings: Sequence[Tuple[str, str, int, int]]) -> bytes:
@@ -2502,9 +2532,9 @@ def _synthetic_obf(settings: Sequence[Tuple[str, str, int, int]]) -> bytes:
     return bytes(out)
 
 
-def _synthetic_hdr(names: Sequence[str]) -> bytes:
-    first = HDR_DIR_HEADER_BYTES + len(names) * HDR_DIR_ENTRY_BYTES
-    out = bytearray(b".HDR" + struct.pack("<3I", len(names), HDR_DIR_HEADER_BYTES, 0x80000000) + bytes(16))
+def _synthetic_hdr(names: Sequence[str], *, table_offset: int = HDR_DIR_HEADER_BYTES) -> bytes:
+    first = table_offset + len(names) * HDR_DIR_ENTRY_BYTES
+    out = bytearray(b".HDR" + struct.pack("<3I", len(names), table_offset, 0x80000000) + bytes(table_offset - 16))
     cursor = first
     for name in names:
         out += name.encode("latin-1")[:8].ljust(8, b" ") + struct.pack("<2I", cursor, 0); cursor += 64
@@ -2645,8 +2675,12 @@ def selftest() -> int:
     tree = obf_tree(_synthetic_obf([("Blitz.Video.Ball", "In Hand Scale", 2, 0x3F99999A), ("Blitz.GameOptions", "Force Plays", 1, 0)]))
     check(tree["consumed_whole_file"] and tree["sections"] == 2 and tree["settings"] == 2
           and tree["value_types"] == {"float": 1, "int": 1}, "OBF tree %s" % tree)
-    directory = hdr_dir(_synthetic_hdr(["pause_bg", "ball", "allscore"]))
-    check(directory["entries"] == 3 and directory["table_ends_at_first_member"] and directory["names_sample"][:2] == ["pause_bg", "ball"], "HDR directory %s" % directory)
+    for table_offset in (HDR_DIR_HEADER_BYTES, 20):
+        directory = hdr_dir(_synthetic_hdr(["pause_bg", "ball", "allscore"], table_offset=table_offset))
+        check(directory["entries"] == 3 and directory["entry_table_offset"] == table_offset and directory["table_ends_at_first_member"]
+              and directory["names_sample"][:2] == ["pause_bg", "ball"], "HDR directory at %d: %s" % (table_offset, directory))
+    check(renderware_section(struct.pack("<3I", 0x16, 52, 0x1803FFFF), 64) == 0x16
+          and renderware_section(struct.pack("<3I", 0x10, 40, 0x1803FFFF), 64) is None, "RenderWare section length must account for the file")
     stream = _synthetic_vagp(rate=44100, data_bytes=96)
     vag = vagp_header(stream[:VAGP_HEADER_BYTES], len(stream))
     check(vag["sample_rate"] == 44100 and vag["data_plus_header_is_file"] and vag["name"] == "Idle1" and vag["version"] == 0x20, "VAGp header %s" % vag)

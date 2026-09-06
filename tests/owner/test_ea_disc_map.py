@@ -315,6 +315,178 @@ class DefectToleranceTests(unittest.TestCase):
         self.assertIn("| Old |", mapper.render_summary([old]))
 
 
+class MidwayAndAnd1Tests(unittest.TestCase):
+    """The non-EA readers, on synthetic bytes: each identity the reader claims, and each refusal."""
+
+    def test_mwo3_overlay_sizes_account_for_the_file(self) -> None:
+        blob = mapper._synthetic_mwo3(index=2, load=0x0079E600, segment1=512, segment2=128, name=b"NETDVD.OVL")
+        head = mapper.mwo3_header(blob[:mapper.MWO3_HEADER_BYTES], len(blob))
+        self.assertEqual((head["index"], head["load_address"], head["name"]), (2, 0x0079E600, "NETDVD.OVL"))
+        self.assertTrue(head["segments_account_for_file"])
+        self.assertTrue(head["address1_is_load_plus_size"] and head["address2_equals_address1"])
+        self.assertEqual(mapper.MWO3_HEADER_BYTES + head["segment1_bytes"] + head["segment2_bytes"], len(blob))
+
+    def test_mwo3_reports_a_size_field_that_does_not_add_up(self) -> None:
+        blob = bytearray(mapper._synthetic_mwo3(segment1=256, segment2=64))
+        struct.pack_into("<I", blob, 16, 999)          # segment 2 now lies
+        head = mapper.mwo3_header(bytes(blob[:64]), len(blob))
+        self.assertFalse(head["segments_account_for_file"], "a wrong size field must not read as measured")
+        with self.assertRaises(mapper.MapError):
+            mapper.mwo3_header(b"MWo2" + bytes(60))
+
+    def test_zih_index_in_both_shapes_points_into_its_zip(self) -> None:
+        members = [("art/one.rtd", b"\x16\x00\x00\x00" + bytes(40)), ("b/two.ini", b"key = value\r\n"), ("c/three.dff", bytes(96))]
+        blob = mapper._synthetic_zip(members)
+        rows = mapper._zip_data_offsets(blob, members)
+        with tempfile.TemporaryDirectory() as tmp:
+            zip_path = Path(tmp) / "z.bin"; zip_path.write_bytes(blob)
+            with open(zip_path, "rb") as handle:
+                extent = mapper._Extent(handle, None, None, offset=0, size=len(blob))
+                for variant in ("inline", "table"):
+                    index = mapper.zih_index(mapper._synthetic_zih(rows, variant=variant))
+                    self.assertEqual((index["variant"], index["entries"], index["entries_read"]), (variant, 3, 3))
+                    check = mapper.zih_versus_zip(index, extent)
+                    self.assertEqual(check["landed_on_a_local_file_header"], 3)
+                    self.assertEqual(check["names_match"], 3)
+                    self.assertEqual(check["missed"], 0)
+                    if variant == "inline":
+                        self.assertEqual(check["crc_matches"], check["crc_entries_checked"])
+                        self.assertEqual(check["crc_entries_checked"], 3)
+
+    def test_a_zih_offset_that_points_nowhere_is_counted_as_a_miss(self) -> None:
+        members = [("one.bin", bytes(64))]
+        blob = mapper._synthetic_zip(members)
+        rows = [(name, size, offset + 7, crc) for name, size, offset, crc in mapper._zip_data_offsets(blob, members)]
+        index = mapper.zih_index(mapper._synthetic_zih(rows))
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "z.bin"; path.write_bytes(blob)
+            with open(path, "rb") as handle:
+                check = mapper.zih_versus_zip(index, mapper._Extent(handle, None, None, offset=0, size=len(blob)))
+        self.assertEqual((check["landed_on_a_local_file_header"], check["missed"]), (0, 1))
+
+    def test_zih_refuses_a_header_whose_own_length_word_is_wrong(self) -> None:
+        with self.assertRaises(mapper.MapError):
+            mapper.zih_index(struct.pack("<II", 3, 999) + bytes(64))
+        with self.assertRaises(mapper.MapError):
+            mapper.zih_index(b"\x00" * 8)
+
+    def test_midway_metadata_checks_its_name_hash_against_the_path(self) -> None:
+        blob = mapper._synthetic_midway_meta([(0xC36737C2, "databases", "objects\\c36737c2.of"),
+                                              (0x0FD26C79, "playbooks", "objects\\fd26c79.of")])
+        parsed = mapper.midway_meta(lambda o, n: blob[o:o + n], len(blob))
+        self.assertEqual(parsed["records"], 2)
+        self.assertEqual(parsed["region_bytes"], 8 + 2 * mapper.MIDWAY_META_SLOT)
+        self.assertTrue(parsed["region_ends_at_file_end"])
+        self.assertEqual(parsed["name_hash_matches_path_stem"], 2)
+        self.assertEqual(parsed["name_hash_mismatches"], 0)
+        self.assertEqual(sorted(parsed["categories"]), ["databases", "playbooks"])
+
+    def test_midway_metadata_reports_a_hash_that_disagrees_with_its_path(self) -> None:
+        blob = mapper._synthetic_midway_meta([(0xDEADBEEF, "misc", "objects\\c36737c2.of")])
+        parsed = mapper.midway_meta(lambda o, n: blob[o:o + n], len(blob))
+        self.assertEqual((parsed["name_hash_matches_path_stem"], parsed["name_hash_mismatches"]), (0, 1))
+        with self.assertRaises(mapper.MapError):
+            mapper.midway_meta(lambda o, n: (b"\x11\x11\x11\x11" + struct.pack("<I", 4) + bytes(64))[o:o + n], 72)
+
+    def test_midway_sound_bank_records_and_name_table(self) -> None:
+        blob = mapper._synthetic_ms2([(1, bytes(64)), (0x20000002, bytes(96)), (3, b"")], names=["943.mst", "945.mst"])
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "b.ms2"; path.write_bytes(blob)
+            with open(path, "rb") as handle:
+                bank = mapper.map_midway_sound(mapper._Extent(handle, None, None, offset=0, size=len(blob)))
+        self.assertTrue(bank["total_field_is_file_size"])
+        self.assertEqual(bank["records_read"], 3)
+        self.assertEqual(bank["empty_slots"], 1)
+        self.assertTrue(bank["offsets_ascending"] and bank["last_member_ends_at_eof"])
+        self.assertEqual(bank["name_table_extensions"], {"mst": 2})
+
+    def test_midway_sound_bank_refuses_a_header_whose_total_is_not_the_file(self) -> None:
+        blob = bytearray(mapper._synthetic_ms2([(1, bytes(32))]))
+        struct.pack_into("<I", blob, 16, 123456)
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "b.ms2"; path.write_bytes(bytes(blob))
+            with open(path, "rb") as handle:
+                with self.assertRaises(mapper.MapError):
+                    mapper.map_midway_sound(mapper._Extent(handle, None, None, offset=0, size=len(blob)))
+
+    def test_obf_option_tree_walks_to_the_last_byte(self) -> None:
+        tree = mapper.obf_tree(mapper._synthetic_obf([("Blitz.Video.Ball", "In Hand Scale", 2, 0x3F99999A),
+                                                      ("Blitz.GameOptions.Plays", "Force Plays", 1, 0)]))
+        self.assertTrue(tree["consumed_whole_file"])
+        self.assertEqual((tree["sections"], tree["settings"]), (2, 2))
+        self.assertEqual(tree["value_types"], {"float": 1, "int": 1})
+        self.assertEqual(tree["top_level_names"], {"Blitz": 4})
+
+    def test_obf_stops_at_a_tag_it_does_not_know_and_says_how_far_it_got(self) -> None:
+        blob = mapper._synthetic_obf([("A", "B", 1, 0)]) + b"\x7f\x01Z"
+        tree = mapper.obf_tree(blob)
+        self.assertFalse(tree["consumed_whole_file"])
+        self.assertEqual(tree["consumed_bytes"], len(blob) - 3)
+        with self.assertRaises(mapper.MapError):
+            mapper.obf_tree(b"\x02\xf0" + bytes(8))
+
+    def test_efs_archive_directory_and_one_level_of_nesting(self) -> None:
+        inner = mapper._synthetic_efs([("LEAF.PPD", b".HDR" + bytes(28))])
+        blob = mapper._synthetic_efs([("ATLANTA.BIN", bytes(32)),
+                                      ("COMMON.DIM", mapper._synthetic_hdr(["pause_bg", "ball"])),
+                                      ("ANIM_INNER.EFS", inner)])
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "a.efs"; path.write_bytes(blob)
+            with open(path, "rb") as handle:
+                archive = mapper.map_efs(mapper._Extent(handle, None, None, offset=0, size=len(blob)))
+        self.assertEqual(archive["entries"], 3)
+        self.assertTrue(archive["directory_fits_before_data"])
+        self.assertTrue(archive["last_member_ends_at_eof"])
+        self.assertEqual((archive["members_inside_file"], archive["sizes_agree"]), (3, 3))
+        self.assertEqual((archive["nested_efs"], archive["nested_entries"]), (1, 1))
+        self.assertEqual((archive["hdr_directories"], archive["hdr_directories_checked"]), (1, 1))
+        self.assertEqual(archive["extensions"], {"BIN": 1, "DIM": 1, "EFS": 1})
+
+    def test_efs_refuses_a_directory_that_does_not_fit(self) -> None:
+        with self.assertRaises(mapper.MapError):
+            mapper.map_efs(_BytesExtent(b"EFS " + struct.pack("<3I", 64, 5000, 0xFFFFFFFF) + bytes(48)))
+        with self.assertRaises(mapper.MapError):
+            mapper.map_efs(_BytesExtent(b"EFT " + bytes(60)))
+
+    def test_hdr_directory_uses_the_offset_the_header_gives(self) -> None:
+        for table_offset in (mapper.HDR_DIR_HEADER_BYTES, 20):
+            directory = mapper.hdr_dir(mapper._synthetic_hdr(["pause_bg", "ball", "allscore"], table_offset=table_offset))
+            self.assertEqual(directory["entry_table_offset"], table_offset)
+            self.assertTrue(directory["table_ends_at_first_member"])
+            self.assertEqual(directory["names_sample"], ["pause_bg", "ball", "allscore"])
+        with self.assertRaises(mapper.MapError):
+            mapper.hdr_dir(b".HDX" + bytes(28))
+
+    def test_renderware_label_is_earned_by_the_section_length(self) -> None:
+        self.assertEqual(mapper.renderware_section(struct.pack("<3I", 0x16, 52, 0x1803FFFF), 64), 0x16)
+        self.assertIsNone(mapper.renderware_section(struct.pack("<3I", 0x10, 40, 0x1803FFFF), 64))
+        self.assertIsNone(mapper.renderware_section(b"\x16\x00", 64))
+
+    def test_vagp_header_accounts_for_the_file(self) -> None:
+        stream = mapper._synthetic_vagp(rate=22050, data_bytes=160, name=b"Idle1b")
+        head = mapper.vagp_header(stream[:mapper.VAGP_HEADER_BYTES], len(stream))
+        self.assertEqual((head["sample_rate"], head["data_bytes"], head["name"], head["version"]), (22050, 160, "Idle1b", 0x20))
+        self.assertTrue(head["data_plus_header_is_file"])
+        self.assertFalse(mapper.vagp_header(stream[:mapper.VAGP_HEADER_BYTES], len(stream) + 1)["data_plus_header_is_file"])
+        with self.assertRaises(mapper.MapError):
+            mapper.vagp_header(b"VAGq" + bytes(44))
+
+    def test_a_name_never_reaches_a_document_as_a_raw_control_byte(self) -> None:
+        self.assertEqual(mapper._printable(b"ok\x01\x7f"), "ok\\x01\\x7f")
+        self.assertEqual(mapper._printable(b"caf\xe9"), "caf\\xe9")
+
+
+class _BytesExtent:
+    """The two methods the container readers use, over a bytes object -- no file, no disc."""
+
+    def __init__(self, data: bytes) -> None:
+        self.data = data
+        self.size = len(data)
+
+    def read(self, start: int, length: int, limit=None) -> bytes:
+        return self.data[start:start + length]
+
+
 class SelftestTests(unittest.TestCase):
     def test_the_selftest_passes_as_a_subprocess(self) -> None:
         completed = subprocess.run([sys.executable, str(ROOT / "tools" / "owner" / "ea_disc_map.py"), "--selftest"],
