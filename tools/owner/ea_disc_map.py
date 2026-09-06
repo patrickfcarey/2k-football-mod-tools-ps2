@@ -2124,6 +2124,37 @@ def _foreign_kind_note(kind: str, m: Dict[str, Any]) -> str:
     return ""
 
 
+#: A Midway pack's category words are the only thing measured about its objects, so the page a
+#: category feeds is decided from the word alone -- an [A] mapping, and the rung it earns is
+#: ``unknown`` because the reader still cannot locate the object the word names.
+PACK_CATEGORY_PAGES: Tuple[Tuple[str, Tuple[str, ...]], ...] = (
+    ("database", ("Names, Numbers & Faces", "Text & Team Identity")),
+    ("playbook", ("Playbooks & Plays",)),
+    ("formation", ("Playbooks & Plays",)),
+    ("play", ("Playbooks & Plays",)),
+    ("stadium", ("Stadiums",)),
+    ("player", ("Names, Numbers & Faces",)),
+    ("character", ("Names, Numbers & Faces",)),
+    ("coach", ("Names, Numbers & Faces",)),
+    ("cheer", ("Presentation",)),
+    ("nis", ("Presentation",)),
+    ("screen", ("Menus & UI", "All Textures")),
+    ("shell", ("Menus & UI", "All Textures")),
+    ("image", ("All Textures",)),
+    ("prop", ("All Textures",)),
+    ("envlightmap", ("All Textures",)),
+)
+
+
+def pack_category_pages(category: str) -> Tuple[str, ...]:
+    """The studio pages a pack category word feeds, from the word alone; first match wins, may be empty."""
+    lowered = category.lower()
+    for needle, pages in PACK_CATEGORY_PAGES:
+        if needle in lowered:
+            return pages
+    return ()
+
+
 def foreign_feeders(m: Dict[str, Any]) -> List[Tuple[str, str, Dict[str, Any]]]:
     """(studio page, path, a formats dict) for every non-EA container, decided only from measured member kinds."""
     rows: List[Tuple[str, str, Dict[str, Any]]] = []
@@ -2150,6 +2181,14 @@ def foreign_feeders(m: Dict[str, Any]) -> List[Tuple[str, str, Dict[str, Any]]]:
             rows.append(("Audio", path, {"MidwaySound": b.get("records_read", 0)}))
     if (m.get("vag_audio") or {}).get("files"):
         rows.append(("Audio", "loose `.VAG` streams", {"VAGp": m["vag_audio"]["files"]}))
+    for path, pack in sorted((m.get("packs") or {}).items()):
+        meta = pack.get("metadata") if isinstance(pack.get("metadata"), dict) else {}
+        per_page: Counter = Counter()
+        for category, count in (meta.get("categories") or {}).items():
+            for page in pack_category_pages(category):
+                per_page[page] += count
+        for page, count in sorted(per_page.items()):
+            rows.append((page, path + " (pack categories, [A])", {"MidwayPAK": count}))
     return rows
 
 
@@ -2754,6 +2793,11 @@ def selftest() -> int:
                   and "Sony `VAGp` streams" in md and "Midway option trees" in md, "the non-EA sections render")
             check("### Non-EA containers (Midway / AND 1) [M]" in page and "local file header" in page
                   and "no header word of this disc is an offset into it" in page, "the page carries the non-EA table")
+            playbooks = next(line for line in page.splitlines() if line.startswith("| Playbooks & Plays |"))
+            check("pack categories, [A]" in playbooks and "| unknown |" in playbooks and "honest empty page" not in playbooks,
+                  "a named-but-unlocatable pack category earns 'unknown', never an empty page: %s" % playbooks)
+            check(pack_category_pages("stadium_carolina") == ("Stadiums",) and pack_category_pages("Databases")[0] == "Names, Numbers & Faces"
+                  and pack_category_pages("misc") == (), "pack category page mapping")
             if sector_size == 2048:
                 first = mapped
             else:

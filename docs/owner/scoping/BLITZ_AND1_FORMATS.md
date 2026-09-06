@@ -158,6 +158,11 @@ and cannot locate one. Lifted by whatever turns a named object into a byte range
 `.of` object header, a table the boot ELF builds at load time, or a second index this pass did
 not find. **Until then no page for these two discs can be filled and no writer can exist.**
 
+The generated page routes each category word to a studio page from the word alone (`playbooks`
+to Playbooks & Plays, `stadium_*` to Stadiums, and so on) and marks the cell `[A]`. That row
+reads `unknown`, never `honest empty page`: a disc that demonstrably carries a `Playbooks`
+object is not a disc with no playbooks, and it is not a disc whose playbooks we can open.
+
 ### 4.4 The Midway sound banks — `BLITZ04.MS2` / `.MS4`
 
 24-byte header whose fifth word is the file's own length — that is what identifies the format,
