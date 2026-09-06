@@ -33,12 +33,17 @@ proves everything that follows.
 
 ## The queue
 
-### A. States for headless writer proof — one boot each, two states per game
+### A. States for headless writer proof — one state per row, nine in total
 
-For each, take **state 1** at the menu named, then advance to the screen named and take **state 2**.
-State 1 is the one the harness restores; state 2 is the reference for what the screen should look like.
+**One state per row.** An earlier draft asked for a second "reference" state per game; it is not needed.
+The harness restores the same state twice, once with the original image and once with the patched one,
+advances both the same number of frames with no input, and diffs the two frames. Emulation from an
+identical state with identical input is deterministic, so the reference generates itself.
 
-| # | Game | State 1 — stand here | Then advance to | Proves |
+Take the state at the screen in the **stand here** column. The **advance to** column is what the harness
+will drive to afterwards; you do not need to go there yourself.
+
+| # | Game | Stand here — take the state | Harness advances to | Proves |
 |---|---|---|---|---|
 | A1 | **Madden 09** `SLUS-21770` | team-select / matchup screen, before kickoff | first play from scrimmage | uniforms, field art, stadiums, presentation, faces, team data — **7 of the 11 writers at once** |
 | A2 | **Madden 09** | main menu, before entering any mode | roster or depth-chart screen | text, roster/team databases, menu art |
