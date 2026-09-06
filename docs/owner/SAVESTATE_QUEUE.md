@@ -79,10 +79,13 @@ loading screen**, and one on the main menu.
 | ~~A12~~ | **NFL Street 3** `SLUS-21482` | ~~team select~~ | **CAPTURED 2026-09-06 15:13** — slot 01 is a **loading screen** (Audibles tip card), which is exactly the position the harness wants |
 | ~~A13~~ | **NFL Street 3** `SLUS-21482` | ~~main menu~~ | **CAPTURED** — slot 02 |
 
-**Still wanted for these two discs:** a **GS dump** of the same screens. A savestate proves a
-writer once the harness exists; it does **not** confirm a texture identity, which needs the frame
-PCSX2 renders. Neither Street disc has a dump of any kind, so every identity both modules ship is
-derived. Two frames per disc closes that, the same way two NCAA frames named 510 textures.
+**GS dumps: CAPTURED 2026-09-06 15:17–15:31, harvested the same hour.** Six dumps — one of NFL
+Street's Select Field screen, five of NFL Street 3 around a loading screen and gameplay — yielding
+**195 and 1,569 texture files**. They sit on the NAS at
+`/turret/builds/2k5/texdumps/texdumps-20260906-SLUS-{20841,21482}/` and on the dev box under
+`$S/wp-identities/`. Both modules can therefore ship **confirmed** identities rather than only
+derived ones. Street 1's single frame will confirm little; a second session on its team-select and
+an in-game frame would be worth more than anything else on this disc.
 
 Alongside each, **a GS dump of the same two screens** confirms texture identities that are
 otherwise only computed — the two captures answer different questions and both are cheap once the
