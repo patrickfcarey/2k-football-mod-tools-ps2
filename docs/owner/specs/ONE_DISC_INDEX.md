@@ -527,9 +527,10 @@ mapper unit tests pass against the moved functions.
 
 **Step 5 — `ea_module_readiness.py` takes its targets from the index.** Its readers do not
 change. **Green when** every `readiness/*.json` regenerates with identical counts and its
-`--selftest` passes. (Note: one of its 37 self-test checks has been red since it was written —
-`EFFICIENCY_REVIEW.md` §11.2, `LESSONS_2026-09-06.md` #13 — and must be fixed before this step,
-not by it.)
+`--selftest` passes. (`EFFICIENCY_REVIEW.md` §11.2 and `LESSONS_2026-09-06.md` #13 record one of
+its self-test checks as red; it is green at this branch's head —
+`EA_MODULE_READINESS_SELFTEST checks=61 failures=0` [M] — so the baseline for this step is a
+passing self-test and any red one it produces is this step's.)
 
 **Step 6 — the three `inventory_lane.py` files.** One per commit, each with its module's
 conformance run and `pins --check`. `FORMAT_SAMPLE` is removed in the same commit that removes
