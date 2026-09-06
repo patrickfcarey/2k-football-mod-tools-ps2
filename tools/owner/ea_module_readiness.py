@@ -1627,16 +1627,19 @@ def _counts_of(tally: Dict[str, Any], containers: Dict[str, Any], databases: Dic
                  "banks": tally["shps_banks"], "sampled": tally["shps_sampled"],
                  "banks_parsed": tally["shps_parsed"], "banks_refused": tally["shps_refused"],
                  "mip_images": tally["shps_mip_images"],
-                 "block_codes": dict(tally["shps_block_codes"].most_common(12)),
-                 "decoded_codes": dict(tally["shps_decoded_codes"].most_common(8)),
-                 "refused_codes": dict(tally["shps_refused_codes"].most_common(8)),
+                 # Every code, not a top-N: a block code that appears twice on a
+                 # disc is exactly the kind of thing a truncated histogram hides,
+                 # and the refused counts have to add up to the refused total.
+                 "block_codes": dict(tally["shps_block_codes"].most_common()),
+                 "decoded_codes": dict(tally["shps_decoded_codes"].most_common()),
+                 "refused_codes": dict(tally["shps_refused_codes"].most_common()),
                  "reasons": dict(tally["shps_reasons"].most_common(6)),
                  "dimensions": dict(tally["shps_dimensions"].most_common(12)),
                  "endians": dict(tally["shps_endians"].most_common(4)),
                  "directory_ids": dict(tally["shps_directory_ids"].most_common(6))},
         "data_tables": {"total": sum(tally["data_magics"].values()),
                         "opens_as_tdb": tally["data_tdb"],
-                        "magics": dict(tally["data_magics"].most_common(12)),
+                        "magics": dict(tally["data_magics"].most_common()),
                         "formats": dict(tally["data_kinds"].most_common(8))},
     }
 
@@ -1876,9 +1879,9 @@ def _big_section(m: Dict[str, Any]) -> List[str]:
                     format(shps.get("banks_parsed", 0), ","), format(shps.get("banks_refused", 0), ","),
                     format(shps.get("sampled", 0), ","), format(shps.get("banks", 0), ",")),
                 "| `SHPS` block codes, every block of every parsed bank | %s |"
-                % (_counts(shps.get("block_codes"), 10) or "—"),
-                "| image codes that decoded | %s |" % (_counts(shps.get("decoded_codes"), 6) or "—"),
-                "| image codes the reader refused | %s |" % (_counts(shps.get("refused_codes"), 6) or "—"),
+                % (_counts(shps.get("block_codes")) or "—"),
+                "| image codes that decoded | %s |" % (_counts(shps.get("decoded_codes")) or "—"),
+                "| image codes the reader refused | %s |" % (_counts(shps.get("refused_codes")) or "—"),
                 "| decoded image sizes | %s |" % (_counts(shps.get("dimensions"), 8) or "—"),
                 "| bank byte order / directory ids | %s / %s |" % (
                     _counts(shps.get("endians"), 3) or "—", _counts(shps.get("directory_ids"), 4) or "—")]
@@ -2065,7 +2068,7 @@ def _page_verdict(page: str, present: Dict[str, int], c: Dict[str, Any],
         parts.append("`ea_shps.decode_rgba` draws %s of %s image(s) in %s sampled bank(s)%s" % (
             format(shps.get("works", 0), ","), format(shps.get("total", 0), ","),
             format(shps.get("sampled", 0), ","),
-            ("; the refusals are " + _counts(shps.get("refused_codes"), 3))
+            ("; the refusals are " + _counts(shps.get("refused_codes"), 4))
             if shps.get("refused_codes") else ""))
     for fmt in ("SMF", "DMF", "MPCh", "FNTS"):
         if fmt in present:
