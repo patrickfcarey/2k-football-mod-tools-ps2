@@ -37,7 +37,7 @@ re-measuring facts other agents had already measured.
 | 4 | Derive the capability counts and check every site (§1) | 15 sites hold 4 numbers; **2 were wrong**, and `106 + 5 ≠ 112` made `validate_all` refuse | The gate is green again and cannot drift silently; `--json` is the input a generator needs | 2 literals, 1 tool, 7 tests | Low | **Done** |
 | 5 | The MMAP decoder moves to `_formats` | A decoder that works on **13,053 of 13,802** sampled members across ten discs was reachable by one game | Every future EA module gets MMAP for free; NCAA 09's texture row needs a lane, not a decoder | Done in an hour | Low | **Done** |
 | 6 | Generic lane bases: TDB-record, TERF-member-art, text-bank | **17 lane implementations** hand-write the same 8 methods; 20,641 lines across three packages | A declarative lane is a container map plus a schema table: **~60–70% of a new module's lane code** | 3–4 days, contract-additive | Medium | **Proposed** |
-| 7 | Run only the suites a change can affect | **395 test files**; a Madden 09 change plausibly touches **29 (7%)** | 3 min → seconds in the inner loop; the full loop stays on the shared runner | Half a day | Low | **Proposed** |
+| 7 | Run only the suites a change can affect | **395 test files**; a Madden 09 change plausibly touches **29 (7%)**. The full loop is 2m53s / 5,549 tests on the shared runner | Seconds in the inner loop; the full loop stays the gate before the final commit | Half a day | Low | **Proposed** |
 | 8 | Header windows instead of whole-member decodes | A whole 64 KB LZH1 member costs **140×** a 96-byte window (55.95 ms vs 0.40 ms); the mapper decodes each MMAP/SCHl member **twice** | The double decode is **1.66×**; over the fleet's 209,312 MMAP+SCHl members, ~55 s. The 140× is what turns a 7-minute pass into ~3 s | Hours | Low | **Proposed** |
 | 9 | Four validators that cannot pass in a shipped tree (§3) | `validate_nfl2k5_ps2_{text,playbook,stadium_position,fixture_audit}.sh` run `python3 -m unittest`; `tests/` is not staged | A latent release-gate failure removed | Half a day | Low | **Reported, not fixed** |
 | 10 | Conformance `--lane` and a shared harness result | The harness is 544 checks / 5 s for one game; 84 of them (**1 s**) are static | Marginal now; matters at ten modules | Contract change | Low | **Proposed** |
@@ -355,6 +355,22 @@ Neither was introduced by this review; both were found by running gates that wer
    It is owner tooling and touches no shipped file, so it is reported rather than fixed here; the
    fix is either the synthetic disc's cache builder or the constant, and only whoever changed the
    builder knows which.
+
+### And one this review caused, which is the argument for proposal 7 from the other side
+
+Moving the behaviour out of the twenty-five `.bat` files took the `echo` with it, and with it the
+only place their pass token appeared. `test_madden09_ps2_art_pages.py` reads the validator file
+and looks for `MADDEN09_PS2_ART_PAGES_VALIDATION_PASS` in it, so it failed. The gate run after
+that change covered conformance for three games, fragments, pins, the registry, the release
+stage, the release check, the runtime closure, all fifteen validators in a staged tree, and four
+test files — and not the module's own eleven. **The full loop on the shared runner found it in
+2m53s.**
+
+That is the honest shape of proposal 7: a selective run is for the inner loop and must never be
+the last word. `tools/affected_tests.py` would have caught this one, because
+`test_madden09_ps2_art_pages.py` names the game whose files changed — which is the point. But
+the full loop stays the gate before the final commit, and at 2m53s for 395 files and 5,549 tests
+there is no excuse for skipping it.
 
 The general point is proposal 7's: a gate nobody runs is not a gate. Both of these sat green in
 everyone's mental model and red on disk, because the loop that would have run them was 40 minutes
