@@ -353,6 +353,14 @@ class ShpsPassTests(unittest.TestCase):
         self.assertIn("does not decode", sentences)
         self.assertIn("byte(s) per pixel", sentences)
 
+    def test_the_codes_are_counted_per_bank_as_well_as_per_disc(self) -> None:
+        out, _ledger, tally = self._bank()
+        self.assertEqual(dict(out["refused_codes"]), {"0x0e": 1, "0x01": 1})
+        self.assertEqual(sorted(out["decoded_codes"]), ["0x02", "0x05"])
+        self.assertEqual(sum(out["refused_codes"].values()), out["image_refused"])
+        self.assertEqual(sum(out["decoded_codes"].values()), out["decoded"])
+        self.assertEqual(dict(out["refused_codes"]), dict(tally["shps_refused_codes"]))
+
     def test_a_big_endian_bank_reads_the_same_way(self) -> None:
         out, _ledger, tally = self._bank(big_endian=True)
         self.assertEqual(out["decoded"], 2)

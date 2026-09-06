@@ -739,6 +739,7 @@ def _measure_one_shps(payload: bytes, where: str, ledger: Ledger, tally: Dict[st
         reason = bank.undecodable_reason(index)
         if reason is not None:
             out["image_refused"] += 1
+            out["refused_codes"][code] += 1
             tally["shps_image_refused"] += 1
             tally["shps_refused_codes"][code] += 1
             tally["shps_reasons"][refusal_class(reason)] += 1
@@ -748,6 +749,7 @@ def _measure_one_shps(payload: bytes, where: str, ledger: Ledger, tally: Dict[st
             width, height, rgba = ea_shps.decode_rgba(bank, index)
         except (Refusal, ValueError, struct.error, IndexError, MemoryError) as exc:
             out["image_refused"] += 1
+            out["refused_codes"][code] += 1
             tally["shps_image_refused"] += 1
             tally["shps_refused_codes"][code] += 1
             tally["shps_reasons"][refusal_class(exc)] += 1
@@ -757,6 +759,7 @@ def _measure_one_shps(payload: bytes, where: str, ledger: Ledger, tally: Dict[st
         assert len(rgba) == width * height * 4
         del rgba
         out["decoded"] += 1
+        out["decoded_codes"][code] += 1
         tally["shps_decoded"] += 1
         tally["shps_decoded_codes"][code] += 1
         tally["shps_dimensions"]["%dx%d" % (width, height)] += 1
@@ -765,8 +768,13 @@ def _measure_one_shps(payload: bytes, where: str, ledger: Ledger, tally: Dict[st
 
 
 def _new_shps_row(banks: int, sampled: int) -> Dict[str, Any]:
+    # The per-code counters are per archive as well as per disc: "which archive
+    # holds the images the reader will not draw, and under which code" is the
+    # question that decides whether a whole studio page is reachable, and a
+    # disc-wide histogram cannot answer it.
     return {"banks": banks, "sampled": sampled, "parsed": 0, "refused": 0,
-            "images": 0, "decoded": 0, "image_refused": 0}
+            "images": 0, "decoded": 0, "image_refused": 0,
+            "decoded_codes": Counter(), "refused_codes": Counter()}
 
 
 def _schl_header_row(head: bytes, where: str, ledger: Ledger, tally: Dict[str, Any],
@@ -1902,6 +1910,23 @@ def _big_section(m: Dict[str, Any]) -> List[str]:
                 format(row.get("refpack_entries", 0), ","),
                 _counts(row.get("formats"), 4) or "—",
                 format((row.get("shps") or {}).get("banks", 0), ",")))
+        out.append("")
+    hot = sorted((((row.get("shps") or {}).get("image_refused", 0), path, row)
+                  for path, row in archives.items() if "error" not in row), reverse=True)
+    hot = [item for item in hot if item[0]]
+    if hot:
+        out += ["Where the images the reader will not draw actually are — an archive whose whole "
+                "population is refused is a studio page that is *counted and not reachable*, and "
+                "one that is mostly drawn is a page that is:", "",
+                "| archive | images | drawn | refused | refused by block code |",
+                "|---|---:|---:|---:|---|"]
+        for refused_count, path, row in hot[:10]:
+            shps = row["shps"]
+            out.append("| `%s` | %s | %s | %s | %s |" % (
+                path, format(shps["images"], ","), format(shps["decoded"], ","),
+                format(refused_count, ","), _counts(shps.get("refused_codes")) or "—"))
+        if len(hot) > 10:
+            out.append("| … | | | | %d further archive(s) in the JSON |" % (len(hot) - 10))
         out.append("")
     refused = [(path, row) for path, row in sorted(archives.items()) if "error" in row]
     if refused:
