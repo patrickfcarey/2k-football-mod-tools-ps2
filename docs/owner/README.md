@@ -28,3 +28,4 @@ and never sent upstream. Rebase it onto `ps2-lane` when the lane moves.
   replacement identities), and how a rebuilt disc is witnessed in one line.
 
 - `LESSONS_2026-09-06.md` — what cost us that day, ranked, with where each fix is enforced; `tools/owner/integration/` — the resolver, pin audit, gate and NAS loop that used to live in a scratch directory.
+- `CAPTURE_WISHLIST.md` — the standing queue of savestates and GS dumps to take on the rig, ranked by what each unblocks.
