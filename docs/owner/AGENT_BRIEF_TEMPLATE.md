@@ -68,6 +68,22 @@ owner of the registry commit gets that commit from three agents at once).
 `2K5_MOD_STUDIO_RUNTIME_CLOSURE_PASS`, `PIN AUDIT: CLEAN`, `N of N conformance checks passed`.
 An agent that knows which strings it must be able to paste will run the gate that produces them.
 
+## Choosing the model, which is the launcher's job and not the brief's
+
+Every launch names its model. An agent launched with none inherits the *session's* model, so a
+`/model` switch silently changes what an unpinned agent costs; two of eight agents on
+2026-09-06 were launched unpinned and spent roughly 800k tokens each against a quota the owner
+watches. A `PreToolUse` hook now refuses an unpinned launch, but the hook only enforces that a
+choice was made -- making the *right* one is still a judgement:
+
+- **The strongest model available** for cracking an undecoded format, designing a refactor,
+  writing a module's writers, research, and anything whose failure mode is a confident wrong
+  claim. Most module work is this.
+- **A lighter model** for mechanical, fully specified work with a worked example beside it: a
+  scripted census, mass validation, a port whose twin is already written.
+
+Say which you chose and why when you report the launch. If the owner names a model, that wins.
+
 ## What not to put in a brief
 
 - The gates. They are in the charter, and a brief that lists eight of the nine is worse than one
