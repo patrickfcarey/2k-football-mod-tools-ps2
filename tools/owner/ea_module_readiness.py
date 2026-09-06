@@ -622,6 +622,12 @@ def _entry_bytes(archive: Any, index: int) -> bytes:
     return archive.member(index, max_output=want)
 
 
+#: How far a declared size may sit from the bytes on hand and still be read as
+#: that byte order.  One ISO9660 sector; the mapper's own tolerance, and every
+#: archive that needs it is within a sector.
+SIZE_FIELD_SLACK = 4096
+
+
 def size_field(archive: Any, head: "bytes | None", available: int) -> Tuple[str, str]:
     """Which byte order the archive's own size word is in, tolerant of padding.
 
@@ -646,7 +652,15 @@ def size_field(archive: Any, head: "bytes | None", available: int) -> Tuple[str,
     for label, value in (("little", little), ("big", big)):
         if span <= value <= available:
             return label, "declares %d in a %d-byte file" % (value, available)
-    return "neither", "LE %d / BE %d in a %d-byte file" % (little, big, available)
+    # A third and weaker reading, for NBA Street Vol. 2: the size word is inside
+    # one sector of the file's length but the last entry's declared length runs a
+    # little past it, so the note carries the span as well as the word.
+    for label, value in (("little", little), ("big", big)):
+        if abs(value - available) <= SIZE_FIELD_SLACK:
+            return label, ("declares %d in a %d-byte file, and its last entry ends at %d"
+                           % (value, available, span))
+    return "neither", "LE %d / BE %d in a %d-byte file whose last entry ends at %d" % (
+        little, big, available, span)
 
 
 def _probe_data_table(payload: bytes, where: str, tally: Dict[str, Any], source: str) -> None:
@@ -674,6 +688,10 @@ def _probe_data_table(payload: bytes, where: str, tally: Dict[str, Any], source:
         line = payload[:DATA_PROBE_BYTES].split(b"\n", 1)[0]
         if b"," in line:
             fields = line.count(b",") + 1
+    # On the Street titles the slot where a magic would be holds a small
+    # little-endian count instead, so the first four words go in the row.
+    words = [struct.unpack_from("<I", payload, offset)[0]
+             for offset in range(0, min(16, max(0, len(payload) - 3)), 4)]
     tally["data_magics"]["%s (%s)" % (magic_hex, printable)] += 1
     tally["data_kinds"][kind] += 1
     if opens_as_tdb:
@@ -682,6 +700,7 @@ def _probe_data_table(payload: bytes, where: str, tally: Dict[str, Any], source:
         tally["data_probes"].append({
             "where": where, "source": source, "bytes": len(payload),
             "magic": magic_hex, "printable": printable, "format": kind,
+            "first_words_le": words,
             "opens_as_tdb": opens_as_tdb, "csv_fields": fields})
 
 
@@ -946,7 +965,12 @@ def _measure_nested(archive: Any, indices: Sequence[int], name: str, ledger: Led
             ledger.add("ea_big.parse_big", label, exc)
             continue
         out["opened"] += 1
-        row = measure_archive(inner, label, ledger, tally, depth=depth + 1, **passes)
+        try:
+            inner_head = archive.member(index, max_output=ea_big.BIG_HEADER_SIZE)
+        except (Refusal, ValueError, struct.error, IndexError, MemoryError):
+            inner_head = None
+        row = measure_archive(inner, label, ledger, tally, head=inner_head,
+                              available=inner.length, depth=depth + 1, **passes)
         out["entries"] += row["entries"]
     return out
 
@@ -975,6 +999,7 @@ def measure_archive(archive: Any, name: str, ledger: Ledger, tally: Dict[str, An
         "entries": len(archive.entries), "index_bytes": archive.index_bytes,
         "alignment": summary["alignment"], "duplicate_names": archive.duplicate_names,
         "empty_entries": summary["empty_entries"], "payload_bytes": summary["payload_bytes"],
+        "entry_span": max([entry.end for entry in archive.entries if entry.size] or [archive.index_bytes]),
         "layout_notes": summary["layout_notes"][:4],
         "names_sample": [entry.name for entry in archive.entries[:6]],
     }
@@ -1887,15 +1912,16 @@ def _big_section(m: Dict[str, Any]) -> List[str]:
         out.append("")
         probes = m.get("data_tables") or []
         if probes:
-            out += ["| where | bytes | magic | format | opens as TDB | CSV fields |",
-                    "|---|---:|---|---|---|---:|"]
+            out += ["| where | bytes | magic | first four words, LE | format | opens as TDB | CSV fields |",
+                    "|---|---:|---|---|---|---|---:|"]
             for probe in probes[:24]:
-                out.append("| `%s` | %s | `%s` | %s | %s | %s |" % (
-                    probe["where"], format(probe["bytes"], ","), probe["magic"], probe["format"],
-                    "yes" if probe["opens_as_tdb"] else "no",
+                out.append("| `%s` | %s | `%s` | %s | %s | %s | %s |" % (
+                    probe["where"], format(probe["bytes"], ","), probe["magic"],
+                    ", ".join(str(word) for word in probe.get("first_words_le") or []) or "—",
+                    probe["format"], "yes" if probe["opens_as_tdb"] else "no",
                     "—" if probe.get("csv_fields") is None else probe["csv_fields"]))
             if len(probes) > 24:
-                out.append("| … | | | | | %d more in the JSON |" % (len(probes) - 24))
+                out.append("| … | | | | | | %d more in the JSON |" % (len(probes) - 24))
             out.append("")
     return out
 
