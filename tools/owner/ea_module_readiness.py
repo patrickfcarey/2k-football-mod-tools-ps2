@@ -1330,7 +1330,10 @@ def selftest() -> int:
               "every recomputed CRC site is found correct (got %s of %s)"
               % (c["crc_sites"]["works"], c["crc_sites"]["total"]))
         check(c["caches"]["total"] == 2 and c["caches"]["works"] == 2, "both preload caches parse")
-        check(c["caches"]["copies"] == 4 and c["caches"]["identical"] == 4 and c["caches"]["differing"] == 0,
+        # Three, not four: ``m09.build_synthetic_disc`` writes two ``DTLS`` rows
+        # into GAME.QKL and one into FE.QKL, and has since the day this check was
+        # written.  The measurement was right; the constant beside it never was.
+        check(c["caches"]["copies"] == 3 and c["caches"]["identical"] == 3 and c["caches"]["differing"] == 0,
               "every synthetic cache copy is byte-identical (got %s/%s)"
               % (c["caches"]["identical"], c["caches"]["copies"]))
         # The only refusal a clean synthetic disc raises is the fixture's own
