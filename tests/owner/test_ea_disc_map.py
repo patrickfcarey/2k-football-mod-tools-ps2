@@ -388,6 +388,49 @@ class MidwayAndAnd1Tests(unittest.TestCase):
         with self.assertRaises(mapper.MapError):
             mapper.midway_meta(lambda o, n: (b"\x11\x11\x11\x11" + struct.pack("<I", 4) + bytes(64))[o:o + n], 72)
 
+    def _map_pack(self, blob: bytes):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "pack.dat"
+            path.write_bytes(blob)
+            with open(path, "rb") as handle:
+                return mapper.map_midway_pak(mapper._Extent(handle, None, None, offset=0, size=len(blob)))
+
+    def test_a_pack_is_located_by_its_trailer_directory_in_both_layouts(self) -> None:
+        for layout, stamp_kind in (("2005", "dotnet-ticks"), ("2003", "y-m-d-h-m-s-ms words")):
+            pack = self._map_pack(mapper._synthetic_pak(layout))
+            d = pack["directory"]
+            self.assertEqual((d["objects"], d["listed_in_metadata"], d["unlisted"], d["layouts"]), (3, 2, ["c36737c2.of"], [layout]))
+            self.assertTrue(d["objects_tile_body_to_directory"] and d["first_object_is_first_sector_after_metadata"])
+            self.assertTrue(d["node_table_bytes_is_header_word3"] and d["name_table_bytes_is_header_word4"] and d["metadata_leaf_is_metadata_region"])
+            self.assertEqual(d["metadata_slots_copy_object_records"], 2)
+            self.assertEqual([o["category"] for o in pack["objects"]], ["anim", "databases", "playbooks"])
+            self.assertEqual(pack["members"]["total"], 4)
+            self.assertEqual(pack["members"]["checks"]["records_agree"], 4)
+            self.assertEqual(pack["members"]["checks"]["paths_match"], 4 if layout == "2003" else 0)
+            self.assertEqual((pack["databases"]["read"], pack["databases"]["rows"], pack["databases"]["references_on_string_start"]), (1, 1, 1))
+            self.assertEqual((pack["sections"]["read"], pack["sections"]["sections"], pack["sections"]["contiguous"]), (1, 2, 1))
+            self.assertEqual(pack["timestamps"]["kind"], stamp_kind)
+
+    def test_a_pack_whose_directory_lies_keeps_its_metadata_and_names_the_refusal(self) -> None:
+        blob = bytearray(mapper._synthetic_pak())
+        struct.pack_into("<I", blob, len(blob) - 2048 + 3 * 16 + 12, len(blob))   # the first object leaf now runs past the trailer
+        pack = self._map_pack(bytes(blob))
+        self.assertEqual(pack["metadata"]["records"], 2)
+        self.assertIn("runs into the directory trailer", pack["directory"]["error"])
+        self.assertNotIn("objects", pack)
+
+    def test_located_pack_objects_feed_pages_as_measured_locations(self) -> None:
+        pack = self._map_pack(mapper._synthetic_pak())
+        rows = mapper.foreign_feeders({"packs": {"/RESIMG1.DAT": pack}})
+        pages = {page: (source, formats) for page, source, formats in rows}
+        self.assertEqual(pages["Playbooks & Plays"][1], {"MidwayPAK": 1})
+        self.assertEqual(pages["Names, Numbers & Faces"][1], {"MidwayPAK": 1})
+        self.assertIn("pack objects located [M]", pages["Playbooks & Plays"][0])
+        self.assertEqual(mapper.FOREIGN_RUNGS["MidwayPAK"][0], "read-only-mapped")
+        md = mapper._render_pack_directory("/RESIMG1.DAT", pack)
+        self.assertTrue(any("| `bd44c854.of` | `databases` |" in line for line in md))
+        self.assertTrue(any(line.startswith("`SEC ` containers: 1 files") for line in md))
+
     def test_midway_sound_bank_records_and_name_table(self) -> None:
         blob = mapper._synthetic_ms2([(1, bytes(64)), (0x20000002, bytes(96)), (3, b"")], names=["943.mst", "945.mst"])
         with tempfile.TemporaryDirectory() as tmp:

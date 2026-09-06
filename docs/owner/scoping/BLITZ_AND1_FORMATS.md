@@ -10,6 +10,10 @@
 > **[M]** measured — the mapper read it this session and the identity it predicts holds.
 > **[S]** sourced — a published format the citation names.
 > **[A]** assumed — inference from a name. Treat as a question, not a fact.
+>
+> **Revised the same day, 2026-09-06:** the `PAK ` object locator was found — the pack's last
+> 2,048 bytes are a directory — and the pack's databases and `SEC ` containers are read. §3 item 3,
+> §4.3, §5, §6 and §7 carry the revision; every other section is as first written.
 
 ---
 
@@ -52,12 +56,16 @@ Nothing in this toolchain's EA stack carries over. Everything below is a new rea
    12 accounts for the whole member — so the label is earned, not read off a constant [M].
    The 1,272 / 1,436 `.dff` members begin with id 0x10 (clump) but do **not** satisfy that
    length rule, so the map leaves them as their raw magic [M].
-3. **Blitz Pro and Blitz: The League moved to a Midway `PAK ` pack whose object locator we
-   do not have.** The pack's own arithmetic is exact — body bytes plus metadata offset is the
-   file, on both discs [M] — and its metadata names every top-level object by category and by
-   a 32-bit hash that reproduces the object's hexadecimal filename [M]. What is missing is the
-   step from a named object to its bytes: **no header word of either disc is an offset into
-   the pack body** [M]. That, and nothing else, is what blocks a module for these two.
+3. **Blitz Pro and Blitz: The League keep everything in one Midway `PAK ` pack, and it is
+   located three formats deep.** The pack's last 2,048 bytes are a directory whose leaves carry
+   the byte range of every object — 14 on Pro, 57 on The League, two of which the metadata list
+   omits — and those ranges tile the body from the first sector after the metadata to the
+   directory itself [M]. The two "unexplained" header words are that directory's node-table and
+   name-table lengths [M]. Inside, 5,605 and 7,409 members are each named by their own record
+   and checked against the entry that points at them; 48 of 49 and 311 of 311 `.dbd` databases
+   walk to the byte against their `.dbs` schemas (the roster is `playerdb.dbd`, 3,628 and 695
+   player rows), and all 1,104 `SEC ` play and scene containers on The League list their
+   sections [M]. What stays unread is what a RenderWare or `WIFF` member *shows* (§4.3).
 4. **AND 1 Streetball is the most completely read of the five.** Its 2,119 `EFS ` archives
    are a plain directory of (name offset, data offset, size, size, flags); the last member's
    end is exactly the file's length in **2,119 of 2,119** [M]. 7,197 of its 7,200 `.HDR`
@@ -121,47 +129,91 @@ prints them as `address1` / `address2` and names them nothing [M].
 **Rung today: `unknown (code-patch scaffold)`.** Raw code at a fixed address. A change here is
 a code patch, not a data edit.
 
-### 4.3 The Midway `PAK ` pack and its `0x11111111` metadata — Blitz Pro, The League
+### 4.3 The Midway `PAK ` pack — Blitz Pro, The League — located, and read three formats deep
 
 The tag is `'PAK '` written as a little-endian `u32`, so it reads ` KAP` in the bytes [M] —
 the same CPU-native-word convention this toolchain already documents for PS3 big-endian TDB
-table names, in the other direction.
+table names, in the other direction. The readers are product code:
+`mod_editor/games/_formats/midway_pak.py` (the pack), `midway_db.py` (the databases) and
+`midway_sec.py` (the section containers), specified in `docs/product/MIDWAY_PAK_FORMAT.md`;
+the mapper imports them and quotes their identities.
 
-| field | Blitz Pro | The League | measured how |
-|---|---:|---:|---|
-| body bytes | 417,093,632 | 505,677,824 | `body + metadata offset == the file` [M] |
-| metadata offset | 2,048 | 2,048 | the bytes there begin `0x11111111` [M] |
-| header words 1 / 3 / 4 | 512 / 272 / 192 | 512 / 960 / 708 | unexplained; **neither is an offset into the body** [M] |
+**What the pack is** [M]. A read-only file-system image in four parts: a 24-byte header padded
+to a sector; the `0x11111111` metadata list at 2,048 (one 2,048-byte slot per listed object,
+each slot a byte copy of that object's own header record — 14 of 14, 55 of 55); the objects,
+each a sector-aligned `objects\<hex>.of` file laid down in the lexicographic order of its
+hexadecimal name; and, in the **last 2,048 bytes, a directory** of 16-byte nodes
+`(name offset, kind, offset, size-or-count)` rooted at 0 — a directory `objects` whose leaves
+are the object files and a file `resmeta.lf` whose range is exactly the metadata region.
+This is how the first reading's two unexplained header words resolved: **word 3 is the node
+table's length and word 4 the name table's** (padded to 4), on both discs.
 
-The metadata is `u32 0x11111111`, `u32 records`, then one 2,048-byte slot per record. On The
-League the same block also exists as a loose file, `RESMETA.LF`, whose length is exactly
-`8 + 55 × 2048` [M]. Each slot begins `0x22222233`, carries a 32-bit name hash at +4 and the
-constant 2,048 at +8, and ends with three `u32` string lengths followed by that many
-NUL-terminated strings: a category word and an `objects\<hex>.of` path. **The hash equals the
-path's hexadecimal stem in 14 of 14 records on Pro and 55 of 55 on The League** [M].
+| identity | Blitz Pro | The League |
+|---|---:|---:|
+| body bytes + metadata offset == the file | 417,093,632 + 2,048 | 505,677,824 + 2,048 |
+| objects located by the trailer directory | 14 | 57 (55 listed + `3a36d186.of`, `eee81757.of`) |
+| first object is the first sector after the metadata; objects tile to the directory | yes; yes | yes; yes |
+| node table bytes == header word 3; name table bytes == header word 4 | 272; 192 | 960; 708 |
+| `resmeta.lf` leaf == the metadata region; slots that are byte copies of the object record | yes; 14 of 14 | yes; 55 of 55 |
+| members; record agrees with its directory entry; sector-aligned; ascending; padded end meets the next record | 5,605 each | 7,409 each |
+| directory-entry layout | 64-byte, with a `modules\<object>\<member>.mf` path whose stem equals the hash (5,605 of 5,605) | 32-byte, with a second hash and a 64-bit timestamp |
+| record timestamps | 2003-09-13 to 2003-09-27 (Y M D h m s ms words) | 2005-06-28 to 2005-09-14 (.NET ticks) |
+| `.dbs` schemas parsed; `.dbd` data files walked to the byte | 16; 48 of 49 (the one refused has no schema of its own on the disc) | 294; 311 of 311 |
+| tables; rows; string references landing on a string start | 350; 83,791; 29,178 of 29,178 | 2,240; 168,744; 28,639 of 28,639 |
+| `SEC ` containers read; sections; contiguous and ending at the declared total | none on this disc | 1,104 of 1,104 (106 empty); 56,971; all |
 
-**What it holds** — the category words, verbatim from the map [M]:
+**An object** begins with a 2,048-byte `0x22222233` record — hash, member count, a timestamp,
+and a category word plus its `objects\<hex>.of` path — then a member directory padded to a
+sector, then the members, each a 2,048-byte `0x11111111` record (the member's real file name
+is in it) followed by its bytes padded to a sector. Two generations of the record and entry
+layouts exist, told apart by the offset of the string-length triple (+60 on Pro's 2003 layout,
++40 on The League's 2005 layout), never by title [M]. `hash2` is not the CRC-32 of the data,
+and the name hash is none of CRC-32, FNV-1/1a, djb2, sdbm, one-at-a-time, ELF or
+SuperFastHash [M] — it is carried, never recomputed.
 
-* **Blitz Pro (14):** `Anim`, `CaP`, `Character`, `Databases`, `EnvLightMap`, `Formations`,
-  `Misc`, `Playbooks`, `Plays`, `Scripts`, `Shell`, `Stadium`, `playsprites`, `screensets`.
-* **Blitz: The League (55):** `anim`, `cheer`, `coach`, `databases`, `images`, `misc`, `nis`,
-  `playbooks`, `player`, `prop`, `screens`, `screensets`, `shell`, and 42 `stadium_*` words.
+**What it holds** — by member extension, the top of each disc [M]:
 
-**Where a modder's data is.** By its own category words: rosters and team data under
-`Databases` / `databases` and `player` / `coach`; plays under `Playbooks`, `Plays`,
-`Formations`; art under `images`, `screens`, `Shell`, `EnvLightMap` and the `stadium_*` set
-— the words are [M], what each category holds is [A]. This is the strongest name-level
-evidence on any of the five discs, and it is still only names.
+| Blitz Pro (14 objects, 5,605 members) | The League (57 objects, 7,409 members) |
+|---|---|
+| `.dff` 2,229 and `.rtd` 1,641 (RenderWare ids 0x10 / 0x16 [S]), `.cap` 345 (`HTPC`), `.ini` 306, `.ppn` 286 (`Part`), `.tga` 238, `.amx` 55, `.dbd` 49, `.dbs` 16, `.ban` 14, `.wad` 13 | `.rtd` 4,442, `.sec` 1,104, `.dbd` 311, `.dbs` 294, `.gcp` 286, `.cap` 282, `.wad` 274, `.ppn` 93, `.wip` 86 (`WIFF`), `.rws` 82, `.sss` / `.str` 40 each |
 
-**Rung today: `unknown`.** Not `read-only-mapped`: the reader can name every top-level object
-and cannot locate one. Lifted by whatever turns a named object into a byte range — the
-`.of` object header, a table the boot ELF builds at load time, or a second index this pass did
-not find. **Until then no page for these two discs can be filled and no writer can exist.**
+**Where a modder's data is** [M]:
+
+* **Rosters and teams:** `playerdb.dbd` + `.dbs` in `Databases` / `databases`. Pro: `players`
+  3,628 rows, `teams` 61, `positions` 15, `attributes` 10, `depthchart` 60, `coaches` 122,
+  `cheerleaders` 366, with first and last names in two string pools. The League: `player_list`
+  695 (names inline, 32-byte strings), `teams` 29, `positions` 15, `depthchart` 33, `voices` 28,
+  three attribute tables of 695 rows each, `cap_player_list` 40, `coach_list` 196,
+  `cheer_list` 252, `injuries` 23, `skin_colors` 77. The schema is a typed field list
+  (`b`/`w`/`i` with bit-packing, `f`, fixed-width `s`, pool references `r`/`q`) and the data is
+  fixed-width rows with a zero trailer; every table on both discs divides evenly by its
+  schema's row width.
+* **Playbooks and plays:** `master_pbk.dbd` (`playbook` 33 / 18 rows, `condition` 1,033 / 244)
+  and 32 / 17 per-team `.dbd` files that share its schema (matched by the database name in
+  their own header); Pro's `formation.dbd` (`plays` 303: a sprite-resource hash and one packed
+  word), The League's `master_plays.dbd` (`plays` 364) and 289 `SEC ` play containers holding
+  49,161 sections between them.
+* **Stadiums:** Pro keeps one `Stadium` object of 2,951 members (`.dff`, `.rtd`, `.ini`, `.ppn`);
+  The League keeps 42 `stadium_*` objects of 105–110 members each — 102–103 `.rtd` texture
+  dictionaries, one `.sec` scene, two `.wip`, up to four `.ppn` — plus a `stadium_<name>.dbd`
+  / `.dbs` pair per stadium in `databases`.
+* **Art and UI:** `screensets` / `screens` / `images` / `Shell` / `EnvLightMap` (`.rtd`,
+  `.sss`, `.str`, `.swp`, `.sec`, `.tga`), and the `player` / `coach` / `cheer` / `prop` /
+  `Character` / `CaP` objects (RenderWare `.rws` / `.dff` models with per-model `.dbd` part
+  databases).
+
+**Rung today: `read-only-mapped`.** Every object and member is located, named, sized and
+checked; the databases and section containers are read to the byte. Lifted by decoders for
+the RenderWare, `WIFF`, `HTPC` and `Part` members, and by a writer with an independent verifier.
+A writer is small for a same-length member (its bytes only) and for a database row (fixed
+width, in place); a longer member moves every later member offset in the object's directory,
+the object's leaf in the trailer, every later object and header word 2 — and on The League
+the loose `RESMETA.LF`, a byte copy of the pack's list, if an object record changes. Adding a
+member needs the hash function, which is not known.
 
 The generated page routes each category word to a studio page from the word alone (`playbooks`
-to Playbooks & Plays, `stadium_*` to Stadiums, and so on) and marks the cell `[A]`. That row
-reads `unknown`, never `honest empty page`: a disc that demonstrably carries a `Playbooks`
-object is not a disc with no playbooks, and it is not a disc whose playbooks we can open.
+to Playbooks & Plays, `stadium_*` to Stadiums, and so on) — the object is located [M], the page
+it feeds is [A] — and that row reads `read-only-mapped`.
 
 ### 4.4 The Midway sound banks — `BLITZ04.MS2` / `.MS4`
 
@@ -276,7 +328,7 @@ single-channel default [M][S: as vgmstream reads it].
 | family | discs | smallest honest module | blocked on |
 |---|---|---|---|
 | ZIP + `.ZIH` | Blitz 2002, 2003 | a Text page from the `.ini` / `.trv` / `.tab` members, and All Textures once a RenderWare texture-dictionary decoder exists | a `.rst` reader before any roster page; a `.dff` / `.rtd` decoder before any art page |
-| `PAK ` + metadata | Blitz Pro, The League | **none today** | the object locator (§4.3): a named object cannot be turned into a byte range |
+| `PAK ` + metadata | Blitz Pro, The League | a Rosters / Teams page from `playerdb` (schema + rows), a Playbooks page listing playbooks, plays and formations, a Stadiums page listing scenes and texture dictionaries by name | writers with verifiers; RenderWare / `WIFF` / `HTPC` decoders before any art page |
 | Midway sound bank | Blitz Pro, The League | an Audio page listing records | a PS-ADPCM decoder to play or replace one |
 | `.OBF` | Blitz Pro, The League | a Gameplay-tuning page, schema + rows, today | a writer + verifier to make it editable |
 | `EFS ` | AND 1 | All Textures / Menus pages once `.HDR` members are decoded | the member formats, not the archive |
@@ -284,7 +336,10 @@ single-channel default [M][S: as vgmstream reads it].
 
 ## 6. What stays unknown
 
-1. **Where a `PAK ` object's bytes are.** The one finding that blocks two whole discs (§4.3).
+1. **What a `PAK ` member *shows*.** Every member is located and named and the databases and
+   `SEC ` containers are read (§4.3); the RenderWare `.rtd` / `.rws` / `.dff` members, `HTPC`
+   (`.cap`), `Part` (`.ppn`), `WIFF` (`.wip`), `.gcp`, `.wad`, `.amx`, `.ban` and `.tga` are read
+   to their first four bytes only.
 2. **What a `.dff` is on the Blitz discs.** The first word is RenderWare's clump id but the
    section-length rule fails on all 2,708 of them across the two discs [M]. Either Midway
    wrote a variant or the id is a coincidence; the map does not choose.
@@ -295,14 +350,19 @@ single-channel default [M][S: as vgmstream reads it].
    container shape of 7,200 (`.HDR`) and 10 (nested `EFS `) and reads the first four bytes of
    the rest [M].
 5. **`BLITZ04.MS4`**, 286,195,712 bytes, which fails the sound-bank header rule [M].
-6. **The `MWo3` trailing addresses**, and the `PAK ` header's second and third counts [M].
+6. **The `MWo3` trailing addresses**, the `PAK ` header's constant 512, the member records'
+   `hash2` and type words, and the name-hash function — not CRC-32, FNV-1/1a, djb2, sdbm,
+   one-at-a-time, ELF or SuperFastHash [M] — the one thing that stops a member being *added*.
 
 ## 7. How to reproduce this
 
     PYTHONPATH=. python3 tools/owner/ea_disc_map.py --iso "<image>" --out <dir> --label "<Title> (USA)"
     PYTHONPATH=. python3 tools/owner/ea_disc_map.py --page <dir>/<SERIAL>.<label>.map.json
-    PYTHONPATH=. python3 tools/owner/ea_disc_map.py --selftest        # 89 checks, synthetic bytes only
+    PYTHONPATH=. python3 tools/owner/ea_disc_map.py --selftest        # 109 checks, synthetic bytes only
 
-All five discs map in **under five seconds together** on the NAS [M]. The readers are in
-`tools/owner/ea_disc_map.py`; their tests are `MidwayAndAnd1Tests` in
+All five discs map in **under five seconds together** on the NAS [M]; with the pack's objects,
+databases and sections read, the two `PAK ` discs map in 0.9 s and 1.1 s on the dev box [M]. The
+non-EA readers are in `tools/owner/ea_disc_map.py`, except the pack, database and section
+readers, which are product code in `mod_editor/games/_formats/midway_{pak,db,sec}.py` with
+their own synthetic tests; the mapper's tests are `MidwayAndAnd1Tests` in
 `tests/owner/test_ea_disc_map.py`.

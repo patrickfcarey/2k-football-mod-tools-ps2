@@ -79,6 +79,8 @@ for _p in (_ROOT / "tools", _ROOT):
 import ps2_iso9660 as iso  # noqa: E402
 from mod_editor.games._formats import ea_terf  # noqa: E402
 from mod_editor.games._formats import ps2_elf  # noqa: E402
+from mod_editor.games._formats import midway_db, midway_pak, midway_sec  # noqa: E402
+from mod_editor.games.contract import Refusal  # noqa: E402
 
 SCHEMA = "ea_disc_map/v3"
 TDB_FIELD_TYPES = {0: "string", 1: "binary", 2: "sint", 3: "uint", 4: "float"}
@@ -1089,25 +1091,147 @@ def midway_meta(read: Callable[[int, int], bytes], size: int, *, base: int = 0) 
             "categories": dict(categories.most_common(64)), "paths_sample": paths}
 
 
-def map_midway_pak(extent: "_Extent") -> Dict[str, Any]:
-    """A Midway ``PAK `` archive (``RESIMG1.DAT``); the tag is ``'PAK '`` written as a little-endian u32.
+def _ticks_to_iso(ticks: int) -> str:
+    """A .NET ``DateTime.Ticks`` value (100 ns since 0001-01-01) as an ISO date, or '' when out of range."""
+    import datetime
+    try:
+        return (datetime.datetime(1, 1, 1) + datetime.timedelta(microseconds=ticks // 10)).strftime("%Y-%m-%d")
+    except (OverflowError, ValueError):
+        return ""
 
-    Header words: a constant 512, the body byte count, two counts, and the offset of the resource
-    metadata.  ``body + metadata offset == the file`` on both discs seen (checked); the metadata is
-    read by :func:`midway_meta`.  Where a named object's bytes live inside the body is **not**
-    established: no header word of either disc is an offset into it.
+
+def _pack_timestamps(objects: Sequence[Any]) -> Dict[str, Any]:
+    """The build dates the records carry: 64-bit .NET ticks (2005 layout) or seven Y/M/D/h/m/s/ms words (2003)."""
+    dates: List[str] = []
+    kind = ""
+    for obj in objects:
+        stamps = obj.record.timestamp_words
+        if obj.layout == midway_pak.LAYOUT_2005 and len(stamps) >= 2:
+            kind = "dotnet-ticks"; text = _ticks_to_iso(stamps[0] | (stamps[1] << 32))
+        elif len(stamps) >= 3:
+            kind = "y-m-d-h-m-s-ms words"; text = "%04d-%02d-%02d" % stamps[:3]
+        else:
+            continue
+        if text:
+            dates.append(text)
+    return {"kind": kind, "earliest": min(dates) if dates else "", "latest": max(dates) if dates else ""}
+
+
+def _pack_databases(pack: "midway_pak.MidwayPak") -> Dict[str, Any]:
+    """Every ``.dbs`` parsed and every ``.dbd`` walked against it; counts, refusal sentences, and the roster tables' rows."""
+    out: Dict[str, Any] = {"schemas": 0, "schema_refusals": [], "read": 0, "refused": 0, "refusals": [], "no_schema": 0,
+                           "trailer_zero": 0, "tables": 0, "rows": 0, "reference_values": 0, "references_on_string_start": 0,
+                           "per_object": {}, "roster_tables": {}}
+    schemas: Dict[Tuple[str, str], Any] = {}
+    by_db: Dict[Tuple[str, str], Any] = {}
+    for obj in pack.objects:
+        for member in obj.members:
+            if member.extension != "dbs":
+                continue
+            try:
+                schema = midway_db.parse_schema(pack.extract(obj, member), member.name)
+            except Refusal as error:
+                out["schema_refusals"].append(str(error)[:160]); continue
+            schemas[(obj.name, member.name[:-4])] = schema
+            by_db[(obj.name, schema.database)] = schema
+            out["schemas"] += 1
+    for obj in pack.objects:
+        per = {"read": 0, "refused": 0, "tables": 0, "rows": 0}
+        for member in obj.members:
+            if member.extension != "dbd":
+                continue
+            data = pack.extract(obj, member)
+            schema = schemas.get((obj.name, member.name[:-4])) or by_db.get((obj.name, midway_db.database_name(data)))
+            if schema is None:
+                out["no_schema"] += 1; per["refused"] += 1; continue
+            try:
+                database = midway_db.parse_data(data, schema, member.name)
+            except Refusal as error:
+                out["refused"] += 1; per["refused"] += 1; out["refusals"].append(str(error)[:160]); continue
+            refs = database.check_references()
+            rows = sum(t.row_count for t in database.tables)
+            out["read"] += 1; out["trailer_zero"] += database.trailer == 0; out["tables"] += len(database.tables); out["rows"] += rows
+            out["reference_values"] += refs["values"]; out["references_on_string_start"] += refs["on_string_start"]
+            per["read"] += 1; per["tables"] += len(database.tables); per["rows"] += rows
+            stem = member.name[:-4].lower()
+            if "playerdb" in stem or stem.startswith("master_") or stem in ("formation", "pbk_descriptions"):
+                out["roster_tables"][obj.category + "/" + member.name] = {t.name: ("pool" if t.is_pool else t.row_count) for t in database.tables}
+        if per["read"] or per["refused"]:
+            out["per_object"][obj.category] = per
+    out["refusals"] = out["refusals"][:12]; out["schema_refusals"] = out["schema_refusals"][:12]
+    return out
+
+
+def _pack_sections(pack: "midway_pak.MidwayPak") -> Dict[str, Any]:
+    """Every ``SEC `` member parsed: files, empties, sections, and the identities that held."""
+    out: Counter = Counter(); refusals: List[str] = []; kinds: Counter = Counter(); per_object: Counter = Counter()
+    for obj in pack.objects:
+        for member in obj.members:
+            if member.extension != "sec" and not midway_sec.looks_like_sec(pack.member_head(obj, member, 4)):
+                continue
+            out["files"] += 1
+            try:
+                container = midway_sec.parse(pack.extract(obj, member), member.name)
+            except Refusal as error:
+                out["refused"] += 1; refusals.append(str(error)[:160]); continue
+            out["read"] += 1; out["empty"] += container.is_empty; out["sections"] += len(container.sections); per_object[obj.category] += len(container.sections)
+            for key, value in container.identities().items():
+                if isinstance(value, bool):
+                    out[key] += value
+            kinds.update(section.kind for section in container.sections)
+    result: Dict[str, Any] = dict(out)
+    result["refusals"] = refusals[:8]; result["section_kinds"] = {str(k): v for k, v in kinds.most_common(6)}
+    result["sections_per_object"] = dict(per_object.most_common(8))
+    return result
+
+
+def map_midway_pak(extent: "_Extent") -> Dict[str, Any]:
+    """A Midway ``PAK `` archive (``RESIMG1.DAT``), read by the product reader ``midway_pak``.
+
+    Header words: a constant 512, the body byte count (``body + metadata offset == the file``, checked),
+    the directory's node-table and name-table byte counts, and the offset of the resource metadata.  The
+    last 2,048 bytes are a directory whose leaves locate every object (listed in the metadata or not);
+    each object's own directory locates its members, and every member record is checked against the
+    entry that points at it.  The ``.dbs``/``.dbd`` databases and ``SEC `` containers inside are read.
     """
     head = extent.read(0, min(24, extent.size))
     if head[:4] != b" KAP":
         raise MapError("not a Midway PAK: %r" % head[:4])
     word1, payload, word3, word4, meta_offset = struct.unpack_from("<5I", head, 4)
-    result: Dict[str, Any] = {"header_word1": word1, "body_bytes": payload, "header_word3": word3,
-                              "header_word4": word4, "metadata_offset": meta_offset, "size": extent.size,
+    result: Dict[str, Any] = {"header_word1": word1, "body_bytes": payload, "node_table_bytes": word3,
+                              "name_table_bytes": word4, "metadata_offset": meta_offset, "size": extent.size,
                               "body_plus_metadata_offset_is_file": (payload + meta_offset == extent.size)}
     try:
         result["metadata"] = midway_meta(lambda o, n: extent.read(o, n), extent.size, base=meta_offset)
     except (MapError, struct.error) as error:
         result["metadata"] = {"error": str(error)[:120]}
+    try:
+        pack = midway_pak.MidwayPak(_ExtentIO(extent), size=extent.size)
+        pack.load_all()
+    except (Refusal, MapError, struct.error, OSError) as error:
+        result["directory"] = {"error": str(error)[:160]}
+        return result
+    result["directory"] = pack.identities()
+    objects: List[Dict[str, Any]] = []
+    member_checks: Counter = Counter(); exts: Counter = Counter(); heads: Counter = Counter()
+    for obj in pack.objects:
+        obj_exts: Counter = Counter(); obj_heads: Counter = Counter()
+        for member in obj.members:
+            ext = member.extension or "-"; obj_exts[ext] += 1
+            obj_heads[pack.member_head(obj, member, 4).hex()] += 1
+        exts.update(obj_exts); heads.update(obj_heads)
+        for key, value in obj.checks.items():
+            member_checks[key] += int(value)
+        objects.append({"name": obj.name, "category": obj.category, "hash": "%08x" % obj.name_hash, "offset": obj.offset,
+                        "size": obj.size, "members": len(obj.members), "listed": obj.listed, "layout": obj.layout,
+                        "trailing_bytes": obj.trailing_bytes, "extensions": dict(obj_exts.most_common(6)),
+                        "heads": dict(obj_heads.most_common(4)), "names_sample": [m.name for m in obj.members[:6]]})
+    result["objects"] = objects
+    result["members"] = {"total": sum(len(o.members) for o in pack.objects), "checks": dict(member_checks),
+                         "extensions": dict(exts.most_common(24)), "heads": dict(heads.most_common(12))}
+    result["timestamps"] = _pack_timestamps(pack.objects)
+    result["databases"] = _pack_databases(pack)
+    result["sections"] = _pack_sections(pack)
     return result
 
 
@@ -1449,6 +1573,15 @@ def foreign_totals(zips: Dict[str, Any], asset_indexes: Dict[str, Any], efs_arch
         "pack_objects": sum(p.get("metadata", {}).get("records", 0) for p in packs.values()
                             if "error" not in p and isinstance(p.get("metadata"), dict) and "records" in p["metadata"]),
         "pack_categories": dict(categories.most_common(64)),
+        "pack_objects_located": sum(p.get("directory", {}).get("objects", 0) for p in packs.values()
+                                    if "error" not in p and "error" not in p.get("directory", {})),
+        "pack_members": sum(p.get("members", {}).get("total", 0) for p in packs.values() if "error" not in p),
+        "pack_databases_read": sum(p.get("databases", {}).get("read", 0) for p in packs.values() if "error" not in p),
+        "pack_databases_refused": sum(p.get("databases", {}).get("refused", 0) + p.get("databases", {}).get("no_schema", 0)
+                                      for p in packs.values() if "error" not in p),
+        "pack_database_rows": sum(p.get("databases", {}).get("rows", 0) for p in packs.values() if "error" not in p),
+        "pack_sections": sum(p.get("sections", {}).get("sections", 0) for p in packs.values() if "error" not in p),
+        "pack_section_files": sum(p.get("sections", {}).get("files", 0) for p in packs.values() if "error" not in p),
         "vag": vag,
     }
 
@@ -1653,6 +1786,63 @@ def _fmt_counts(d: Optional[Dict[str, Any]], limit: Optional[int] = None) -> str
     return ", ".join(f"{k} {v}" for k, v in _top(d, limit))
 
 
+def _render_pack_directory(path: str, pack: Dict[str, Any]) -> List[str]:
+    """The located objects of one pack: the trailer directory's identities, the object table, members, databases, sections."""
+    d = pack.get("directory")
+    if not isinstance(d, dict):
+        return []
+    if "error" in d:
+        return ["", f"Directory of `{path}`: refused — {d['error']}"]
+    out = ["", f"### Directory of `{path}` (the trailer's node tree) [M]", "",
+           f"{d.get('objects', 0)} objects located, {d.get('listed_in_metadata', 0)} of them in the metadata list"
+           + (f" ({len(d['unlisted'])} not: " + ", ".join(f"`{n}`" for n in d["unlisted"]) + ")" if d.get("unlisted") else "")
+           + f"; first object is the first sector after the metadata: {d.get('first_object_is_first_sector_after_metadata')}; "
+           f"objects tile the body up to the directory: {d.get('objects_tile_body_to_directory')}; node table bytes == header word 3: "
+           f"{d.get('node_table_bytes_is_header_word3')}; name table bytes == header word 4: {d.get('name_table_bytes_is_header_word4')}; "
+           f"the `resmeta.lf` leaf is the metadata region: {d.get('metadata_leaf_is_metadata_region')}; metadata slots that are byte-copies of the "
+           f"object record: {d.get('metadata_slots_copy_object_records')}; record path stem == hash: {d.get('record_stem_is_hash')}; "
+           f"layout: {', '.join(d.get('layouts') or [])}."]
+    ts = pack.get("timestamps") or {}
+    if ts.get("earliest"):
+        out.append(f"Record timestamps ({ts.get('kind')}): {ts.get('earliest')} to {ts.get('latest')}.")
+    objects = pack.get("objects") or []
+    if objects:
+        out += ["", "| object | category | hash | offset | bytes | members | listed | trailing | member extensions | first names |", "|---|---|---|---:|---:|---:|---|---:|---|---|"]
+        for o in objects:
+            out.append(f"| `{o['name']}` | `{o['category']}` | {o['hash']} | {o['offset']:,} | {o['size']:,} | {o['members']} | {o['listed']} | "
+                       f"{o.get('trailing_bytes', 0)} | {_fmt_counts(o.get('extensions'), 5)} | {', '.join('`%s`' % n for n in o.get('names_sample', [])[:4])} |")
+    members = pack.get("members") or {}
+    if members:
+        c = members.get("checks", {})
+        out += ["", f"Members: {members.get('total', 0):,}; record agrees with its directory entry {c.get('records_agree', 0):,}, sector-aligned {c.get('aligned', 0):,}, "
+                    f"ascending {c.get('ascending', 0):,}, padded end meets the next record {c.get('tiled', 0):,}, first member at the directory's end in "
+                    f"{c.get('first_member_at_directory_end', 0)} objects, path stem == hash {c.get('paths_match', 0):,} (2003 layout only). "
+                    f"Extensions: {_fmt_counts(members.get('extensions'), 14) or '—'}. First words: {_fmt_counts(members.get('heads'), 8) or '—'}."]
+    db = pack.get("databases") or {}
+    if db.get("schemas") or db.get("read") or db.get("refused"):
+        out += ["", f"Databases (`.dbs` schema + `.dbd` data): {db.get('schemas', 0)} schemas parsed; {db.get('read', 0)} data files walked to the byte "
+                    f"({db.get('trailer_zero', 0)} with trailer 0), {db.get('refused', 0)} refused, {db.get('no_schema', 0)} without a schema; "
+                    f"{db.get('tables', 0):,} tables, {db.get('rows', 0):,} rows; {db.get('references_on_string_start', 0):,} of {db.get('reference_values', 0):,} "
+                    f"string references land on a string start in the pool their param names."]
+        if db.get("refusals"):
+            out.append("Refused: " + "; ".join(f"`{r}`" for r in db["refusals"][:6]))
+        if db.get("per_object"):
+            out += ["", "| object | data files read | refused | tables | rows |", "|---|---:|---:|---:|---:|"]
+            for cat, per in sorted(db["per_object"].items()):
+                out.append(f"| `{cat}` | {per['read']} | {per['refused']} | {per['tables']} | {per['rows']:,} |")
+        if db.get("roster_tables"):
+            out += ["", "| roster / playbook database | tables (rows) |", "|---|---|"]
+            for name, tables in sorted(db["roster_tables"].items()):
+                out.append(f"| `{name}` | " + ", ".join(f"`{t}` {n}" for t, n in tables.items()) + " |")
+    sec = pack.get("sections") or {}
+    if sec.get("files"):
+        out += ["", f"`SEC ` containers: {sec.get('files', 0):,} files, {sec.get('read', 0):,} read ({sec.get('empty', 0)} empty), {sec.get('refused', 0)} refused; "
+                    f"{sec.get('sections', 0):,} sections; contiguous {sec.get('contiguous', 0):,}, last ends at the total {sec.get('last_ends_at_total', 0):,}, "
+                    f"sizes multiples of 128 {sec.get('sizes_are_128_multiples', 0):,}; section kinds {_fmt_counts(sec.get('section_kinds')) or '—'}; "
+                    f"sections per object {_fmt_counts(sec.get('sections_per_object'), 6) or '—'}."]
+    return out
+
+
 def render_foreign(m: Dict[str, Any]) -> List[str]:
     """The non-EA families (Midway, AND 1) as Markdown: one table per family, every cell from the map."""
     sizes = _sizes_of(m)
@@ -1704,12 +1894,15 @@ def render_foreign(m: Dict[str, Any]) -> List[str]:
     packs = m.get("packs") or {}; metas = m.get("metadata_lists") or {}
     if packs or metas:
         out += ["", "## Midway `PAK ` pack and its `0x11111111` resource metadata", "",
-                "| path | bytes | body bytes | metadata offset | body + metadata offset == file | header words 1/3/4 |", "|---|---:|---:|---:|---|---|"]
+                "| path | bytes | body bytes | metadata offset | body + metadata offset == file | word 1 | node table bytes | name table bytes |", "|---|---:|---:|---:|---|---:|---:|---:|"]
         for path, pack in sorted(packs.items()):
             if "error" in pack:
-                out.append(f"| `{path}` | {sizes.get(path, 0):,} | refused: {pack['error']} | | | |"); continue
+                out.append(f"| `{path}` | {sizes.get(path, 0):,} | refused: {pack['error']} | | | | | |"); continue
             out.append(f"| `{path}` | {sizes.get(path, 0):,} | {pack.get('body_bytes', 0):,} | {pack.get('metadata_offset')} | "
-                       f"{pack.get('body_plus_metadata_offset_is_file')} | {pack.get('header_word1')} / {pack.get('header_word3')} / {pack.get('header_word4')} |")
+                       f"{pack.get('body_plus_metadata_offset_is_file')} | {pack.get('header_word1')} | {pack.get('node_table_bytes', pack.get('header_word3'))} | "
+                       f"{pack.get('name_table_bytes', pack.get('header_word4'))} |")
+        for path, pack in sorted(packs.items()):
+            out += _render_pack_directory(path, pack)
         out += ["", "| metadata | records | region bytes | region ends at the file's end | record magics | slot word +8 is 2048 | name hash matches the path stem |",
                 "|---|---:|---:|---|---|---:|---|"]
         for path, source in sorted(list(packs.items()) + list(metas.items())):
@@ -2088,7 +2281,7 @@ FOREIGN_RUNGS: Dict[str, Tuple[str, str]] = {
     "MidwaySound": ("read-only-mapped", "a PS-ADPCM decoder"),
     "VAGp": ("read-only-mapped", "a VAG decoder; never a writer"),
     "MidwayOBF": ("read-only-mapped (schema + rows)", "an OBF writer with an independent verifier"),
-    "MidwayPAK": ("unknown", "a locator for a named object's bytes: no header word of either disc is an offset into the pack body"),
+    "MidwayPAK": ("read-only-mapped", "decoders for the members' own formats past the databases and section lists (RenderWare `.rtd` / `.rws`, Midway `WIFF` / `HTPC` / `Part`), and a writer with an independent verifier"),
 }
 #: What the mapper says in the kinds table about each non-EA kind; mechanical, from the map's own numbers.
 FOREIGN_KIND_NOTES = ("ZIP", "ZIH", "EFS", "MidwayPAK", "MWo3", "MidwaySound", "MidwayOBF", "MidwayResMeta", "VAGp", "HDR-dir")
@@ -2109,7 +2302,10 @@ def _foreign_kind_note(kind: str, m: Dict[str, Any]) -> str:
                 f"{f.get('efs_archives', 0) - f.get('efs_refused', 0)}; {f.get('efs_nested', 0)} nested `EFS `; "
                 f"{f.get('efs_hdr_directories', 0)} `.HDR` directories")
     if kind == "MidwayPAK":
-        return f"{f.get('pack_objects', 0)} metadata records naming {len(f.get('pack_categories') or {})} category words"
+        return (f"{f.get('pack_objects_located', 0)} objects located by the trailer directory ({f.get('pack_objects', 0)} metadata records, "
+                f"{len(f.get('pack_categories') or {})} category words); {f.get('pack_members', 0):,} members; "
+                f"{f.get('pack_databases_read', 0)} databases read ({f.get('pack_database_rows', 0):,} rows), {f.get('pack_databases_refused', 0)} refused; "
+                f"{f.get('pack_sections', 0):,} sections in {f.get('pack_section_files', 0):,} `SEC ` files")
     if kind == "MWo3":
         return f"{f.get('overlays', 0)} relocatable overlays (see the overlay table in the map)"
     if kind == "MidwaySound":
@@ -2124,9 +2320,9 @@ def _foreign_kind_note(kind: str, m: Dict[str, Any]) -> str:
     return ""
 
 
-#: A Midway pack's category words are the only thing measured about its objects, so the page a
-#: category feeds is decided from the word alone -- an [A] mapping, and the rung it earns is
-#: ``unknown`` because the reader still cannot locate the object the word names.
+#: The page a Midway pack category feeds is decided from the category word -- an [A] mapping of the
+#: word to a page.  The object itself is located [M], its members are named [M], and its databases and
+#: ``SEC `` containers are read [M]; what a texture or model member *shows* is not.
 PACK_CATEGORY_PAGES: Tuple[Tuple[str, Tuple[str, ...]], ...] = (
     ("database", ("Names, Numbers & Faces", "Text & Team Identity")),
     ("playbook", ("Playbooks & Plays",)),
@@ -2182,13 +2378,21 @@ def foreign_feeders(m: Dict[str, Any]) -> List[Tuple[str, str, Dict[str, Any]]]:
     if (m.get("vag_audio") or {}).get("files"):
         rows.append(("Audio", "loose `.VAG` streams", {"VAGp": m["vag_audio"]["files"]}))
     for path, pack in sorted((m.get("packs") or {}).items()):
-        meta = pack.get("metadata") if isinstance(pack.get("metadata"), dict) else {}
+        objects = pack.get("objects") if isinstance(pack.get("objects"), list) else None
         per_page: Counter = Counter()
-        for category, count in (meta.get("categories") or {}).items():
-            for page in pack_category_pages(category):
-                per_page[page] += count
+        if objects:
+            for o in objects:
+                for page in pack_category_pages(o.get("category", "")):
+                    per_page[page] += 1
+            label = " (pack objects located [M]; page by category word [A])"
+        else:
+            meta = pack.get("metadata") if isinstance(pack.get("metadata"), dict) else {}
+            for category, count in (meta.get("categories") or {}).items():
+                for page in pack_category_pages(category):
+                    per_page[page] += count
+            label = " (pack categories, [A])"
         for page, count in sorted(per_page.items()):
-            rows.append((page, path + " (pack categories, [A])", {"MidwayPAK": count}))
+            rows.append((page, path + label, {"MidwayPAK": count}))
     return rows
 
 
@@ -2296,9 +2500,11 @@ def render_page(m: Dict[str, Any], today: Optional[str] = None) -> str:
                        f"`entry-table offset + entries × 16` equal to their first member's offset | what a `.DIM` / `.PPD` / `BALL` / `NIS0` member *is* |")
         if m.get("packs"):
             out.append(f"| `PAK ` + `0x11111111` metadata | {foreign.get('packs', 0)} + {foreign.get('metadata_lists', 0)} | "
-                       f"`body bytes + metadata offset == file`; {foreign.get('pack_objects', 0)} records of 2,048 bytes, each naming a category "
-                       f"and an `objects\\<hex>.of` path whose stem equals the record's 32-bit hash | where a named object's bytes live in the pack body: "
-                       f"no header word of this disc is an offset into it |")
+                       f"`body bytes + metadata offset == file`; {foreign.get('pack_objects_located', 0)} objects located by the trailer directory and tiled "
+                       f"({foreign.get('pack_objects', 0)} metadata records); {foreign.get('pack_members', 0):,} members named and checked against their records; "
+                       f"{foreign.get('pack_databases_read', 0)} databases read to the byte ({foreign.get('pack_database_rows', 0):,} rows); "
+                       f"{foreign.get('pack_sections', 0):,} `SEC ` sections listed | what a RenderWare `.rtd` / `.rws`, `WIFF`, `HTPC` or `Part` member shows; "
+                       f"the name-hash function |")
         if m.get("overlays"):
             out.append(f"| `MWo3` overlays | {foreign.get('overlays', 0)} | `64 + segment1 + segment2` is exactly the file length on every overlay | "
                        f"what the two trailing addresses name |")
@@ -2394,7 +2600,9 @@ def render_page(m: Dict[str, Any], today: Optional[str] = None) -> str:
         out.append("- `EFS ` archives: the directory is a plain (name offset, data offset, size, size, flags) table and the last member ends at EOF, so a "
                    "same-length member could be replaced without moving anything; a different length rewrites every later offset. No writer exists. [M]")
     if m.get("packs"):
-        out.append("- Midway `PAK `: not rewritable today — the reader cannot say where a named object's bytes are. [M]")
+        out.append("- Midway `PAK `: every object and member is located and tiled, so a same-length member could be replaced at its own byte range; "
+                   "a longer one moves every later member offset in the object's directory, the object's leaf in the trailer directory, every later "
+                   "object, and header word 2. No writer exists. [M]")
     if m.get("overlays"):
         out.append("- `MWo3` overlays: raw R5900 code at a fixed load address; a patch is a code patch, not a data edit. [M]")
     if m.get("preloads"):
@@ -2557,11 +2765,18 @@ def _synthetic_midway_meta(records: Sequence[Tuple[int, str, str]]) -> bytes:
     return bytes(out)
 
 
-def _synthetic_pak(meta: bytes, payload: bytes) -> bytes:
-    """A ``PAK `` whose body word plus its metadata offset is exactly the file, as both discs' are."""
-    offset = 2048
-    head = b" KAP" + struct.pack("<5I", 512, len(meta) + len(payload), 3, 2, offset)
-    return head + bytes(offset - len(head)) + meta + payload
+def _synthetic_pak(layout: str = midway_pak.LAYOUT_2005) -> bytes:
+    """A whole ``PAK `` of either generation: three objects (one unlisted), a database pair, a ``SEC `` container."""
+    schema = midway_db.build_schema("playerdb", [("T", "teams", [("b", "id", 0), ("s", "abrv", 4), ("r", "city", 1)]), ("t", "strings", [("s", "string", 50)])])
+    parsed = midway_db.parse_schema(schema)
+    pool, offsets = midway_db.build_pool(["Springfield"])
+    rows = midway_db.pack_row(parsed.table("teams"), {"id": 1, "abrv": "SPR", "city": offsets["Springfield"]})
+    data = midway_db.build_data("playerdb", [("teams", rows), ("strings", pool)])
+    sec = midway_sec.build_sec([(2, "first", bytes(64)), (4, "model.rws", b"\x10\x00\x00\x00" + bytes(60))])
+    return midway_pak.build_pack([(0xC36737C2, "anim", [(0x35B5CD30, "walk.rws", b"\x10\x00\x00\x00" + bytes(28))]),
+                                  (0xBD44C854, "databases", [(0x13DAD7FD, "playerdb.dbd", data), (0x418C5C88, "playerdb.dbs", schema)]),
+                                  (0x0FD26C79, "playbooks", [(0x9FE8D707, "plays.sec", sec)])],
+                                 layout=layout, unlisted=[0xC36737C2])
 
 
 def _synthetic_ms2(records: Sequence[Tuple[int, bytes]], *, names: Sequence[str] = ()) -> bytes:
@@ -2636,8 +2851,8 @@ def build_synthetic_disc(*, sector_size: int = 2048, data_offset: int = 0) -> Tu
     zip_blob = _synthetic_zip(zip_members)
     zih = _synthetic_zih(_zip_data_offsets(zip_blob, zip_members))
     overlay = _synthetic_mwo3()
-    meta = _synthetic_midway_meta([(0xC36737C2, "anim", "objects\\c36737c2.of"), (0x0FD26C79, "playbooks", "objects\\fd26c79.of")])
-    pak = _synthetic_pak(meta, bytes(4096))
+    pak = _synthetic_pak()
+    meta = pak[2048:2048 + 8 + 2 * 2048]        # the loose RESMETA.LF is the pack's own list, as The League's is
     ms2 = _synthetic_ms2([(1, bytes(64)), (0x20000002, bytes(96))], names=["943.mst", "945.mst"])
     obf = _synthetic_obf([("Blitz.Video.Ball", "In Hand Scale", 2, 0x3F99999A), ("Blitz.GameOptions", "Force Plays", 1, 0)])
     efs = _synthetic_efs([("ATLANTA.BIN", bytes(32)), ("COMMON.DIM", _synthetic_hdr(["pause_bg", "ball", "allscore"])),
@@ -2772,6 +2987,36 @@ def selftest() -> int:
             pack = mapped["packs"]["/DATA/RESIMG.DAT"]
             check(pack["body_plus_metadata_offset_is_file"] and pack["metadata"]["records"] == 2
                   and pack["metadata"]["name_hash_matches_path_stem"] == 2, "PAK + metadata %s" % pack["metadata"])
+            d = pack["directory"]
+            check(d["objects"] == 3 and d["listed_in_metadata"] == 2 and d["unlisted"] == ["c36737c2.of"] and d["objects_tile_body_to_directory"]
+                  and d["first_object_is_first_sector_after_metadata"] and d["node_table_bytes_is_header_word3"] and d["name_table_bytes_is_header_word4"]
+                  and d["metadata_leaf_is_metadata_region"] and d["metadata_slots_copy_object_records"] == 2 and d["record_stem_is_hash"] == 3,
+                  "PAK directory locates and tiles the objects %s" % d)
+            check([o["category"] for o in pack["objects"]] == ["anim", "databases", "playbooks"] and pack["members"]["total"] == 4
+                  and pack["members"]["checks"]["records_agree"] == 4 and pack["members"]["checks"]["tiled"] == 4
+                  and pack["members"]["checks"]["first_member_at_directory_end"] == 3 and pack["objects"][0]["trailing_bytes"] == 0
+                  and pack["objects"][1]["extensions"] == {"dbd": 1, "dbs": 1}, "PAK members %s" % pack["members"])
+            check(pack["databases"]["schemas"] == 1 and pack["databases"]["read"] == 1 and pack["databases"]["rows"] == 1
+                  and pack["databases"]["trailer_zero"] == 1 and pack["databases"]["references_on_string_start"] == 1
+                  and pack["databases"]["per_object"]["databases"]["tables"] == 2, "PAK databases read %s" % pack["databases"])
+            check(pack["sections"]["files"] == 1 and pack["sections"]["read"] == 1 and pack["sections"]["sections"] == 2
+                  and pack["sections"]["contiguous"] == 1 and pack["sections"]["last_ends_at_total"] == 1, "PAK SEC containers %s" % pack["sections"])
+            check(pack["timestamps"]["kind"] == "dotnet-ticks" and pack["timestamps"]["earliest"] == pack["timestamps"]["latest"] != "",
+                  "PAK record timestamps %s" % pack["timestamps"])
+            with open(Path(tmp) / "pro.pak", "wb") as handle:
+                handle.write(_synthetic_pak(midway_pak.LAYOUT_2003))
+            with open(Path(tmp) / "pro.pak", "rb") as handle:
+                pro = map_midway_pak(_Extent(handle, None, None, offset=0, size=(Path(tmp) / "pro.pak").stat().st_size))
+            check(pro["directory"]["layouts"] == ["2003"] and pro["members"]["checks"]["paths_match"] == 4 and pro["databases"]["read"] == 1
+                  and pro["timestamps"]["kind"] == "y-m-d-h-m-s-ms words" and pro["timestamps"]["earliest"] == "2003-09-25",
+                  "the 2003 layout maps too %s" % pro["directory"])
+            broken = bytearray(_synthetic_pak()); broken[-2048 + 3 * 16 + 12:-2048 + 3 * 16 + 16] = struct.pack("<I", len(broken))
+            with open(Path(tmp) / "broken.pak", "wb") as handle:
+                handle.write(bytes(broken))
+            with open(Path(tmp) / "broken.pak", "rb") as handle:
+                bad = map_midway_pak(_Extent(handle, None, None, offset=0, size=len(broken)))
+            check("error" in bad["directory"] and "runs into the directory trailer" in bad["directory"]["error"] and bad["metadata"]["records"] == 2,
+                  "a pack whose directory lies keeps its header and metadata and reports the refusal: %s" % bad["directory"])
             check(mapped["metadata_lists"]["/DATA/RESMETA.LF"]["region_ends_at_file_end"], "loose 0x11111111 metadata list")
             check(mapped["overlays"]["/DATA/OVL.BIN"]["segments_account_for_file"]
                   and mapped["sound_banks"]["/DATA/SOUND.MS2"]["records_read"] == 2
@@ -2779,7 +3024,9 @@ def selftest() -> int:
                   and mapped["vag_audio"]["files"] == 1 and mapped["vag_audio"]["headers_account_for_file"] == 1, "overlay / bank / options / VAG")
             foreign = mapped["totals"]["foreign"]
             check(foreign["zip_entries"] == 4 and foreign["efs_members"] == 3 and foreign["metadata_records"] == 2 and foreign["pack_objects"] == 2
-                  and foreign["asset_index_names_matched"] == 4 and set(foreign["pack_categories"]) == {"anim", "playbooks"}, "foreign totals %s" % foreign)
+                  and foreign["asset_index_names_matched"] == 4 and set(foreign["pack_categories"]) == {"databases", "playbooks"}
+                  and foreign["pack_objects_located"] == 3 and foreign["pack_members"] == 4 and foreign["pack_databases_read"] == 1
+                  and foreign["pack_database_rows"] == 1 and foreign["pack_sections"] == 2, "foreign totals %s" % foreign)
             check(mapped["kinds"].get("ZIP") == 1 and mapped["kinds"].get("ZIH") == 1 and mapped["kinds"].get("EFS") == 1
                   and mapped["kinds"].get("MidwayPAK") == 1 and mapped["kinds"].get("MidwayResMeta") == 1
                   and mapped["kinds"].get("MidwaySound") == 1 and mapped["kinds"].get("MidwayOBF") == 1
@@ -2792,10 +3039,12 @@ def selftest() -> int:
             check("ZIP archives and their Midway index" in md and "AND 1 `EFS ` archives" in md and "Midway `MWo3` overlays" in md
                   and "Sony `VAGp` streams" in md and "Midway option trees" in md, "the non-EA sections render")
             check("### Non-EA containers (Midway / AND 1) [M]" in page and "local file header" in page
-                  and "no header word of this disc is an offset into it" in page, "the page carries the non-EA table")
+                  and "objects located by the trailer directory" in page and "databases read to the byte" in page, "the page carries the non-EA table")
             playbooks = next(line for line in page.splitlines() if line.startswith("| Playbooks & Plays |"))
-            check("pack categories, [A]" in playbooks and "| unknown |" in playbooks and "honest empty page" not in playbooks,
-                  "a named-but-unlocatable pack category earns 'unknown', never an empty page: %s" % playbooks)
+            check("pack objects located [M]" in playbooks and "| read-only-mapped |" in playbooks and "honest empty page" not in playbooks,
+                  "a located pack object earns 'read-only-mapped', never an empty page: %s" % playbooks)
+            check("### Directory of `/DATA/RESIMG.DAT`" in md and "| `c36737c2.of` | `anim` |" in md and "`databases/playerdb.dbd` | `teams` 1, `strings` pool" in md
+                  and "`SEC ` containers: 1 files" in md, "the map renders the directory, the object table, the roster tables and the SEC line")
             check(pack_category_pages("stadium_carolina") == ("Stadiums",) and pack_category_pages("Databases")[0] == "Names, Numbers & Faces"
                   and pack_category_pages("misc") == (), "pack category page mapping")
             if sector_size == 2048:

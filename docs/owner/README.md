@@ -10,8 +10,9 @@ and never sent upstream. Rebase it onto `ps2-lane` when the lane moves.
 
 - `ea_disc_map.py` — **what is on a disc**: containers, members, formats, archives, schemas, preload caches, and
   since `ea_disc_map/v3` the non-EA families on the Midway Blitz discs and AND 1 Streetball (ZIP + `.ZIH`,
-  `MWo3`, `PAK ` + `0x11111111` metadata, the Midway sound bank, `.OBF`, `EFS ` + `.HDR`, Sony `VAGp`) —
-  see `docs/owner/scoping/BLITZ_AND1_FORMATS.md`.
+  `MWo3`, `PAK ` + `0x11111111` metadata — whose objects, members, databases and `SEC ` containers it reads
+  through the product packages `midway_pak` / `midway_db` / `midway_sec` — the Midway sound bank, `.OBF`,
+  `EFS ` + `.HDR`, Sony `VAGp`) — see `docs/owner/scoping/BLITZ_AND1_FORMATS.md`.
 - `ea_module_readiness.py` — **what the shipped Madden 09 readers can do with it**: the module's own
   `ea_terf`, `ea_tdb`, `ea_schl`, `mmap_art` and preload-cache parser run over another disc, with every
   refusal grouped by sentence and the load-bearing table schemas compared against Madden 09's. It writes
