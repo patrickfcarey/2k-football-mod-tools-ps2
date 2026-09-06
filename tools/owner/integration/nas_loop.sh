@@ -10,7 +10,7 @@ NAS="${NAS:-pacarey@192.168.68.185}"; BASE="${NAS_BASE:-/turret/builds/2k5}"; D=
 HERE="$(cd "$(dirname "$0")" && pwd)"
 SSH="ssh -o BatchMode=yes -o ConnectTimeout=15"
 for i in 1 2 3 4 5 6; do
-  rsync -a --delete --exclude .git --exclude reports/assets --exclude '.tests-parallel-logs' -e "$SSH" "$W/" "$NAS:$D/" && break
+  rsync -a --delete --exclude '/.git' --exclude reports/assets --exclude '.tests-parallel-logs' -e "$SSH" "$W/" "$NAS:$D/" && break
   echo "rsync attempt $i failed; retrying in 30 s"; sleep 30
 done
 for i in 1 2 3 4 5 6; do
@@ -18,4 +18,4 @@ for i in 1 2 3 4 5 6; do
   echo "scp attempt $i failed; retrying in 30 s"; sleep 30
 done
 HEAD_SHA=$(git -C "$W" rev-parse --short HEAD 2>/dev/null)
-$SSH "$NAS" "export HEAD_SHA='$HEAD_SHA'; mkdir -p '$D/.git' '$D/reports' && rm -rf '$D/reports/assets' && cp -r '$BASE/fixtures-assets' '$D/reports/assets' && cd '$BASE' && bash ci_tests_nas.sh '$D' '$WORKERS' 2>&1 | tail -8"
+$SSH "$NAS" "export HEAD_SHA='$HEAD_SHA'; { [ -d '$D/.git' ] || { rm -f '$D/.git'; mkdir -p '$D/.git'; }; }; mkdir -p '$D/reports' && rm -rf '$D/reports/assets' && cp -r '$BASE/fixtures-assets' '$D/reports/assets' && cd '$BASE' && bash ci_tests_nas.sh '$D' '$WORKERS' 2>&1 | tail -8"
