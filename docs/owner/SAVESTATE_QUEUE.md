@@ -64,6 +64,29 @@ will drive to afterwards; you do not need to go there yourself.
 | A8 | **NFL Blitz 2003** `SLUS-20474` | team-select | first play | same 4 writers on the second disc |
 | A9 | **NFL 2K5 PS2** `SLUS-20919` | team-select | first play | text, colours, playbooks, stadium position |
 
+### A2. States a module asks for as it lands — the standing pattern
+
+**Every new module needs its own pair, and the ask arrives with the module rather than in a
+batch.** The owner has said to keep this in the plan rather than surface it late, so a module's
+report ends with its capture list and the rows land here the same day. The pattern is the one
+above: one state at team-select taken **just after the launch press, on the first frame of the
+loading screen**, and one on the main menu.
+
+| # | Game | Stand here | Why it is needed |
+|---|---|---|---|
+| A10 | **NFL Street** `SLUS-20841` | team select, press to start, save on the first loading frame | module in build; no capture of any kind exists for this disc, so every texture identity it ships is derived |
+| A11 | **NFL Street** `SLUS-20841` | main menu | its record and text writers |
+| A12 | **NFL Street 3** `SLUS-21482` | team select, press to start, save on the first loading frame | same, second disc |
+| A13 | **NFL Street 3** `SLUS-21482` | main menu | same |
+
+Alongside each, **a GS dump of the same two screens** confirms texture identities that are
+otherwise only computed — the two captures answer different questions and both are cheap once the
+game is already booted.
+
+**And one no-op pair per title, asked for by the savestate-diff work:** two states of the *same*
+screen with nothing changed between them. Without it a RAM diff has no noise baseline, and the
+first two diffs only worked because Madden's pair had a known answer to calibrate against.
+
 ### B. Research states — a specific question each
 
 | # | Game | Stand here | Answers |
