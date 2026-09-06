@@ -133,3 +133,30 @@ headless with texture dumping on. So the alternative to sections 1 to 4 is:
 
 2026-09-05: 18 dumps, 8 games, 8,718 texture files in 60 seconds; the Madden 09 frame (Giants and
 Patriots captains) gave 348 classic-named textures, 77 of them the 128x128 uniform-part size.
+
+## Per-draw dumps: when the replacement dumper cannot see a texture (added 2026-09-06)
+
+The texture-replacement dumper only writes textures whose source is a plain EE→GS transfer. A
+texture the game builds **on the GS** — drawn into a render target and then sampled — never
+appears in it, however many frames are captured. MVP Baseball 2005's `0x0E` kits and portraits
+are that case: three frames drew them and the replacement dump held none of them, which two
+pairing methods proved (`docs/product/EA_SHPS_FORMAT.md` §5.1 on the lane).
+
+The same `.gs.zst` files hold the answer. The runner's per-draw dump writes every texture a draw
+uses regardless of source, the render targets before and after, every transfer image and the
+per-draw registers and vertices:
+
+```bash
+pgrep -x pcsx2-qt; pgrep -x mupen64plus; pgrep -f "[q]emu-system-i386"      # H-2, its own command, read it
+SERIAL=SLUS-21135 DAY=20260905 ssh rig 'bash -s' < tools/owner/harvest_draws.sh
+```
+
+`tools/owner/harvest_draws.sh` passes `-dump rt,tex,i,tr -dumpdir <dir>`; `-dumpdir` is load-bearing
+because `Pcsx2Config` disables draw dumping unless **both** the HW and SW dump directories are set and
+`-dumpdir` seeds both (`-dumpdirhw` alone does not — measured, it logged "directory is unconfigured"
+twice). One frame is ~17,000 files and ~700 MB in about 40 s. File names carry the draw number, the GS
+address and the pixel format (`itex_gs_<addr>_P_8` is an 8-bit paletted input texture; `itpx` is its
+palette as a 16×16 image; `rt0`/`rt1` the target before and after; `*_transfers.txt` lists the uploads).
+Pair an `itpx` against the disc palettes to find the decoded image, invert the palette for the true
+index image, and the codec is a truth table. Nothing from these dumps is committed: names, hashes and
+counts only, as with the texture harvest.
