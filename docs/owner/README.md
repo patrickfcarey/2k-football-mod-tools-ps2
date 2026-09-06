@@ -1,9 +1,19 @@
 # Owner tooling (not shipped, not in the upstream PR)
 
-The disc mapper (`tools/owner/ea_disc_map.py`, tests in `tests/owner/`), the mapping runbook and page template, the
+The disc mapper (`tools/owner/ea_disc_map.py`), the module-readiness measurer
+(`tools/owner/ea_module_readiness.py`), their tests in `tests/owner/`, the mapping runbook and page template, the
 retail-free disc maps and pages under `docs/owner/disc_maps/`, the scoping studies under `docs/owner/scoping/`, and the rig
 runner `tools/owner/run_all_maps.py`. This branch tracks `ps2-lane` plus these files; it is never merged into `ps2-lane`
 and never sent upstream. Rebase it onto `ps2-lane` when the lane moves.
+
+## The two tools, and the question each answers
+
+- `ea_disc_map.py` — **what is on a disc**: containers, members, formats, archives, schemas, preload caches.
+- `ea_module_readiness.py` — **what the shipped Madden 09 readers can do with it**: the module's own
+  `ea_terf`, `ea_tdb`, `ea_schl`, `mmap_art` and preload-cache parser run over another disc, with every
+  refusal grouped by sentence and the load-bearing table schemas compared against Madden 09's. It writes
+  `<SERIAL>.<label>.readiness.json`, a page under `docs/owner/scoping/readiness/`, and the cross-title
+  table in `docs/owner/scoping/READINESS_SUMMARY.md`.
 
 ## Runbooks
 

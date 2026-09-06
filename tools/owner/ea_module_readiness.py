@@ -203,7 +203,17 @@ def _evenly(indices: Sequence[int], sample: Optional[int]) -> List[int]:
 
 
 def _pct(part: int, whole: int) -> Optional[float]:
-    return None if not whole else round(100.0 * part / whole, 1)
+    """*part* of *whole* as a percentage, never rounding a shortfall up to 100.
+
+    6,268 of 6,270 is 99.968%, and a page that prints that as 100.0% has quietly
+    thrown away the two copies this whole study exists to find.
+    """
+
+    if not whole:
+        return None
+    if part >= whole:
+        return 100.0
+    return min(round(100.0 * part / whole, 1), 99.9)
 
 
 def _table_signature(table: Any) -> str:
@@ -1037,8 +1047,11 @@ def _needs_section(m: Dict[str, Any], baseline: Optional[Dict[str, Any]]) -> Lis
     formats = c["formats"]
     out = ["## What a module for this disc would need", "",
            "One row per studio page. *Container* is the disc's own file whose name the mapper's "
-           "glossary maps to that page; *feeding formats* are counted after decompression, across "
-           "the whole disc, by the module's own `identify_member`.", "",
+           "glossary maps to that page — and, where the glossary (which is Madden 09's naming) "
+           "names none, whichever containers carry the page's format, marked *(by format, not by "
+           "name)*. *Feeding formats* are counted after decompression, across the whole disc, by "
+           "the module's own `identify_member`. The number in brackets is that container's member "
+           "count in the page's formats.", "",
            "| page | container(s) on this disc | feeding format(s) present | what the readers do with them |",
            "|---|---|---|---|"]
     for page in PAGE_ROWS:
@@ -1050,21 +1063,48 @@ def _needs_section(m: Dict[str, Any], baseline: Optional[Dict[str, Any]]) -> Lis
             interesting = sum(row.get("formats", {}).get(fmt, 0) for fmt in wanted) if wanted else 0
             names.append((interesting, path.rsplit("/", 1)[-1], row.get("members", 0)))
         names.sort(key=lambda item: (-item[0], item[1]))
+        by_format_note = ""
+        if not names and wanted:
+            # The glossary is Madden 09's naming; a disc that keeps the same
+            # format under another name (NCAA's FLDDATA.DAT for Madden's
+            # FIELDART.DAT) would otherwise show an empty cell that is not true.
+            # Falling back to "whichever containers carry the page's format" is
+            # mechanical -- no name is being interpreted.
+            for path, row in sorted(m.get("containers", {}).items()):
+                if "error" in row:
+                    continue
+                interesting = sum(row.get("formats", {}).get(fmt, 0) for fmt in wanted)
+                if interesting:
+                    names.append((interesting, path.rsplit("/", 1)[-1], row.get("members", 0)))
+            names.sort(key=lambda item: (-item[0], item[1]))
+            if names:
+                by_format_note = " *(by format, not by name)*"
         listed = ", ".join("`%s`%s" % (name, "" if not n else " (%s)" % format(n, ","))
                            for n, name, _members in names[:4])
         if len(names) > 4:
             listed += " and %d more" % (len(names) - 4)
+        listed += by_format_note
         out.append("| %s | %s | %s | %s |" % (
             page, listed or "—",
             ", ".join("%s %s" % (k, format(v, ",")) for k, v in present.items()) or "—",
-            _page_verdict(page, present, c)))
+            _page_verdict(page, present, c, m)))
     out.append("")
     out += _schema_section(m, baseline)
     out += _cache_section(m, baseline)
     return out
 
 
-def _page_verdict(page: str, present: Dict[str, int], c: Dict[str, Any]) -> str:
+def _page_verdict(page: str, present: Dict[str, int], c: Dict[str, Any],
+                  m: Dict[str, Any]) -> str:
+    if page == "Gameplay":
+        # The Gameplay page is fed by the executable, not by a container member,
+        # so an empty container cell is not an empty answer.
+        ident = m.get("identity", {})
+        return ("the boot ELF `%s` opens: PCSX2 CRC `%s`, %s program header(s), sha256 `%s`. "
+                "Every patch site is per-title research; nothing here is shared with Madden 09."
+                % (ident.get("boot_file"), ident.get("pcsx2_crc") or "—",
+                   ident.get("boot_segments") if ident.get("boot_segments") is not None else "?",
+                   (ident.get("boot_sha256") or "")[:16]))
     if page == "Build & Share":
         return "the shell's own page; no game writes it"
     if page == "The Crib":
@@ -1092,8 +1132,6 @@ def _page_verdict(page: str, present: Dict[str, int], c: Dict[str, Any]) -> str:
     for fmt in ("SMF", "DMF", "MPCh", "FNTS"):
         if fmt in present:
             parts.append("%s %s member(s): no reader in this repository" % (format(present[fmt], ","), fmt))
-    if "ELF" in present or page == "Gameplay":
-        parts.append("the boot ELF opens; every patch site is per-title research")
     return "; ".join(parts) or "counted, not read"
 
 

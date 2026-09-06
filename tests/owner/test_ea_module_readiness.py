@@ -65,6 +65,14 @@ class SamplingTests(unittest.TestCase):
         self.assertEqual(readiness._evenly([], 4), [])
 
 
+class PercentageTests(unittest.TestCase):
+    def test_a_shortfall_never_rounds_up_to_a_hundred(self) -> None:
+        self.assertEqual(readiness._pct(6268, 6270), 99.9)
+        self.assertEqual(readiness._pct(6270, 6270), 100.0)
+        self.assertEqual(readiness._pct(0, 10), 0.0)
+        self.assertIsNone(readiness._pct(0, 0))
+
+
 class ContainerPassTests(unittest.TestCase):
     def test_a_non_container_refuses_with_the_readers_own_sentence(self) -> None:
         with self.assertRaises(Refusal) as caught:
