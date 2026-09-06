@@ -17,7 +17,7 @@ so a number here is a measurement of the product, not of a re-implementation::
 
     python3 tools/owner/ea_module_readiness.py --iso IMAGE.iso --out DIR [--label "Madden NFL 08 (USA)"]
     python3 tools/owner/ea_module_readiness.py --page DIR/<serial>.<label>.readiness.json [--baseline DIR/SLUS-21770.*.json]
-    python3 tools/owner/ea_module_readiness.py --summary DIR --baseline DIR/SLUS-21770.*.json [--out SUMMARY.md]
+    python3 tools/owner/ea_module_readiness.py --summary DIR [--out SUMMARY.md]
     python3 tools/owner/ea_module_readiness.py --selftest
 
 **Retail-free.**  Names, counts, offsets, digests, and schema field names and
