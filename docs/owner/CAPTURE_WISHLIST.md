@@ -19,6 +19,9 @@ Two kinds, and they answer different questions:
 Both go to `penguinscreen2-fixtures` (private, LAN-only) with a manifest describing what the pixels
 actually show. Nothing from a capture is committed to a code repo: names, hashes and counts only.
 
+**Savestates now have their own checklist: `SAVESTATE_QUEUE.md`.** It carries the where-to-stand detail
+and the headless-writer-proof argument; this file stays the ranked view across both kinds.
+
 ## The queue
 
 | # | Disc | Capture | Kind | Buys |
