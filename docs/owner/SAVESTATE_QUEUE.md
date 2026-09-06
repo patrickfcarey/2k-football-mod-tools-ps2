@@ -74,10 +74,15 @@ loading screen**, and one on the main menu.
 
 | # | Game | Stand here | Why it is needed |
 |---|---|---|---|
-| A10 | **NFL Street** `SLUS-20841` | team select, press to start, save on the first loading frame | module in build; no capture of any kind exists for this disc, so every texture identity it ships is derived |
-| A11 | **NFL Street** `SLUS-20841` | main menu | its record and text writers |
-| A12 | **NFL Street 3** `SLUS-21482` | team select, press to start, save on the first loading frame | same, second disc |
-| A13 | **NFL Street 3** `SLUS-21482` | main menu | same |
+| ~~A10~~ | **NFL Street** `SLUS-20841` | ~~team select~~ | **CAPTURED 2026-09-06 15:12** — slot 01 is the **Select Field** screen (EA Field highlighted, eight field thumbnails). Not a loading frame, but a menu one step before a field and its art load, which serves the same purpose for the field-art and stadium writers |
+| ~~A11~~ | **NFL Street** `SLUS-20841` | ~~main menu~~ | **CAPTURED** — slot 02, the title menu (Play It / Features / Options / Inside Street) |
+| ~~A12~~ | **NFL Street 3** `SLUS-21482` | ~~team select~~ | **CAPTURED 2026-09-06 15:13** — slot 01 is a **loading screen** (Audibles tip card), which is exactly the position the harness wants |
+| ~~A13~~ | **NFL Street 3** `SLUS-21482` | ~~main menu~~ | **CAPTURED** — slot 02 |
+
+**Still wanted for these two discs:** a **GS dump** of the same screens. A savestate proves a
+writer once the harness exists; it does **not** confirm a texture identity, which needs the frame
+PCSX2 renders. Neither Street disc has a dump of any kind, so every identity both modules ship is
+derived. Two frames per disc closes that, the same way two NCAA frames named 510 textures.
 
 Alongside each, **a GS dump of the same two screens** confirms texture identities that are
 otherwise only computed — the two captures answer different questions and both are cheap once the
