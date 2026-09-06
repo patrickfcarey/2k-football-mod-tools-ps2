@@ -18,4 +18,4 @@ for i in 1 2 3 4 5 6; do
   echo "scp attempt $i failed; retrying in 30 s"; sleep 30
 done
 HEAD_SHA=$(git -C "$W" rev-parse --short HEAD 2>/dev/null)
-$SSH "$NAS" "HEAD_SHA='$HEAD_SHA' mkdir -p '$D/.git' '$D/reports' && rm -rf '$D/reports/assets' && cp -r '$BASE/fixtures-assets' '$D/reports/assets' && cd '$BASE' && bash ci_tests_nas.sh '$D' '$WORKERS' 2>&1 | tail -8"
+$SSH "$NAS" "export HEAD_SHA='$HEAD_SHA'; mkdir -p '$D/.git' '$D/reports' && rm -rf '$D/reports/assets' && cp -r '$BASE/fixtures-assets' '$D/reports/assets' && cd '$BASE' && bash ci_tests_nas.sh '$D' '$WORKERS' 2>&1 | tail -8"
