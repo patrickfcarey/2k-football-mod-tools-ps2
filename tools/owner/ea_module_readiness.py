@@ -95,9 +95,8 @@ for _p in (_HERE, _ROOT / "tools", _ROOT):
 import ea_disc_map as mapper  # noqa: E402  the disc mapper: ISO walking, extents, QL01, glossary
 import ps2_iso9660 as iso  # noqa: E402
 from mod_editor.games.contract import Refusal  # noqa: E402
-from mod_editor.games._formats import ea_big, ea_schl, ea_shps, ea_tdb, ea_terf, ps2_elf  # noqa: E402
+from mod_editor.games._formats import ea_big, ea_schl, ea_shps, ea_tdb, ea_terf, mmap_art, ps2_elf  # noqa: E402
 from mod_editor.games.madden09_ps2 import containers as m09  # noqa: E402
-from mod_editor.games.madden09_ps2 import mmap_art  # noqa: E402
 
 SCHEMA = "ea_module_readiness/v2"          # v2 adds the BIG / RefPack / SHPS rows
 
@@ -109,7 +108,7 @@ READER_FILES: Tuple[Tuple[str, str], ...] = (
     ("ea_schl", "mod_editor/games/_formats/ea_schl.py"),
     ("ea_big", "mod_editor/games/_formats/ea_big.py"),
     ("ea_shps", "mod_editor/games/_formats/ea_shps.py"),
-    ("mmap_art", "mod_editor/games/madden09_ps2/mmap_art.py"),
+    ("mmap_art", "mod_editor/games/_formats/mmap_art.py"),
     ("containers", "mod_editor/games/madden09_ps2/containers.py"),
     ("ps2_iso9660", "tools/ps2_iso9660.py"),
 )
