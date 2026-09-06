@@ -6,7 +6,7 @@ cd "$repo" || exit 2
 [ -e .git ] || mkdir .git   # self_update detects a checkout by .git; an rsynced tree without one tests as a tarball
 LOGS="$repo/.tests-parallel-logs"; rm -rf "$LOGS"; mkdir -p "$LOGS"
 lean=0; [ -f reports/assets/nfl2k5_all_txtr_inventory_v2.json ] || lean=1
-echo "lean_checkout=$lean head=$(git rev-parse --short HEAD) workers=$workers host=$(hostname) $(date -u +%FT%TZ)"
+echo "lean_checkout=$lean head=${HEAD_SHA:-$(git rev-parse --short HEAD 2>/dev/null)} workers=$workers host=$(hostname) $(date -u +%FT%TZ)"
 run_one() {
   f="$1"; name=$(basename "$f"); out="$LOGS/$name.log"
   if [ "$LEAN" -eq 1 ]; then case "$name" in

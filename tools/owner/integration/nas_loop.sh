@@ -17,4 +17,5 @@ for i in 1 2 3 4 5 6; do
   scp -q -o BatchMode=yes -o ConnectTimeout=15 "$HERE/ci_tests_nas.sh" "$NAS:$BASE/ci_tests_nas.sh" && break
   echo "scp attempt $i failed; retrying in 30 s"; sleep 30
 done
-$SSH "$NAS" "mkdir -p '$D/.git' '$D/reports' && rm -rf '$D/reports/assets' && cp -r '$BASE/fixtures-assets' '$D/reports/assets' && cd '$BASE' && bash ci_tests_nas.sh '$D' '$WORKERS' 2>&1 | tail -8"
+HEAD_SHA=$(git -C "$W" rev-parse --short HEAD 2>/dev/null)
+$SSH "$NAS" "HEAD_SHA='$HEAD_SHA' mkdir -p '$D/.git' '$D/reports' && rm -rf '$D/reports/assets' && cp -r '$BASE/fixtures-assets' '$D/reports/assets' && cd '$BASE' && bash ci_tests_nas.sh '$D' '$WORKERS' 2>&1 | tail -8"
