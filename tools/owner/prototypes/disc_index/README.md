@@ -42,6 +42,14 @@ offsets, lengths, counts, format identities, schema field names/widths and diges
 `regen.retail_free_violations` is the executable check, run over every index the round-trip
 built.
 
+## One deliberate difference from the specification
+
+`identify.py` keeps its own magic tables instead of importing
+`ea_terf.MEMBER_FORMAT_MAGICS`, `ea_big`'s RefPack signature and `rw_txd`'s section ids, so that
+it reads in one sitting and cannot affect a shipped reader. The real
+`tools/owner/disc_identify.py` **must import them** — `ONE_DISC_INDEX.md` §4.1. A builder that
+copies these tables reintroduces the duplication the specification exists to remove.
+
 ## What it does not cover
 
 The real builder needs `PAK `, `EFS `/`.HDR`, `MWo3`, the Midway sound bank, `.OBF`, `VAGp`,

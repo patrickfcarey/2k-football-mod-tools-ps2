@@ -723,6 +723,13 @@ Ran 25 tests in 0.007s
 OK
 ```
 
+**One deliberate difference from the specification.** The prototype's `identify.py` keeps its own
+magic tables rather than importing `ea_terf.MEMBER_FORMAT_MAGICS`, `ea_big`'s RefPack signature
+and `rw_txd`'s section ids, so that it can be read in one sitting and so that changing it cannot
+affect a shipped reader. **The real `tools/owner/disc_identify.py` must import them** (§4.1); a
+builder that copies the prototype's tables reintroduces the duplication this document exists to
+remove.
+
 Not in the prototype, and needed by the real builder: `PAK `, `EFS `/`.HDR`, `MWo3`, the Midway
 sound bank, `.OBF`, `VAGp`, `QL01` preload caches, raw-CD (2352-byte sector) images, and the
 `--summary`/`--compare` aggregations.
