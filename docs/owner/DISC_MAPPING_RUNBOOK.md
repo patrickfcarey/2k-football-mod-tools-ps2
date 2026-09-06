@@ -28,7 +28,7 @@ agent adds the "what it is for" phrases and the open questions, and nothing else
 
 ## The tool
 
-`tools/owner/ea_disc_map.py` (v5; stdlib + this repository only; selftested; 23 unit tests):
+`tools/owner/ea_disc_map.py` (`ea_disc_map/v3`; stdlib + this repository only; selftested; 40 unit tests):
 
     PYTHONPATH=. python3 tools/owner/ea_disc_map.py --iso "<image>" --out <dir> --label "<Title> (USA)" --hash-image
     PYTHONPATH=. python3 tools/owner/ea_disc_map.py --page <dir>/<SERIAL>.<label-slug>.map.json         # the page skeleton
@@ -52,6 +52,20 @@ header ids, nested containers three levels down, and the EA TDB schema of every 
 their decompressed head, nested archives, SHPS image banks, SCHl headers and TERF/TDB members;
 bare databases; `QL01` preload copies; every ELF/IRX. A **Totals** table at the top of the
 `.map.md` carries every number a page quotes.
+
+Since v3 it also reads the **non-EA families** on the Midway Blitz discs and AND 1 Streetball,
+which earlier versions listed as `other:<hex>`: a ZIP archive and the Midway `.ZIH` index
+beside it, the `MWo3` overlay, the `PAK ` pack and its `0x11111111` resource metadata, the
+Midway sound bank and `.OBF` option tree, AND 1's `EFS ` archive with its `.HDR` member
+directories, and Sony `VAGp` streams. Three of those (`.ZIH`, the sound bank, the metadata
+list) have no usable magic and are claimed **only when their own reader validates them**, so a
+file the reader cannot stand behind stays in the unrecognised-magic table where it belongs.
+Each reader states an identity it could be wrong about and checks it — the `.ZIH`'s offsets
+must land on ZIP local file headers carrying the same names and its CRC-32 fields must
+recompute; `64 + segment1 + segment2` must be the overlay's length; the sound bank's fifth
+header word must be the file's length. A header word with no checked meaning is printed as a
+numbered word, never given a plausible name. `docs/owner/scoping/BLITZ_AND1_FORMATS.md`
+carries the field-by-field study and says what stays unknown.
 
 Containers are read through a memory map (a 1.7 GB movie container costs no memory); a raw-CD
 image (2352-byte sectors, e.g. Madden NFL 2001) is read sector by sector. A container whose
@@ -112,6 +126,11 @@ holding the page's format:
 | Textures on a BIG disc (MVP) | `SHPS` | read-only-mapped; lifted by an FSH/SHPS decoder |
 | Gameplay | executable | `unknown` (code-patch scaffold); translations |
 | The Crib, Saves | not on the disc | honest empty page |
+| Textures / Text on a ZIP disc (Blitz 2002/2003) | `ZIP` members | **read-only-mapped**; lifted by decoders for the members' own formats (RenderWare clumps and texture dictionaries, Midway `WIFF`) |
+| Textures / Menus on an `EFS ` disc (AND 1) | `EFS ` members | **read-only-mapped**; lifted by decoders for `.HDR` sub-directories and the `BALL` / `NIS0` / `SCR` blobs |
+| Audio on a Midway or AND 1 disc | Midway sound bank, `VAGp` | **read-only-mapped**; lifted by a PS-ADPCM / VAG decoder; never a writer |
+| Gameplay tuning (Blitz Pro, The League) | `.OBF` | **read-only-mapped (schema + rows)** — the walk consumes the whole file; lifted by a writer with an independent verifier |
+| Anything fed by a Midway `PAK ` | `PAK ` | **unknown** — every object is named and none can be located; lifted by whatever turns a named object into a byte range |
 
 A `COMP` container with **LZH1** members can be read but **not rewritten** until an LZH1 encoder
 exists; `--page` appends "LZH1 encoder before any rewrite" to the row and lists those containers
